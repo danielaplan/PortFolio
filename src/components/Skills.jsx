@@ -50,7 +50,7 @@ export default function Skills() {
             return (
               <div
                 key={index}
-                className="p-6 rounded-2xl bg-slate-50/60 dark:bg-slate-900/40 border border-slate-200/80 dark:border-slate-800/80 hover:border-slate-300 dark:hover:border-slate-700 transition"
+                className="p-6 rounded-2xl bg-white/75 dark:bg-slate-900/60 backdrop-blur-sm border border-slate-200/80 dark:border-slate-800/80 hover:border-slate-300 dark:hover:border-slate-700 transition"
               >
                 <div className="flex items-center gap-3 mb-4">
                   <div className="p-2.5 rounded-xl bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 border border-blue-200/50 dark:border-blue-900/40">

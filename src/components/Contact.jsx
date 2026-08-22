@@ -28,11 +28,11 @@ export default function Contact({ onCopyEmail, copiedEmail }) {
         </div>
 
         {/* Contact Container */}
-        <div className="p-8 rounded-3xl bg-slate-50/70 dark:bg-slate-900/40 border border-slate-200/80 dark:border-slate-800/80 space-y-8">
+        <div className="p-8 rounded-3xl bg-white/75 dark:bg-slate-900/60 backdrop-blur-sm border border-slate-200/80 dark:border-slate-800/80 space-y-8">
           <div className="grid gap-6 md:grid-cols-2">
 
             {/* Direct Email Card */}
-            <div className="p-6 rounded-2xl bg-white dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700/80 flex flex-col justify-between space-y-4">
+            <div className="p-6 rounded-2xl bg-slate-50/80 dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700/80 flex flex-col justify-between space-y-4">
               <div className="space-y-2">
                 <div className="flex items-center gap-2 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
                   <Mail size={15} className="text-blue-500" />

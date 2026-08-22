@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Sun, Moon, Menu, X, Mail } from 'lucide-react';
 import Github from './icons/Github';
 
@@ -6,6 +6,8 @@ export default function Navbar({ darkMode, setDarkMode, onCopyEmail }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0, opacity: 0 });
+  const tabsRef = useRef({});
 
   useEffect(() => {
     const handleScroll = () => {
@@ -40,6 +42,29 @@ export default function Navbar({ darkMode, setDarkMode, onCopyEmail }) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Update sliding indicator position whenever activeSection changes or window resizes
+  useEffect(() => {
+    const updateIndicator = () => {
+      const currentTab = tabsRef.current[activeSection];
+      if (currentTab) {
+        setIndicatorStyle({
+          left: currentTab.offsetLeft,
+          width: currentTab.clientWidth,
+          opacity: 1
+        });
+      }
+    };
+
+    updateIndicator();
+    // Allow slight delay for initial layout mount
+    const timeout = setTimeout(updateIndicator, 50);
+    window.addEventListener('resize', updateIndicator);
+    return () => {
+      clearTimeout(timeout);
+      window.removeEventListener('resize', updateIndicator);
+    };
+  }, [activeSection]);
+
   const navLinks = [
     { name: 'About', href: '#home', id: 'home' },
     { name: 'Projects', href: '#projects', id: 'projects' },
@@ -65,29 +90,53 @@ export default function Navbar({ darkMode, setDarkMode, onCopyEmail }) {
         : 'bg-transparent border-b border-transparent'
       }`}>
       <div className="max-w-4xl mx-auto px-6 h-16 flex justify-between items-center">
-        {/* Brand */}
-        <a
-          href="#home"
-          onClick={(e) => handleNavClick(e, '#home', 'home')}
-          className="text-lg font-semibold tracking-tight text-slate-900 dark:text-slate-100 hover:opacity-80 transition group flex items-center gap-1.5"
-        >
-          <span>daniel</span>
-          <span className="text-blue-500 font-bold group-hover:translate-x-0.5 transition-transform">.</span>
-        </a>
+        {/* Brand & Live Status */}
+        <div className="flex items-center gap-3">
+          <a
+            href="#home"
+            onClick={(e) => handleNavClick(e, '#home', 'home')}
+            className="text-lg font-semibold tracking-tight text-slate-900 dark:text-slate-100 hover:opacity-80 transition group flex items-center gap-1.5"
+          >
+            <span>daniel</span>
+            <span className="text-blue-500 font-bold group-hover:translate-x-0.5 transition-transform">.</span>
+          </a>
 
-        {/* Desktop Navigation */}
+          {/* Live Status Pill */}
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 shadow-xs">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            </span>
+            <span className="hidden sm:inline">Available for hire</span>
+            <span className="sm:hidden">Available</span>
+          </div>
+        </div>
+
+        {/* Desktop Navigation with Animated Sliding Indicator */}
         <nav className="hidden md:flex items-center gap-6" aria-label="Main Navigation">
-          <div className="flex items-center gap-1 bg-slate-100/70 dark:bg-slate-900/70 p-1 rounded-full border border-slate-200/60 dark:border-slate-800/60 text-xs font-medium">
+          <div className="relative flex items-center gap-1 bg-slate-200/70 dark:bg-slate-900/80 p-1 rounded-full border border-slate-200/90 dark:border-slate-800 text-xs font-medium backdrop-blur-sm shadow-2xs">
+            
+            {/* Smooth Floating Pill Indicator */}
+            <span
+              className="absolute top-1 bottom-1 rounded-full bg-slate-900 dark:bg-white shadow-sm transition-all duration-300 ease-[cubic-bezier(0.25,1,0.5,1)] pointer-events-none"
+              style={{
+                left: `${indicatorStyle.left}px`,
+                width: `${indicatorStyle.width}px`,
+                opacity: indicatorStyle.opacity
+              }}
+            />
+
             {navLinks.map((link) => {
               const isActive = activeSection === link.id;
               return (
                 <a
                   key={link.id}
+                  ref={(el) => { tabsRef.current[link.id] = el; }}
                   href={link.href}
                   onClick={(e) => handleNavClick(e, link.href, link.id)}
-                  className={`px-3.5 py-1.5 rounded-full transition-all duration-200 ${isActive
-                      ? 'bg-white dark:bg-slate-800 text-slate-900 dark:text-white shadow-xs font-semibold'
-                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                  className={`relative z-10 px-3.5 py-1.5 rounded-full transition-colors duration-200 ${isActive
+                      ? 'text-white dark:text-slate-950 font-semibold'
+                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-950 dark:hover:text-white'
                     }`}
                 >
                   {link.name}
@@ -140,9 +189,9 @@ export default function Navbar({ darkMode, setDarkMode, onCopyEmail }) {
                 key={link.id}
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href, link.id)}
-                className={`py-2 px-3 rounded-lg text-sm transition-colors ${activeSection === link.id
-                    ? 'bg-slate-100 dark:bg-slate-800/80 font-semibold text-blue-600 dark:text-blue-400'
-                    : 'text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-900'
+                className={`py-2 px-3 rounded-xl text-sm transition-colors ${activeSection === link.id
+                    ? 'bg-slate-900 text-white dark:bg-white dark:text-slate-950 font-semibold shadow-xs'
+                    : 'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-900'
                   }`}
               >
                 {link.name}
