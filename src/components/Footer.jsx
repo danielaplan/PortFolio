@@ -1,5 +1,8 @@
 import React from 'react';
 import { ArrowUp, Heart } from 'lucide-react';
+import Instagram from './icons/Instagram';
+import Facebook from './icons/Facebook';
+import Linkedin from './icons/Linkedin';
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -13,14 +16,42 @@ export default function Footer() {
           <span>&copy; {new Date().getFullYear()} Daniel Aplan. Crafted with React & Tailwind CSS.</span>
         </div>
 
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-5">
           <a
             href="https://github.com/danielaplan"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-slate-900 dark:hover:text-white transition"
+            aria-label="GitHub"
           >
             GitHub
+          </a>
+          <a
+            href="https://www.instagram.com/dniel_apln/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-pink-500 transition"
+            aria-label="Instagram"
+          >
+            <Instagram size={15} />
+          </a>
+          <a
+            href="https://www.facebook.com/daniel.aplan.9/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-blue-600 transition"
+            aria-label="Facebook"
+          >
+            <Facebook size={15} />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/daniel-aplan-5ba561334/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-sky-600 transition"
+            aria-label="LinkedIn"
+          >
+            <Linkedin size={15} />
           </a>
           <a
             href="mailto:danielaplan.bsit2024@gmail.com"

@@ -1,6 +1,9 @@
 import React from 'react';
 import { Mail, MapPin, Send, Copy, Check, MessageSquare, ExternalLink } from 'lucide-react';
 import Github from './icons/Github';
+import Instagram from './icons/Instagram';
+import Facebook from './icons/Facebook';
+import Linkedin from './icons/Linkedin';
 
 export default function Contact({ onCopyEmail, copiedEmail }) {
   const email = "danielaplan.bsit2024@gmail.com";
@@ -93,6 +96,38 @@ export default function Contact({ onCopyEmail, copiedEmail }) {
               </a>
             </div>
 
+          </div>
+
+          {/* Social Media Links */}
+          <div className="flex flex-wrap items-center gap-3 pt-2">
+            <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mr-1">Find me on</span>
+            <a
+              href="https://www.instagram.com/dniel_apln/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white text-xs font-semibold transition shadow-xs"
+            >
+              <Instagram size={14} />
+              <span>Instagram</span>
+            </a>
+            <a
+              href="https://www.facebook.com/daniel.aplan.9/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold transition shadow-xs"
+            >
+              <Facebook size={14} />
+              <span>Facebook</span>
+            </a>
+            <a
+              href="https://www.linkedin.com/in/daniel-aplan-5ba561334/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-sky-600 hover:bg-sky-700 text-white text-xs font-semibold transition shadow-xs"
+            >
+              <Linkedin size={14} />
+              <span>LinkedIn</span>
+            </a>
           </div>
 
           {/* Quick Notice */}
