@@ -11,23 +11,32 @@ export default function Navbar({ darkMode, setDarkMode, onCopyEmail }) {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
 
+      // Check if user has scrolled to the bottom of the page
+      const isAtBottom = window.innerHeight + Math.round(window.scrollY) >= document.documentElement.scrollHeight - 80;
+      if (isAtBottom) {
+        setActiveSection('contact');
+        return;
+      }
+
       const sections = ['home', 'projects', 'skills', 'contact'];
-      const scrollPosition = window.scrollY + 100;
+      let currentSection = 'home';
 
       for (const section of sections) {
         const element = document.getElementById(section);
         if (element) {
-          const top = element.offsetTop;
-          const height = element.offsetHeight;
-          if (scrollPosition >= top && scrollPosition < top + height) {
-            setActiveSection(section);
-            break;
+          const rect = element.getBoundingClientRect();
+          // If the section top is near or above header level (within 140px)
+          if (rect.top <= 140) {
+            currentSection = section;
           }
         }
       }
+
+      setActiveSection(currentSection);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -38,9 +47,12 @@ export default function Navbar({ darkMode, setDarkMode, onCopyEmail }) {
     { name: 'Contact', href: '#contact', id: 'contact' },
   ];
 
-  const handleNavClick = (e, href) => {
+  const handleNavClick = (e, href, id) => {
     e.preventDefault();
     setMobileMenuOpen(false);
+    if (id) {
+      setActiveSection(id);
+    }
     const target = document.querySelector(href);
     if (target) {
       target.scrollIntoView({ behavior: 'smooth' });
@@ -56,7 +68,7 @@ export default function Navbar({ darkMode, setDarkMode, onCopyEmail }) {
         {/* Brand */}
         <a
           href="#home"
-          onClick={(e) => handleNavClick(e, '#home')}
+          onClick={(e) => handleNavClick(e, '#home', 'home')}
           className="text-lg font-semibold tracking-tight text-slate-900 dark:text-slate-100 hover:opacity-80 transition group flex items-center gap-1.5"
         >
           <span>daniel</span>
@@ -72,7 +84,7 @@ export default function Navbar({ darkMode, setDarkMode, onCopyEmail }) {
                 <a
                   key={link.id}
                   href={link.href}
-                  onClick={(e) => handleNavClick(e, link.href)}
+                  onClick={(e) => handleNavClick(e, link.href, link.id)}
                   className={`px-3.5 py-1.5 rounded-full transition-all duration-200 ${isActive
                       ? 'bg-white dark:bg-slate-800 text-slate-900 dark:text-white shadow-xs font-semibold'
                       : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
@@ -127,7 +139,7 @@ export default function Navbar({ darkMode, setDarkMode, onCopyEmail }) {
               <a
                 key={link.id}
                 href={link.href}
-                onClick={(e) => handleNavClick(e, link.href)}
+                onClick={(e) => handleNavClick(e, link.href, link.id)}
                 className={`py-2 px-3 rounded-lg text-sm transition-colors ${activeSection === link.id
                     ? 'bg-slate-100 dark:bg-slate-800/80 font-semibold text-blue-600 dark:text-blue-400'
                     : 'text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-900'

@@ -66,7 +66,7 @@ export default function Hero({ onCopyEmail, copiedEmail }) {
 
               <button
                 onClick={onCopyEmail}
-                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-850 border border-slate-200/80 dark:border-slate-800 text-slate-800 dark:text-slate-200 font-medium text-xs sm:text-sm hover:bg-slate-200 dark:hover:bg-slate-800 transition cursor-pointer"
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 text-slate-800 dark:text-slate-200 font-medium text-xs sm:text-sm hover:bg-slate-200 dark:hover:bg-slate-800 transition cursor-pointer"
                 title="Click to copy email address"
               >
                 {copiedEmail ? (
@@ -76,7 +76,7 @@ export default function Hero({ onCopyEmail, copiedEmail }) {
                   </>
                 ) : (
                   <>
-                    <Copy size={15} className="text-slate-500" />
+                    <Copy size={15} className="text-slate-500 dark:text-slate-400" />
                     <span>Copy Email</span>
                   </>
                 )}
