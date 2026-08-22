@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-import { X, ExternalLink, Star, GitFork, Calendar, Layers, Sparkles, CheckCircle2, Globe, Clock, Code2 } from 'lucide-react';
+import { createPortal } from 'react-dom';
+import { X, ExternalLink, Star, GitFork, Calendar, Sparkles, CheckCircle2, Globe, Clock, Code2 } from 'lucide-react';
 import Github from './icons/Github';
 import { formatTimeAgo, getDevStatus } from '../services/github';
 
@@ -28,23 +29,23 @@ export default function ProjectModal({ project, githubData, onClose, onSelectTag
   const repoUrl = project.link || (gh && gh.htmlUrl) || `https://github.com/danielaplan/${project.repoName || project.title}`;
   const devStatus = getDevStatus(gh?.pushedAt || project.pushedAt, gh?.archived || project.archived, project.tags || gh?.topics);
 
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+  const modalContent = (
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-6 overflow-y-auto overscroll-contain">
       {/* Backdrop */}
       <div
-        className="fixed inset-0 bg-slate-950/70 backdrop-blur-md transition-opacity animate-in fade-in duration-200"
+        className="fixed inset-0 bg-slate-950/75 backdrop-blur-md transition-opacity animate-in fade-in duration-200"
         onClick={onClose}
         aria-hidden="true"
       />
 
       {/* Modal Card */}
-      <div className="relative w-full max-w-2xl my-8 bg-white dark:bg-slate-900 rounded-3xl shadow-2xl border border-slate-200/80 dark:border-slate-800 z-10 overflow-hidden animate-in zoom-in-95 duration-200">
+      <div className="relative w-full max-w-2xl my-auto bg-white dark:bg-slate-900 rounded-2xl sm:rounded-3xl shadow-2xl border border-slate-200/80 dark:border-slate-800 z-10 max-h-[calc(100dvh-1.5rem)] sm:max-h-[calc(100dvh-3rem)] flex flex-col overflow-hidden animate-in zoom-in-95 duration-200">
         
         {/* Modal Header */}
-        <div className="p-6 sm:p-8 pb-4 border-b border-slate-100 dark:border-slate-800/80">
-          <div className="flex items-start justify-between gap-4">
-            <div className="space-y-2">
-              <div className="flex flex-wrap items-center gap-2">
+        <div className="shrink-0 p-4 sm:p-6 pb-3 sm:pb-4 border-b border-slate-100 dark:border-slate-800/80">
+          <div className="flex items-start justify-between gap-3">
+            <div className="space-y-1.5 min-w-0 flex-1">
+              <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
                 {/* Dev Status Badge */}
                 <span className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold border ${devStatus.badgeClass}`}>
                   <span className={`w-1.5 h-1.5 rounded-full ${devStatus.dotClass}`} />
@@ -67,14 +68,14 @@ export default function ProjectModal({ project, githubData, onClose, onSelectTag
                   </span>
                 )}
               </div>
-              <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight">
+              <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-slate-900 dark:text-white tracking-tight break-words">
                 {project.title || project.name}
               </h3>
             </div>
 
             <button
               onClick={onClose}
-              className="p-2 rounded-xl text-slate-400 hover:text-slate-700 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition cursor-pointer shrink-0"
+              className="p-1.5 sm:p-2 -mr-1 -mt-1 rounded-xl text-slate-400 hover:text-slate-700 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition cursor-pointer shrink-0"
               aria-label="Close dialog"
             >
               <X size={20} />
@@ -83,29 +84,29 @@ export default function ProjectModal({ project, githubData, onClose, onSelectTag
         </div>
 
         {/* Modal Body */}
-        <div className="p-6 sm:p-8 space-y-6 max-h-[70vh] overflow-y-auto">
+        <div className="flex-1 p-4 sm:p-6 sm:p-8 space-y-5 sm:space-y-6 overflow-y-auto overscroll-contain">
           
           {/* Detailed Overview */}
-          <div className="space-y-2">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">
+          <div className="space-y-1.5">
+            <h4 className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">
               Overview
             </h4>
-            <p className="text-sm sm:text-base text-slate-700 dark:text-slate-300 leading-relaxed">
+            <p className="text-sm sm:text-base text-slate-700 dark:text-slate-300 leading-relaxed break-words">
               {project.longDescription || project.description}
             </p>
           </div>
 
           {/* Key Features / Highlights */}
           {project.keyFeatures && project.keyFeatures.length > 0 && (
-            <div className="space-y-3 pt-2">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">
+            <div className="space-y-2.5 pt-1">
+              <h4 className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">
                 Key Features & Capabilities
               </h4>
-              <ul className="grid gap-2 sm:grid-cols-1">
+              <ul className="grid gap-2">
                 {project.keyFeatures.map((feature, idx) => (
                   <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300">
                     <CheckCircle2 size={16} className="text-blue-500 dark:text-blue-400 mt-0.5 shrink-0" />
-                    <span>{feature}</span>
+                    <span className="break-words">{feature}</span>
                   </li>
                 ))}
               </ul>
@@ -114,8 +115,8 @@ export default function ProjectModal({ project, githubData, onClose, onSelectTag
 
           {/* Tech Stack & Tags */}
           {project.tags && project.tags.length > 0 && (
-            <div className="space-y-2.5 pt-2">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">
+            <div className="space-y-2 pt-1">
+              <h4 className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">
                 Technologies & Tools
               </h4>
               <div className="flex flex-wrap gap-1.5">
@@ -128,7 +129,7 @@ export default function ProjectModal({ project, githubData, onClose, onSelectTag
                         onClose();
                       }
                     }}
-                    className="text-xs px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800/90 text-slate-800 dark:text-slate-200 font-mono border border-slate-200/60 dark:border-slate-700/60 hover:border-blue-500/50 hover:text-blue-600 dark:hover:text-blue-400 transition cursor-pointer"
+                    className="text-xs px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800/90 text-slate-800 dark:text-slate-200 font-mono border border-slate-200/60 dark:border-slate-700/60 hover:border-blue-500/50 hover:text-blue-600 dark:hover:text-blue-400 transition cursor-pointer"
                     title={`Filter by ${tag}`}
                   >
                     #{tag}
@@ -140,8 +141,8 @@ export default function ProjectModal({ project, githubData, onClose, onSelectTag
 
           {/* GitHub Metadata Card if synced */}
           {gh && (
-            <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-700/60 flex flex-wrap items-center justify-between gap-4 text-xs">
-              <div className="flex items-center gap-4 text-slate-600 dark:text-slate-300">
+            <div className="p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-700/60 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-4 text-xs">
+              <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-slate-600 dark:text-slate-300">
                 {gh.language && (
                   <span className="flex items-center gap-1.5">
                     <Code2 size={14} className="text-blue-500" />
@@ -170,18 +171,18 @@ export default function ProjectModal({ project, githubData, onClose, onSelectTag
         </div>
 
         {/* Modal Footer / CTAs */}
-        <div className="p-6 sm:p-8 pt-4 bg-slate-50/70 dark:bg-slate-900/90 border-t border-slate-100 dark:border-slate-800 flex flex-wrap items-center justify-between gap-3">
-          <div className="text-xs text-slate-500 dark:text-slate-400">
+        <div className="shrink-0 p-4 sm:p-6 pt-3 sm:pt-4 bg-slate-50/90 dark:bg-slate-900/95 border-t border-slate-100 dark:border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 order-2 sm:order-1">
             {isLiveRepo ? 'Live synchronized repository from GitHub' : 'Curated Engineering Project'}
           </div>
 
-          <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-2 w-full sm:w-auto order-1 sm:order-2">
             {liveDemoUrl && (
               <a
                 href={liveDemoUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-medium text-xs sm:text-sm transition shadow-xs"
+                className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-medium text-xs sm:text-sm transition shadow-xs"
               >
                 <Globe size={14} />
                 <span>Live Demo</span>
@@ -194,7 +195,7 @@ export default function ProjectModal({ project, githubData, onClose, onSelectTag
                 href={repoUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-100 font-medium text-xs sm:text-sm transition"
+                className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-100 font-medium text-xs sm:text-sm transition"
               >
                 <Github size={15} />
                 <span>View GitHub</span>
@@ -207,4 +208,11 @@ export default function ProjectModal({ project, githubData, onClose, onSelectTag
       </div>
     </div>
   );
+
+  if (typeof document !== 'undefined') {
+    return createPortal(modalContent, document.body);
+  }
+
+  return modalContent;
 }
+
