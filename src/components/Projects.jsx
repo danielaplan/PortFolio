@@ -137,20 +137,20 @@ export default function Projects() {
   };
 
   return (
-    <section id="projects" className="py-20 border-t border-slate-200/80 dark:border-slate-800/80">
-      <div className="max-w-4xl mx-auto px-6">
+    <section id="projects" className="py-12 sm:py-20 border-t border-slate-200/60 dark:border-slate-800/60">
+      <div className="max-w-4xl mx-auto px-5 sm:px-6">
 
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
           <div>
-            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-2">
-              <FolderGit2 size={16} />
+            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-1.5">
+              <FolderGit2 size={15} />
               <span>Interactive Portfolio</span>
             </div>
-            <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
               Projects & Engineering
             </h2>
-            <p className="text-slate-600 dark:text-slate-400 text-sm mt-1">
+            <p className="text-slate-600 dark:text-slate-400 text-xs sm:text-sm mt-1">
               Explore highlighted software solutions, academic systems, and live GitHub repositories.
             </p>
           </div>
@@ -280,7 +280,12 @@ export default function Projects() {
               return (
                 <article
                   key={project.id}
-                  className="group relative flex flex-col justify-between p-6 rounded-3xl glass-card cursor-pointer"
+                  onMouseMove={(e) => {
+                    const rect = e.currentTarget.getBoundingClientRect();
+                    e.currentTarget.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+                    e.currentTarget.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+                  }}
+                  className="group relative flex flex-col justify-between p-6 sm:p-7 rounded-3xl liquid-glass-card cursor-pointer"
                   onClick={() => setActiveModalProject(project)}
                 >
                   <div className="space-y-4">

@@ -35,6 +35,8 @@ export default function App() {
       infinite: false,
     });
 
+    window.__lenis = lenis;
+
     let animationFrameId;
     function raf(time) {
       lenis.raf(time);
@@ -42,26 +44,9 @@ export default function App() {
     }
     animationFrameId = requestAnimationFrame(raf);
 
-    // Smooth Anchor Navigation Handler (#home, #projects, #skills, #contact)
-    const handleAnchorClick = (e) => {
-      const target = e.target.closest('a[href^="#"]');
-      if (target) {
-        const href = target.getAttribute('href');
-        if (href && href.length > 1) {
-          const element = document.querySelector(href);
-          if (element) {
-            e.preventDefault();
-            lenis.scrollTo(element, { offset: -40, duration: 1.4 });
-          }
-        }
-      }
-    };
-
-    document.addEventListener('click', handleAnchorClick);
-
     return () => {
       cancelAnimationFrame(animationFrameId);
-      document.removeEventListener('click', handleAnchorClick);
+      window.__lenis = null;
       lenis.destroy();
     };
   }, []);

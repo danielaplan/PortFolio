@@ -26,19 +26,19 @@ export default function Skills() {
   ];
 
   return (
-    <section id="skills" className="py-20 border-t border-slate-200/60 dark:border-slate-800/60">
-      <div className="max-w-4xl mx-auto px-6">
+    <section id="skills" className="py-12 sm:py-20 border-t border-slate-200/60 dark:border-slate-800/60">
+      <div className="max-w-4xl mx-auto px-5 sm:px-6">
 
         {/* Section Header */}
-        <div className="mb-12">
-          <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-2">
-            <Cpu size={16} />
+        <div className="mb-8 sm:mb-12">
+          <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-1.5">
+            <Cpu size={15} />
             <span>Technical Proficiency</span>
           </div>
-          <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
+          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
             Skills & Technologies
           </h2>
-          <p className="text-slate-600 dark:text-slate-400 text-sm mt-2 max-w-xl">
+          <p className="text-slate-600 dark:text-slate-400 text-xs sm:text-sm mt-1 max-w-xl">
             Core competencies acquired through academic coursework at University of Caloocan City and hands-on project engineering.
           </p>
         </div>
@@ -50,7 +50,12 @@ export default function Skills() {
             return (
               <div
                 key={index}
-                className="p-6 rounded-3xl glass-card"
+                onMouseMove={(e) => {
+                  const rect = e.currentTarget.getBoundingClientRect();
+                  e.currentTarget.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+                  e.currentTarget.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+                }}
+                className="p-6 sm:p-7 rounded-3xl liquid-glass-card"
               >
                 <div className="flex items-center gap-3 mb-4">
                   <div className="p-2.5 rounded-2xl bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20 shadow-2xs">

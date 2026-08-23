@@ -10,19 +10,19 @@ export default function Contact({ onCopyEmail, copiedEmail }) {
   const github = "https://github.com/danielaplan";
 
   return (
-    <section id="contact" className="py-20 border-t border-slate-200/60 dark:border-slate-800/60">
-      <div className="max-w-4xl mx-auto px-6">
+    <section id="contact" className="py-12 sm:py-20 border-t border-slate-200/60 dark:border-slate-800/60">
+      <div className="max-w-4xl mx-auto px-5 sm:px-6">
 
         {/* Section Header */}
-        <div className="mb-10">
-          <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-2">
-            <MessageSquare size={16} />
+        <div className="mb-8 sm:mb-10">
+          <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-1.5">
+            <MessageSquare size={15} />
             <span>Get in Touch</span>
           </div>
-          <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
+          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
             Let's Connect
           </h2>
-          <p className="text-slate-600 dark:text-slate-400 text-sm mt-2 max-w-xl">
+          <p className="text-slate-600 dark:text-slate-400 text-xs sm:text-sm mt-1 max-w-xl">
             I'm always open to discussing new software development opportunities, academic collaborations, or project ideas.
           </p>
         </div>
