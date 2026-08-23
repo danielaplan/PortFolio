@@ -102,7 +102,7 @@ export const curatedProjects = [
     repoName: "PortFolio",
     category: "Web & Apps",
     description: "Modern, high-performance portfolio engineered with React, Tailwind CSS, Vite, and live GitHub API synchronization with dark mode support.",
-    longDescription: "Personal portfolio website built to showcase software engineering projects, technical competencies, and academic background. Engineered with responsive design, accessible contrast tokens, smooth navigation scroll spies, and real-time GitHub integration.",
+    longDescription: "Personal portfolio website built to showcase software development projects, technical competencies, and academic background. Engineered with responsive design, accessible contrast tokens, smooth navigation scroll spies, and real-time GitHub integration.",
     keyFeatures: [
       "Live GitHub REST API synchronization with local caching",
       "Dynamic project search, tag filtering, and preview modals",

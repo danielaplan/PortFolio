@@ -14,7 +14,7 @@ export default function Hero({ onCopyEmail, copiedEmail }) {
           <div className="flex-1 space-y-6">
 
             {/* Status / University Badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 dark:bg-blue-950/50 border border-blue-200/80 dark:border-blue-900/60 text-blue-700 dark:text-blue-300 text-xs font-medium">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/10 dark:bg-blue-950/40 border border-blue-500/20 text-blue-700 dark:text-blue-300 text-xs font-medium backdrop-blur-md shadow-2xs">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
@@ -30,7 +30,7 @@ export default function Hero({ onCopyEmail, copiedEmail }) {
                 Daniel Aplan
               </h1>
               <p className="text-lg sm:text-xl font-medium text-slate-600 dark:text-slate-300">
-                Aspiring Software Engineer & IT Student
+                Aspiring Software Developer & IT Student
               </p>
             </div>
 
@@ -57,7 +57,7 @@ export default function Hero({ onCopyEmail, copiedEmail }) {
                 href="https://github.com/danielaplan"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-medium text-xs sm:text-sm hover:bg-slate-800 dark:hover:bg-slate-100 transition shadow-xs group"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-2xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-medium text-xs sm:text-sm hover:bg-slate-800 dark:hover:bg-slate-100 transition shadow-xs group"
               >
                 <Github size={16} />
                 <span>GitHub Profile</span>
@@ -66,7 +66,7 @@ export default function Hero({ onCopyEmail, copiedEmail }) {
 
               <button
                 onClick={onCopyEmail}
-                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 text-slate-800 dark:text-slate-200 font-medium text-xs sm:text-sm hover:bg-slate-200 dark:hover:bg-slate-800 transition cursor-pointer"
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-white/60 dark:bg-slate-900/60 border border-white/80 dark:border-white/10 text-slate-800 dark:text-slate-200 font-medium text-xs sm:text-sm hover:bg-white dark:hover:bg-slate-800 transition cursor-pointer backdrop-blur-md shadow-2xs"
                 title="Click to copy email address"
               >
                 {copiedEmail ? (
@@ -84,7 +84,7 @@ export default function Hero({ onCopyEmail, copiedEmail }) {
 
               <a
                 href="#projects"
-                className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-slate-600 dark:text-slate-400 font-medium text-xs sm:text-sm hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-900 transition"
+                className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-2xl text-slate-600 dark:text-slate-400 font-medium text-xs sm:text-sm hover:text-slate-900 dark:hover:text-white hover:bg-white/50 dark:hover:bg-slate-900/50 backdrop-blur-sm transition"
               >
                 <span>Projects</span>
                 <span className="text-slate-400">&darr;</span>
@@ -96,10 +96,10 @@ export default function Hero({ onCopyEmail, copiedEmail }) {
           {/* Minimalist Profile Picture Column */}
           <div className="relative group shrink-0 self-center md:self-auto">
             {/* Ambient Background Glow */}
-            <div className="absolute -inset-1 bg-gradient-to-tr from-blue-600/20 via-sky-500/10 to-indigo-500/20 rounded-3xl blur-lg opacity-70 group-hover:opacity-100 transition duration-500"></div>
+            <div className="absolute -inset-1.5 bg-gradient-to-tr from-blue-500/25 via-sky-400/20 to-indigo-500/25 rounded-3xl blur-xl opacity-70 group-hover:opacity-100 transition duration-500"></div>
 
-            {/* Image Frame */}
-            <div className="relative w-36 h-36 sm:w-44 sm:h-44 md:w-52 md:h-52 rounded-3xl overflow-hidden border-2 border-slate-200/80 dark:border-slate-800 bg-slate-100 dark:bg-slate-900 shadow-md group-hover:border-blue-500/40 transition duration-300">
+            {/* Glass Image Frame */}
+            <div className="relative w-36 h-36 sm:w-44 sm:h-44 md:w-52 md:h-52 rounded-3xl overflow-hidden border border-white/60 dark:border-white/10 bg-white/20 dark:bg-slate-900/40 backdrop-blur-md shadow-xl group-hover:border-blue-400/40 transition duration-300">
               <img
                 src="/profile.jpg"
                 alt="Daniel Aplan"
@@ -111,7 +111,7 @@ export default function Hero({ onCopyEmail, copiedEmail }) {
             </div>
 
             {/* Active Status Indicator Pill */}
-            <div className="absolute -bottom-2 right-2 sm:-bottom-2.5 sm:right-3 px-2.5 py-1 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm flex items-center gap-1.5 text-[11px] font-medium text-slate-700 dark:text-slate-300">
+            <div className="absolute -bottom-2 right-2 sm:-bottom-2.5 sm:right-3 px-2.5 py-1 rounded-full bg-white/85 dark:bg-slate-900/85 backdrop-blur-md border border-white/80 dark:border-white/10 shadow-sm flex items-center gap-1.5 text-[11px] font-medium text-slate-700 dark:text-slate-300">
               <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
               <span>Online</span>
             </div>

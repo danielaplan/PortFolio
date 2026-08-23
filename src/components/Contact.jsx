@@ -10,7 +10,7 @@ export default function Contact({ onCopyEmail, copiedEmail }) {
   const github = "https://github.com/danielaplan";
 
   return (
-    <section id="contact" className="py-20 border-t border-slate-200/80 dark:border-slate-800/80">
+    <section id="contact" className="py-20 border-t border-slate-200/60 dark:border-slate-800/60">
       <div className="max-w-4xl mx-auto px-6">
 
         {/* Section Header */}
@@ -27,12 +27,12 @@ export default function Contact({ onCopyEmail, copiedEmail }) {
           </p>
         </div>
 
-        {/* Contact Container */}
-        <div className="p-8 rounded-3xl bg-white/75 dark:bg-slate-900/60 backdrop-blur-sm border border-slate-200/80 dark:border-slate-800/80 space-y-8">
+        {/* Glass Contact Container */}
+        <div className="p-8 rounded-3xl glass-panel space-y-8">
           <div className="grid gap-6 md:grid-cols-2">
 
             {/* Direct Email Card */}
-            <div className="p-6 rounded-2xl bg-slate-50/80 dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700/80 flex flex-col justify-between space-y-4">
+            <div className="p-6 rounded-2xl bg-white/50 dark:bg-slate-800/40 border border-white/60 dark:border-white/5 flex flex-col justify-between space-y-4 shadow-2xs">
               <div className="space-y-2">
                 <div className="flex items-center gap-2 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
                   <Mail size={15} className="text-blue-500" />
@@ -54,7 +54,7 @@ export default function Contact({ onCopyEmail, copiedEmail }) {
 
                 <button
                   onClick={onCopyEmail}
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-800 dark:text-slate-200 text-xs font-semibold transition cursor-pointer"
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white/70 dark:bg-slate-700/60 hover:bg-white dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 text-xs font-semibold transition cursor-pointer border border-white/80 dark:border-white/5 shadow-2xs"
                 >
                   {copiedEmail ? (
                     <>
@@ -72,7 +72,7 @@ export default function Contact({ onCopyEmail, copiedEmail }) {
             </div>
 
             {/* GitHub & Location Card */}
-            <div className="p-6 rounded-2xl bg-white dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700/80 flex flex-col justify-between space-y-4">
+            <div className="p-6 rounded-2xl bg-white/50 dark:bg-slate-800/40 border border-white/60 dark:border-white/5 flex flex-col justify-between space-y-4 shadow-2xs">
               <div className="space-y-3">
                 <div className="flex items-center gap-2 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
                   <Github size={15} className="text-blue-500" />
@@ -87,7 +87,7 @@ export default function Contact({ onCopyEmail, copiedEmail }) {
                 href={github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-between px-4 py-2 rounded-xl bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-900 dark:text-white text-xs font-semibold transition"
+                className="inline-flex items-center justify-between px-4 py-2.5 rounded-xl bg-white/70 dark:bg-slate-700/60 hover:bg-white dark:hover:bg-slate-700 text-slate-900 dark:text-white text-xs font-semibold transition border border-white/80 dark:border-white/5 shadow-2xs"
               >
                 <span className="flex items-center gap-1.5">
                   <Github size={14} /> github.com/danielaplan

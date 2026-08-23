@@ -42,10 +42,13 @@ export default function ProjectModal({ project, githubData, onClose, onSelectTag
       />
 
       {/* Modal Card */}
-      <div className="relative w-full max-w-3xl my-auto bg-white dark:bg-slate-900 rounded-2xl sm:rounded-3xl shadow-2xl border border-slate-200/80 dark:border-slate-800 z-10 max-h-[calc(100dvh-1.5rem)] sm:max-h-[calc(100dvh-3rem)] flex flex-col overflow-hidden animate-in zoom-in-95 duration-200">
+      <div 
+        data-lenis-prevent
+        className="relative w-full max-w-3xl my-auto glass-panel rounded-3xl shadow-2xl border border-white/80 dark:border-white/10 z-10 max-h-[calc(100dvh-1.5rem)] sm:max-h-[calc(100dvh-3rem)] flex flex-col overflow-hidden animate-in zoom-in-95 duration-200"
+      >
         
         {/* Modal Header */}
-        <div className="shrink-0 p-4 sm:p-6 pb-3 sm:pb-4 border-b border-slate-100 dark:border-slate-800/80">
+        <div className="shrink-0 p-4 sm:p-6 pb-3 sm:pb-4 border-b border-white/60 dark:border-white/10">
           <div className="flex items-start justify-between gap-3">
             <div className="space-y-1.5 min-w-0 flex-1">
               <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
@@ -115,7 +118,10 @@ export default function ProjectModal({ project, githubData, onClose, onSelectTag
         </div>
 
         {/* Modal Body */}
-        <div className="flex-1 p-4 sm:p-6 sm:p-8 space-y-5 sm:space-y-6 overflow-y-auto overscroll-contain">
+        <div 
+          data-lenis-prevent
+          className="flex-1 p-4 sm:p-6 sm:p-8 space-y-5 sm:space-y-6 overflow-y-auto overscroll-contain"
+        >
           
           {activeTab === 'code' ? (
             <CodeInspector project={project} repoName={project.repoName} />
@@ -208,7 +214,7 @@ export default function ProjectModal({ project, githubData, onClose, onSelectTag
         </div>
 
         {/* Modal Footer / CTAs */}
-        <div className="shrink-0 p-4 sm:p-6 pt-3 sm:pt-4 bg-slate-50/90 dark:bg-slate-900/95 border-t border-slate-100 dark:border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div className="shrink-0 p-4 sm:p-6 pt-3 sm:pt-4 bg-white/40 dark:bg-slate-900/50 border-t border-white/60 dark:border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 order-2 sm:order-1 flex items-center gap-2">
             <span>{isLiveRepo ? 'Live synchronized repository' : 'Curated Engineering Project'}</span>
             <span>•</span>

@@ -213,7 +213,7 @@ export default function Projects() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search projects by name, keyword, or technology..."
-                className="w-full pl-9 pr-9 py-2 rounded-xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-800 text-xs sm:text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500 transition"
+                className="w-full pl-9 pr-9 py-2.5 rounded-2xl bg-white/50 dark:bg-slate-900/40 backdrop-blur-md border border-white/60 dark:border-white/10 text-xs sm:text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500 transition shadow-2xs"
               />
               {searchQuery && (
                 <button
@@ -232,10 +232,10 @@ export default function Projects() {
                 <button
                   key={cat}
                   onClick={() => setFilter(cat)}
-                  className={`px-3 py-1.5 rounded-xl font-medium transition cursor-pointer capitalize border ${
+                  className={`px-3.5 py-1.5 rounded-xl font-medium transition cursor-pointer capitalize border ${
                     filter === cat
-                      ? 'bg-blue-50 dark:bg-blue-950/60 border-blue-200 dark:border-blue-800 text-blue-600 dark:text-blue-400 font-semibold'
-                      : 'bg-white dark:bg-slate-900/50 border-slate-200/80 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-50'
+                      ? 'bg-blue-600 text-white border-blue-500 shadow-xs font-semibold'
+                      : 'bg-white/50 dark:bg-slate-900/40 border-white/60 dark:border-white/10 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-white/80 dark:hover:bg-slate-800/80'
                   }`}
                 >
                   {cat === 'all' ? `All (${categories.all})` : `${cat} (${categories[cat]})`}
@@ -249,7 +249,7 @@ export default function Projects() {
           {selectedTag && (
             <div className="flex items-center gap-2 pt-1 text-xs">
               <span className="text-slate-500 dark:text-slate-400">Filtered by tag:</span>
-              <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20 font-mono font-medium">
+              <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-xl bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20 font-mono font-medium">
                 #{selectedTag}
                 <button
                   onClick={() => setSelectedTag(null)}
@@ -280,7 +280,7 @@ export default function Projects() {
               return (
                 <article
                   key={project.id}
-                  className="group relative flex flex-col justify-between p-6 rounded-2xl bg-white/75 dark:bg-slate-900/60 backdrop-blur-sm border border-slate-200/80 dark:border-slate-800/80 hover:border-blue-500/40 dark:hover:border-blue-500/40 hover:bg-white/95 dark:hover:bg-slate-900/90 transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/5 cursor-pointer"
+                  className="group relative flex flex-col justify-between p-6 rounded-3xl glass-card cursor-pointer"
                   onClick={() => setActiveModalProject(project)}
                 >
                   <div className="space-y-4">

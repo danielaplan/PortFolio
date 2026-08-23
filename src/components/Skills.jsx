@@ -26,7 +26,7 @@ export default function Skills() {
   ];
 
   return (
-    <section id="skills" className="py-20 border-t border-slate-200/80 dark:border-slate-800/80">
+    <section id="skills" className="py-20 border-t border-slate-200/60 dark:border-slate-800/60">
       <div className="max-w-4xl mx-auto px-6">
 
         {/* Section Header */}
@@ -50,10 +50,10 @@ export default function Skills() {
             return (
               <div
                 key={index}
-                className="p-6 rounded-2xl bg-white/75 dark:bg-slate-900/60 backdrop-blur-sm border border-slate-200/80 dark:border-slate-800/80 hover:border-slate-300 dark:hover:border-slate-700 transition"
+                className="p-6 rounded-3xl glass-card"
               >
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="p-2.5 rounded-xl bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 border border-blue-200/50 dark:border-blue-900/40">
+                  <div className="p-2.5 rounded-2xl bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20 shadow-2xs">
                     <Icon size={18} />
                   </div>
                   <h3 className="font-semibold text-slate-900 dark:text-white text-base">
@@ -65,7 +65,7 @@ export default function Skills() {
                   {category.skills.map((skill, sIndex) => (
                     <span
                       key={sIndex}
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700/80 text-xs font-medium text-slate-800 dark:text-slate-200 hover:border-blue-400/50 dark:hover:border-blue-500/50 transition shadow-2xs"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/60 dark:bg-slate-800/60 border border-white/80 dark:border-white/5 text-xs font-medium text-slate-800 dark:text-slate-200 hover:border-blue-400/50 dark:hover:border-blue-500/50 transition shadow-2xs"
                     >
                       <CheckCircle2 size={12} className="text-blue-500 shrink-0" />
                       {skill}

@@ -270,7 +270,10 @@ export default function CodeInspector({ project, repoName }) {
         </div>
 
         {/* Single Unified Table Scroll Container */}
-        <div className="overflow-auto max-h-[400px] p-3 text-[12px] sm:text-[13px] leading-relaxed font-mono selection:bg-blue-600/40 overscroll-contain">
+        <div 
+          data-lenis-prevent
+          className="overflow-auto max-h-[400px] p-3 text-[12px] sm:text-[13px] leading-relaxed font-mono selection:bg-blue-600/40 overscroll-contain"
+        >
           <table className="w-full border-collapse min-w-max text-left">
             <tbody>
               {lines.map((line, idx) => (
