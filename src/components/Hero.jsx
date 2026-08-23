@@ -99,7 +99,7 @@ export default function Hero({ onCopyEmail, copiedEmail }) {
             <div className="absolute -inset-1.5 bg-gradient-to-tr from-blue-500/25 via-sky-400/20 to-indigo-500/25 rounded-3xl blur-lg opacity-70 group-hover:opacity-100 transition duration-500"></div>
 
             {/* Glass Image Frame */}
-            <div className="relative w-28 h-28 sm:w-36 sm:h-36 md:w-52 md:h-52 rounded-3xl overflow-hidden border border-white/60 dark:border-white/10 bg-white/20 dark:bg-slate-900/40 backdrop-blur-md shadow-lg group-hover:border-blue-400/40 transition duration-300">
+            <div className="relative w-36 h-36 sm:w-44 sm:h-44 md:w-52 md:h-52 rounded-3xl overflow-hidden border border-white/60 dark:border-white/10 bg-white/20 dark:bg-slate-900/40 backdrop-blur-md shadow-lg group-hover:border-blue-400/40 transition duration-300">
               <img
                 src="/profile.jpg"
                 alt="Daniel Aplan"
@@ -111,8 +111,8 @@ export default function Hero({ onCopyEmail, copiedEmail }) {
             </div>
 
             {/* Active Status Indicator Pill */}
-            <div className="absolute -bottom-2 right-2 sm:-bottom-2.5 sm:right-3 px-2 py-0.8 rounded-full bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border border-white/80 dark:border-white/10 shadow-sm flex items-center gap-1.5 text-[10px] sm:text-[11px] font-medium text-slate-700 dark:text-slate-300">
-              <span className="h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            <div className="absolute -bottom-2 right-2 sm:-bottom-2.5 sm:right-3 px-2.5 py-1 rounded-full bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border border-white/80 dark:border-white/10 shadow-sm flex items-center gap-1.5 text-[11px] font-medium text-slate-700 dark:text-slate-300">
+              <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
               <span>Online</span>
             </div>
           </div>

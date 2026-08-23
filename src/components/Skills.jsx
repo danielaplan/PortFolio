@@ -1,27 +1,59 @@
 import React from 'react';
-import { Cpu, Terminal, Database, Wrench, CheckCircle2, Code2 } from 'lucide-react';
+import { 
+  Cpu, Terminal, Database, Wrench, Code2, 
+  Smartphone, Palette, TableProperties, Layers, Network 
+} from 'lucide-react';
+import {
+  JavaIcon, CSharpIcon, PhpIcon, JavascriptIcon, TypescriptIcon, 
+  HtmlCssIcon, ReactIcon, TailwindIcon, ViteIcon, MysqlIcon, 
+  MariadbIcon, SqliteIcon, GitIcon, NodeIcon, VscodeIcon
+} from './icons/TechIcons';
 
 export default function Skills() {
   const skillCategories = [
     {
       title: "Programming Languages",
       icon: Terminal,
-      skills: ["Java", "C#", "PHP", "JavaScript", "TypeScript", "HTML5 & CSS3"]
+      skills: [
+        { name: "Java", icon: JavaIcon },
+        { name: "C#", icon: CSharpIcon },
+        { name: "PHP", icon: PhpIcon },
+        { name: "JavaScript", icon: JavascriptIcon },
+        { name: "TypeScript", icon: TypescriptIcon },
+        { name: "HTML5 & CSS3", icon: HtmlCssIcon },
+      ]
     },
     {
       title: "Frontend & Web Technologies",
       icon: Code2,
-      skills: ["React", "Tailwind CSS", "Vite", "Responsive Design", "UI/UX Principles"]
+      skills: [
+        { name: "React", icon: ReactIcon },
+        { name: "Tailwind CSS", icon: TailwindIcon },
+        { name: "Vite", icon: ViteIcon },
+        { name: "Responsive Design", icon: (props) => <Smartphone size={14} className="text-sky-500 shrink-0" {...props} /> },
+        { name: "UI/UX Principles", icon: (props) => <Palette size={14} className="text-violet-500 shrink-0" {...props} /> },
+      ]
     },
     {
       title: "Databases & Storage",
       icon: Database,
-      skills: ["MySQL", "MariaDB", "SQLite", "Relational Schema Design"]
+      skills: [
+        { name: "MySQL", icon: MysqlIcon },
+        { name: "MariaDB", icon: MariadbIcon },
+        { name: "SQLite", icon: SqliteIcon },
+        { name: "Relational Schema Design", icon: (props) => <TableProperties size={14} className="text-amber-500 shrink-0" {...props} /> },
+      ]
     },
     {
       title: "Tools & Development Workflow",
       icon: Wrench,
-      skills: ["Git & GitHub", "Node.js", "VS Code", "Systems Architecture", "REST APIs"]
+      skills: [
+        { name: "Git & GitHub", icon: GitIcon },
+        { name: "Node.js", icon: NodeIcon },
+        { name: "VS Code", icon: VscodeIcon },
+        { name: "Systems Architecture", icon: (props) => <Layers size={14} className="text-indigo-500 shrink-0" {...props} /> },
+        { name: "REST APIs", icon: (props) => <Network size={14} className="text-emerald-500 shrink-0" {...props} /> },
+      ]
     }
   ];
 
@@ -46,7 +78,7 @@ export default function Skills() {
         {/* Skill Category Cards */}
         <div className="grid gap-6 sm:grid-cols-2">
           {skillCategories.map((category, index) => {
-            const Icon = category.icon;
+            const CategoryIcon = category.icon;
             return (
               <div
                 key={index}
@@ -59,7 +91,7 @@ export default function Skills() {
               >
                 <div className="flex items-center gap-3 mb-4">
                   <div className="p-2.5 rounded-2xl bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20 shadow-2xs">
-                    <Icon size={18} />
+                    <CategoryIcon size={18} />
                   </div>
                   <h3 className="font-semibold text-slate-900 dark:text-white text-base">
                     {category.title}
@@ -67,15 +99,18 @@ export default function Skills() {
                 </div>
 
                 <div className="flex flex-wrap gap-2">
-                  {category.skills.map((skill, sIndex) => (
-                    <span
-                      key={sIndex}
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/60 dark:bg-slate-800/60 border border-white/80 dark:border-white/5 text-xs font-medium text-slate-800 dark:text-slate-200 hover:border-blue-400/50 dark:hover:border-blue-500/50 transition shadow-2xs"
-                    >
-                      <CheckCircle2 size={12} className="text-blue-500 shrink-0" />
-                      {skill}
-                    </span>
-                  ))}
+                  {category.skills.map((skill, sIndex) => {
+                    const SkillIcon = skill.icon;
+                    return (
+                      <span
+                        key={sIndex}
+                        className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/70 dark:bg-slate-800/60 border border-slate-200/80 dark:border-white/5 text-xs font-medium text-slate-800 dark:text-slate-200 hover:border-blue-400/50 dark:hover:border-blue-500/50 transition shadow-2xs group"
+                      >
+                        <SkillIcon className="w-3.5 h-3.5 shrink-0 group-hover:scale-110 transition-transform" />
+                        <span>{skill.name}</span>
+                      </span>
+                    );
+                  })}
                 </div>
               </div>
             );

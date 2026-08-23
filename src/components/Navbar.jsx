@@ -93,7 +93,7 @@ export default function Navbar({ darkMode, setDarkMode, onCopyEmail }) {
         ? 'bg-white/95 dark:bg-slate-950/95 backdrop-blur-2xl border-b border-slate-200/90 dark:border-slate-800/90 shadow-xs'
         : 'bg-transparent border-b border-transparent'
       }`}>
-      <div className="max-w-4xl mx-auto px-6 h-16 flex justify-between items-center">
+      <div className="max-w-4xl mx-auto px-5 sm:px-6 h-16 flex justify-between items-center">
         
         {/* Brand & Live Status */}
         <div className="flex items-center gap-3">

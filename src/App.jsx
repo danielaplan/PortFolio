@@ -101,10 +101,10 @@ export default function App() {
   };
 
   return (
-    <div className="relative min-h-screen bg-slate-50/80 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-300 flex flex-col font-sans selection:bg-blue-500 selection:text-white overflow-x-clip">
+    <div className="relative min-h-screen w-full max-w-full bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-300 flex flex-col font-sans selection:bg-blue-500 selection:text-white overflow-x-clip">
       
       {/* Ambient Gradient Blur Background Orbs */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden z-0" aria-hidden="true">
+      <div className="fixed inset-0 w-full max-w-full pointer-events-none overflow-hidden z-0" aria-hidden="true">
         {/* Top-Left Sky/Indigo Cosmic Glow */}
         <div className="animate-ambient-1 absolute -top-28 -left-28 w-[480px] sm:w-[700px] h-[480px] sm:h-[700px] rounded-full bg-gradient-to-br from-blue-400/35 via-sky-300/30 to-indigo-300/25 dark:from-blue-600/25 dark:via-indigo-600/20 dark:to-cyan-500/10 blur-[90px] sm:blur-[130px] transition-all duration-700" />
 
