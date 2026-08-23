@@ -84,7 +84,7 @@ export default function Navbar({ darkMode, setDarkMode, onCopyEmail }) {
 
   return (
     <header className={`sticky top-0 z-50 transition-all duration-300 ${scrolled
-        ? 'glass-panel border-b border-white/60 dark:border-white/10 shadow-sm'
+        ? 'bg-white/90 dark:bg-slate-950/85 backdrop-blur-xl border-b border-slate-200/80 dark:border-slate-800/80 shadow-xs'
         : 'bg-transparent border-b border-transparent'
       }`}>
       <div className="max-w-4xl mx-auto px-6 h-16 flex justify-between items-center">
