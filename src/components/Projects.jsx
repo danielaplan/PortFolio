@@ -13,7 +13,8 @@ import {
   Info,
   Clock,
   Filter,
-  Check
+  Check,
+  FileCode
 } from 'lucide-react';
 import Github from './icons/Github';
 import ProjectModal from './ProjectModal';
@@ -29,6 +30,7 @@ export default function Projects() {
   const [githubLoading, setGithubLoading] = useState(false);
   const [githubSource, setGithubSource] = useState(null);
   const [activeModalProject, setActiveModalProject] = useState(null);
+  const [modalInitialTab, setModalInitialTab] = useState('overview');
 
   // Load GitHub Repositories with caching
   const loadGithubRepos = async (force = false) => {
@@ -383,6 +385,19 @@ export default function Projects() {
 
                       {/* CTAs */}
                       <div className="flex items-center gap-3">
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setModalInitialTab('code');
+                            setActiveModalProject(project);
+                          }}
+                          className="inline-flex items-center gap-1 font-medium text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 cursor-pointer transition"
+                          title="Inspect Architecture & Code"
+                        >
+                          <FileCode size={13} />
+                          <span>Code</span>
+                        </button>
+
                         {liveDemo && (
                           <a
                             href={liveDemo}
@@ -445,8 +460,12 @@ export default function Projects() {
       {activeModalProject && (
         <ProjectModal
           project={activeModalProject}
+          initialTab={modalInitialTab}
           githubData={githubMap.get((activeModalProject.repoName || activeModalProject.title).toLowerCase())}
-          onClose={() => setActiveModalProject(null)}
+          onClose={() => {
+            setActiveModalProject(null);
+            setModalInitialTab('overview');
+          }}
           onSelectTag={(tag) => setSelectedTag(tag)}
         />
       )}
