@@ -8,17 +8,13 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import { Check } from 'lucide-react';
 
+const getTimeBasedTheme = () => {
+  const hour = new Date().getHours();
+  return hour >= 19 || hour < 7;
+};
+
 export default function App() {
-  const [darkMode, setDarkMode] = useState(() => {
-    if (typeof window !== 'undefined') {
-      const savedTheme = localStorage.getItem('theme');
-      if (savedTheme) {
-        return savedTheme === 'dark';
-      }
-      return window.matchMedia('(prefers-color-scheme: dark)').matches;
-    }
-    return false;
-  });
+  const [darkMode, setDarkMode] = useState(getTimeBasedTheme);
 
   const [copiedToast, setCopiedToast] = useState(false);
 
@@ -52,15 +48,24 @@ export default function App() {
   }, []);
 
   useEffect(() => {
+    const updateThemeFromLocalTime = () => {
+      setDarkMode(getTimeBasedTheme());
+    };
+
+    updateThemeFromLocalTime();
+    const themeTimer = window.setInterval(updateThemeFromLocalTime, 60 * 1000);
+
+    return () => window.clearInterval(themeTimer);
+  }, []);
+
+  useEffect(() => {
     const root = document.documentElement;
     if (darkMode) {
       root.classList.add('dark');
       root.setAttribute('data-theme', 'dark');
-      localStorage.setItem('theme', 'dark');
     } else {
       root.classList.remove('dark');
       root.setAttribute('data-theme', 'light');
-      localStorage.setItem('theme', 'light');
     }
   }, [darkMode]);
 
