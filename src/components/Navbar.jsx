@@ -157,7 +157,7 @@ export default function Navbar({ darkMode, setDarkMode, onCopyEmail }) {
             onClick={() => setDarkMode(!darkMode)}
             className="p-2 rounded-xl text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white bg-white/40 dark:bg-slate-800/40 border border-white/50 dark:border-white/5 hover:bg-white/80 dark:hover:bg-slate-800 transition-all cursor-pointer shadow-2xs"
             aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
-            title={darkMode ? "Switch to light mode" : "Switch to dark mode"}
+            title="Theme follows your local time automatically"
           >
             {darkMode ? <Sun size={17} className="text-amber-400" /> : <Moon size={17} />}
           </button>
@@ -168,7 +168,8 @@ export default function Navbar({ darkMode, setDarkMode, onCopyEmail }) {
           <button
             onClick={() => setDarkMode(!darkMode)}
             className="p-2 rounded-xl text-slate-600 dark:text-slate-400 bg-white/50 dark:bg-slate-800/50 border border-white/60 dark:border-white/10 transition-colors cursor-pointer"
-            aria-label="Toggle theme"
+            aria-label="Toggle theme; automatic local-time theme is enabled"
+            title="Theme follows your local time automatically"
           >
             {darkMode ? <Sun size={18} className="text-amber-400" /> : <Moon size={18} />}
           </button>
