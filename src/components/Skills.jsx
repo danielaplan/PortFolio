@@ -20,39 +20,39 @@ export default function Skills() {
         { name: "PHP", icon: PhpIcon },
         { name: "JavaScript", icon: JavascriptIcon },
         { name: "TypeScript", icon: TypescriptIcon },
-        { name: "HTML5 & CSS3", icon: HtmlCssIcon },
       ]
     },
     {
-      title: "Frontend & Web Technologies",
+      title: "Frontend & Web",
       icon: Code2,
       skills: [
         { name: "React", icon: ReactIcon },
         { name: "Tailwind CSS", icon: TailwindIcon },
         { name: "Vite", icon: ViteIcon },
+        { name: "HTML5 & CSS3", icon: HtmlCssIcon },
         { name: "Responsive Design", icon: (props) => <Smartphone size={14} className="text-sky-500 shrink-0" {...props} /> },
         { name: "UI/UX Principles", icon: (props) => <Palette size={14} className="text-violet-500 shrink-0" {...props} /> },
       ]
     },
     {
-      title: "Databases & Storage",
+      title: "Backend & Databases",
       icon: Database,
       skills: [
+        { name: "Node.js", icon: NodeIcon },
         { name: "MySQL", icon: MysqlIcon },
         { name: "MariaDB", icon: MariadbIcon },
         { name: "SQLite", icon: SqliteIcon },
         { name: "Relational Schema Design", icon: (props) => <TableProperties size={14} className="text-amber-500 shrink-0" {...props} /> },
+        { name: "REST APIs", icon: (props) => <Network size={14} className="text-emerald-500 shrink-0" {...props} /> },
       ]
     },
     {
-      title: "Tools & Development Workflow",
+      title: "Tools & Workflow",
       icon: Wrench,
       skills: [
         { name: "Git & GitHub", icon: GitIcon },
-        { name: "Node.js", icon: NodeIcon },
         { name: "VS Code", icon: VscodeIcon },
         { name: "Systems Architecture", icon: (props) => <Layers size={14} className="text-indigo-500 shrink-0" {...props} /> },
-        { name: "REST APIs", icon: (props) => <Network size={14} className="text-emerald-500 shrink-0" {...props} /> },
       ]
     }
   ];

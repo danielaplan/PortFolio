@@ -36,7 +36,7 @@ export default function Hero({ onCopyEmail, copiedEmail }) {
 
             {/* Description */}
             <p className="text-xs sm:text-sm md:text-base text-slate-600 dark:text-slate-400 leading-relaxed max-w-xl">
-              Passionate about building responsive web applications, robust database architectures, and intuitive systems. Currently focused on modern full-stack development with TypeScript, React, C#, and relational databases.
+              I build web apps that work on any screen — and I care just as much about what's underneath them, from the database to the API. Lately I've been focused on full-stack development with TypeScript, React, C#, and relational databases, learning by actually shipping things.
             </p>
 
             {/* Metadata Badges */}
@@ -101,8 +101,12 @@ export default function Hero({ onCopyEmail, copiedEmail }) {
             {/* Glass Image Frame */}
             <div className="relative w-36 h-36 sm:w-44 sm:h-44 md:w-52 md:h-52 rounded-3xl overflow-hidden border border-white/60 dark:border-white/10 bg-white/20 dark:bg-slate-900/40 backdrop-blur-md shadow-lg group-hover:border-blue-400/40 transition duration-300">
               <img
-                src="/profile.jpg"
+                src="/profile.webp"
                 alt="Daniel Aplan"
+                width={208}
+                height={208}
+                loading="eager"
+                decoding="async"
                 className="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500"
               />
 

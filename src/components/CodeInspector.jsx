@@ -123,24 +123,33 @@ export default function CodeInspector({ project, repoName }) {
     setLiveLoading(true);
     setLiveError(null);
 
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 8000);
     const branches = ['main', 'master'];
     let fetchedText = null;
 
-    for (const branch of branches) {
-      try {
-        const url = `https://raw.githubusercontent.com/danielaplan/${targetRepo}/${branch}/README.md`;
-        const res = await fetch(url);
-        if (res.ok) {
-          fetchedText = await res.text();
-          break;
+    try {
+      for (const branch of branches) {
+        try {
+          const url = `https://raw.githubusercontent.com/danielaplan/${targetRepo}/${branch}/README.md`;
+          const res = await fetch(url, { signal: controller.signal });
+          if (res.ok) {
+            fetchedText = await res.text();
+            break;
+          }
+        } catch (e) {
+          // try next branch (or stop on abort)
+          if (controller.signal.aborted) break;
         }
-      } catch (e) {
-        // try next branch
       }
+    } finally {
+      clearTimeout(timeoutId);
     }
 
     if (fetchedText) {
       setLiveFileContent(fetchedText);
+    } else if (controller.signal.aborted) {
+      setLiveError('Request timed out fetching the live README. Showing curated architecture files instead.');
     } else {
       setLiveError('Could not locate raw README.md on main/master branches.');
     }

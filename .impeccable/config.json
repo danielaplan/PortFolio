@@ -1,0 +1,89 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "design-system-color",
+        "value": "rgba(226, 232, 240, 0.95)",
+        "files": [
+          "src/index.css"
+        ],
+        "createdAt": "2026-08-31T02:34:55.857Z",
+        "reason": "Intentional Liquid Glass material color: glass hairline/border, accent hover-glow, and scrollbar chrome on the documented Tailwind slate + Signal Blue scale (DESIGN.md Shapes + Overview). Not drift."
+      },
+      {
+        "rule": "design-system-color",
+        "value": "rgba(226, 232, 240, 0.9)",
+        "files": [
+          "src/index.css"
+        ],
+        "createdAt": "2026-08-31T02:34:56.023Z",
+        "reason": "Intentional Liquid Glass material color: glass hairline/border, accent hover-glow, and scrollbar chrome on the documented Tailwind slate + Signal Blue scale (DESIGN.md Shapes + Overview). Not drift."
+      },
+      {
+        "rule": "design-system-color",
+        "value": "rgba(96, 165, 250, 0.4)",
+        "files": [
+          "src/index.css"
+        ],
+        "createdAt": "2026-08-31T02:34:56.150Z",
+        "reason": "Intentional Liquid Glass material color: glass hairline/border, accent hover-glow, and scrollbar chrome on the documented Tailwind slate + Signal Blue scale (DESIGN.md Shapes + Overview). Not drift."
+      },
+      {
+        "rule": "design-system-color",
+        "value": "rgba(30, 41, 59, 0.65)",
+        "files": [
+          "src/index.css"
+        ],
+        "createdAt": "2026-08-31T02:34:56.305Z",
+        "reason": "Intentional Liquid Glass material color: glass hairline/border, accent hover-glow, and scrollbar chrome on the documented Tailwind slate + Signal Blue scale (DESIGN.md Shapes + Overview). Not drift."
+      },
+      {
+        "rule": "design-system-color",
+        "value": "rgba(148, 163, 184, 0.35)",
+        "files": [
+          "src/index.css"
+        ],
+        "createdAt": "2026-08-31T02:34:56.437Z",
+        "reason": "Intentional Liquid Glass material color: glass hairline/border, accent hover-glow, and scrollbar chrome on the documented Tailwind slate + Signal Blue scale (DESIGN.md Shapes + Overview). Not drift."
+      },
+      {
+        "rule": "design-system-color",
+        "value": "rgba(51, 65, 85, 0.6)",
+        "files": [
+          "src/index.css"
+        ],
+        "createdAt": "2026-08-31T02:34:56.607Z",
+        "reason": "Intentional Liquid Glass material color: glass hairline/border, accent hover-glow, and scrollbar chrome on the documented Tailwind slate + Signal Blue scale (DESIGN.md Shapes + Overview). Not drift."
+      },
+      {
+        "rule": "design-system-color",
+        "value": "rgba(96, 165, 250, 0.6)",
+        "files": [
+          "src/index.css"
+        ],
+        "createdAt": "2026-08-31T02:34:56.755Z",
+        "reason": "Intentional Liquid Glass material color: glass hairline/border, accent hover-glow, and scrollbar chrome on the documented Tailwind slate + Signal Blue scale (DESIGN.md Shapes + Overview). Not drift."
+      },
+      {
+        "rule": "overused-font",
+        "value": "inter",
+        "files": [
+          "src/index.css"
+        ],
+        "createdAt": "2026-08-31T02:34:56.894Z",
+        "reason": "One Voice Rule (DESIGN.md) mandates Inter as the single typeface for the whole system; the distinctiveness advisory does not apply."
+      },
+      {
+        "rule": "ai-color-palette",
+        "value": "*",
+        "files": [
+          "src/components/Contact.jsx"
+        ],
+        "createdAt": "2026-08-31T03:37:59.009Z",
+        "reason": "Instagram brand gradient (from-purple-500 to-pink-500) is intentional brand fidelity for the @dniel_apln link, per PRODUCT.md Brand Commitments. Not generic AI drift."
+      }
+    ]
+  }
+}

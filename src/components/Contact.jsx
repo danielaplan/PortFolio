@@ -32,7 +32,7 @@ export default function Contact({ onCopyEmail, copiedEmail }) {
           <div className="grid gap-6 md:grid-cols-2">
 
             {/* Direct Email Card */}
-            <div className="p-6 rounded-2xl bg-white/50 dark:bg-slate-800/40 border border-white/60 dark:border-white/5 flex flex-col justify-between space-y-4 shadow-2xs">
+            <div className="p-6 rounded-2xl bg-white dark:bg-slate-800/40 border border-slate-200/80 dark:border-white/5 flex flex-col justify-between space-y-4 shadow-sm dark:shadow-2xs">
               <div className="space-y-2">
                 <div className="flex items-center gap-2 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
                   <Mail size={15} className="text-blue-500" />
@@ -72,7 +72,7 @@ export default function Contact({ onCopyEmail, copiedEmail }) {
             </div>
 
             {/* GitHub & Location Card */}
-            <div className="p-6 rounded-2xl bg-white/50 dark:bg-slate-800/40 border border-white/60 dark:border-white/5 flex flex-col justify-between space-y-4 shadow-2xs">
+            <div className="p-6 rounded-2xl bg-white dark:bg-slate-800/40 border border-slate-200/80 dark:border-white/5 flex flex-col justify-between space-y-4 shadow-sm dark:shadow-2xs">
               <div className="space-y-3">
                 <div className="flex items-center gap-2 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
                   <Github size={15} className="text-blue-500" />

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Code2, Database, Server, Layers, Workflow, Globe, Palette, Smartphone, Network, Trophy, Boxes, Users } from 'lucide-react';
 
 export function JavaIcon({ className = "w-3.5 h-3.5" }) {
   return (
@@ -122,4 +123,65 @@ export function VscodeIcon({ className = "w-3.5 h-3.5" }) {
       <path d="M17.5 2.1l-8 7.3L5.4 6.2 3 7.6l4.7 4.4L3 16.4l2.4 1.4 4.1-3.2 8 7.3 4.5-2.2V4.3l-4.5-2.2zm1.5 14.8l-5.6-4.9 5.6-4.9v9.8z" />
     </svg>
   );
+}
+
+// Maps a project tech-stack tag to a brand icon (carries its own brand color)
+// or a neutral lucide fallback. Returns null when nothing applies so callers
+// can fall back to plain text. Matching is case/space-insensitive.
+const BRAND_TECH_ICONS = {
+  java: JavaIcon,
+  'c#': CSharpIcon,
+  csharp: CSharpIcon,
+  php: PhpIcon,
+  javascript: JavascriptIcon,
+  js: JavascriptIcon,
+  typescript: TypescriptIcon,
+  ts: TypescriptIcon,
+  html: HtmlCssIcon,
+  'html5': HtmlCssIcon,
+  css: HtmlCssIcon,
+  'css3': HtmlCssIcon,
+  'html5 & css3': HtmlCssIcon,
+  react: ReactIcon,
+  'tailwind css': TailwindIcon,
+  tailwind: TailwindIcon,
+  vite: ViteIcon,
+  mysql: MysqlIcon,
+  mariadb: MariadbIcon,
+  sqlite: SqliteIcon,
+  git: GitIcon,
+  github: GitIcon,
+  'git & github': GitIcon,
+  'github api': GitIcon,
+  node: NodeIcon,
+  'node.js': NodeIcon,
+  'vs code': VscodeIcon,
+  vscode: VscodeIcon,
+};
+
+const GENERIC_TECH_ICONS = {
+  python: Code2,
+  '.net': Server,
+  net: Server,
+  sql: Database,
+  'database architecture': Database,
+  'database design': Database,
+  crm: Users,
+  systems: Boxes,
+  'full-stack': Layers,
+  'full stack': Layers,
+  'workflow automation': Workflow,
+  'web design': Palette,
+  web: Globe,
+  'ui/ux': Palette,
+  'interactive ui': Trophy,
+  gamification: Trophy,
+  'responsive design': Smartphone,
+  'rest apis': Network,
+};
+
+export function getTechIcon(tag) {
+  if (!tag) return null;
+  const key = String(tag).toLowerCase().trim();
+  return BRAND_TECH_ICONS[key] || GENERIC_TECH_ICONS[key] || null;
 }

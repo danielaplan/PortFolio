@@ -17,6 +17,7 @@ import {
   FileCode
 } from 'lucide-react';
 import Github from './icons/Github';
+import { getTechIcon } from './icons/TechIcons';
 import ProjectModal from './ProjectModal';
 import { curatedProjects } from '../data/projects';
 import { fetchUserRepos, formatTimeAgo, getDevStatus } from '../services/github';
@@ -29,17 +30,21 @@ export default function Projects() {
   const [githubRepos, setGithubRepos] = useState([]);
   const [githubLoading, setGithubLoading] = useState(false);
   const [githubSource, setGithubSource] = useState(null);
+  const [githubError, setGithubError] = useState(null);
   const [activeModalProject, setActiveModalProject] = useState(null);
   const [modalInitialTab, setModalInitialTab] = useState('overview');
 
   // Load GitHub Repositories with caching
   const loadGithubRepos = async (force = false) => {
     setGithubLoading(true);
+    setGithubError(null);
     try {
       const res = await fetchUserRepos('danielaplan', force);
       setGithubRepos(res.data || []);
       setGithubSource(res.source);
+      if (res.error) setGithubError(res.error);
     } catch (e) {
+      setGithubError(e?.message || 'Failed to load repositories.');
       console.error(e);
     } finally {
       setGithubLoading(false);
@@ -183,7 +188,7 @@ export default function Projects() {
                 }`}
               >
                 <span>Live Repos</span>
-                <span className="px-1.5 py-0.2 rounded-full bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-400 text-[10px]">
+                <span className="px-1.5 py-0.2 rounded-full bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-400 text-[11px]">
                   {githubRepos.length || '•'}
                 </span>
               </button>
@@ -270,7 +275,34 @@ export default function Projects() {
         </div>
 
         {/* Projects Grid */}
-        {filteredProjects.length > 0 ? (
+        {viewMode === 'github' && githubLoading ? (
+          /* Loading State — don't show the misleading empty-state while syncing */
+          <div className="p-12 flex flex-col items-center justify-center gap-3 rounded-3xl bg-slate-50/60 dark:bg-slate-900/30 border border-dashed border-slate-300 dark:border-slate-800">
+            <RefreshCw size={22} className="text-blue-500 animate-spin" />
+            <p className="text-sm font-medium text-slate-600 dark:text-slate-400">Syncing live repositories…</p>
+          </div>
+        ) : githubError && filteredProjects.length === 0 ? (
+          /* Error State — explicit, not the filter empty-state */
+          <div className="p-12 text-center rounded-3xl bg-amber-50/70 dark:bg-amber-950/20 border border-amber-300/60 dark:border-amber-900/50 space-y-4">
+            <div className="inline-flex p-3 rounded-2xl bg-amber-100 dark:bg-amber-900/40 text-amber-600 dark:text-amber-400">
+              <RefreshCw size={22} />
+            </div>
+            <div className="space-y-1">
+              <h4 className="text-base font-semibold text-slate-900 dark:text-white">
+                Couldn't load live GitHub data
+              </h4>
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 max-w-sm mx-auto">
+                {githubError} Showing curated projects instead.
+              </p>
+            </div>
+            <button
+              onClick={() => loadGithubRepos(true)}
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-blue-600 text-white text-xs font-semibold hover:bg-blue-700 transition cursor-pointer"
+            >
+              <RefreshCw size={13} /> Try again
+            </button>
+          </div>
+        ) : filteredProjects.length > 0 ? (
           <div className="grid gap-6 md:grid-cols-2">
             {filteredProjects.map((project) => {
               const ghData = githubMap.get((project.repoName || project.title).toLowerCase());
@@ -289,13 +321,13 @@ export default function Projects() {
                   onClick={() => setActiveModalProject(project)}
                 >
                   <div className="space-y-4">
-                    
+
                     {/* Header: Title & Badges */}
                     <div className="flex items-start justify-between gap-3">
                       <div>
                         <div className="flex items-center gap-2 mb-1.5 flex-wrap">
                           {/* Development Status Pill */}
-                          <span className={`inline-flex items-center gap-1 text-[10px] px-2 py-0.5 rounded-full font-medium border ${devStatus.badgeClass}`}>
+                          <span className={`inline-flex items-center gap-1 text-[11px] px-2 py-0.5 rounded-full font-medium border ${devStatus.badgeClass}`}>
                             <span className={`w-1.5 h-1.5 rounded-full ${devStatus.dotClass}`} />
                             {devStatus.label}
                           </span>
@@ -316,7 +348,7 @@ export default function Projects() {
                             </span>
                           )}
                         </div>
-                        
+
                         <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                           {project.title}
                         </h3>
@@ -344,12 +376,13 @@ export default function Projects() {
 
                   {/* Tags & Action Links */}
                   <div className="pt-6 space-y-4">
-                    
+
                     {/* Clickable Tech Stack Tags */}
                     {project.tags && project.tags.length > 0 && (
                       <div className="flex flex-wrap gap-1.5">
                         {project.tags.map((tag, j) => {
                           const isTagActive = selectedTag?.toLowerCase() === tag.toLowerCase();
+                          const TechIcon = getTechIcon(tag);
                           return (
                             <button
                               key={j}
@@ -357,13 +390,14 @@ export default function Projects() {
                                 e.stopPropagation();
                                 setSelectedTag(isTagActive ? null : tag);
                               }}
-                              className={`text-[11px] px-2.5 py-0.8 rounded-md font-mono transition cursor-pointer border ${
+                              className={`inline-flex items-center gap-1 text-[11px] px-2.5 py-0.8 rounded-md font-mono transition cursor-pointer border ${
                                 isTagActive
                                   ? 'bg-blue-600 text-white border-blue-600'
                                   : 'bg-white dark:bg-slate-800 border-slate-200/80 dark:border-slate-700/80 text-slate-700 dark:text-slate-300 hover:border-blue-400 dark:hover:border-blue-500'
                               }`}
                               title={`Filter by #${tag}`}
                             >
+                              {TechIcon && <TechIcon className="w-3 h-3 shrink-0" />}
                               {tag}
                             </button>
                           );
@@ -373,7 +407,7 @@ export default function Projects() {
 
                     {/* Live GitHub Stats & Action Bar */}
                     <div className="pt-3 border-t border-slate-200/60 dark:border-slate-800/60 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
-                      
+
                       {/* Live Repo Stats */}
                       <div className="flex items-center gap-3">
                         {ghData?.pushedAt && (
@@ -437,14 +471,16 @@ export default function Projects() {
             })}
           </div>
         ) : (
-          /* Empty State */
+          /* Empty State (filter produced no matches, or no repos for this account) */
           <div className="p-12 text-center rounded-3xl bg-slate-50/60 dark:bg-slate-900/30 border border-dashed border-slate-300 dark:border-slate-800 space-y-4">
             <div className="inline-flex p-3 rounded-2xl bg-slate-100 dark:bg-slate-800 text-slate-400">
               <Search size={24} />
             </div>
             <div className="space-y-1">
               <h4 className="text-base font-semibold text-slate-900 dark:text-white">
-                No projects matched your criteria
+                {viewMode === 'github' && githubRepos.length === 0
+                  ? 'No repositories found'
+                  : 'No projects matched your criteria'}
               </h4>
               <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 max-w-sm mx-auto">
                 Try searching for a different keyword, removing the tag filter, or clearing your search.

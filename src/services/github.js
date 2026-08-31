@@ -1,5 +1,10 @@
 const CACHE_KEY = 'portfolio_github_repos_v1';
 const CACHE_TTL = 15 * 60 * 1000; // 15 minutes
+const REQUEST_TIMEOUT = 8000; // ms — abort hung requests instead of spinning forever
+
+// Status thresholds (days since last push) used by getDevStatus
+const RECENT_DAYS = 45; // pushed within this window => "Active Dev"
+const MAINTAINED_DAYS = 180; // pushed within this window => "Maintained"
 
 export async function fetchUserRepos(username = 'danielaplan', forceRefresh = false) {
   if (!forceRefresh && typeof window !== 'undefined') {
@@ -17,11 +22,27 @@ export async function fetchUserRepos(username = 'danielaplan', forceRefresh = fa
   }
 
   try {
-    const response = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=30`, {
-      headers: {
-        Accept: 'application/vnd.github.v3+json'
-      }
-    });
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), REQUEST_TIMEOUT);
+    let response;
+    try {
+      response = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=30`, {
+        headers: {
+          Accept: 'application/vnd.github.v3+json'
+        },
+        signal: controller.signal
+      });
+    } finally {
+      clearTimeout(timeoutId);
+    }
+
+    // Unauthenticated GitHub API allows 60 req/hr per IP. A 403 here almost
+    // always means rate-limited, not a real auth error — surface the reset time.
+    if (response.status === 403) {
+      const resetEpoch = response.headers.get('X-RateLimit-Reset');
+      const resetsAt = resetEpoch ? new Date(Number(resetEpoch) * 1000).toLocaleTimeString() : 'soon';
+      throw new Error(`GitHub API rate limit reached. Resets at ${resetsAt}.`);
+    }
 
     if (!response.ok) {
       throw new Error(`GitHub API error: ${response.status} ${response.statusText}`);
@@ -113,7 +134,7 @@ export function getDevStatus(pushedAt, isArchived = false, topics = []) {
 
   const diffInDays = Math.floor((Date.now() - new Date(pushedAt).getTime()) / (1000 * 60 * 60 * 24));
 
-  if (diffInDays <= 45) {
+  if (diffInDays <= RECENT_DAYS) {
     return {
       status: 'active',
       label: 'Active Dev',
@@ -123,7 +144,7 @@ export function getDevStatus(pushedAt, isArchived = false, topics = []) {
     };
   }
 
-  if (diffInDays <= 180) {
+  if (diffInDays <= MAINTAINED_DAYS) {
     return {
       status: 'maintained',
       label: 'Maintained',

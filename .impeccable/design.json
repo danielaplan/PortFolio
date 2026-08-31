@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-31T10:10:00+08:00",
+  "title": "Design System: Daniel Aplan — Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "primary": { "role": "primary", "displayName": "Signal Blue", "canonical": "#3b82f6", "tonalRamp": ["oklch(0.20 0.19 250)", "oklch(0.30 0.19 250)", "oklch(0.40 0.19 250)", "oklch(0.50 0.19 250)", "oklch(0.62 0.19 250)", "oklch(0.72 0.15 250)", "oklch(0.82 0.10 250)", "oklch(0.93 0.04 250)"] },
+      "primary-deep": { "role": "primary", "displayName": "Signal Blue Deep", "canonical": "#2563eb", "tonalRamp": ["oklch(0.18 0.18 250)", "oklch(0.28 0.18 250)", "oklch(0.38 0.18 250)", "oklch(0.48 0.18 250)", "oklch(0.58 0.17 250)", "oklch(0.68 0.13 250)", "oklch(0.80 0.08 250)", "oklch(0.92 0.03 250)"] },
+      "status-active": { "role": "secondary", "displayName": "Active Emerald", "canonical": "#10b981", "tonalRamp": ["oklch(0.25 0.12 165)", "oklch(0.35 0.12 165)", "oklch(0.45 0.13 165)", "oklch(0.55 0.14 165)", "oklch(0.65 0.15 165)", "oklch(0.75 0.12 165)", "oklch(0.84 0.08 165)", "oklch(0.94 0.03 165)"] },
+      "status-archived": { "role": "secondary", "displayName": "Archived Rose", "canonical": "#f43f5e", "tonalRamp": ["oklch(0.30 0.18 20)", "oklch(0.40 0.18 20)", "oklch(0.50 0.19 20)", "oklch(0.60 0.20 20)", "oklch(0.68 0.19 20)", "oklch(0.77 0.15 20)", "oklch(0.86 0.09 20)", "oklch(0.94 0.03 20)"] },
+      "status-maintained": { "role": "secondary", "displayName": "Maintained Cyan", "canonical": "#06b6d4", "tonalRamp": ["oklch(0.25 0.10 200)", "oklch(0.35 0.11 200)", "oklch(0.45 0.12 200)", "oklch(0.55 0.13 200)", "oklch(0.65 0.13 200)", "oklch(0.75 0.10 200)", "oklch(0.85 0.06 200)", "oklch(0.94 0.02 200)"] },
+      "star": { "role": "secondary", "displayName": "Star Amber", "canonical": "#f59e0b", "tonalRamp": ["oklch(0.30 0.12 75)", "oklch(0.40 0.12 75)", "oklch(0.50 0.13 75)", "oklch(0.60 0.14 75)", "oklch(0.70 0.14 75)", "oklch(0.80 0.11 75)", "oklch(0.88 0.07 75)", "oklch(0.95 0.03 75)"] },
+      "ink-strong": { "role": "neutral", "displayName": "Ink Strong", "canonical": "#0f172a", "tonalRamp": ["oklch(0.12 0.01 250)", "oklch(0.20 0.01 250)", "oklch(0.30 0.01 250)", "oklch(0.40 0.01 250)", "oklch(0.50 0.01 250)", "oklch(0.62 0.01 250)", "oklch(0.75 0.01 250)", "oklch(0.90 0.01 250)"] },
+      "neutral-bg": { "role": "neutral", "displayName": "Page Light", "canonical": "#f8fafc", "tonalRamp": ["oklch(0.92 0.005 250)", "oklch(0.95 0.004 250)", "oklch(0.97 0.004 250)", "oklch(0.98 0.003 250)", "oklch(0.99 0.003 250)", "oklch(0.99 0.002 250)", "oklch(0.995 0.002 250)", "oklch(1.00 0.00 250)"] },
+      "glass-light": { "role": "neutral", "displayName": "Glass Light", "canonical": "rgba(255, 255, 255, 0.92)", "tonalRamp": ["rgba(255,255,255,0.70)", "rgba(255,255,255,0.76)", "rgba(255,255,255,0.82)", "rgba(255,255,255,0.86)", "rgba(255,255,255,0.90)", "rgba(255,255,255,0.94)", "rgba(255,255,255,0.97)", "rgba(255,255,255,1.00)"] },
+      "glass-dark": { "role": "neutral", "displayName": "Glass Dark", "canonical": "rgba(15, 23, 42, 0.65)", "tonalRamp": ["rgba(15,23,42,0.45)", "rgba(15,23,42,0.50)", "rgba(15,23,42,0.55)", "rgba(15,23,42,0.60)", "rgba(15,23,42,0.65)", "rgba(15,23,42,0.72)", "rgba(15,23,42,0.82)", "rgba(15,23,42,0.95)"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero name and modal titles — bold, tracking-tight." },
+      "body": { "displayName": "Body", "purpose": "Descriptions, captions, modal copy." },
+      "label": { "displayName": "Label", "purpose": "Uppercase tracked eyebrows, status pills, tag chips." },
+      "mono": { "displayName": "Mono", "purpose": "Code lines and tech-stack tags." }
+    },
+    "shadows": [
+      { "name": "glass-rest", "value": "0 8px 24px -6px rgba(0,0,0,0.04)", "purpose": "Default card depth in light mode, paired with inset sheen." },
+      { "name": "glass-hover", "value": "0 20px 40px -12px rgba(59,130,246,0.15)", "purpose": "Card on hover/focus, with 2.5px lift and blue border." },
+      { "name": "panel", "value": "0 12px 32px -8px rgba(0,0,0,0.05)", "purpose": "Modal and large glass containers." }
+    ],
+    "motion": [
+      { "name": "ambient-float-1", "value": "ambientFloat1 18s ease-in-out infinite", "purpose": "Slow drift of the first set of background gradient orbs." },
+      { "name": "ambient-float-2", "value": "ambientFloat2 22s ease-in-out infinite", "purpose": "Slower counter-drift of the second set of orbs." },
+      { "name": "card-ease", "value": "cubic-bezier(0.16, 1, 0.3, 1) 0.35s", "purpose": "Card hover/lift transition." },
+      { "name": "pill-slide", "value": "cubic-bezier(0.25, 1, 0.5, 1) 0.3s", "purpose": "Nav active-pill slide." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Primary action (GitHub, Send, Copy-confirm). Signal Blue Deep fill, white label.",
+      "html": "<button class=\"ds-btn-primary\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg>Primary action</button>",
+      "css": ".ds-btn-primary { display:inline-flex; align-items:center; gap:0.5rem; background:#2563eb; color:#fff; font-family:Inter,system-ui,sans-serif; font-size:0.875rem; font-weight:500; padding:0.625rem 1.25rem; border:none; border-radius:12px; cursor:pointer; transition:background .2s, transform .2s; } .ds-btn-primary:hover { background:#1d4ed8; } .ds-btn-primary:focus-visible { outline:2px solid #3b82f6; outline-offset:2px; }"
+    },
+    {
+      "name": "Glass Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Secondary action on glass (Copy, social). Translucent white fill, hairline border.",
+      "html": "<button class=\"ds-btn-glass\">Secondary</button>",
+      "css": ".ds-btn-glass { display:inline-flex; align-items:center; gap:0.5rem; background:rgba(255,255,255,0.7); color:#0f172a; font-family:Inter,system-ui,sans-serif; font-weight:600; font-size:0.875rem; padding:0.625rem 1.25rem; border:1px solid rgba(255,255,255,0.8); border-radius:12px; cursor:pointer; transition:background .2s; } .ds-btn-glass:hover { background:#fff; } .ds-btn-glass:focus-visible { outline:2px solid #3b82f6; outline-offset:2px; }"
+    },
+    {
+      "name": "Tag Chip",
+      "kind": "chip",
+      "refersTo": "tag-chip",
+      "description": "Tech-stack or filter tag. Monospace, 8px radius; selected state fills Signal Blue.",
+      "html": "<button class=\"ds-chip\" aria-pressed=\"false\">#react</button>",
+      "css": ".ds-chip { display:inline-flex; align-items:center; font-family:ui-monospace,Menlo,monospace; font-size:0.6875rem; color:#475569; background:rgba(255,255,255,0.8); border:1px solid rgba(226,232,240,0.8); border-radius:8px; padding:0.25rem 0.625rem; cursor:pointer; transition:all .15s; } .ds-chip:hover { border-color:#60a5fa; } .ds-chip[aria-pressed=\"true\"] { background:#2563eb; color:#fff; border-color:#2563eb; }"
+    },
+    {
+      "name": "Project Glass Card",
+      "kind": "card",
+      "refersTo": "card-project",
+      "description": "Signature component. Frosted glass with a cursor-tracking radial refraction that fades in on hover; lifts 2.5px with a blue glow.",
+      "html": "<article class=\"ds-card\"><h3>Project title</h3><p>Description text.</p></article>",
+      "css": ".ds-card { position:relative; background:rgba(255,255,255,0.92); backdrop-filter:blur(24px) saturate(190%); -webkit-backdrop-filter:blur(24px) saturate(190%); border:1px solid rgba(226,232,240,0.9); border-radius:24px; padding:1.5rem; overflow:hidden; box-shadow:inset 0 1.5px 1px rgba(255,255,255,1), inset 0 -1px 1px rgba(0,0,0,0.02), 0 8px 24px -6px rgba(0,0,0,0.04); transition:all .35s cubic-bezier(0.16,1,0.3,1); cursor:pointer; } .ds-card::before { content:''; position:absolute; inset:0; border-radius:inherit; background:radial-gradient(600px circle at var(--mouse-x,50%) var(--mouse-y,50%), rgba(59,130,246,0.1), transparent 45%); opacity:0; transition:opacity .4s ease; pointer-events:none; } .ds-card:hover { background:rgba(255,255,255,0.98); border-color:rgba(59,130,246,0.45); box-shadow:inset 0 1.5px 1.5px rgba(255,255,255,1), 0 20px 40px -12px rgba(59,130,246,0.15); transform:translateY(-2.5px); } .ds-card:hover::before { opacity:1; }"
+    },
+    {
+      "name": "Nav Floating Pill",
+      "kind": "nav",
+      "refersTo": "nav-pill",
+      "description": "Sliding active indicator under the desktop nav link. Positioned by JS (left/width); Signal Blue Deep fill.",
+      "html": "<span class=\"ds-navpill\"></span>",
+      "css": ".ds-navpill { position:absolute; top:0.25rem; bottom:0.25rem; border-radius:9999px; background:#2563eb; color:#fff; box-shadow:0 1px 2px rgba(0,0,0,0.1); transition:all .3s cubic-bezier(0.25,1,0.5,1); pointer-events:none; }"
+    },
+    {
+      "name": "Glass Modal Panel",
+      "kind": "card",
+      "refersTo": "card-project",
+      "description": "Project detail modal: frosted panel, dimmed blurred backdrop, capped at viewport height with internal scroll.",
+      "html": "<div class=\"ds-panel\"><header>Project</header><div class=\"ds-panel-body\">…</div></div>",
+      "css": ".ds-panel { position:relative; width:100%; max-width:42rem; max-height:calc(100dvh - 3rem); border-radius:24px; background:rgba(255,255,255,0.92); backdrop-filter:blur(24px) saturate(190%); -webkit-backdrop-filter:blur(24px) saturate(190%); border:1px solid rgba(255,255,255,0.8); box-shadow:0 24px 60px -12px rgba(0,0,0,0.25); overflow:hidden; display:flex; flex-direction:column; } .ds-panel-body { padding:1.5rem; overflow-y:auto; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Liquid Aurora",
+    "overview": "A glassmorphism portfolio in which live engineering data drifts inside slow, calm motion. Frosted glass panels float over a dark-to-light field of softly animated gradient orbs — blue, indigo, violet, and cyan blooms that drift on 18–22 second loops behind everything. The surface is quiet at rest and reveals its life only on interaction: a card lifts a few pixels and a blue refraction glow tracks the cursor; a Live Repos tab shows real GitHub stars and last-pushed timestamps pulled at view time. The personality is premium but approachable — the craft is the proof of competence, not a separate decoration from it. The system is built on Tailwind's default slate neutral scale with Signal Blue as the single interactive accent, and a small set of semantic status colors reserved for repository state.",
+    "keyCharacteristics": [
+      "Frosted glass (blur + saturate + layered inset highlights) is the primary material, not a flat fill.",
+      "Signal Blue is the only interactive accent and is used sparingly — its rarity is the point.",
+      "Depth and life appear as a response (hover, focus, live data), never at rest.",
+      "Live GitHub data is a first-class visual element, not a screenshot.",
+      "Motion is slow and ambient (18–22s loops); the system feels calm, not busy."
+    ],
+    "rules": [
+      { "name": "The Signal Blue Rule", "body": "Signal Blue carries every interactive and 'live' signal — links, focus, the active nav pill, and the card hover glow. It appears on roughly 10% or less of a screen; its scarcity is what makes it read as active rather than decorative.", "section": "colors" },
+      { "name": "The Resting Glass Rule", "body": "Glass surfaces are calm and flat at rest. The blue refraction glow, the border brightening, and the lift appear only as a response to hover, focus, or live data — never by default.", "section": "elevation" },
+      { "name": "The One Voice Rule", "body": "One typeface (Inter) for the entire system. Hierarchy comes from size, weight, and tracking — never from switching families.", "section": "typography" }
+    ],
+    "dos": [
+      "Do keep glass at blur(24px) saturate(190%) with the layered inset sheen.",
+      "Do reserve Signal Blue for interactive and 'live' signals only.",
+      "Do keep the card mouse-refraction and the 2.5px hover lift.",
+      "Do keep motion slow (18–22s ambient loops) and ambient.",
+      "Do keep content inside the 56rem column and above the pointer-events-none aurora layer."
+    ],
+    "donts": [
+      "Don't use hard, opaque drop shadows as the primary depth cue.",
+      "Don't introduce saturated neon colors outside the status set (emerald / rose / cyan / amber).",
+      "Don't shrink control radii below 12px or card radii below 24px.",
+      "Don't let ambient orbs sit above content or cover text.",
+      "Don't treat Live Repos as decorative: it must show real GitHub data or fall back honestly."
+    ]
+  }
+}

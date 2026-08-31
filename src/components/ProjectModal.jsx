@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { X, ExternalLink, Star, GitFork, Calendar, Sparkles, CheckCircle2, Globe, Clock, Code2, FileCode, Layers } from 'lucide-react';
 import Github from './icons/Github';
+import { getTechIcon } from './icons/TechIcons';
 import CodeInspector from './CodeInspector';
 import { formatTimeAgo, getDevStatus } from '../services/github';
 
@@ -112,7 +113,7 @@ export default function ProjectModal({ project, githubData, onClose, onSelectTag
             >
               <FileCode size={13} />
               <span>Code Inspector</span>
-              <span className="ml-1 px-1.5 py-0.5 bg-blue-500/20 text-[10px] rounded-md font-mono font-bold">IDE</span>
+              <span className="ml-1 px-1.5 py-0.5 bg-blue-500/20 text-[11px] rounded-md font-mono font-bold">IDE</span>
             </button>
           </div>
         </div>
@@ -161,21 +162,25 @@ export default function ProjectModal({ project, githubData, onClose, onSelectTag
                     Technologies & Tools
                   </h4>
                   <div className="flex flex-wrap gap-1.5">
-                    {project.tags.map((tag, idx) => (
-                      <button
-                        key={idx}
-                        onClick={() => {
-                          if (onSelectTag) {
-                            onSelectTag(tag);
-                            onClose();
-                          }
-                        }}
-                        className="text-xs px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800/90 text-slate-800 dark:text-slate-200 font-mono border border-slate-200/60 dark:border-slate-700/60 hover:border-blue-500/50 hover:text-blue-600 dark:hover:text-blue-400 transition cursor-pointer"
-                        title={`Filter by ${tag}`}
-                      >
-                        #{tag}
-                      </button>
-                    ))}
+                    {project.tags.map((tag, idx) => {
+                      const TechIcon = getTechIcon(tag);
+                      return (
+                        <button
+                          key={idx}
+                          onClick={() => {
+                            if (onSelectTag) {
+                              onSelectTag(tag);
+                              onClose();
+                            }
+                          }}
+                          className="inline-flex items-center gap-1 text-xs px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800/90 text-slate-800 dark:text-slate-200 font-mono border border-slate-200/60 dark:border-slate-700/60 hover:border-blue-500/50 hover:text-blue-600 dark:hover:text-blue-400 transition cursor-pointer"
+                          title={`Filter by ${tag}`}
+                        >
+                          {TechIcon && <TechIcon className="w-3 h-3 shrink-0" />}
+                          #{tag}
+                        </button>
+                      );
+                    })}
                   </div>
                 </div>
               )}
