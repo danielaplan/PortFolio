@@ -110,20 +110,16 @@ export default function App() {
       
       {/* Ambient Gradient Blur Background Orbs */}
       <div className="fixed inset-0 w-full max-w-full pointer-events-none overflow-hidden z-0" aria-hidden="true">
-        {/* Top-Left Sky/Indigo Cosmic Glow */}
-        <div className="animate-ambient-1 absolute -top-28 -left-28 w-[480px] sm:w-[700px] h-[480px] sm:h-[700px] rounded-full bg-gradient-to-br from-blue-400/35 via-sky-300/30 to-indigo-300/25 dark:from-blue-600/25 dark:via-indigo-600/20 dark:to-cyan-500/10 blur-[90px] sm:blur-[130px] transition-all duration-700" />
+        {/* Soft studio-light haze */}
+        <div className="animate-ambient-1 absolute -top-24 -left-20 w-[520px] sm:w-[760px] h-[520px] sm:h-[760px] rounded-full bg-gradient-to-br from-sky-300/45 via-blue-200/30 to-indigo-200/20 blur-[100px] sm:blur-[150px] transition-all duration-700 dark:from-sky-200/20 dark:via-blue-100/10 dark:to-indigo-100/10" />
 
-        {/* Top-Right Violet/Purple Glow */}
-        <div className="animate-ambient-2 absolute top-12 -right-28 w-[420px] sm:w-[650px] h-[420px] sm:h-[650px] rounded-full bg-gradient-to-bl from-purple-400/35 via-violet-300/30 to-pink-300/25 dark:from-purple-600/25 dark:via-fuchsia-700/15 dark:to-indigo-900/15 blur-[90px] sm:blur-[130px] transition-all duration-700" />
+        <div className="animate-ambient-2 absolute top-10 -right-16 w-[460px] sm:w-[680px] h-[460px] sm:h-[680px] rounded-full bg-gradient-to-bl from-violet-300/30 via-indigo-200/20 to-slate-200/10 blur-[90px] sm:blur-[140px] transition-all duration-700 dark:from-violet-200/15 dark:via-indigo-100/10 dark:to-slate-100/10" />
 
-        {/* Mid-Left Cyan/Emerald Accent Glow */}
-        <div className="animate-ambient-2 absolute top-[38%] -left-28 w-[400px] sm:w-[600px] h-[400px] sm:h-[600px] rounded-full bg-gradient-to-tr from-cyan-400/30 via-teal-300/25 to-sky-200/20 dark:from-cyan-500/15 dark:via-blue-600/15 dark:to-transparent blur-[90px] sm:blur-[120px] transition-all duration-700" />
+        <div className="animate-ambient-2 absolute top-[35%] -left-24 w-[420px] sm:w-[620px] h-[420px] sm:h-[620px] rounded-full bg-gradient-to-tr from-cyan-200/30 via-sky-200/20 to-transparent blur-[90px] sm:blur-[120px] transition-all duration-700 dark:from-cyan-100/15 dark:via-sky-100/10 dark:to-transparent" />
 
-        {/* Bottom-Right Deep Blue Nebula Glow */}
-        <div className="animate-ambient-1 absolute -bottom-28 right-[5%] w-[450px] sm:w-[650px] h-[450px] sm:h-[650px] rounded-full bg-gradient-to-t from-blue-400/35 via-indigo-300/30 to-purple-300/20 dark:from-indigo-600/25 dark:via-blue-800/20 dark:to-transparent blur-[100px] sm:blur-[140px] transition-all duration-700" />
+        <div className="animate-ambient-1 absolute -bottom-20 right-[8%] w-[500px] sm:w-[720px] h-[500px] sm:h-[720px] rounded-full bg-gradient-to-t from-blue-200/30 via-indigo-200/18 to-transparent blur-[100px] sm:blur-[150px] transition-all duration-700 dark:from-blue-100/15 dark:via-indigo-100/10 dark:to-transparent" />
 
-        {/* Faint Subtle Background Grid for Depth */}
-        <div className="absolute inset-0 bg-[radial-gradient(rgba(100,116,139,0.1)_1px,transparent_1px)] dark:bg-[radial-gradient(rgba(255,255,255,0.04)_1px,transparent_1px)] [background-size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_40%,#000_70%,transparent_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(rgba(148,163,184,0.12)_1px,transparent_1px)] dark:bg-[radial-gradient(rgba(255,255,255,0.04)_1px,transparent_1px)] [background-size:22px_22px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_42%,#000_68%,transparent_100%)]" />
       </div>
 
       {/* Toast Notification */}
