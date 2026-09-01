@@ -93,7 +93,7 @@ export default function Navbar({ darkMode, setDarkMode, onCopyEmail }) {
         ? 'md:pt-2 pt-0'
         : 'pt-0'
       }`}>
-      <div className={`relative mx-auto w-full max-w-4xl px-3 sm:px-6 h-14 sm:h-16 flex justify-between items-center transition-all duration-300 ${scrolled ? 'md:rounded-full md:mt-3 glass-morphism rounded-none mt-0 shadow-[0_15px_35px_-25px_rgba(15,23,42,0.5)]' : 'rounded-none border-b border-transparent'}`}>
+      <div className={`relative mx-auto w-full max-w-4xl px-3 sm:px-6 h-14 sm:h-16 flex justify-between items-center transition-all duration-300 ${scrolled ? 'md:rounded-full md:mt-3 glass-morphism rounded-none mt-0 bg-white/35 dark:bg-slate-950/35 backdrop-blur-xl border border-white/60 dark:border-slate-700/60 shadow-[0_15px_35px_-25px_rgba(15,23,42,0.5)]' : 'rounded-none border-b border-transparent'}`}>
         {scrolled && (
           <div className="absolute left-1/2 -translate-x-1/2 bottom-[-28px] h-8 w-[calc(100%-16px)] rounded-b-[28px] bg-white/20 dark:bg-slate-950/20 backdrop-blur-xl supports-[backdrop-filter]:bg-white/10 supports-[backdrop-filter]:dark:bg-slate-950/10 blur-md pointer-events-none" />
         )}

@@ -75,7 +75,7 @@ export default function ProjectModal({ project, githubData, onClose, onSelectTag
                   </span>
                 )}
               </div>
-              <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-slate-900 dark:text-white tracking-tight break-words">
+              <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-slate-900 dark:text-white tracking-tight break-words [text-shadow:0_1px_0_rgba(255,255,255,0.2)]">
                 {project.title || project.name}
               </h3>
             </div>
@@ -130,10 +130,10 @@ export default function ProjectModal({ project, githubData, onClose, onSelectTag
             <>
               {/* Detailed Overview */}
               <div className="space-y-1.5">
-                <h4 className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">
+                <h4 className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-500">
                   Overview
                 </h4>
-                <p className="text-sm sm:text-base text-slate-700 dark:text-slate-300 leading-relaxed break-words">
+                <p className="text-sm sm:text-base text-slate-800 dark:text-slate-300 leading-relaxed break-words">
                   {project.longDescription || project.description}
                 </p>
               </div>
@@ -141,12 +141,12 @@ export default function ProjectModal({ project, githubData, onClose, onSelectTag
               {/* Key Features / Highlights */}
               {project.keyFeatures && project.keyFeatures.length > 0 && (
                 <div className="space-y-2.5 pt-1">
-                  <h4 className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">
+                  <h4 className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-500">
                     Key Features & Capabilities
                   </h4>
                   <ul className="grid gap-2">
                     {project.keyFeatures.map((feature, idx) => (
-                      <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+                      <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
                         <CheckCircle2 size={16} className="text-blue-500 dark:text-blue-400 mt-0.5 shrink-0" />
                         <span className="break-words">{feature}</span>
                       </li>
@@ -158,7 +158,7 @@ export default function ProjectModal({ project, githubData, onClose, onSelectTag
               {/* Tech Stack & Tags */}
               {project.tags && project.tags.length > 0 && (
                 <div className="space-y-2 pt-1">
-                  <h4 className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">
+                  <h4 className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-500">
                     Technologies & Tools
                   </h4>
                   <div className="flex flex-wrap gap-1.5">
@@ -188,7 +188,7 @@ export default function ProjectModal({ project, githubData, onClose, onSelectTag
               {/* GitHub Metadata Card if synced */}
               {gh && (
                 <div className="p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-700/60 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-4 text-xs">
-                  <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-slate-600 dark:text-slate-300">
+                  <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-slate-700 dark:text-slate-300">
                     {gh.language && (
                       <span className="flex items-center gap-1.5">
                         <Code2 size={14} className="text-blue-500" />
