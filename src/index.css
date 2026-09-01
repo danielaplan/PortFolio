@@ -26,9 +26,10 @@
   .glass-morphism {
     position: relative;
     overflow: hidden;
-    background-color: rgba(255, 255, 255, 0.38);
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.68), rgba(255, 255, 255, 0.18), rgba(226, 232, 240, 0.1));
-    border: 1px solid rgba(148, 163, 184, 0.22);
+    color: #0f172a; /* explicit text color so children don't inherit washed-out values */
+    background-color: rgba(255, 255, 255, 0.55);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.72), rgba(241, 245, 249, 0.42), rgba(226, 232, 240, 0.28));
+    border: 1px solid rgba(148, 163, 184, 0.28);
     backdrop-filter: blur(18px) saturate(150%) brightness(105%);
     -webkit-backdrop-filter: blur(18px) saturate(150%) brightness(105%);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.82), inset 0 -1px 0 rgba(148, 163, 184, 0.08), 0 18px 30px -22px rgba(15, 23, 42, 0.2);
@@ -40,35 +41,43 @@
     position: absolute;
     inset: 1px;
     border-radius: inherit;
-    background: linear-gradient(120deg, rgba(255,255,255,0.28), rgba(255,255,255,0.08) 28%, transparent 58%, rgba(255,255,255,0.1));
+    background: linear-gradient(120deg, rgba(255,255,255,0.18), rgba(255,255,255,0.04) 28%, transparent 58%, rgba(255,255,255,0.06));
     pointer-events: none;
+    z-index: 0;
+  }
+
+  .glass-morphism > * {
+    position: relative;
+    z-index: 1; /* keep text above the highlight overlay */
   }
 
   .glass-morphism:hover {
     transform: translateY(-1px);
-    border-color: rgba(148, 163, 184, 0.28);
+    border-color: rgba(148, 163, 184, 0.34);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), inset 0 -1px 0 rgba(148, 163, 184, 0.06), 0 22px 34px -22px rgba(15, 23, 42, 0.26);
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.24), rgba(226, 232, 240, 0.12));
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.82), rgba(241, 245, 249, 0.52), rgba(226, 232, 240, 0.32));
   }
 
   .dark .glass-morphism {
-    background-color: rgba(15, 23, 42, 0.38);
-    background: linear-gradient(135deg, rgba(15, 23, 42, 0.72), rgba(30, 41, 59, 0.42), rgba(15, 23, 42, 0.82));
+    color: #f8fafc; /* explicit light text for dark mode */
+    background-color: rgba(15, 23, 42, 0.55);
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.78), rgba(30, 41, 59, 0.5), rgba(15, 23, 42, 0.86));
     border: 1px solid rgba(148, 163, 184, 0.22);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), inset 0 -1px 0 rgba(15, 23, 42, 0.85), 0 22px 48px -28px rgba(15, 23, 42, 0.96), 0 0 0 1px rgba(148,163,184,0.08);
   }
 
   .dark .glass-morphism::before {
-    background: linear-gradient(120deg, rgba(255,255,255,0.12), transparent 30%, transparent 72%, rgba(255,255,255,0.04));
+    background: linear-gradient(120deg, rgba(255,255,255,0.08), transparent 30%, transparent 72%, rgba(255,255,255,0.03));
   }
 
   .dark .glass-morphism:hover {
-    background: linear-gradient(135deg, rgba(15, 23, 42, 0.76), rgba(30, 41, 59, 0.48), rgba(15, 23, 42, 0.8));
+    color: #f8fafc;
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.82), rgba(30, 41, 59, 0.56), rgba(15, 23, 42, 0.86));
     border-color: rgba(148, 163, 184, 0.3);
   }
 
   .dark .glass-morphism:hover::before {
-    background: linear-gradient(120deg, rgba(255,255,255,0.15), transparent 30%, transparent 72%, rgba(255,255,255,0.05));
+    background: linear-gradient(120deg, rgba(255,255,255,0.1), transparent 30%, transparent 72%, rgba(255,255,255,0.04));
   }
 
   /* Lenis Fluid Smooth Scrolling Standards */
@@ -106,15 +115,17 @@
 .liquid-glass-panel, .glass-panel {
   position: relative;
   overflow: hidden;
-  color: rgba(15, 23, 42, 0.92);
-  background: linear-gradient(135deg, rgba(148, 163, 184, 0.14), rgba(255, 255, 255, 0.52), rgba(226, 232, 240, 0.24));
-  backdrop-filter: blur(16px) saturate(140%) contrast(104%);
-  -webkit-backdrop-filter: blur(16px) saturate(140%) contrast(104%);
-  border: 1px solid rgba(100, 116, 139, 0.2);
-  box-shadow: 
-    inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.78),
-    inset 0 -1px 1px 0 rgba(71, 85, 105, 0.08),
-    0 12px 28px -18px rgba(15, 23, 42, 0.18);
+  color: #0f172a; /* strong ink keeps text legible on the bright glass gradient */
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.78), rgba(226, 232, 240, 0.6) 28%, rgba(203, 213, 225, 0.4) 100%);
+  backdrop-filter: blur(18px) saturate(150%) contrast(106%);
+  -webkit-backdrop-filter: blur(18px) saturate(150%) contrast(106%);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow:
+    inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.9),
+    inset 0 -1px 1px 0 rgba(148, 163, 184, 0.14),
+    0 18px 42px -28px rgba(15, 23, 42, 0.32),
+    0 0 0 1px rgba(148, 163, 184, 0.06);
 }
 
 .liquid-glass-panel::before, .glass-panel::before {
@@ -122,17 +133,24 @@
   position: absolute;
   inset: 1px;
   border-radius: inherit;
-  background: linear-gradient(125deg, rgba(255,255,255,0.28), transparent 25%, transparent 70%, rgba(255,255,255,0.08));
+  background:
+    linear-gradient(125deg, rgba(255,255,255,0.28), rgba(255,255,255,0.08) 18%, transparent 35%, rgba(255,255,255,0.04) 72%, rgba(148,163,184,0.08));
   pointer-events: none;
+  z-index: 0;
+}
+
+.liquid-glass-panel > *, .glass-panel > * {
+  position: relative;
+  z-index: 1; /* keep content above the highlight overlay */
 }
 
 .dark .liquid-glass-panel, .dark .glass-panel {
-  color: rgba(248, 250, 252, 0.96);
-  background: linear-gradient(135deg, rgba(15, 23, 42, 0.72), rgba(15, 23, 42, 0.42), rgba(30, 41, 59, 0.5));
+  color: #f8fafc;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.78), rgba(15, 23, 42, 0.5), rgba(30, 41, 59, 0.6));
   backdrop-filter: blur(24px) saturate(180%) contrast(104%);
   -webkit-backdrop-filter: blur(24px) saturate(180%) contrast(104%);
   border: 1px solid rgba(148, 163, 184, 0.18);
-  box-shadow: 
+  box-shadow:
     inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.08),
     inset 0 -1px 1.5px 0 rgba(2, 6, 23, 0.9),
     0 16px 36px -18px rgba(2, 6, 23, 0.7);
@@ -145,12 +163,12 @@
 /* Liquid Glass Card with Mouse Refraction */
 .liquid-glass-card, .glass-card {
   position: relative;
-  color: rgba(15, 23, 42, 0.92);
-  background: linear-gradient(135deg, rgba(148, 163, 184, 0.12), rgba(255, 255, 255, 0.5), rgba(226, 232, 240, 0.2));
+  color: #0f172a; /* strong ink for readable text on the bright glass gradient */
+  background: linear-gradient(135deg, rgba(148, 163, 184, 0.16), rgba(241, 245, 249, 0.58), rgba(226, 232, 240, 0.28));
   backdrop-filter: blur(16px) saturate(140%) contrast(104%);
   -webkit-backdrop-filter: blur(16px) saturate(140%) contrast(104%);
-  border: 1px solid rgba(100, 116, 139, 0.18);
-  box-shadow: 
+  border: 1px solid rgba(100, 116, 139, 0.22);
+  box-shadow:
     inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.8),
     inset 0 -1px 1px 0 rgba(71, 85, 105, 0.08),
     0 10px 24px -14px rgba(15, 23, 42, 0.12);
@@ -158,31 +176,38 @@
   overflow: hidden;
 }
 
+.liquid-glass-card > *, .glass-card > * {
+  position: relative;
+  z-index: 2; /* content above refraction + highlight layers (which sit at z=0/1) */
+}
+
 .liquid-glass-card::after, .glass-card::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(120deg, rgba(255,255,255,0.22), transparent 22%, transparent 70%, rgba(255,255,255,0.08));
+  background: linear-gradient(120deg, rgba(255,255,255,0.12), transparent 22%, transparent 70%, rgba(255,255,255,0.04));
   pointer-events: none;
+  z-index: 0;
 }
 
 .liquid-glass-card:hover, .glass-card:hover {
   transform: translateY(-2px);
+  color: #0f172a;
   border-color: rgba(255, 255, 255, 0.8);
-  box-shadow: 
+  box-shadow:
     inset 0 1.5px 1px 0 rgba(255, 255, 255, 1),
     inset 0 -1px 1px 0 rgba(148, 163, 184, 0.05),
     0 18px 38px -18px rgba(59, 130, 246, 0.18);
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.84), rgba(255, 255, 255, 0.18), rgba(239, 246, 255, 0.22));
+  background: linear-gradient(135deg, rgba(241, 245, 249, 0.92), rgba(255, 255, 255, 0.7), rgba(239, 246, 255, 0.78));
 }
 
 .dark .liquid-glass-card, .dark .glass-card {
-  color: rgba(248, 250, 252, 0.96);
-  background: linear-gradient(135deg, rgba(15, 23, 42, 0.62), rgba(15, 23, 42, 0.32), rgba(30, 41, 59, 0.45));
+  color: #f8fafc;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.4), rgba(30, 41, 59, 0.55));
   backdrop-filter: blur(24px) saturate(180%) contrast(104%);
   -webkit-backdrop-filter: blur(24px) saturate(180%) contrast(104%);
   border: 1px solid rgba(148, 163, 184, 0.16);
-  box-shadow: 
+  box-shadow:
     inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.08),
     inset 0 -1px 1.5px 0 rgba(2, 6, 23, 0.9),
     0 12px 30px -16px rgba(2, 6, 23, 0.55);
@@ -193,9 +218,10 @@
 }
 
 .dark .liquid-glass-card:hover, .dark .glass-card:hover {
+  color: #f8fafc;
   border-color: rgba(148, 163, 184, 0.28);
-  background: linear-gradient(135deg, rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.38), rgba(30, 41, 59, 0.5));
-  box-shadow: 
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.78), rgba(15, 23, 42, 0.46), rgba(30, 41, 59, 0.6));
+  box-shadow:
     inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.08),
     inset 0 -1px 1.5px 0 rgba(2, 6, 23, 0.9),
     0 18px 40px -18px rgba(2, 6, 23, 0.7);
@@ -231,9 +257,9 @@
 }
 
 .liquid-glass-card:hover, .glass-card:hover {
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(241, 245, 249, 0.92);
   border-color: rgba(148, 163, 184, 0.3);
-  box-shadow: 
+  box-shadow:
     inset 0 1.5px 1.5px 0 rgba(255, 255, 255, 1),
     inset 0 -1px 1px 0 rgba(148, 163, 184, 0.08),
     0 20px 40px -12px rgba(15, 23, 42, 0.12);
@@ -241,9 +267,9 @@
 }
 
 .dark .liquid-glass-card:hover, .dark .glass-card:hover {
-  background: rgba(15, 23, 42, 0.75);
+  background: rgba(15, 23, 42, 0.85);
   border-color: rgba(96, 165, 250, 0.4);
-  box-shadow: 
+  box-shadow:
     inset 0 1.5px 1.5px 0 rgba(255, 255, 255, 0.22),
     inset 0 -1px 1.5px 0 rgba(0, 0, 0, 0.7),
     0 20px 44px -12px rgba(0, 0, 0, 0.6);
