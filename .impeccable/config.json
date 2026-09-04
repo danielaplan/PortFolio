@@ -218,6 +218,27 @@
         ],
         "createdAt": "2026-09-01T07:01:48.071Z",
         "reason": "Sanctioned glass tint (slate-200); intermediate stop in the same slate-200 ramp as already-approved 0.28/0.34/0.9/0.95. Glassmorphism hover gradient stop."
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "9px",
+        "createdAt": "2026-09-04T20:33:01.809Z",
+        "reason": "Intentional micro-label for mobile status pill, carried over from original design — pairs with 11px on larger screens"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "9px",
+        "files": [
+          "C:\\Users\\acer\\Desktop\\portfolio\\src\\components\\Navbar.jsx"
+        ],
+        "createdAt": "2026-09-04T20:36:14.362Z",
+        "reason": "Reserved — see current Navbar.jsx for usage"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "10px",
+        "createdAt": "2026-09-04T20:40:18.794Z",
+        "reason": "Micro-label for count badge inside toggle button; pairs with surrounding text-xs"
       }
     ]
   }

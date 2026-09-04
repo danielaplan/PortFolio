@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { 
   ExternalLink, 
-  FolderGit2, 
   Sparkles, 
   Search, 
   X, 
@@ -10,15 +9,16 @@ import {
   GitFork, 
   Globe, 
   Layers, 
-  Info,
-  Clock,
-  Filter,
-  Check,
-  FileCode
+  Info, 
+  Clock, 
+  FileCode,
+  SlidersHorizontal,
+  FolderGit2
 } from 'lucide-react';
 import Github from './icons/Github';
 import { getTechIcon } from './icons/TechIcons';
 import ProjectModal from './ProjectModal';
+import ProjectSpotlightCarousel from '@/components/ui/card-fan-carousel';
 import { curatedProjects } from '../data/projects';
 import { fetchUserRepos, formatTimeAgo, getDevStatus } from '../services/github';
 
@@ -67,7 +67,6 @@ export default function Projects() {
   // Convert raw GitHub repos into project items for the "All GitHub Repos" view
   const formattedGithubProjects = useMemo(() => {
     return githubRepos.map(repo => {
-      // Check if this repo is in curated projects to inherit rich data
       const matchedCurated = curatedProjects.find(
         cp => cp.repoName?.toLowerCase() === repo.name.toLowerCase()
       );
@@ -75,14 +74,19 @@ export default function Projects() {
       return {
         id: `gh-${repo.id}`,
         title: matchedCurated?.title || repo.name.replace(/[-_]/g, ' '),
+        subtitle: matchedCurated?.subtitle || (repo.description ? repo.description.slice(0, 60) : 'Public GitHub Repository'),
+        frameworkBadge: matchedCurated?.frameworkBadge || repo.language || 'Codebase',
+        mockUrl: matchedCurated?.mockUrl || `github.com/danielaplan/${repo.name}`,
         repoName: repo.name,
         category: matchedCurated?.category || (repo.language ? `${repo.language} Project` : 'Repository'),
         description: matchedCurated?.description || repo.description || 'Public GitHub repository.',
         longDescription: matchedCurated?.longDescription || repo.description,
         keyFeatures: matchedCurated?.keyFeatures || [],
         tags: matchedCurated?.tags || [repo.language, ...repo.topics].filter(Boolean),
+        engineeredWith: matchedCurated?.engineeredWith || [repo.language, 'Git', 'Open Source'].filter(Boolean),
         link: repo.htmlUrl,
         demoUrl: matchedCurated?.demoUrl || repo.homepage || null,
+        image: matchedCurated?.image || null,
         featured: Boolean(matchedCurated?.featured),
         year: repo.createdAt ? new Date(repo.createdAt).getFullYear().toString() : '2024',
         isLiveRepo: true,
@@ -111,17 +115,12 @@ export default function Projects() {
   // Dynamic filter and search processing
   const filteredProjects = useMemo(() => {
     return activeDataset.filter(project => {
-      // Category filter
       if (filter !== 'all' && project.category !== filter) {
         return false;
       }
-
-      // Tag filter
       if (selectedTag && !project.tags?.some(t => t.toLowerCase() === selectedTag.toLowerCase())) {
         return false;
       }
-
-      // Search query
       if (searchQuery.trim()) {
         const q = searchQuery.toLowerCase().trim();
         const inTitle = project.title?.toLowerCase().includes(q);
@@ -130,7 +129,6 @@ export default function Projects() {
         const inCategory = project.category?.toLowerCase().includes(q);
         return inTitle || inDesc || inTags || inCategory;
       }
-
       return true;
     });
   }, [activeDataset, filter, selectedTag, searchQuery]);
@@ -143,20 +141,20 @@ export default function Projects() {
 
   return (
     <section id="projects" className="py-12 sm:py-20 border-t border-slate-200/60 dark:border-slate-800/60">
-      <div className="max-w-4xl mx-auto px-5 sm:px-6">
+      <div className="w-full px-5 sm:px-8 lg:px-12">
 
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+        {/* Section Header (Stitch Layout) */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-6 gap-4">
           <div>
-            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-1.5">
+            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-cyan-500 mb-1.5">
               <FolderGit2 size={15} />
-              <span>Interactive Portfolio</span>
+              <span>Interactive Spotlight Showcase</span>
             </div>
             <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
               Projects & Engineering
             </h2>
-            <p className="text-slate-600 dark:text-slate-400 text-xs sm:text-sm mt-1">
-              Explore highlighted software solutions, academic systems, and live GitHub repositories.
+            <p className="text-slate-600 dark:text-slate-400 text-xs sm:text-sm mt-1 max-w-2xl">
+              Featured applications, enterprise systems, and architecture builds presented with full technical breakdowns and high-res previews.
             </p>
           </div>
 
@@ -174,7 +172,7 @@ export default function Projects() {
                     : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
                 }`}
               >
-                Curated ({curatedProjects.length})
+                Curated Projects ({String(curatedProjects.length).padStart(2, '0')})
               </button>
               <button
                 onClick={() => {
@@ -188,9 +186,7 @@ export default function Projects() {
                 }`}
               >
                 <span>Live Repos</span>
-                <span className="px-1.5 py-0.2 rounded-full bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-400 text-[11px]">
-                  {githubRepos.length || '•'}
-                </span>
+                <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
               </button>
             </div>
 
@@ -201,7 +197,7 @@ export default function Projects() {
               className="p-2 rounded-xl text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white bg-slate-100 dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 hover:bg-slate-200 dark:hover:bg-slate-800 transition cursor-pointer disabled:opacity-50"
               aria-label="Refresh GitHub Repos"
             >
-              <RefreshCw size={14} className={githubLoading ? 'animate-spin text-blue-500' : ''} />
+              <RefreshCw size={14} className={githubLoading ? 'animate-spin text-cyan-400' : ''} />
             </button>
           </div>
         </div>
@@ -218,7 +214,7 @@ export default function Projects() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search projects by name, keyword, or technology..."
-                className="w-full pl-9 pr-9 py-2.5 rounded-2xl bg-white/50 dark:bg-slate-900/40 backdrop-blur-md border border-white/60 dark:border-white/10 text-xs sm:text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500 transition shadow-2xs"
+                className="w-full pl-9 pr-9 py-2.5 rounded-2xl bg-white/50 dark:bg-slate-900/60 backdrop-blur-md border border-white/60 dark:border-slate-800 text-xs sm:text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-cyan-500/30 focus:border-cyan-500 transition shadow-2xs"
               />
               {searchQuery && (
                 <button
@@ -239,8 +235,8 @@ export default function Projects() {
                   onClick={() => setFilter(cat)}
                   className={`px-3.5 py-1.5 rounded-xl font-medium transition cursor-pointer capitalize border ${
                     filter === cat
-                      ? 'bg-blue-600 text-white border-blue-500 shadow-xs font-semibold'
-                      : 'bg-white/50 dark:bg-slate-900/40 border-white/60 dark:border-white/10 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-white/80 dark:hover:bg-slate-800/80'
+                      ? 'bg-cyan-500 text-slate-950 font-bold border-cyan-400 shadow-sm'
+                      : 'bg-white/50 dark:bg-slate-900/60 border-white/60 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-white/80 dark:hover:bg-slate-800/80'
                   }`}
                 >
                   {cat === 'all' ? `All (${categories.all})` : `${cat} (${categories[cat]})`}
@@ -254,11 +250,11 @@ export default function Projects() {
           {selectedTag && (
             <div className="flex items-center gap-2 pt-1 text-xs">
               <span className="text-slate-500 dark:text-slate-400">Filtered by tag:</span>
-              <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-xl bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20 font-mono font-medium">
+              <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-xl bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border border-cyan-500/20 font-mono font-medium">
                 #{selectedTag}
                 <button
                   onClick={() => setSelectedTag(null)}
-                  className="hover:text-blue-800 dark:hover:text-blue-200 ml-1 cursor-pointer"
+                  className="hover:text-cyan-800 dark:hover:text-cyan-200 ml-1 cursor-pointer"
                   aria-label="Remove tag filter"
                 >
                   <X size={12} />
@@ -274,15 +270,15 @@ export default function Projects() {
           )}
         </div>
 
-        {/* Projects Grid */}
+        {/* =========================================================
+            3D PROJECT SPOTLIGHT CAROUSEL (THE PROJECT ITSELF IN 3D)
+            ========================================================= */}
         {viewMode === 'github' && githubLoading ? (
-          /* Loading State — don't show the misleading empty-state while syncing */
           <div className="p-12 flex flex-col items-center justify-center gap-3 rounded-3xl bg-slate-50/60 dark:bg-slate-900/30 border border-dashed border-slate-300 dark:border-slate-800">
-            <RefreshCw size={22} className="text-blue-500 animate-spin" />
+            <RefreshCw size={22} className="text-cyan-500 animate-spin" />
             <p className="text-sm font-medium text-slate-600 dark:text-slate-400">Syncing live repositories…</p>
           </div>
         ) : githubError && filteredProjects.length === 0 ? (
-          /* Error State — explicit, not the filter empty-state */
           <div className="p-12 text-center rounded-3xl bg-amber-50/70 dark:bg-amber-950/20 border border-amber-300/60 dark:border-amber-900/50 space-y-4">
             <div className="inline-flex p-3 rounded-2xl bg-amber-100 dark:bg-amber-900/40 text-amber-600 dark:text-amber-400">
               <RefreshCw size={22} />
@@ -297,181 +293,27 @@ export default function Projects() {
             </div>
             <button
               onClick={() => loadGithubRepos(true)}
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-blue-600 text-white text-xs font-semibold hover:bg-blue-700 transition cursor-pointer"
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-cyan-500 text-slate-950 font-bold text-xs hover:bg-cyan-400 transition cursor-pointer"
             >
               <RefreshCw size={13} /> Try again
             </button>
           </div>
         ) : filteredProjects.length > 0 ? (
-          <div className="grid gap-6 md:grid-cols-2">
-            {filteredProjects.map((project) => {
-              const ghData = githubMap.get((project.repoName || project.title).toLowerCase());
-              const liveDemo = project.demoUrl || ghData?.homepage;
-              const devStatus = getDevStatus(ghData?.pushedAt || project.pushedAt, ghData?.archived || project.archived, project.tags);
-
-              return (
-                <article
-                  key={project.id}
-                  onMouseMove={(e) => {
-                    const rect = e.currentTarget.getBoundingClientRect();
-                    e.currentTarget.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
-                    e.currentTarget.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
-                  }}
-                  className="group relative flex flex-col justify-between p-6 sm:p-7 rounded-3xl liquid-glass-card cursor-pointer"
-                  onClick={() => setActiveModalProject(project)}
-                >
-                  <div className="space-y-4">
-
-                    {/* Header: Title & Badges */}
-                    <div className="flex items-start justify-between gap-3">
-                      <div>
-                        <div className="flex items-center gap-2 mb-1.5 flex-wrap">
-                          {/* Development Status Pill */}
-                          <span className={`inline-flex items-center gap-1 text-[11px] px-2 py-0.5 rounded-full font-medium border ${devStatus.badgeClass}`}>
-                            <span className={`w-1.5 h-1.5 rounded-full ${devStatus.dotClass}`} />
-                            {devStatus.label}
-                          </span>
-
-                          {project.featured && (
-                            <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-blue-600 dark:text-blue-400 uppercase tracking-wider">
-                              <Sparkles size={11} /> Featured
-                            </span>
-                          )}
-                          {project.category && (
-                            <span className="text-[11px] px-2 py-0.5 rounded-full bg-slate-200/70 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-medium">
-                              {project.category}
-                            </span>
-                          )}
-                          {project.year && (
-                            <span className="text-[11px] text-slate-400 dark:text-slate-500">
-                              {project.year}
-                            </span>
-                          )}
-                        </div>
-
-                        <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                          {project.title}
-                        </h3>
-                      </div>
-
-                      {/* Quick Details Trigger */}
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setActiveModalProject(project);
-                        }}
-                        className="p-2 rounded-xl text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700/80 transition shrink-0"
-                        title="View Full Details"
-                        aria-label="View Project Details"
-                      >
-                        <Info size={15} />
-                      </button>
-                    </div>
-
-                    {/* Description */}
-                    <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-3">
-                      {project.description}
-                    </p>
-                  </div>
-
-                  {/* Tags & Action Links */}
-                  <div className="pt-6 space-y-4">
-
-                    {/* Clickable Tech Stack Tags */}
-                    {project.tags && project.tags.length > 0 && (
-                      <div className="flex flex-wrap gap-1.5">
-                        {project.tags.map((tag, j) => {
-                          const isTagActive = selectedTag?.toLowerCase() === tag.toLowerCase();
-                          const TechIcon = getTechIcon(tag);
-                          return (
-                            <button
-                              key={j}
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                setSelectedTag(isTagActive ? null : tag);
-                              }}
-                              className={`inline-flex items-center gap-1 text-[11px] px-2.5 py-0.8 rounded-md font-mono transition cursor-pointer border ${
-                                isTagActive
-                                  ? 'bg-blue-600 text-white border-blue-600'
-                                  : 'bg-white dark:bg-slate-800 border-slate-200/80 dark:border-slate-700/80 text-slate-700 dark:text-slate-300 hover:border-blue-400 dark:hover:border-blue-500'
-                              }`}
-                              title={`Filter by #${tag}`}
-                            >
-                              {TechIcon && <TechIcon className="w-3 h-3 shrink-0" />}
-                              {tag}
-                            </button>
-                          );
-                        })}
-                      </div>
-                    )}
-
-                    {/* Live GitHub Stats & Action Bar */}
-                    <div className="pt-3 border-t border-slate-200/60 dark:border-slate-800/60 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
-
-                      {/* Live Repo Stats */}
-                      <div className="flex items-center gap-3">
-                        {ghData?.pushedAt && (
-                          <span className="flex items-center gap-1 text-[11px] text-slate-400">
-                            <Clock size={11} /> {formatTimeAgo(ghData.pushedAt)}
-                          </span>
-                        )}
-                        {ghData && ghData.stars > 0 && (
-                          <span className="flex items-center gap-0.5 text-amber-500 font-medium text-[11px]">
-                            <Star size={11} fill="currentColor" /> {ghData.stars}
-                          </span>
-                        )}
-                      </div>
-
-                      {/* CTAs */}
-                      <div className="flex items-center gap-3">
-                        <button
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setModalInitialTab('code');
-                            setActiveModalProject(project);
-                          }}
-                          className="inline-flex items-center gap-1 font-medium text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 cursor-pointer transition"
-                          title="Inspect Architecture & Code"
-                        >
-                          <FileCode size={13} />
-                          <span>Code</span>
-                        </button>
-
-                        {liveDemo && (
-                          <a
-                            href={liveDemo}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            onClick={(e) => e.stopPropagation()}
-                            className="inline-flex items-center gap-1 font-medium text-emerald-600 dark:text-emerald-400 hover:underline"
-                          >
-                            <Globe size={13} />
-                            <span>Demo</span>
-                          </a>
-                        )}
-
-                        <a
-                          href={project.link || ghData?.htmlUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={(e) => e.stopPropagation()}
-                          className="inline-flex items-center gap-1 font-medium text-blue-600 dark:text-blue-400 hover:underline"
-                        >
-                          <Github size={13} />
-                          <span>Repo</span>
-                          <ExternalLink size={11} />
-                        </a>
-                      </div>
-
-                    </div>
-
-                  </div>
-                </article>
-              );
-            })}
+          <div className="w-full">
+            <ProjectSpotlightCarousel
+              projects={filteredProjects}
+              githubMap={githubMap}
+              onOpenDetails={(p) => {
+                setModalInitialTab('overview');
+                setActiveModalProject(p);
+              }}
+              onOpenCode={(p) => {
+                setModalInitialTab('code');
+                setActiveModalProject(p);
+              }}
+            />
           </div>
         ) : (
-          /* Empty State (filter produced no matches, or no repos for this account) */
           <div className="p-12 text-center rounded-3xl bg-slate-50/60 dark:bg-slate-900/30 border border-dashed border-slate-300 dark:border-slate-800 space-y-4">
             <div className="inline-flex p-3 rounded-2xl bg-slate-100 dark:bg-slate-800 text-slate-400">
               <Search size={24} />
@@ -488,7 +330,7 @@ export default function Projects() {
             </div>
             <button
               onClick={handleResetFilters}
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-blue-600 text-white text-xs font-semibold hover:bg-blue-700 transition cursor-pointer"
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-cyan-500 text-slate-950 text-xs font-bold hover:bg-cyan-400 transition cursor-pointer"
             >
               Reset Filters
             </button>

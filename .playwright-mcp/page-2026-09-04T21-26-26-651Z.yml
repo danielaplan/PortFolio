@@ -1,0 +1,269 @@
+- generic [ref=e3]:
+  - generic:
+    - generic:
+      - generic:
+        - text: "Email copied:"
+        - strong: danielaplan.bsit2024@gmail.com
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - link "daniel ." [ref=e6] [cursor=pointer]:
+        - /url: "#home"
+        - generic [ref=e7]: daniel
+        - generic [ref=e8]: .
+      - generic [ref=e9]:
+        - link "About" [ref=e10] [cursor=pointer]:
+          - /url: "#home"
+        - link "Projects" [ref=e11] [cursor=pointer]:
+          - /url: "#projects"
+        - link "Skills" [ref=e12] [cursor=pointer]:
+          - /url: "#skills"
+        - link "Contact" [ref=e13] [cursor=pointer]:
+          - /url: "#contact"
+        - button "Switch to light mode" [ref=e15] [cursor=pointer]
+  - main [ref=e23]:
+    - generic [ref=e26]:
+      - generic [ref=e27]:
+        - generic [ref=e28]: 3rd-Year BSIT @ University of Caloocan City
+        - generic [ref=e33]:
+          - heading "Daniel Aplan" [level=1] [ref=e34]
+          - paragraph [ref=e35]: Aspiring Software Developer & IT Student
+        - paragraph [ref=e36]: I build web apps that work on any screen — and I care just as much about what's underneath them, from the database to the API. Lately I've been focused on full-stack development with TypeScript, React, C#, and relational databases, learning by actually shipping things.
+        - generic [ref=e37]:
+          - generic [ref=e38]: Caloocan City, Philippines
+          - generic [ref=e43]: Systems Design & Full-Stack
+        - generic [ref=e49]:
+          - link "GitHub Profile" [ref=e50] [cursor=pointer]:
+            - /url: https://github.com/danielaplan
+          - button "Copy Email" [ref=e58] [cursor=pointer]
+          - link "Projects ↓" [ref=e63] [cursor=pointer]:
+            - /url: "#projects"
+            - generic [ref=e64]: Projects
+            - generic [ref=e65]: ↓
+      - generic [ref=e66]:
+        - img "Daniel Aplan" [ref=e69]
+        - generic [ref=e70]: Online
+    - generic [ref=e74]:
+      - generic [ref=e75]:
+        - generic [ref=e76]:
+          - generic [ref=e77]: Interactive Portfolio
+          - heading "Projects & Engineering" [level=2] [ref=e84]
+          - paragraph [ref=e85]: Explore highlighted software solutions, academic systems, and live GitHub repositories.
+        - generic [ref=e86]:
+          - generic [ref=e87]:
+            - button "Curated (6)" [ref=e88] [cursor=pointer]
+            - button "Live Repos •" [ref=e89] [cursor=pointer]:
+              - generic [ref=e90]: Live Repos
+              - generic [ref=e91]: •
+          - button "Refresh GitHub Repos" [disabled] [ref=e92] [cursor=pointer]
+      - generic [ref=e99]:
+        - textbox "Search projects by name, keyword, or technology..." [ref=e104]
+        - generic [ref=e105]:
+          - button "All (4)" [ref=e106] [cursor=pointer]
+          - button "Web & Apps (2)" [ref=e107] [cursor=pointer]
+          - button "Systems & CRM (2)" [ref=e108] [cursor=pointer]
+      - generic [ref=e109]:
+        - article [ref=e110] [cursor=pointer]:
+          - generic [ref=e111]:
+            - generic [ref=e112]:
+              - generic [ref=e113]:
+                - generic [ref=e114]:
+                  - generic [ref=e115]: Stable
+                  - generic [ref=e117]: Featured
+                  - generic [ref=e121]: Web & Apps
+                  - generic [ref=e122]: "2024"
+                - heading "FaithQuest" [level=3] [ref=e123]
+              - button "View Project Details" [ref=e124]
+            - paragraph [ref=e127]: Interactive gamification platform for church programs. Features a teacher-controlled dashboard that engages participants with real-time points, achievements, and milestone progress tracking.
+            - generic [ref=e128]:
+              - generic [ref=e129]:
+                - button "TypeScript" [ref=e130]
+                - button "Python" [ref=e133]
+                - button "Interactive UI" [ref=e138]
+                - button "Gamification" [ref=e145]
+                - button "Web" [ref=e152]
+              - generic [ref=e157]:
+                - button "Code" [ref=e158]
+                - link "Demo" [ref=e165]:
+                  - /url: https://faith-quest-zeta.vercel.app
+                - link "Repo" [ref=e170]:
+                  - /url: https://github.com/danielaplan/FaithQuest
+          - img "FaithQuest preview" [ref=e181]
+        - article [ref=e182] [cursor=pointer]:
+          - generic [ref=e183]:
+            - generic [ref=e184]:
+              - generic [ref=e185]:
+                - generic [ref=e186]:
+                  - generic [ref=e187]: Stable
+                  - generic [ref=e189]: Featured
+                  - generic [ref=e193]: Systems & CRM
+                  - generic [ref=e194]: "2024"
+                - heading "Customer Relationship Management System" [level=3] [ref=e195]
+              - button "View Project Details" [ref=e196]
+            - paragraph [ref=e199]: Enterprise CRM solution built with C# and relational databases. Manages customer interactions, pipelines, communication logs, and business processes with reliable data persistence.
+            - generic [ref=e200]:
+              - generic [ref=e201]:
+                - button "C#" [ref=e202]
+                - button ".NET" [ref=e205]
+                - button "Database Architecture" [ref=e209]
+                - button "CRM" [ref=e214]
+                - button "SQL" [ref=e220]
+              - generic [ref=e226]:
+                - button "Code" [ref=e227]
+                - link "Repo" [ref=e234]:
+                  - /url: https://github.com/danielaplan/Customer-Relationship-Management-System
+          - img "Customer Relationship Management System preview" [ref=e245]
+        - article [ref=e246] [cursor=pointer]:
+          - generic [ref=e247]:
+            - generic [ref=e248]:
+              - generic [ref=e249]:
+                - generic [ref=e250]:
+                  - generic [ref=e251]: Stable
+                  - generic [ref=e253]: Featured
+                  - generic [ref=e257]: Systems & CRM
+                  - generic [ref=e258]: "2024"
+                - heading "Rental Ops Manager" [level=3] [ref=e259]
+              - button "View Project Details" [ref=e260]
+            - paragraph [ref=e263]: Operations and booking management system designed for equipment and property rental workflows with automated inventory scheduling and billing tracking.
+            - generic [ref=e264]:
+              - generic [ref=e265]:
+                - button "Systems" [ref=e266]
+                - button "Database Design" [ref=e277]
+                - button "Full-Stack" [ref=e282]
+                - button "Workflow Automation" [ref=e287]
+              - generic [ref=e293]:
+                - button "Code" [ref=e294]
+                - link "Repo" [ref=e301]:
+                  - /url: https://github.com/danielaplan/Rental-Ops-Manager
+          - img "Rental Ops Manager preview" [ref=e312]
+        - article [ref=e313] [cursor=pointer]:
+          - generic [ref=e314]:
+            - generic [ref=e315]:
+              - generic [ref=e316]:
+                - generic [ref=e317]:
+                  - generic [ref=e318]: Stable
+                  - generic [ref=e320]: Featured
+                  - generic [ref=e324]: Web & Apps
+                  - generic [ref=e325]: "2024"
+                - heading "Developer Portfolio & Showcase" [level=3] [ref=e326]
+              - button "View Project Details" [ref=e327]
+            - paragraph [ref=e330]: Modern, high-performance portfolio engineered with React, Tailwind CSS, Vite, and live GitHub API synchronization with dark mode support.
+            - generic [ref=e331]:
+              - generic [ref=e332]:
+                - button "React" [ref=e333]
+                - button "Tailwind CSS" [ref=e339]
+                - button "Vite" [ref=e342]
+                - button "JavaScript" [ref=e346]
+                - button "GitHub API" [ref=e349]
+              - generic [ref=e353]:
+                - button "Code" [ref=e354]
+                - link "Demo" [ref=e361]:
+                  - /url: https://port-folio-gamma-dusky.vercel.app
+                - link "Repo" [ref=e366]:
+                  - /url: https://github.com/danielaplan/PortFolio
+          - img "Developer Portfolio & Showcase preview" [ref=e377]
+    - generic [ref=e379]:
+      - generic [ref=e380]:
+        - generic [ref=e381]: Technical Proficiency
+        - heading "Skills & Technologies" [level=2] [ref=e386]
+        - paragraph [ref=e387]: Core competencies acquired through academic coursework at University of Caloocan City and hands-on project engineering.
+      - generic [ref=e388]:
+        - generic [ref=e389]:
+          - heading "Programming Languages" [level=3] [ref=e394]
+          - generic [ref=e395]:
+            - generic [ref=e396]: Java
+            - generic [ref=e400]: C#
+            - generic [ref=e404]: PHP
+            - generic [ref=e408]: JavaScript
+            - generic [ref=e412]: TypeScript
+        - generic [ref=e416]:
+          - heading "Frontend & Web" [level=3] [ref=e423]
+          - generic [ref=e424]:
+            - generic [ref=e425]: React
+            - generic [ref=e432]: Tailwind CSS
+            - generic [ref=e436]: Vite
+            - generic [ref=e441]: HTML5 & CSS3
+            - generic [ref=e445]: Responsive Design
+            - generic [ref=e449]: UI/UX Principles
+        - generic [ref=e457]:
+          - heading "Backend & Databases" [level=3] [ref=e464]
+          - generic [ref=e465]:
+            - generic [ref=e466]: Node.js
+            - generic [ref=e470]: MySQL
+            - generic [ref=e474]: MariaDB
+            - generic [ref=e478]: SQLite
+            - generic [ref=e482]: Relational Schema Design
+            - generic [ref=e486]: REST APIs
+        - generic [ref=e493]:
+          - heading "Tools & Workflow" [level=3] [ref=e498]
+          - generic [ref=e499]:
+            - generic [ref=e500]: Git & GitHub
+            - generic [ref=e504]: VS Code
+            - generic [ref=e508]: Systems Architecture
+    - generic [ref=e515]:
+      - generic [ref=e516]:
+        - generic [ref=e517]: Get in Touch
+        - heading "Let's Connect" [level=2] [ref=e521]
+        - paragraph [ref=e522]: I'm always open to discussing new software development opportunities, academic collaborations, or project ideas.
+      - generic [ref=e523]:
+        - generic [ref=e524]:
+          - generic [ref=e525]:
+            - text: Name
+            - textbox "Name" [ref=e526]:
+              - /placeholder: Your name
+          - generic [ref=e527]:
+            - text: Email
+            - textbox "Email" [ref=e528]:
+              - /placeholder: you@example.com
+          - generic [ref=e529]:
+            - text: Message
+            - textbox "Message" [ref=e530]:
+              - /placeholder: Tell me about your project or idea
+          - button "Send Message" [ref=e532] [cursor=pointer]
+        - generic [ref=e537]:
+          - generic [ref=e538]:
+            - generic [ref=e539]:
+              - generic [ref=e540]: Email Address
+              - paragraph [ref=e545]: danielaplan.bsit2024@gmail.com
+            - generic [ref=e546]:
+              - link "Send" [ref=e547] [cursor=pointer]:
+                - /url: mailto:danielaplan.bsit2024@gmail.com
+              - button "Copy" [ref=e552] [cursor=pointer]
+          - generic [ref=e557]:
+            - generic [ref=e558]:
+              - generic [ref=e559]: GitHub
+              - paragraph [ref=e564]: Explore open source repositories, student coursework, and ongoing builds.
+            - link "github.com/danielaplan" [ref=e565] [cursor=pointer]:
+              - /url: https://github.com/danielaplan
+        - generic [ref=e574]:
+          - generic [ref=e575]: Find me on
+          - link "Instagram" [ref=e576] [cursor=pointer]:
+            - /url: https://www.instagram.com/dniel_apln/
+          - link "Facebook" [ref=e580] [cursor=pointer]:
+            - /url: https://www.facebook.com/daniel.aplan.9/
+          - link "LinkedIn" [ref=e583] [cursor=pointer]:
+            - /url: https://www.linkedin.com/in/daniel-aplan-5ba561334/
+          - link "GitHub" [ref=e588] [cursor=pointer]:
+            - /url: https://github.com/danielaplan
+        - generic [ref=e592]:
+          - generic [ref=e596]: Based in Caloocan City, Metro Manila, Philippines
+          - generic [ref=e597]: •
+          - generic [ref=e598]: "Response time: typically within 24 hours"
+  - contentinfo [ref=e599]:
+    - generic [ref=e600]:
+      - generic [ref=e601]:
+        - generic [ref=e602]: © 2026 Daniel Aplan.
+        - generic [ref=e603]: Crafted with React & Tailwind CSS.
+      - generic [ref=e604]:
+        - link "GitHub" [ref=e605] [cursor=pointer]:
+          - /url: https://github.com/danielaplan
+        - link "Instagram" [ref=e609] [cursor=pointer]:
+          - /url: https://www.instagram.com/dniel_apln/
+        - link "Facebook" [ref=e613] [cursor=pointer]:
+          - /url: https://www.facebook.com/daniel.aplan.9/
+        - link "LinkedIn" [ref=e616] [cursor=pointer]:
+          - /url: https://www.linkedin.com/in/daniel-aplan-5ba561334/
+        - link "Email" [ref=e621] [cursor=pointer]:
+          - /url: mailto:danielaplan.bsit2024@gmail.com
+          - generic [ref=e622]: "@"
+        - button "Scroll back to top" [ref=e623] [cursor=pointer]:
+          - generic [ref=e624]: Top

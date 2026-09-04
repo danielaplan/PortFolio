@@ -2,6 +2,9 @@ export const curatedProjects = [
   {
     id: "faithquest",
     title: "FaithQuest",
+    subtitle: "Gamified Church Program & Attendance Management",
+    frameworkBadge: "TypeScript",
+    mockUrl: "faithquest.cloud.internal/dashboard",
     repoName: "FaithQuest",
     category: "Web & Apps",
     description: "Interactive gamification platform for church programs. Features a teacher-controlled dashboard that engages participants with real-time points, achievements, and milestone progress tracking.",
@@ -14,18 +17,23 @@ export const curatedProjects = [
       "Responsive, child-friendly user interface"
     ],
     tags: ["TypeScript", "Python", "Interactive UI", "Gamification", "Web"],
+    engineeredWith: ["TypeScript", "Python", "Interactive UI", "Gamification", "Web Services"],
     link: "https://github.com/danielaplan/FaithQuest",
     demoUrl: "https://faith-quest-zeta.vercel.app",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBNjED1dt2_DyERnRb3ZBMd2cRFBunjBL891NJVX7sSFUo38dATwN1-Mid26j8R5Hu4gEiaNIeuYpSvOhByIQkC0nirHV19LbrJTTEis1G7Pk0_Je6aAM_OOldqxVUManbjJ-TYNEG3kv3jnpwpxaTP9KoPQpGWvYCbAakePoMRUXr1VHwwkeS7jQj1RKyHKLo-vA7ENSVAI6Z4cAZv1DIjv5K-7xd_qsc7646FPFLItS65R00NRGrn",
     featured: true,
     year: "2024"
   },
   {
     id: "crm-system",
-    title: "Customer Relationship Management System",
+    title: "CRM Enterprise System",
+    subtitle: "Lead Pipeline Automation, Audit Trails & RBAC Control",
+    frameworkBadge: ".NET Core",
+    mockUrl: "portal.enterprise-crm.internal/sales",
     repoName: "Customer-Relationship-Management-System",
     category: "Systems & CRM",
     description: "Enterprise CRM solution built with C# and relational databases. Manages customer interactions, pipelines, communication logs, and business processes with reliable data persistence.",
-    longDescription: "A robust desktop and business management system engineered for client lifecycle tracking, sales pipeline management, and centralized business data handling. Designed with strict relational data integrity, layered architecture, and secure query operations.",
+    longDescription: "Comprehensive enterprise customer relationship architecture designed for multi-tier sales operations. Features automated lead routing, relational audit logging, granular role-based access control, and normalized SQL schema design with high query throughput.",
     keyFeatures: [
       "End-to-end customer record and contact lifecycle management",
       "Lead scoring, stage pipeline, and deal tracking",
@@ -33,19 +41,24 @@ export const curatedProjects = [
       "Comprehensive reporting, filtering, and exportable logs",
       "Role-based access control and administrative audit logs"
     ],
-    tags: ["C#", ".NET", "Database Architecture", "CRM", "SQL"],
+    tags: ["C#", ".NET", "SQL Server", "Entity Framework", "REST Services", "RBAC Security"],
+    engineeredWith: ["C# / ASP.NET", "SQL Server", "Entity Framework", "REST Services", "RBAC Security"],
     link: "https://github.com/danielaplan/Customer-Relationship-Management-System",
     demoUrl: null,
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAP6W-ZnziP7PM-5Tz2JEqDLIhvDuhX5VsrAanPT11-8cfX4C0RqAtp9m51Zsp4TVedhxnRsPXOB5xH2YrRueI5OSAKfBwRHH68pZHDDs9N3fTuQoQCTYHgd_XmqoYSQwNc_skzG_KZRBQlRVlsx69k8P8E2JntutgAMpc0EgM_3yLRX6NECQ2k9bPhbXxSLtvW828r_necuTgOSR3pZV5s5nvXveZiUCERJJ3Xd6PpH5MR6xFvJmoS",
     featured: true,
     year: "2024"
   },
   {
     id: "rental-ops-manager",
     title: "Rental Ops Manager",
+    subtitle: "Inventory Asset Reservations & Calendar Booking Engine",
+    frameworkBadge: "v1.8 Full-Stack",
+    mockUrl: "ops.rentalmanager.internal/equipment",
     repoName: "Rental-Ops-Manager",
     category: "Systems & CRM",
     description: "Operations and booking management system designed for equipment and property rental workflows with automated inventory scheduling and billing tracking.",
-    longDescription: "Streamlined operational management tool for rental businesses. Tracks equipment availability, client reservations, return dates, condition checklists, and invoicing with real-time conflict prevention.",
+    longDescription: "Streamlined operational management tool for rental businesses. Tracks equipment availability, client reservations, return dates, condition checklists, and invoicing with real-time conflict prevention and collision avoidance algorithms.",
     keyFeatures: [
       "Dynamic reservation calendar with collision avoidance",
       "Equipment cataloging with condition status logging",
@@ -53,52 +66,19 @@ export const curatedProjects = [
       "Customer history, security deposit tracking, and returns"
     ],
     tags: ["Systems", "Database Design", "Full-Stack", "Workflow Automation"],
+    engineeredWith: ["Database Design", "Full-Stack", "Workflow Automation", "Collision Avoidance"],
     link: "https://github.com/danielaplan/Rental-Ops-Manager",
     demoUrl: null,
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCEpjEu7dpGXjgildoCt8VBsSWwfYcB7bSxDwRBPZQjWZojkzEd_tROxx3NXT7WspdrahxUW2IbXMmlW6dRym_797R2GVax4DzLFqlMJzaAlkioAN114x6Q3POBjf2jtEdUsrfKgDns6aAy40NyHPNlekCFb6ibYMzxcFPqA-E7dnMg6l5wb6mSgqioURlDX8T4eyk9oLojkqXrf_kkduDgZq08VY64c-oYPQzgHlW9Vgh7CGtA7iZn",
     featured: true,
     year: "2024"
   },
   {
-    id: "messiah-baptist-website",
-    title: "Messiah Baptist Church Official Website",
-    repoName: "Messiah-Baptist-Church-Official-Website",
-    category: "Web & Apps",
-    description: "Full-featured church portal featuring service schedules, ministry updates, community announcements, and responsive mobile-first design.",
-    longDescription: "An informative, accessible web portal designed to connect members and visitors with Messiah Baptist Church. Features structured sermon archives, event countdowns, ministry contacts, and clean mobile responsiveness.",
-    keyFeatures: [
-      "Service schedule and livestream integration hub",
-      "Interactive ministry directories and prayer request intake",
-      "Dynamic event announcements and weekly bulletin downloads",
-      "Fast page loads with mobile-first semantic HTML"
-    ],
-    tags: ["HTML5", "CSS3", "JavaScript", "Web Design", "UI/UX"],
-    link: "https://github.com/danielaplan/Messiah-Baptist-Church-Official-Website",
-    demoUrl: null,
-    featured: false,
-    year: "2023"
-  },
-  {
-    id: "youth-org-website",
-    title: "Youth Organization Website",
-    repoName: "Youth-Organization-Website",
-    category: "Web & Apps",
-    description: "Clean, responsive organizational platform for youth engagement, event coordination, and digital presence with optimized performance.",
-    longDescription: "A modern digital home for a local youth community organization. Focused on recruiting new volunteers, showcasing community outreach programs, and providing a dynamic calendar for upcoming youth summits.",
-    keyFeatures: [
-      "Community initiative highlights and volunteer sign-ups",
-      "Photo gallery and activity timeline showcasing youth events",
-      "Lightweight, accessible layout with smooth interactive animations",
-      "Cross-device mobile and tablet responsive layouts"
-    ],
-    tags: ["HTML5", "CSS3", "Responsive Design", "UI/UX"],
-    link: "https://github.com/danielaplan/Youth-Organization-Website",
-    demoUrl: null,
-    featured: false,
-    year: "2023"
-  },
-  {
     id: "developer-portfolio",
     title: "Developer Portfolio & Showcase",
+    subtitle: "Dynamic Neumorphic Architecture & Realtime GitHub Sync",
+    frameworkBadge: "React 19",
+    mockUrl: "danielaplan.dev/portfolio",
     repoName: "PortFolio",
     category: "Web & Apps",
     description: "Modern, high-performance portfolio engineered with React, Tailwind CSS, Vite, and live GitHub API synchronization with dark mode support.",
@@ -110,9 +90,59 @@ export const curatedProjects = [
       "Custom scroll spy navigation with active section highlighting"
     ],
     tags: ["React", "Tailwind CSS", "Vite", "JavaScript", "GitHub API"],
+    engineeredWith: ["React", "Tailwind CSS", "Vite", "GSAP Animations", "GitHub API"],
     link: "https://github.com/danielaplan/PortFolio",
     demoUrl: "https://port-folio-gamma-dusky.vercel.app",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBzHwpE3qlx6BmW7FA9xqabzN9yai9onFVcm_3IStDvL1pKOqbIJCqjzGtkyvI7tX0GzE601UQLeLL25B0sT1x0e7vwQRKR9R2mZtq5Z8TMMgWFpwfOFMkPibjc6Gg5jDGkO7W8j5v4eyYdyr6YpJYrnJeuCajIS9kk_GDllFHp5VOWxBMk2OD1GYvi_N0csOWqinTazgFkK5mMHlbRCwdkV7-JZne14r-S6o3EsGfJgH7OsdvnoMLK",
     featured: true,
     year: "2024"
+  },
+  {
+    id: "messiah-baptist-website",
+    title: "Messiah Baptist Church Official Website",
+    subtitle: "Public Ministry Portal & Community Service Hub",
+    frameworkBadge: "Web Portal",
+    mockUrl: "messiahbaptist.internal/home",
+    repoName: "Messiah-Baptist-Church-Official-Website",
+    category: "Web & Apps",
+    description: "Full-featured church portal featuring service schedules, ministry updates, community announcements, and responsive mobile-first design.",
+    longDescription: "An informative, accessible web portal designed to connect members and visitors with Messiah Baptist Church. Features structured sermon archives, event countdowns, ministry contacts, and clean mobile responsiveness.",
+    keyFeatures: [
+      "Service schedule and livestream integration hub",
+      "Interactive ministry directories and prayer request intake",
+      "Dynamic event announcements and weekly bulletin downloads",
+      "Fast page loads with mobile-first semantic HTML"
+    ],
+    tags: ["HTML5", "CSS3", "JavaScript", "Web Design", "UI/UX"],
+    engineeredWith: ["HTML5", "CSS3", "JavaScript", "Semantic Layouts", "UI/UX"],
+    link: "https://github.com/danielaplan/Messiah-Baptist-Church-Official-Website",
+    demoUrl: null,
+    image: "https://images.unsplash.com/photo-1438032005730-c779502df39b?auto=format&fit=crop&w=1200&q=80",
+    featured: false,
+    year: "2023"
+  },
+  {
+    id: "youth-org-website",
+    title: "Youth Organization Website",
+    subtitle: "Community Engagement & Youth Event Summit Hub",
+    frameworkBadge: "Platform",
+    mockUrl: "youthorg.internal/community",
+    repoName: "Youth-Organization-Website",
+    category: "Web & Apps",
+    description: "Clean, responsive organizational platform for youth engagement, event coordination, and digital presence with optimized performance.",
+    longDescription: "A modern digital home for a local youth community organization. Focused on recruiting new volunteers, showcasing community outreach programs, and providing a dynamic calendar for upcoming youth summits.",
+    keyFeatures: [
+      "Community initiative highlights and volunteer sign-ups",
+      "Photo gallery and activity timeline showcasing youth events",
+      "Lightweight, accessible layout with smooth interactive animations",
+      "Cross-device mobile and tablet responsive layouts"
+    ],
+    tags: ["HTML5", "CSS3", "Responsive Design", "UI/UX"],
+    engineeredWith: ["HTML5", "CSS3", "Responsive Design", "Micro-Interactions"],
+    link: "https://github.com/danielaplan/Youth-Organization-Website",
+    demoUrl: null,
+    image: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=1200&q=80",
+    featured: false,
+    year: "2023"
   }
 ];

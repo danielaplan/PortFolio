@@ -1,11 +1,11 @@
 import React from 'react';
-import { 
-  Cpu, Terminal, Database, Wrench, Code2, 
-  Smartphone, Palette, TableProperties, Layers, Network 
+import {
+  Cpu, Terminal, Database, Wrench, Code2,
+  Smartphone, Palette, TableProperties, Layers, Network
 } from 'lucide-react';
 import {
-  JavaIcon, CSharpIcon, PhpIcon, JavascriptIcon, TypescriptIcon, 
-  HtmlCssIcon, ReactIcon, TailwindIcon, ViteIcon, MysqlIcon, 
+  JavaIcon, CSharpIcon, PhpIcon, JavascriptIcon, TypescriptIcon,
+  HtmlCssIcon, ReactIcon, TailwindIcon, ViteIcon, MysqlIcon,
   MariadbIcon, SqliteIcon, GitIcon, NodeIcon, VscodeIcon
 } from './icons/TechIcons';
 
@@ -30,8 +30,8 @@ export default function Skills() {
         { name: "Tailwind CSS", icon: TailwindIcon },
         { name: "Vite", icon: ViteIcon },
         { name: "HTML5 & CSS3", icon: HtmlCssIcon },
-        { name: "Responsive Design", icon: (props) => <Smartphone size={14} className="text-sky-500 shrink-0" {...props} /> },
-        { name: "UI/UX Principles", icon: (props) => <Palette size={14} className="text-violet-500 shrink-0" {...props} /> },
+        { name: "Responsive Design", icon: (props) => <Smartphone size={14} {...props} /> },
+        { name: "UI/UX Principles", icon: (props) => <Palette size={14} {...props} /> },
       ]
     },
     {
@@ -42,8 +42,8 @@ export default function Skills() {
         { name: "MySQL", icon: MysqlIcon },
         { name: "MariaDB", icon: MariadbIcon },
         { name: "SQLite", icon: SqliteIcon },
-        { name: "Relational Schema Design", icon: (props) => <TableProperties size={14} className="text-amber-500 shrink-0" {...props} /> },
-        { name: "REST APIs", icon: (props) => <Network size={14} className="text-emerald-500 shrink-0" {...props} /> },
+        { name: "Relational Schema Design", icon: (props) => <TableProperties size={14} {...props} /> },
+        { name: "REST APIs", icon: (props) => <Network size={14} {...props} /> },
       ]
     },
     {
@@ -52,25 +52,25 @@ export default function Skills() {
       skills: [
         { name: "Git & GitHub", icon: GitIcon },
         { name: "VS Code", icon: VscodeIcon },
-        { name: "Systems Architecture", icon: (props) => <Layers size={14} className="text-indigo-500 shrink-0" {...props} /> },
+        { name: "Systems Architecture", icon: (props) => <Layers size={14} {...props} /> },
       ]
     }
   ];
 
   return (
-    <section id="skills" className="py-12 sm:py-20 border-t border-slate-200/60 dark:border-slate-800/60">
-      <div className="max-w-4xl mx-auto px-5 sm:px-6">
+    <section id="skills" className="py-12 sm:py-20">
+      <div className="w-full px-5 sm:px-8 lg:px-12">
 
         {/* Section Header */}
         <div className="mb-8 sm:mb-12">
-          <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-1.5">
+          <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider mb-1.5">
             <Cpu size={15} />
             <span>Technical Proficiency</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
+          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
             Skills & Technologies
           </h2>
-          <p className="text-slate-600 dark:text-slate-400 text-xs sm:text-sm mt-1 max-w-xl">
+          <p className="text-[color:var(--text-secondary)] text-xs sm:text-sm mt-1 max-w-xl">
             Core competencies acquired through academic coursework at University of Caloocan City and hands-on project engineering.
           </p>
         </div>
@@ -82,18 +82,13 @@ export default function Skills() {
             return (
               <div
                 key={index}
-                onMouseMove={(e) => {
-                  const rect = e.currentTarget.getBoundingClientRect();
-                  e.currentTarget.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
-                  e.currentTarget.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
-                }}
-                className="p-6 sm:p-7 rounded-3xl liquid-glass-card"
+                className="neo-raised-lg p-6 sm:p-7"
               >
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="p-2.5 rounded-2xl bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20 shadow-2xs">
-                    <CategoryIcon size={18} />
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="neo-raised-xs w-9 h-9 flex items-center justify-center">
+                    <CategoryIcon size={17} />
                   </div>
-                  <h3 className="font-semibold text-slate-900 dark:text-white text-base">
+                  <h3 className="font-semibold text-base">
                     {category.title}
                   </h3>
                 </div>
@@ -104,9 +99,9 @@ export default function Skills() {
                     return (
                       <span
                         key={sIndex}
-                        className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/70 dark:bg-slate-800/60 border border-slate-200/80 dark:border-white/5 text-xs font-medium text-slate-800 dark:text-slate-200 hover:border-blue-400/50 dark:hover:border-blue-500/50 transition shadow-2xs group"
+                        className="neo-raised-xs inline-flex items-center gap-2 px-3 py-2 text-xs font-medium cursor-default"
                       >
-                        <SkillIcon className="w-3.5 h-3.5 shrink-0 group-hover:scale-110 transition-transform" />
+                        <SkillIcon className="w-3.5 h-3.5 shrink-0" />
                         <span>{skill.name}</span>
                       </span>
                     );

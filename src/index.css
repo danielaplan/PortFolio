@@ -9,343 +9,579 @@
     max-width: 100vw;
     overflow-x: clip;
     position: relative;
-    background-color: #f8fafc;
-  }
-
-  .dark html, .dark body, html.dark, body.dark {
-    background-color: #020617;
-  }
-
-  #root {
-    width: 100%;
-    max-width: 100vw;
-    overflow-x: clip;
-    position: relative;
-  }
-
-  .glass-morphism {
-    position: relative;
-    overflow: hidden;
-    color: #0f172a; /* explicit text color so children don't inherit washed-out values */
-    background-color: rgba(255, 255, 255, 0.55);
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.72), rgba(241, 245, 249, 0.42), rgba(226, 232, 240, 0.28));
-    border: 1px solid rgba(148, 163, 184, 0.28);
-    backdrop-filter: blur(18px) saturate(150%) brightness(105%);
-    -webkit-backdrop-filter: blur(18px) saturate(150%) brightness(105%);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.82), inset 0 -1px 0 rgba(148, 163, 184, 0.08), 0 18px 30px -22px rgba(15, 23, 42, 0.2);
-    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
-  }
-
-  .glass-morphism::before {
-    content: "";
-    position: absolute;
-    inset: 1px;
-    border-radius: inherit;
-    background: linear-gradient(120deg, rgba(255,255,255,0.18), rgba(255,255,255,0.04) 28%, transparent 58%, rgba(255,255,255,0.06));
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  .glass-morphism > * {
-    position: relative;
-    z-index: 1; /* keep text above the highlight overlay */
-  }
-
-  .glass-morphism:hover {
-    transform: translateY(-1px);
-    border-color: rgba(148, 163, 184, 0.34);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), inset 0 -1px 0 rgba(148, 163, 184, 0.06), 0 22px 34px -22px rgba(15, 23, 42, 0.26);
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.82), rgba(241, 245, 249, 0.52), rgba(226, 232, 240, 0.32));
-  }
-
-  .dark .glass-morphism {
-    color: #f8fafc; /* explicit light text for dark mode */
-    background-color: rgba(15, 23, 42, 0.55);
-    background: linear-gradient(135deg, rgba(15, 23, 42, 0.78), rgba(30, 41, 59, 0.5), rgba(15, 23, 42, 0.86));
-    border: 1px solid rgba(148, 163, 184, 0.22);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), inset 0 -1px 0 rgba(15, 23, 42, 0.85), 0 22px 48px -28px rgba(15, 23, 42, 0.96), 0 0 0 1px rgba(148,163,184,0.08);
-  }
-
-  .dark .glass-morphism::before {
-    background: linear-gradient(120deg, rgba(255,255,255,0.08), transparent 30%, transparent 72%, rgba(255,255,255,0.03));
-  }
-
-  .dark .glass-morphism:hover {
-    color: #f8fafc;
-    background: linear-gradient(135deg, rgba(15, 23, 42, 0.82), rgba(30, 41, 59, 0.56), rgba(15, 23, 42, 0.86));
-    border-color: rgba(148, 163, 184, 0.3);
-  }
-
-  .dark .glass-morphism:hover::before {
-    background: linear-gradient(120deg, rgba(255,255,255,0.1), transparent 30%, transparent 72%, rgba(255,255,255,0.04));
-  }
-
-  /* Lenis Fluid Smooth Scrolling Standards */
-  html.lenis, html.lenis body {
-    height: auto;
-  }
-
-  .lenis.lenis-smooth {
-    scroll-behavior: auto !important;
-  }
-
-  .lenis.lenis-smooth [data-lenis-prevent] {
-    overscroll-behavior: contain;
-  }
-
-  .lenis.lenis-stopped {
-    overflow: hidden;
-  }
-
-  .lenis.lenis-scrolling iframe {
-    pointer-events: none;
   }
 
   ::selection {
-    background-color: #3b82f6;
-    color: #ffffff;
+    background-color: var(--accent);
+    color: var(--bg-color);
   }
 }
 
 /* =========================================================
-   iOS / visionOS Liquid Glass Refraction & Specular System
+   NEUMORPHIC DESIGN SYSTEM — Single source of truth
+   ------------------------------------------------------------
+   Surface = --bg-color, lifted by paired soft shadows.
+   Two equidistant shadows (light + dark) create depth without
+   borders. Inset variants flip the shadows inward for pressed
+   states. One soft accent color handles interactive highlights.
    ========================================================= */
 
-/* Liquid Glass Panel */
-.liquid-glass-panel, .glass-panel {
-  position: relative;
-  overflow: hidden;
-  color: #0f172a; /* strong ink keeps text legible on the bright glass gradient */
-  background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.78), rgba(226, 232, 240, 0.6) 28%, rgba(203, 213, 225, 0.4) 100%);
-  backdrop-filter: blur(18px) saturate(150%) contrast(106%);
-  -webkit-backdrop-filter: blur(18px) saturate(150%) contrast(106%);
-  border: 1px solid rgba(255, 255, 255, 0.8);
-  box-shadow:
-    inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.9),
-    inset 0 -1px 1px 0 rgba(148, 163, 184, 0.14),
-    0 18px 42px -28px rgba(15, 23, 42, 0.32),
-    0 0 0 1px rgba(148, 163, 184, 0.06);
+:root {
+  /* Surface */
+  --bg-color: #e6e7ee;
+  --bg-elevated: #eef0f7;
+
+  /* Text */
+  --text-primary: #1a1d23;
+  --text-secondary: #5a6172;
+  --text-tertiary: #8a92a6;
+
+  /* Shadow pair (equidistant from surface) */
+  --shadow-light: #ffffff;
+  --shadow-dark: #babecc;
+
+  /* Theme-opposite monochrome highlight */
+  --accent: #000000;
+  --accent-hover: #000000;
+  --accent-soft: rgba(0, 0, 0, 0.14);
+
+  /* Shadow tiers — five levels of elevation */
+  --neo-xs: 2px 2px 4px var(--shadow-dark), -2px -2px 4px var(--shadow-light);
+  --neo-sm: 4px 4px 8px var(--shadow-dark), -4px -4px 8px var(--shadow-light);
+  --neo-md: 6px 6px 12px var(--shadow-dark), -6px -6px 12px var(--shadow-light);
+  --neo-lg: 8px 8px 16px var(--shadow-dark), -8px -8px 16px var(--shadow-light);
+  --neo-xl: 12px 12px 24px var(--shadow-dark), -12px -12px 24px var(--shadow-light);
+
+  /* Inset (pressed/recessed) variants */
+  --neo-inset-xs: inset 2px 2px 4px var(--shadow-dark), inset -2px -2px 4px var(--shadow-light);
+  --neo-inset-sm: inset 3px 3px 6px var(--shadow-dark), inset -3px -3px 6px var(--shadow-light);
+  --neo-inset-md: inset 5px 5px 10px var(--shadow-dark), inset -5px -5px 10px var(--shadow-light);
+
+  /* Radii */
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
 }
 
-.liquid-glass-panel::before, .glass-panel::before {
+.dark {
+  --bg-color: #2a2d36;
+  --bg-elevated: #323640;
+
+  --text-primary: #f3f5fa;
+  --text-secondary: #a0a8b8;
+  --text-tertiary: #6b7280;
+
+  --shadow-light: #353945;
+  --shadow-dark: #1f2128;
+
+  --accent: #ffffff;
+  --accent-hover: #ffffff;
+  --accent-soft: rgba(255, 255, 255, 0.18);
+}
+
+/* Surface application — single uniform background */
+html, body {
+  background: var(--bg-color);
+  color: var(--text-primary);
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+body {
+  background-image: none;
+}
+
+#root {
+  background: var(--bg-color);
+  color: var(--text-primary);
+}
+
+/* =========================================================
+   CORE NEUMORPHIC UTILITIES
+   ========================================================= */
+
+/* Raised surfaces — five elevation tiers */
+.neo-raised-xs {
+  background: var(--bg-color);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--neo-xs);
+  transition: box-shadow 220ms cubic-bezier(0.22, 1, 0.36, 1), transform 220ms ease, color 180ms ease;
+}
+
+.neo-raised {
+  background: var(--bg-color);
+  border-radius: var(--radius-md);
+  box-shadow: var(--neo-sm);
+  transition: box-shadow 220ms cubic-bezier(0.22, 1, 0.36, 1), transform 220ms ease, color 180ms ease;
+}
+
+.neo-raised-md {
+  background: var(--bg-color);
+  border-radius: var(--radius-md);
+  box-shadow: var(--neo-md);
+  transition: box-shadow 220ms cubic-bezier(0.22, 1, 0.36, 1), transform 220ms ease, color 180ms ease;
+}
+
+.neo-raised-lg {
+  background: var(--bg-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--neo-lg);
+  transition: box-shadow 220ms cubic-bezier(0.22, 1, 0.36, 1), transform 220ms ease, color 180ms ease;
+}
+
+.neo-raised-xl {
+  background: var(--bg-color);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--neo-xl);
+  transition: box-shadow 220ms cubic-bezier(0.22, 1, 0.36, 1), transform 220ms ease, color 180ms ease;
+}
+
+button.neo-raised-xs:hover,
+button.neo-raised:hover,
+button.neo-raised-md:hover,
+button.neo-raised-lg:hover,
+a.neo-raised-xs:hover,
+a.neo-raised:hover,
+a.neo-raised-md:hover,
+a.neo-raised-lg:hover {
+  box-shadow: var(--neo-xs);
+  transform: translateY(-1px);
+}
+
+button.neo-raised-xs:active,
+button.neo-raised:active,
+button.neo-raised-md:active,
+button.neo-raised-lg:active,
+a.neo-raised-xs:active,
+a.neo-raised:active,
+a.neo-raised-md:active,
+a.neo-raised-lg:active {
+  box-shadow: var(--neo-inset-sm);
+  transform: translateY(1px);
+}
+
+/* Inset (pressed/recessed) surfaces */
+.neo-inset {
+  background: var(--bg-color);
+  border-radius: var(--radius-md);
+  box-shadow: var(--neo-inset-sm);
+  transition: box-shadow 220ms cubic-bezier(0.22, 1, 0.36, 1), transform 220ms ease, color 180ms ease;
+}
+
+.neo-inset-md {
+  background: var(--bg-color);
+  border-radius: var(--radius-md);
+  box-shadow: var(--neo-inset-md);
+  transition: box-shadow 220ms cubic-bezier(0.22, 1, 0.36, 1), transform 220ms ease, color 180ms ease;
+}
+
+button.neo-inset:hover,
+button.neo-inset-md:hover {
+  box-shadow: inset 3px 3px 6px var(--shadow-dark), inset -3px -3px 6px var(--shadow-light);
+  transform: translateY(-1px);
+}
+
+button.neo-inset:active,
+button.neo-inset-md:active {
+  box-shadow: var(--neo-inset-md);
+  transform: translateY(1px);
+}
+
+/* Flat surface — for content that shouldn't cast or receive shadows */
+.neo-flat {
+  background: var(--bg-color);
+  border-radius: var(--radius-md);
+  box-shadow: none;
+}
+
+/* Pressable — toggles between raised and inset on press */
+.neo-press {
+  background: var(--bg-color);
+  border-radius: var(--radius-md);
+  box-shadow: var(--neo-sm);
+  transition: box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.neo-press:hover {
+  box-shadow: var(--neo-xs);
+}
+
+.neo-press:active,
+.neo-press[data-pressed="true"] {
+  box-shadow: var(--neo-inset-sm);
+}
+
+/* Interactive accent — raised button with accent text */
+.neo-accent {
+  background: var(--bg-color);
+  color: var(--accent);
+  border-radius: var(--radius-md);
+  box-shadow: var(--neo-sm);
+  transition: box-shadow 0.18s ease, color 0.18s ease;
+  cursor: pointer;
+}
+
+.neo-accent:hover {
+  color: var(--accent-hover);
+  box-shadow: var(--neo-xs);
+}
+
+.neo-accent:active {
+  box-shadow: var(--neo-inset-sm);
+}
+
+/* Solid accent button — black/white text on accent surface */
+.neo-accent-solid {
+  background: var(--accent);
+  color: #ffffff;
+  border-radius: var(--radius-md);
+  box-shadow: var(--neo-sm);
+  transition: box-shadow 0.18s ease, background-color 0.18s ease;
+  cursor: pointer;
+}
+
+.neo-accent-solid:hover {
+  background: var(--accent-hover);
+  box-shadow: var(--neo-xs);
+}
+
+.neo-accent-solid:active {
+  box-shadow: var(--neo-inset-sm);
+}
+
+/* =========================================================
+   INPUTS — naturally inset
+   ========================================================= */
+
+input, textarea, select {
+  background: var(--bg-color) !important;
+  color: var(--text-primary) !important;
+  border: none !important;
+  border-radius: var(--radius-md);
+  box-shadow: var(--neo-inset-md);
+  transition: box-shadow 0.2s ease;
+  outline: none;
+}
+
+input::placeholder, textarea::placeholder {
+  color: var(--text-tertiary);
+}
+
+input:focus, textarea:focus, select:focus {
+  box-shadow: var(--neo-inset-sm), 0 0 0 2px var(--accent-soft);
+}
+
+/* =========================================================
+   BUTTONS & LINKS — uniform radius
+   ========================================================= */
+
+button, a {
+  border-radius: var(--radius-md);
+}
+
+/* =========================================================
+   FOCUS STATES — accessibility
+   ========================================================= */
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+nav a[data-active="true"] {
+  position: relative;
+}
+
+nav a[data-active="true"]::after {
   content: "";
   position: absolute;
-  inset: 1px;
-  border-radius: inherit;
-  background:
-    linear-gradient(125deg, rgba(255,255,255,0.28), rgba(255,255,255,0.08) 18%, transparent 35%, rgba(255,255,255,0.04) 72%, rgba(148,163,184,0.08));
-  pointer-events: none;
-  z-index: 0;
+  left: 50%;
+  bottom: 3px;
+  width: 14px;
+  height: 2px;
+  border-radius: 999px;
+  background: currentColor;
+  transform: translateX(-50%);
 }
 
-.liquid-glass-panel > *, .glass-panel > * {
-  position: relative;
-  z-index: 1; /* keep content above the highlight overlay */
-}
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
 
-.dark .liquid-glass-panel, .dark .glass-panel {
-  color: #f8fafc;
-  background: linear-gradient(135deg, rgba(15, 23, 42, 0.78), rgba(15, 23, 42, 0.5), rgba(30, 41, 59, 0.6));
-  backdrop-filter: blur(24px) saturate(180%) contrast(104%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%) contrast(104%);
-  border: 1px solid rgba(148, 163, 184, 0.18);
-  box-shadow:
-    inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.08),
-    inset 0 -1px 1.5px 0 rgba(2, 6, 23, 0.9),
-    0 16px 36px -18px rgba(2, 6, 23, 0.7);
-}
-
-.dark .liquid-glass-panel::before, .dark .glass-panel::before {
-  background: linear-gradient(125deg, rgba(255,255,255,0.08), transparent 28%, transparent 70%, rgba(255,255,255,0.02));
-}
-
-/* Liquid Glass Card with Mouse Refraction */
-.liquid-glass-card, .glass-card {
-  position: relative;
-  color: #0f172a; /* strong ink for readable text on the bright glass gradient */
-  background: linear-gradient(135deg, rgba(148, 163, 184, 0.16), rgba(241, 245, 249, 0.58), rgba(226, 232, 240, 0.28));
-  backdrop-filter: blur(16px) saturate(140%) contrast(104%);
-  -webkit-backdrop-filter: blur(16px) saturate(140%) contrast(104%);
-  border: 1px solid rgba(100, 116, 139, 0.22);
-  box-shadow:
-    inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.8),
-    inset 0 -1px 1px 0 rgba(71, 85, 105, 0.08),
-    0 10px 24px -14px rgba(15, 23, 42, 0.12);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  overflow: hidden;
-}
-
-.liquid-glass-card > *, .glass-card > * {
-  position: relative;
-  z-index: 2; /* content above refraction + highlight layers (which sit at z=0/1) */
-}
-
-.liquid-glass-card::after, .glass-card::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(120deg, rgba(255,255,255,0.12), transparent 22%, transparent 70%, rgba(255,255,255,0.04));
-  pointer-events: none;
-  z-index: 0;
-}
-
-.liquid-glass-card:hover, .glass-card:hover {
-  transform: translateY(-2px);
-  color: #0f172a;
-  border-color: rgba(255, 255, 255, 0.8);
-  box-shadow:
-    inset 0 1.5px 1px 0 rgba(255, 255, 255, 1),
-    inset 0 -1px 1px 0 rgba(148, 163, 184, 0.05),
-    0 18px 38px -18px rgba(59, 130, 246, 0.18);
-  background: linear-gradient(135deg, rgba(241, 245, 249, 0.92), rgba(255, 255, 255, 0.7), rgba(239, 246, 255, 0.78));
-}
-
-.dark .liquid-glass-card, .dark .glass-card {
-  color: #f8fafc;
-  background: linear-gradient(135deg, rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.4), rgba(30, 41, 59, 0.55));
-  backdrop-filter: blur(24px) saturate(180%) contrast(104%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%) contrast(104%);
-  border: 1px solid rgba(148, 163, 184, 0.16);
-  box-shadow:
-    inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.08),
-    inset 0 -1px 1.5px 0 rgba(2, 6, 23, 0.9),
-    0 12px 30px -16px rgba(2, 6, 23, 0.55);
-}
-
-.dark .liquid-glass-card::after, .dark .glass-card::after {
-  background: linear-gradient(120deg, rgba(255,255,255,0.06), transparent 20%, transparent 70%, rgba(255,255,255,0.03));
-}
-
-.dark .liquid-glass-card:hover, .dark .glass-card:hover {
-  color: #f8fafc;
-  border-color: rgba(148, 163, 184, 0.28);
-  background: linear-gradient(135deg, rgba(15, 23, 42, 0.78), rgba(15, 23, 42, 0.46), rgba(30, 41, 59, 0.6));
-  box-shadow:
-    inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.08),
-    inset 0 -1px 1.5px 0 rgba(2, 6, 23, 0.9),
-    0 18px 40px -18px rgba(2, 6, 23, 0.7);
-}
-
-/* Interactive Cursor Liquid Refraction Caustics Layer */
-.liquid-glass-card::before, .glass-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: radial-gradient(
-    600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-    rgba(148, 163, 184, 0.08),
-    transparent 45%
-  );
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.dark .liquid-glass-card::before, .dark .glass-card::before {
-  background: radial-gradient(
-    600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-    rgba(96, 165, 250, 0.15),
-    transparent 50%
-  );
-}
-
-.liquid-glass-card:hover::before, .glass-card:hover::before {
-  opacity: 1;
-}
-
-.liquid-glass-card:hover, .glass-card:hover {
-  background: rgba(241, 245, 249, 0.92);
-  border-color: rgba(148, 163, 184, 0.3);
-  box-shadow:
-    inset 0 1.5px 1.5px 0 rgba(255, 255, 255, 1),
-    inset 0 -1px 1px 0 rgba(148, 163, 184, 0.08),
-    0 20px 40px -12px rgba(15, 23, 42, 0.12);
-  transform: translateY(-2.5px);
-}
-
-.dark .liquid-glass-card:hover, .dark .glass-card:hover {
-  background: rgba(15, 23, 42, 0.85);
-  border-color: rgba(96, 165, 250, 0.4);
-  box-shadow:
-    inset 0 1.5px 1.5px 0 rgba(255, 255, 255, 0.22),
-    inset 0 -1px 1.5px 0 rgba(0, 0, 0, 0.7),
-    0 20px 44px -12px rgba(0, 0, 0, 0.6);
-  transform: translateY(-2.5px);
-}
-
-/* Liquid Pill / Badge */
-.liquid-glass-pill, .glass-pill {
-  background: rgba(241, 245, 249, 0.85);
-  backdrop-filter: blur(12px) saturate(160%);
-  -webkit-backdrop-filter: blur(12px) saturate(160%);
-  border: 1px solid rgba(226, 232, 240, 0.9);
-  box-shadow: inset 0 1px 0.5px rgba(255, 255, 255, 0.9);
-}
-
-.dark .liquid-glass-pill, .dark .glass-pill {
-  background: rgba(30, 41, 59, 0.65);
-  backdrop-filter: blur(12px) saturate(160%);
-  -webkit-backdrop-filter: blur(12px) saturate(160%);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: inset 0 1px 0.5px rgba(255, 255, 255, 0.1);
-}
-
-/* Custom Fluid Sleek Scrollbar */
 ::-webkit-scrollbar {
-  width: 7px;
-  height: 7px;
+  width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: var(--bg-color);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(148, 163, 184, 0.35);
+  background: var(--shadow-dark);
   border-radius: 9999px;
+  border: 2px solid var(--bg-color);
   transition: background-color 0.2s ease;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(59, 130, 246, 0.6);
+  background: var(--accent);
 }
 
-.dark ::-webkit-scrollbar-thumb {
-  background: rgba(51, 65, 85, 0.6);
+/* =========================================================
+   LENIS SMOOTH SCROLL
+   ========================================================= */
+
+html.lenis, html.lenis body {
+  height: auto;
 }
 
-.dark ::-webkit-scrollbar-thumb:hover {
-  background: rgba(96, 165, 250, 0.6);
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
 }
 
-/* Ambient Background Drift Animations */
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* =========================================================
+   TAILWIND UTILITY OVERRIDES
+   ------------------------------------------------------------
+   Force any legacy color utility into the neumorphic palette.
+   Prevents color leaks from breaking the monochrome system.
+   ========================================================= */
+
+/* Backgrounds → uniform surface */
+[class*="bg-blue-"],
+[class*="bg-sky-"],
+[class*="bg-indigo-"],
+[class*="bg-violet-"],
+[class*="bg-purple-"],
+[class*="bg-pink-"],
+[class*="bg-emerald-"],
+[class*="bg-green-"],
+[class*="bg-amber-"],
+[class*="bg-yellow-"],
+[class*="bg-orange-"],
+[class*="bg-cyan-"],
+[class*="bg-rose-"],
+[class*="bg-slate-100"],
+[class*="bg-slate-200"],
+[class*="bg-slate-300"],
+[class*="bg-slate-400"],
+[class*="bg-slate-500"],
+[class*="bg-slate-600"],
+[class*="bg-slate-700"],
+[class*="bg-slate-800"],
+[class*="bg-slate-900"],
+[class*="bg-slate-950"],
+[class*="bg-white"],
+[class*="bg-gray-"] {
+  background-color: var(--bg-color) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Text colors → monochrome */
+[class*="text-blue-"],
+[class*="text-sky-"],
+[class*="text-indigo-"],
+[class*="text-violet-"],
+[class*="text-purple-"],
+[class*="text-pink-"],
+[class*="text-emerald-"],
+[class*="text-green-"],
+[class*="text-amber-"],
+[class*="text-yellow-"],
+[class*="text-orange-"],
+[class*="text-cyan-"],
+[class*="text-rose-"] {
+  color: var(--text-primary) !important;
+}
+
+/* Accent text — opt-in for interactive labels */
+.text-accent {
+  color: var(--accent) !important;
+}
+
+/* Borders → invisible (no hard edges in neumorphism) */
+[class*="border-blue-"],
+[class*="border-sky-"],
+[class*="border-emerald-"],
+[class*="border-amber-"],
+[class*="border-pink-"],
+[class*="border-purple-"],
+[class*="border-violet-"],
+[class*="border-slate-200"],
+[class*="border-slate-300"],
+[class*="border-slate-700"],
+[class*="border-slate-800"],
+[class*="border-white"] {
+  border-color: transparent !important;
+}
+
+/* Disable gradients — incompatible with monochromatic surface */
+[class*="bg-gradient"] {
+  background-image: none !important;
+}
+
+/* Disable backdrop-blur — needs translucent background */
+[class*="backdrop-blur"] {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Shadows — replace with neumorphic defaults */
+[class*="shadow-2xs"],
+[class*="shadow-xs"],
+[class*="shadow-sm"],
+[class*="shadow"],
+[class*="shadow-md"],
+[class*="shadow-lg"],
+[class*="shadow-xl"],
+[class*="shadow-2xl"] {
+  box-shadow: var(--neo-sm) !important;
+}
+
+/* Inline shadow overrides — keep for components that specify exact values */
+[class*="shadow-["] {
+  box-shadow: revert !important;
+}
+
+/* =========================================================
+   AMBIENT ANIMATIONS
+   ========================================================= */
+
 @keyframes ambientFloat1 {
-  0%, 100% {
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-  50% {
-    transform: translate3d(40px, 30px, 0) scale(1.08);
-  }
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(40px, 30px, 0) scale(1.08); }
 }
 
 @keyframes ambientFloat2 {
-  0%, 100% {
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-  50% {
-    transform: translate3d(-35px, 35px, 0) scale(0.94);
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(-35px, 35px, 0) scale(0.94); }
+}
+
+.animate-ambient-1 { animation: ambientFloat1 18s ease-in-out infinite; will-change: transform; }
+.animate-ambient-2 { animation: ambientFloat2 22s ease-in-out infinite; will-change: transform; }
+
+/* Ambient glows get hidden in dark mode for a calmer look */
+.dark .animate-ambient-1,
+.dark .animate-ambient-2 {
+  display: none;
+}
+
+/* =========================================================
+   PROFILE IMAGE TREATMENT
+   ========================================================= */
+
+img[alt="Daniel Aplan"] {
+  filter: grayscale(1) contrast(1.04);
+}
+
+/* =========================================================
+   ANIMATIONS — utility
+   ========================================================= */
+
+@keyframes neoPress {
+  0% { box-shadow: var(--neo-sm); }
+  100% { box-shadow: var(--neo-inset-sm); }
+}
+
+/* =========================================================
+   21st.dev FAN CAROUSEL STYLING & RESPONSIVENESS
+   ========================================================= */
+
+.fan-layout {
+  position: relative;
+  width: 100%;
+  height: 22rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1200px;
+}
+
+@media (min-width: 480px) {
+  .fan-layout {
+    height: 26rem;
   }
 }
 
-.animate-ambient-1 {
-  animation: ambientFloat1 18s ease-in-out infinite;
-  will-change: transform;
+@media (min-width: 640px) {
+  .fan-layout {
+    height: 28rem;
+  }
 }
 
-.animate-ambient-2 {
-  animation: ambientFloat2 22s ease-in-out infinite;
-  will-change: transform;
+@media (min-width: 768px) {
+  .fan-layout {
+    height: 32rem;
+  }
 }
+
+@media (min-width: 1024px) {
+  .fan-layout {
+    height: 36rem;
+  }
+}
+
+.fan-card {
+  position: absolute;
+  width: 11rem;
+  height: 16.5rem;
+  border-radius: 1.5rem;
+  user-select: none;
+  transform-origin: center bottom;
+  will-change: transform, opacity;
+  box-sizing: border-box;
+  touch-action: pan-y;
+}
+
+@media (min-width: 480px) {
+  .fan-card {
+    width: 13rem;
+    height: 19.5rem;
+    border-radius: 1.75rem;
+  }
+}
+
+@media (min-width: 640px) {
+  .fan-card {
+    width: 15rem;
+    height: 22rem;
+    border-radius: 1.75rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .fan-card {
+    width: 17rem;
+    height: 25rem;
+    border-radius: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .fan-card {
+    width: 18.5rem;
+    height: 27rem;
+    border-radius: 2rem;
+  }
+}
+
+.fan-card img {
+  border-radius: inherit;
+}
+

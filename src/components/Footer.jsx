@@ -1,8 +1,9 @@
 import React from 'react';
-import { ArrowUp, Heart } from 'lucide-react';
+import { ArrowUp } from 'lucide-react';
 import Instagram from './icons/Instagram';
 import Facebook from './icons/Facebook';
 import Linkedin from './icons/Linkedin';
+import Github from './icons/Github';
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -10,27 +11,29 @@ export default function Footer() {
   };
 
   return (
-    <footer className="border-t border-slate-200/80 dark:border-slate-800/80 py-10 bg-slate-50/50 dark:bg-slate-950">
-      <div className="max-w-4xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 dark:text-slate-400">
+    <footer className="py-8">
+      <div className="w-full px-6 sm:px-8 lg:px-12 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[color:var(--text-secondary)]">
+
         <div className="flex items-center gap-1.5 text-center sm:text-left">
-          <span>&copy; {new Date().getFullYear()} Daniel Aplan. Crafted with React & Tailwind CSS.</span>
+          <span>&copy; {new Date().getFullYear()} Daniel Aplan.</span>
+          <span>Crafted with React & Tailwind CSS.</span>
         </div>
 
-        <div className="flex items-center gap-5">
+        <div className="flex items-center gap-3">
           <a
             href="https://github.com/danielaplan"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-slate-900 dark:hover:text-white transition"
+            className="neo-press w-9 h-9 flex items-center justify-center hover:opacity-80"
             aria-label="GitHub"
           >
-            GitHub
+            <Github size={15} />
           </a>
           <a
             href="https://www.instagram.com/dniel_apln/"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-pink-500 transition"
+            className="neo-press w-9 h-9 flex items-center justify-center hover:opacity-80"
             aria-label="Instagram"
           >
             <Instagram size={15} />
@@ -39,7 +42,7 @@ export default function Footer() {
             href="https://www.facebook.com/daniel.aplan.9/"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-blue-600 transition"
+            className="neo-press w-9 h-9 flex items-center justify-center hover:opacity-80"
             aria-label="Facebook"
           >
             <Facebook size={15} />
@@ -48,23 +51,25 @@ export default function Footer() {
             href="https://www.linkedin.com/in/daniel-aplan-5ba561334/"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-sky-600 transition"
+            className="neo-press w-9 h-9 flex items-center justify-center hover:opacity-80"
             aria-label="LinkedIn"
           >
             <Linkedin size={15} />
           </a>
           <a
             href="mailto:danielaplan.bsit2024@gmail.com"
-            className="hover:text-slate-900 dark:hover:text-white transition"
+            className="neo-press w-9 h-9 flex items-center justify-center hover:opacity-80"
+            aria-label="Email"
           >
-            Email
+            <span className="text-xs font-medium">@</span>
           </a>
+
           <button
             onClick={scrollToTop}
-            className="inline-flex items-center gap-1 hover:text-slate-900 dark:hover:text-white transition cursor-pointer"
+            className="neo-press inline-flex items-center gap-1 px-3 py-2 hover:opacity-80 cursor-pointer"
             aria-label="Scroll back to top"
           >
-            <span>Top</span>
+            <span className="text-xs font-medium">Top</span>
             <ArrowUp size={13} />
           </button>
         </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Mail, MapPin, Send, Copy, Check, MessageSquare, ExternalLink } from 'lucide-react';
 import Github from './icons/Github';
 import Instagram from './icons/Instagram';
@@ -8,58 +8,111 @@ import Linkedin from './icons/Linkedin';
 export default function Contact({ onCopyEmail, copiedEmail }) {
   const email = "danielaplan.bsit2024@gmail.com";
   const github = "https://github.com/danielaplan";
+  const [form, setForm] = useState({ name: '', email: '', message: '' });
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const subject = encodeURIComponent(`Portfolio message from ${form.name}`);
+    const body = encodeURIComponent(`Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`);
+    window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+  };
 
   return (
-    <section id="contact" className="py-12 sm:py-20 border-t border-slate-200/60 dark:border-slate-800/60">
-      <div className="max-w-4xl mx-auto px-5 sm:px-6">
-
+    <section id="contact" className="py-12 sm:py-20">
+      <div className="w-full px-5 sm:px-8 lg:px-12">
         {/* Section Header */}
         <div className="mb-8 sm:mb-10">
-          <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-1.5">
+          <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider mb-1.5">
             <MessageSquare size={15} />
             <span>Get in Touch</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
+          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
             Let's Connect
           </h2>
-          <p className="text-slate-600 dark:text-slate-400 text-xs sm:text-sm mt-1 max-w-xl">
+          <p className="text-[color:var(--text-secondary)] text-xs sm:text-sm mt-1 max-w-xl">
             I'm always open to discussing new software development opportunities, academic collaborations, or project ideas.
           </p>
         </div>
 
-        {/* Glass Contact Container */}
-        <div className="p-8 rounded-3xl glass-panel space-y-8">
+        {/* Contact Container */}
+        <div className="neo-raised-lg p-8 space-y-8">
+
+          {/* Form */}
+          <form onSubmit={handleSubmit} className="grid gap-4 md:grid-cols-2">
+            <label className="space-y-2 text-xs font-semibold text-[color:var(--text-secondary)]">
+              <span>Name</span>
+              <input
+                required
+                type="text"
+                value={form.name}
+                onChange={(event) => setForm({ ...form, name: event.target.value })}
+                placeholder="Your name"
+                className="w-full px-4 py-3 text-sm placeholder:text-[color:var(--text-tertiary)]"
+              />
+            </label>
+            <label className="space-y-2 text-xs font-semibold text-[color:var(--text-secondary)]">
+              <span>Email</span>
+              <input
+                required
+                type="email"
+                value={form.email}
+                onChange={(event) => setForm({ ...form, email: event.target.value })}
+                placeholder="you@example.com"
+                className="w-full px-4 py-3 text-sm placeholder:text-[color:var(--text-tertiary)]"
+              />
+            </label>
+            <label className="space-y-2 text-xs font-semibold text-[color:var(--text-secondary)] md:col-span-2">
+              <span>Message</span>
+              <textarea
+                required
+                rows="5"
+                value={form.message}
+                onChange={(event) => setForm({ ...form, message: event.target.value })}
+                placeholder="Tell me about your project or idea"
+                className="w-full resize-y px-4 py-3 text-sm placeholder:text-[color:var(--text-tertiary)]"
+              />
+            </label>
+            <div className="md:col-span-2">
+              <button
+                type="submit"
+                className="neo-accent-solid inline-flex items-center gap-2 px-5 py-3 text-xs font-semibold"
+              >
+                <Send size={14} />
+                <span>Send Message</span>
+              </button>
+            </div>
+          </form>
+
+          {/* Info Grid */}
           <div className="grid gap-6 md:grid-cols-2">
 
-            {/* Direct Email Card */}
-            <div className="p-6 rounded-2xl bg-white dark:bg-slate-800/40 border border-slate-200/80 dark:border-white/5 flex flex-col justify-between space-y-4 shadow-sm dark:shadow-2xs">
+            {/* Email Card */}
+            <div className="neo-raised p-6 space-y-4">
               <div className="space-y-2">
-                <div className="flex items-center gap-2 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
-                  <Mail size={15} className="text-blue-500" />
+                <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[color:var(--text-secondary)]">
+                  <Mail size={15} />
                   <span>Email Address</span>
                 </div>
-                <p className="text-base font-medium text-slate-900 dark:text-white break-all">
+                <p className="text-base font-medium break-all">
                   {email}
                 </p>
               </div>
-
-              <div className="flex flex-wrap gap-2 pt-2">
+              <div className="flex flex-wrap gap-2">
                 <a
                   href={`mailto:${email}`}
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold transition shadow-xs"
+                  className="neo-accent-solid inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold"
                 >
                   <Send size={13} />
-                  <span>Send Message</span>
+                  <span>Send</span>
                 </a>
-
                 <button
                   onClick={onCopyEmail}
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white/70 dark:bg-slate-700/60 hover:bg-white dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 text-xs font-semibold transition cursor-pointer border border-white/80 dark:border-white/5 shadow-2xs"
+                  className="neo-press inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold"
                 >
                   {copiedEmail ? (
                     <>
-                      <Check size={13} className="text-emerald-500" />
-                      <span className="text-emerald-600 dark:text-emerald-400">Copied!</span>
+                      <Check size={13} className="text-accent" />
+                      <span className="text-accent">Copied!</span>
                     </>
                   ) : (
                     <>
@@ -71,77 +124,80 @@ export default function Contact({ onCopyEmail, copiedEmail }) {
               </div>
             </div>
 
-            {/* GitHub & Location Card */}
-            <div className="p-6 rounded-2xl bg-white dark:bg-slate-800/40 border border-slate-200/80 dark:border-white/5 flex flex-col justify-between space-y-4 shadow-sm dark:shadow-2xs">
-              <div className="space-y-3">
-                <div className="flex items-center gap-2 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
-                  <Github size={15} className="text-blue-500" />
-                  <span>GitHub Repository Profile</span>
+            {/* GitHub Card */}
+            <div className="neo-raised p-6 space-y-4">
+              <div className="space-y-2">
+                <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[color:var(--text-secondary)]">
+                  <Github size={15} />
+                  <span>GitHub</span>
                 </div>
-                <p className="text-sm text-slate-600 dark:text-slate-400">
+                <p className="text-sm text-[color:var(--text-secondary)]">
                   Explore open source repositories, student coursework, and ongoing builds.
                 </p>
               </div>
-
               <a
                 href={github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-between px-4 py-2.5 rounded-xl bg-white/70 dark:bg-slate-700/60 hover:bg-white dark:hover:bg-slate-700 text-slate-900 dark:text-white text-xs font-semibold transition border border-white/80 dark:border-white/5 shadow-2xs"
+                className="neo-press inline-flex items-center gap-2 px-4 py-2 text-xs font-semibold"
               >
-                <span className="flex items-center gap-1.5">
-                  <Github size={14} /> github.com/danielaplan
-                </span>
-                <ExternalLink size={13} className="text-slate-400" />
+                <Github size={14} />
+                <span>github.com/danielaplan</span>
+                <ExternalLink size={13} />
               </a>
             </div>
-
           </div>
 
-          {/* Social Media Links */}
+          {/* Social Links — Greyscale icon buttons */}
           <div className="flex flex-wrap items-center gap-3 pt-2">
-            <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mr-1">Find me on</span>
+            <span className="text-xs font-semibold uppercase tracking-wider text-[color:var(--text-secondary)] mr-1">Find me on</span>
+
             <a
               href="https://www.instagram.com/dniel_apln/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white text-xs font-semibold transition shadow-xs"
+              className="neo-press w-10 h-10 flex items-center justify-center"
+              aria-label="Instagram"
             >
-              <Instagram size={14} />
-              <span>Instagram</span>
+              <Instagram size={16} />
             </a>
             <a
               href="https://www.facebook.com/daniel.aplan.9/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold transition shadow-xs"
+              className="neo-press w-10 h-10 flex items-center justify-center"
+              aria-label="Facebook"
             >
-              <Facebook size={14} />
-              <span>Facebook</span>
+              <Facebook size={16} />
             </a>
             <a
               href="https://www.linkedin.com/in/daniel-aplan-5ba561334/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-sky-600 hover:bg-sky-700 text-white text-xs font-semibold transition shadow-xs"
+              className="neo-press w-10 h-10 flex items-center justify-center"
+              aria-label="LinkedIn"
             >
-              <Linkedin size={14} />
-              <span>LinkedIn</span>
+              <Linkedin size={16} />
+            </a>
+            <a
+              href={github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="neo-press w-10 h-10 flex items-center justify-center"
+              aria-label="GitHub"
+            >
+              <Github size={16} />
             </a>
           </div>
 
-          {/* Quick Notice */}
-          <div className="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 pt-4 border-t border-slate-200/60 dark:border-slate-800/60">
-            <span className="flex items-center gap-1.5">
-              <MapPin size={13} className="text-slate-400" />
-              <span>Based in Caloocan City, Metro Manila, Philippines</span>
-            </span>
-            <span className="hidden sm:inline text-emerald-600 dark:text-emerald-400 font-medium">
-              &bull; Response time: typically within 24 hours
-            </span>
+          {/* Location */}
+          <div className="flex items-center gap-2 text-xs text-[color:var(--text-secondary)] pt-4">
+            <MapPin size={13} />
+            <span>Based in Caloocan City, Metro Manila, Philippines</span>
+            <span>&bull;</span>
+            <span>Response time: typically within 24 hours</span>
           </div>
         </div>
-
       </div>
     </section>
   );

@@ -1,0 +1,698 @@
+<!DOCTYPE html><html class="dark" lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=geist:wght@100..900&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "inverse-surface": "#dfe2ee",
+          "outline-variant": "#3e484f",
+          "on-tertiary-container": "#004e34",
+          "error": "#ffb4ab",
+          "on-surface-variant": "#bdc8d1",
+          "surface-dim": "#0f131c",
+          "secondary": "#bdc2ff",
+          "on-primary-container": "#004965",
+          "inverse-primary": "#00668a",
+          "primary-container": "#38bdf8",
+          "surface-container-highest": "#31353e",
+          "on-error": "#690005",
+          "on-primary-fixed-variant": "#004c69",
+          "primary-fixed": "#c4e7ff",
+          "surface-variant": "#31353e",
+          "background": "#0f131c",
+          "outline": "#87929a",
+          "on-tertiary-fixed-variant": "#005236",
+          "surface-tint": "#7bd0ff",
+          "primary": "#8ed5ff",
+          "surface-container-low": "#181c24",
+          "tertiary": "#56e5a9",
+          "on-primary": "#00354a",
+          "surface-bright": "#353942",
+          "secondary-fixed-dim": "#bdc2ff",
+          "tertiary-container": "#30c88f",
+          "on-secondary-container": "#a8afff",
+          "tertiary-fixed": "#6ffbbe",
+          "secondary-fixed": "#e0e0ff",
+          "on-tertiary": "#003824",
+          "surface-container-lowest": "#0a0e16",
+          "on-background": "#dfe2ee",
+          "surface-container-high": "#262a33",
+          "on-surface": "#dfe2ee",
+          "on-secondary-fixed-variant": "#2f3aa3",
+          "primary-fixed-dim": "#7bd0ff",
+          "on-secondary": "#131e8c",
+          "on-error-container": "#ffdad6",
+          "on-tertiary-fixed": "#002113",
+          "secondary-container": "#2f3aa3",
+          "tertiary-fixed-dim": "#4edea3",
+          "surface-container": "#1c2028",
+          "on-primary-fixed": "#001e2c",
+          "inverse-on-surface": "#2c3039",
+          "on-secondary-fixed": "#000767",
+          "surface": "#0f131c",
+          "error-container": "#93000a"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.25rem",
+          "lg": "0.5rem",
+          "xl": "0.75rem",
+          "full": "9999px"
+        },
+        "spacing": {
+          "space-2xs": "0.25rem",
+          "space-sm": "0.75rem",
+          "space-xl": "2rem",
+          "grid-gutter": "1.25rem",
+          "space-xs": "0.5rem",
+          "space-lg": "1.5rem",
+          "container-max-width": "1120px",
+          "space-3xl": "4.5rem",
+          "space-2xl": "3rem",
+          "space-md": "1rem"
+        },
+        "fontFamily": {
+          "display-hero-mobile": ["geist"],
+          "kicker-eyebrow": ["jetbrainsMono"],
+          "body-sm": ["geist"],
+          "headline-section": ["geist"],
+          "display-hero": ["geist"],
+          "headline-card": ["geist"],
+          "tag-label": ["geist"],
+          "body-lg": ["geist"],
+          "code-snippet": ["jetbrainsMono"],
+          "subheading": ["geist"]
+        },
+        "fontSize": {
+          "display-hero-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+          "kicker-eyebrow": ["11px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "600"}],
+          "body-sm": ["13px", {"lineHeight": "20px", "fontWeight": "400"}],
+          "headline-section": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+          "display-hero": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.03em", "fontWeight": "700"}],
+          "headline-card": ["18px", {"lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+          "tag-label": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+          "body-lg": ["15px", {"lineHeight": "24px", "fontWeight": "400"}],
+          "code-snippet": ["12px", {"lineHeight": "18px", "fontWeight": "400"}],
+          "subheading": ["18px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "400"}]
+        }
+      }
+    }
+  }</script></head><body class="bg-background font-body-lg text-body-lg text-on-surface antialiased min-h-screen"><header class="fixed top-0 inset-x-0 z-50 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 max-w-[1120px] mx-auto px-space-lg flex items-center justify-between"><div class="flex items-center gap-space-md"><a class="font-headline-card text-headline-card tracking-tight text-on-surface hover:text-primary transition-colors" data-path="about" href="#">da<span class="text-primary">.</span></a><div class="hidden sm:flex items-center gap-space-xs px-space-sm py-1 rounded-full bg-surface-container-high/60"><span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-tertiary opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-tertiary"></span></span><span class="font-kicker-eyebrow text-kicker-eyebrow uppercase text-on-surface-variant tracking-wider">Available for hire</span></div></div><nav class="hidden md:flex items-center gap-space-xs p-1 rounded-xl bg-surface-container-lowest/50" data-active-classes="bg-surface-container-high text-on-surface font-headline-card rounded-lg"><a class="px-space-sm py-1.5 rounded-lg font-tag-label text-tag-label text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all" data-path="about" href="#">About</a><a aria-current="page" class="px-space-sm py-1.5 transition-all bg-surface-container-high text-on-surface font-headline-card rounded-lg" data-path="projects" href="#">Projects</a><a class="px-space-sm py-1.5 rounded-lg font-tag-label text-tag-label text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all" data-path="skills" href="#">Skills</a><a class="px-space-sm py-1.5 rounded-lg font-tag-label text-tag-label text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all" data-path="contact" href="#">Contact</a></nav><div class="flex items-center gap-space-sm"><a class="hidden lg:inline-flex items-center gap-1 font-code-snippet text-code-snippet text-on-surface-variant hover:text-primary transition-colors" data-path="project-archive" href="#"><span class="">Code</span><span class="material-symbols-outlined text-[14px]">arrow_outward</span></a><button aria-label="Toggle theme" class="p-1.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" type="button"><span class="material-symbols-outlined text-[18px]">dark_mode</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-16 bg-surface min-h-[calc(100vh-4rem)]"><div class="max-w-[1120px] mx-auto px-space-lg py-space-2xl"><div class="flex flex-col w-full space-y-space-3xl">
+<!-- HERO SECTION -->
+<section class="relative pt-space-md sm:pt-space-xl">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
+<!-- Left Column: Biography & Meta -->
+<div class="lg:col-span-8 flex flex-col items-start">
+<!-- Status Pill -->
+<div class="inline-flex items-center gap-space-xs px-space-sm py-1 rounded-full bg-surface-container-high/80 text-on-surface shadow-sm mb-space-lg">
+<span class="material-symbols-outlined text-primary text-[15px]">school</span>
+<span class="font-kicker-eyebrow text-kicker-eyebrow tracking-wider text-on-surface-variant">3rd-Year BSIT @ University of Caloocan City</span>
+</div>
+<!-- Title & Subheading -->
+<h1 class="font-display-hero text-display-hero text-on-surface tracking-tight mb-space-xs">
+          Daniel Aplan
+        </h1>
+<p class="font-subheading text-subheading text-primary font-medium mb-space-lg">
+          Aspiring Software Developer &amp; IT Student
+        </p>
+<!-- Narrative Bio -->
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl leading-relaxed mb-space-xl">
+          I build web apps that work on any screen — and I care just as much about what's underneath them, from the database to the API. Lately I've been focused on full-stack development with TypeScript, React, C#, and relational databases, learning by actually shipping things.
+        </p>
+<!-- Location & Discipline Meta Badges -->
+<div class="flex flex-wrap items-center gap-y-space-xs gap-x-space-lg text-on-surface-variant mb-space-xl font-body-sm text-body-sm">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-outline text-[16px]">location_on</span>
+<span class="">Caloocan City, Philippines</span>
+</div>
+<span class="hidden sm:inline text-outline-variant font-code-snippet">•</span>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-outline text-[16px]">code_blocks</span>
+<span class="">Systems Design &amp; Full-Stack</span>
+</div>
+</div>
+<!-- Primary CTAs -->
+<div class="flex flex-wrap items-center gap-space-sm w-full sm:w-auto">
+<a class="inline-flex items-center justify-center gap-2 px-space-lg py-2.5 rounded-lg bg-inverse-surface text-inverse-on-surface font-tag-label text-tag-label font-semibold shadow-md hover:bg-white hover:scale-[1.02] transition-all" href="https://github.com/danielaplan" rel="noopener noreferrer" target="_blank">
+<span class="">GitHub Profile</span>
+<span class="material-symbols-outlined text-[15px]">arrow_outward</span>
+</a>
+<button class="inline-flex items-center justify-center gap-2 px-space-md py-2.5 rounded-lg bg-surface-container-high text-on-surface font-tag-label text-tag-label hover:bg-surface-bright transition-colors shadow-sm" id="copy-email-hero" onclick="copyEmail('hero-btn')">
+<span class="material-symbols-outlined text-[16px]">content_copy</span>
+<span id="copy-email-hero-text" class="">Copy Email</span>
+</button>
+<a class="inline-flex items-center justify-center gap-1 px-space-md py-2.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors font-tag-label text-tag-label" href="#projects">
+<span class="">Projects</span>
+<span class="material-symbols-outlined text-[16px]">arrow_downward</span>
+</a>
+</div>
+</div>
+<!-- Right Column: Profile Image Card -->
+<div class="lg:col-span-4 flex justify-center lg:justify-end">
+<div class="relative group p-2 rounded-2xl bg-surface-container-low shadow-xl">
+<div class="relative w-64 sm:w-72 aspect-[4/5] rounded-xl overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover grayscale contrast-105 group-hover:grayscale-0 transition-all duration-500" data-alt="Young Southeast Asian male software engineering student Daniel Aplan taking a mirror selfie in formal black collared shirt with university lanyard identification card. Moody warm indoor directional key lighting, modern clean minimalist aesthetic, high-resolution aesthetic editorial portrait." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQxH1Egg42rex2gy16t2zAhmxLlKwunF59nfUMrTfvBD4qepLhC0Yi-P2blt8ZM8Tjeh6LzGNSTlB3oVJHnMuFx174fYp29U4ekq34xn34IaMFf1TWG-nT1bvddgKJ0nXRe8WyQuDRgpyCojzzPGUYtMv7PNGGxRxnpevZBrd-2vIWZlyY5ZTUqtU3l-m53IgfaXreje61ncfTrXZma7McTQjuBrrnH6kfBztfWzXqqpQOMQwhqFxX">
+<div class="absolute inset-0 bg-gradient-to-t from-surface-dim/80 via-transparent to-transparent"></div>
+<!-- Live Indicator Badge -->
+<div class="absolute bottom-3 right-3 flex items-center gap-2 px-2.5 py-1 rounded-full bg-surface-container-lowest/80 backdrop-blur-md shadow-md">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-tertiary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-tertiary"></span>
+</span>
+<span class="font-kicker-eyebrow text-kicker-eyebrow text-tertiary uppercase tracking-wider">Online</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- PROJECTS & ENGINEERING SECTION -->
+<section class="flex flex-col space-y-space-lg" id="projects">
+<!-- Section Header & Filter Controls -->
+<div class="flex flex-col space-y-space-md">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md">
+<div>
+<div class="flex items-center gap-2 text-primary mb-1">
+<span class="material-symbols-outlined text-[16px]">terminal</span>
+<span class="font-kicker-eyebrow text-kicker-eyebrow tracking-widest uppercase">Interactive Portfolio</span>
+</div>
+<h2 class="font-headline-section text-headline-section text-on-surface tracking-tight">
+            Projects &amp; Engineering
+          </h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+            Explore highlighted software solutions, academic systems, and live GitHub repositories.
+          </p>
+</div>
+<!-- Curated vs Live Repos Segmented Switch -->
+<div class="flex items-center p-1 rounded-lg bg-surface-container-lowest shadow-sm self-start md:self-auto">
+<button class="px-3 py-1 rounded font-tag-label text-tag-label bg-surface-container-high text-on-surface transition-all">Curated (4)</button>
+<button class="px-3 py-1 rounded font-tag-label text-tag-label text-on-surface-variant hover:text-on-surface transition-colors flex items-center gap-1.5">
+<span class="">Live Repos</span>
+<span class="relative flex h-1.5 w-1.5 rounded-full bg-outline"></span>
+</button>
+<button aria-label="Refresh list" class="p-1 rounded text-on-surface-variant hover:text-on-surface ml-1 transition-colors">
+<span class="material-symbols-outlined text-[16px]">sync</span>
+</button>
+</div>
+</div>
+<!-- Search & Category Filters Bar -->
+<div class="flex flex-col sm:flex-row gap-space-sm items-stretch sm:items-center justify-between pt-space-xs">
+<!-- Search Input -->
+<div class="relative flex-1 max-w-lg">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[18px]">search</span>
+<input class="w-full bg-surface-container-low text-on-surface placeholder:text-outline text-body-sm pl-10 pr-4 py-2 rounded-lg outline-none focus:bg-surface-container transition-all" id="project-search" onkeyup="filterProjects()" placeholder="Search projects by name, keyword, or technology..." type="text">
+</div>
+<!-- Filter Pills -->
+<div class="flex items-center gap-space-xs overflow-x-auto pb-1 sm:pb-0">
+<button class="filter-btn px-space-sm py-1.5 rounded-lg font-tag-label text-tag-label bg-primary text-on-primary font-medium transition-all" data-filter="all" onclick="setFilter('all')">All (4)</button>
+<button class="filter-btn px-space-sm py-1.5 rounded-lg font-tag-label text-tag-label bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all" data-filter="web" onclick="setFilter('web')">Web &amp; Apps (2)</button>
+<button class="filter-btn px-space-sm py-1.5 rounded-lg font-tag-label text-tag-label bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all" data-filter="systems" onclick="setFilter('systems')">
+            Systems &amp; CRM (2)
+          </button>
+</div>
+</div>
+</div>
+<!-- Project Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-lg" id="projects-grid"><article class="project-card rounded-2xl bg-surface-container-low hover:bg-surface-container transition-all duration-300 shadow-md p-space-lg group flex flex-col md:flex-row gap-space-md justify-between" data-category="web" data-tech="typescript python interactive gamification web">
+  <div class="flex-1 flex flex-col justify-between space-y-space-md">
+    <div>
+      <div class="flex flex-wrap items-center gap-1.5 mb-space-xs font-kicker-eyebrow text-kicker-eyebrow">
+        <span class="px-2 py-0.5 rounded bg-primary-container/20 text-primary font-semibold">Featured</span>
+        <span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant">Web &amp; Apps</span>
+      </div>
+      <h3 class="font-headline-card text-headline-card text-on-surface group-hover:text-primary transition-colors mb-space-xs font-semibold">
+        FaithQuest
+      </h3>
+      <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed line-clamp-3">
+        Interactive gamification platform for church programs. Features a teacher-controlled dashboard that engages participants with real-time points, leaderboards, and collaborative quests.
+      </p>
+    </div>
+    <div>
+      <div class="font-kicker-eyebrow text-kicker-eyebrow text-outline uppercase tracking-wider mb-1.5">Tech Stack</div>
+      <div class="flex flex-wrap gap-1.5">
+        <span class="px-2 py-0.5 rounded font-tag-label text-tag-label bg-surface-container-highest text-on-surface-variant">TypeScript</span>
+        <span class="px-2 py-0.5 rounded font-tag-label text-tag-label bg-surface-container-highest text-on-surface-variant">Python</span>
+        <span class="px-2 py-0.5 rounded font-tag-label text-tag-label bg-surface-container-highest text-on-surface-variant">Interactive UI</span>
+        <span class="px-2 py-0.5 rounded font-tag-label text-tag-label bg-surface-container-highest text-on-surface-variant">Gamification</span>
+      </div>
+    </div>
+    <div class="pt-space-xs flex flex-col gap-2">
+      <div class="flex items-center gap-2 font-kicker-eyebrow text-kicker-eyebrow">
+        <span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant">Stable</span>
+        <span class="text-outline font-code-snippet">2024</span>
+      </div>
+      <div class="flex items-center gap-space-sm font-code-snippet text-code-snippet pt-1">
+        <a class="inline-flex items-center gap-1 text-on-surface-variant hover:text-primary transition-colors" href="#">
+          <span class="material-symbols-outlined text-[14px]">code</span>
+          <span class="">Code</span>
+        </a>
+        <a class="inline-flex items-center gap-1 text-on-surface-variant hover:text-primary transition-colors" href="#">
+          <span class="material-symbols-outlined text-[14px]">play_circle</span>
+          <span class="">Demo</span>
+        </a>
+        <a class="inline-flex items-center gap-1 text-on-surface-variant hover:text-primary transition-colors" href="#">
+          <span class="material-symbols-outlined text-[14px]">open_in_new</span>
+          <span class="">Repo</span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="w-full md:w-[42%] min-h-[180px] md:min-h-[220px] rounded-xl overflow-hidden bg-surface-container-highest relative flex-shrink-0">
+    <img alt="FaithQuest App Interface" class="w-full h-full object-cover object-top hover:scale-[1.02] transition-all duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNjED1dt2_DyERnRb3ZBMd2cRFBunjBL891NJVX7sSFUo38dATwN1-Mid26j8R5Hu4gEiaNIeuYpSvOhByIQkC0nirHV19LbrJTTEis1G7Pk0_Je6aAM_OOldqxVUManbjJ-TYNEG3kv3jnpwpxaTP9KoPQpGWvYCbAakePoMRUXr1VHwwkeS7jQj1RKyHKLo-vA7ENSVAI6Z4cAZv1DIjv5K-7xd_qsc7646FPFLItS65R00NRGrn">
+  </div>
+</article>
+
+<article class="project-card rounded-2xl bg-surface-container-low hover:bg-surface-container transition-all duration-300 shadow-md p-space-lg group flex flex-col md:flex-row gap-space-md justify-between" data-category="systems" data-tech="c# .net database architecture crm sql">
+  <div class="flex-1 flex flex-col justify-between space-y-space-md">
+    <div>
+      <div class="flex flex-wrap items-center gap-1.5 mb-space-xs font-kicker-eyebrow text-kicker-eyebrow">
+        <span class="px-2 py-0.5 rounded bg-primary-container/20 text-primary font-semibold">Featured</span>
+        <span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant">Systems &amp; CRM</span>
+      </div>
+      <h3 class="font-headline-card text-headline-card text-on-surface group-hover:text-primary transition-colors mb-space-xs font-semibold">
+        Customer Relationship Management System
+      </h3>
+      <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed line-clamp-3">
+        Enterprise CRM solution built with C# and relational databases. Manages customer interactions, pipelines, communication logs, and business processes with role-based access controls.
+      </p>
+    </div>
+    <div>
+      <div class="font-kicker-eyebrow text-kicker-eyebrow text-outline uppercase tracking-wider mb-1.5">Tech Stack</div>
+      <div class="flex flex-wrap gap-1.5">
+        <span class="px-2 py-0.5 rounded font-tag-label text-tag-label bg-surface-container-highest text-on-surface-variant">C#</span>
+        <span class="px-2 py-0.5 rounded font-tag-label text-tag-label bg-surface-container-highest text-on-surface-variant">.NET</span>
+        <span class="px-2 py-0.5 rounded font-tag-label text-tag-label bg-surface-container-highest text-on-surface-variant">Database</span>
+        <span class="px-2 py-0.5 rounded font-tag-label text-tag-label bg-surface-container-highest text-on-surface-variant">SQL</span>
+      </div>
+    </div>
+    <div class="pt-space-xs flex flex-col gap-2">
+      <div class="flex items-center gap-2 font-kicker-eyebrow text-kicker-eyebrow">
+        <span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant">Stable</span>
+        <span class="text-outline font-code-snippet">2024</span>
+      </div>
+      <div class="flex items-center gap-space-sm font-code-snippet text-code-snippet pt-1">
+        <a class="inline-flex items-center gap-1 text-on-surface-variant hover:text-primary transition-colors" href="#">
+          <span class="material-symbols-outlined text-[14px]">code</span>
+          <span class="">Code</span>
+        </a>
+        <a class="inline-flex items-center gap-1 text-on-surface-variant hover:text-primary transition-colors" href="#">
+          <span class="material-symbols-outlined text-[14px]">open_in_new</span>
+          <span class="">Repo</span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="w-full md:w-[42%] min-h-[180px] md:min-h-[220px] rounded-xl overflow-hidden bg-surface-container-highest relative flex-shrink-0">
+    <img alt="CRM Dashboard Mockup" class="w-full h-full object-cover object-top hover:scale-[1.02] transition-all duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAP6W-ZnziP7PM-5Tz2JEqDLIhvDuhX5VsrAanPT11-8cfX4C0RqAtp9m51Zsp4TVedhxnRsPXOB5xH2YrRueI5OSAKfBwRHH68pZHDDs9N3fTuQoQCTYHgd_XmqoYSQwNc_skzG_KZRBQlRVlsx69k8P8E2JntutgAMpc0EgM_3yLRX6NECQ2k9bPhbXxSLtvW828r_necuTgOSR3pZV5s5nvXveZiUCERJJ3Xd6PpH5MR6xFvJmoS">
+  </div>
+</article>
+
+<article class="project-card rounded-2xl bg-surface-container-low hover:bg-surface-container transition-all duration-300 shadow-md p-space-lg group flex flex-col md:flex-row gap-space-md justify-between" data-category="systems" data-tech="systems database design full-stack workflow automation c# sql">
+  <div class="flex-1 flex flex-col justify-between space-y-space-md">
+    <div>
+      <div class="flex flex-wrap items-center gap-1.5 mb-space-xs font-kicker-eyebrow text-kicker-eyebrow">
+        <span class="px-2 py-0.5 rounded bg-primary-container/20 text-primary font-semibold">Featured</span>
+        <span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant">Systems &amp; CRM</span>
+      </div>
+      <h3 class="font-headline-card text-headline-card text-on-surface group-hover:text-primary transition-colors mb-space-xs font-semibold">
+        Rental Ops Manager
+      </h3>
+      <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed line-clamp-3">
+        Operations and booking management system designed for equipment and property rental workflows with automated inventory scheduling and contract tracking.
+      </p>
+    </div>
+    <div>
+      <div class="font-kicker-eyebrow text-kicker-eyebrow text-outline uppercase tracking-wider mb-1.5">Tech Stack</div>
+      <div class="flex flex-wrap gap-1.5">
+        <span class="px-2 py-0.5 rounded font-tag-label text-tag-label bg-surface-container-highest text-on-surface-variant">Systems</span>
+        <span class="px-2 py-0.5 rounded font-tag-label text-tag-label bg-surface-container-highest text-on-surface-variant">Database</span>
+        <span class="px-2 py-0.5 rounded font-tag-label text-tag-label bg-surface-container-highest text-on-surface-variant">Full-Stack</span>
+        <span class="px-2 py-0.5 rounded font-tag-label text-tag-label bg-surface-container-highest text-on-surface-variant">Workflow</span>
+      </div>
+    </div>
+    <div class="pt-space-xs flex flex-col gap-2">
+      <div class="flex items-center gap-2 font-kicker-eyebrow text-kicker-eyebrow">
+        <span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant">Stable</span>
+        <span class="text-outline font-code-snippet">2024</span>
+      </div>
+      <div class="flex items-center gap-space-sm font-code-snippet text-code-snippet pt-1">
+        <a class="inline-flex items-center gap-1 text-on-surface-variant hover:text-primary transition-colors" href="#">
+          <span class="material-symbols-outlined text-[14px]">code</span>
+          <span class="">Code</span>
+        </a>
+        <a class="inline-flex items-center gap-1 text-on-surface-variant hover:text-primary transition-colors" href="#">
+          <span class="material-symbols-outlined text-[14px]">open_in_new</span>
+          <span class="">Repo</span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="w-full md:w-[42%] min-h-[180px] md:min-h-[220px] rounded-xl overflow-hidden bg-surface-container-highest relative flex-shrink-0">
+    <img alt="Rental Ops Manager Interface" class="w-full h-full object-cover object-top hover:scale-[1.02] transition-all duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEpjEu7dpGXjgildoCt8VBsSWwfYcB7bSxDwRBPZQjWZojkzEd_tROxx3NXT7WspdrahxUW2IbXMmlW6dRym_797R2GVax4DzLFqlMJzaAlkioAN114x6Q3POBjf2jtEdUsrfKgDns6aAy40NyHPNlekCFb6ibYMzxcFPqA-E7dnMg6l5wb6mSgqioURlDX8T4eyk9oLojkqXrf_kkduDgZq08VY64c-oYPQzgHlW9Vgh7CGtA7iZn">
+  </div>
+</article>
+
+<article class="project-card rounded-2xl bg-surface-container-low hover:bg-surface-container transition-all duration-300 shadow-md p-space-lg group flex flex-col md:flex-row gap-space-md justify-between" data-category="web" data-tech="react tailwind css vite javascript github api full-stack">
+  <div class="flex-1 flex flex-col justify-between space-y-space-md">
+    <div>
+      <div class="flex flex-wrap items-center gap-1.5 mb-space-xs font-kicker-eyebrow text-kicker-eyebrow">
+        <span class="px-2 py-0.5 rounded bg-primary-container/20 text-primary font-semibold">Featured</span>
+        <span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant">Web &amp; Apps</span>
+      </div>
+      <h3 class="font-headline-card text-headline-card text-on-surface group-hover:text-primary transition-colors mb-space-xs font-semibold">
+        Developer Portfolio &amp; Showcase
+      </h3>
+      <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed line-clamp-3">
+        Modern, high-performance portfolio engineered with React, Tailwind CSS, Vite, and live GitHub API synchronization with dark mode support.
+      </p>
+    </div>
+    <div>
+      <div class="font-kicker-eyebrow text-kicker-eyebrow text-outline uppercase tracking-wider mb-1.5">Tech Stack</div>
+      <div class="flex flex-wrap gap-1.5">
+        <span class="px-2 py-0.5 rounded font-tag-label text-tag-label bg-surface-container-highest text-on-surface-variant">React</span>
+        <span class="px-2 py-0.5 rounded font-tag-label text-tag-label bg-surface-container-highest text-on-surface-variant">Tailwind CSS</span>
+        <span class="px-2 py-0.5 rounded font-tag-label text-tag-label bg-surface-container-highest text-on-surface-variant">Vite</span>
+        <span class="px-2 py-0.5 rounded font-tag-label text-tag-label bg-surface-container-highest text-on-surface-variant">GitHub API</span>
+      </div>
+    </div>
+    <div class="pt-space-xs flex flex-col gap-2">
+      <div class="flex items-center gap-2 font-kicker-eyebrow text-kicker-eyebrow">
+        <span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant">Stable</span>
+        <span class="text-outline font-code-snippet">2024</span>
+      </div>
+      <div class="flex items-center gap-space-sm font-code-snippet text-code-snippet pt-1">
+        <a class="inline-flex items-center gap-1 text-on-surface-variant hover:text-primary transition-colors" href="#">
+          <span class="material-symbols-outlined text-[14px]">code</span>
+          <span class="">Code</span>
+        </a>
+        <a class="inline-flex items-center gap-1 text-on-surface-variant hover:text-primary transition-colors" href="#">
+          <span class="material-symbols-outlined text-[14px]">play_circle</span>
+          <span class="">Demo</span>
+        </a>
+        <a class="inline-flex items-center gap-1 text-on-surface-variant hover:text-primary transition-colors" href="#">
+          <span class="material-symbols-outlined text-[14px]">open_in_new</span>
+          <span class="">Repo</span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="w-full md:w-[42%] min-h-[180px] md:min-h-[220px] rounded-xl overflow-hidden bg-surface-container-highest relative flex-shrink-0">
+    <img alt="Developer Portfolio Mockup" class="w-full h-full object-cover object-top hover:scale-[1.02] transition-all duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzHwpE3qlx6BmW7FA9xqabzN9yai9onFVcm_3IStDvL1pKOqbIJCqjzGtkyvI7tX0GzE601UQLeLL25B0sT1x0e7vwQRKR9R2mZtq5Z8TMMgWFpwfOFMkPibjc6Gg5jDGkO7W8j5v4eyYdyr6YpJYrnJeuCajIS9kk_GDllFHp5VOWxBMk2OD1GYvi_N0csOWqinTazgFkK5mMHlbRCwdkV7-JZne14r-S6o3EsGfJgH7OsdvnoMLK">
+  </div>
+</article></div>
+</section>
+<!-- SKILLS & TECHNOLOGIES SECTION -->
+<section class="flex flex-col space-y-space-lg" id="skills">
+<div>
+<div class="flex items-center gap-2 text-primary mb-1">
+<span class="material-symbols-outlined text-[16px]">data_object</span>
+<span class="font-kicker-eyebrow text-kicker-eyebrow tracking-widest uppercase">Technical Proficiency</span>
+</div>
+<h2 class="font-headline-section text-headline-section text-on-surface tracking-tight">
+        Skills &amp; Technologies
+      </h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+        Core competencies acquired through academic coursework at University of Caloocan City and hands-on project engineering.
+      </p>
+</div>
+<!-- 2x2 Bento Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-lg">
+<!-- Category 1: Programming Languages -->
+<div class="p-space-lg rounded-2xl bg-surface-container-low shadow-md hover:bg-surface-container transition-all duration-300">
+<div class="flex items-center gap-3 mb-space-md">
+<div class="w-9 h-9 rounded-xl bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">code</span>
+</div>
+<h3 class="font-headline-card text-headline-card text-on-surface">Programming Languages</h3>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="px-space-sm py-1 rounded-lg bg-surface-container-highest text-on-surface-variant font-tag-label text-tag-label flex items-center gap-1.5 hover:text-on-surface transition-colors">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+            Java
+          </span>
+<span class="px-space-sm py-1 rounded-lg bg-surface-container-highest text-on-surface-variant font-tag-label text-tag-label flex items-center gap-1.5 hover:text-on-surface transition-colors">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+            C#
+          </span>
+<span class="px-space-sm py-1 rounded-lg bg-surface-container-highest text-on-surface-variant font-tag-label text-tag-label flex items-center gap-1.5 hover:text-on-surface transition-colors">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+            PHP
+          </span>
+<span class="px-space-sm py-1 rounded-lg bg-surface-container-highest text-on-surface-variant font-tag-label text-tag-label flex items-center gap-1.5 hover:text-on-surface transition-colors">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+            JavaScript
+          </span>
+<span class="px-space-sm py-1 rounded-lg bg-surface-container-highest text-on-surface-variant font-tag-label text-tag-label flex items-center gap-1.5 hover:text-on-surface transition-colors">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+            TypeScript
+          </span>
+</div>
+</div>
+<!-- Category 2: Frontend & Web -->
+<div class="p-space-lg rounded-2xl bg-surface-container-low shadow-md hover:bg-surface-container transition-all duration-300">
+<div class="flex items-center gap-3 mb-space-md">
+<div class="w-9 h-9 rounded-xl bg-surface-container-high flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-[20px]">web</span>
+</div>
+<h3 class="font-headline-card text-headline-card text-on-surface">Frontend &amp; Web</h3>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="px-space-sm py-1 rounded-lg bg-surface-container-highest text-on-surface-variant font-tag-label text-tag-label flex items-center gap-1.5 hover:text-on-surface transition-colors">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+            React
+          </span>
+<span class="px-space-sm py-1 rounded-lg bg-surface-container-highest text-on-surface-variant font-tag-label text-tag-label flex items-center gap-1.5 hover:text-on-surface transition-colors">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+            Tailwind CSS
+          </span>
+<span class="px-space-sm py-1 rounded-lg bg-surface-container-highest text-on-surface-variant font-tag-label text-tag-label flex items-center gap-1.5 hover:text-on-surface transition-colors">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+            Vite
+          </span>
+<span class="px-space-sm py-1 rounded-lg bg-surface-container-highest text-on-surface-variant font-tag-label text-tag-label flex items-center gap-1.5 hover:text-on-surface transition-colors">
+<span class="w-1.5 h-1.5 rounded-full bg-outline"></span>
+            HTML5 &amp; CSS3
+          </span>
+<span class="px-space-sm py-1 rounded-lg bg-surface-container-highest text-on-surface-variant font-tag-label text-tag-label flex items-center gap-1.5 hover:text-on-surface transition-colors">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+            Responsive Design
+          </span>
+<span class="px-space-sm py-1 rounded-lg bg-surface-container-highest text-on-surface-variant font-tag-label text-tag-label flex items-center gap-1.5 hover:text-on-surface transition-colors">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+            UI/UX Principles
+          </span>
+</div>
+</div>
+<!-- Category 3: Backend & Databases -->
+<div class="p-space-lg rounded-2xl bg-surface-container-low shadow-md hover:bg-surface-container transition-all duration-300">
+<div class="flex items-center gap-3 mb-space-md">
+<div class="w-9 h-9 rounded-xl bg-surface-container-high flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-[20px]">database</span>
+</div>
+<h3 class="font-headline-card text-headline-card text-on-surface">Backend &amp; Databases</h3>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="px-space-sm py-1 rounded-lg bg-surface-container-highest text-on-surface-variant font-tag-label text-tag-label flex items-center gap-1.5 hover:text-on-surface transition-colors">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+            Node.js
+          </span>
+<span class="px-space-sm py-1 rounded-lg bg-surface-container-highest text-on-surface-variant font-tag-label text-tag-label flex items-center gap-1.5 hover:text-on-surface transition-colors">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+            MySQL
+          </span>
+<span class="px-space-sm py-1 rounded-lg bg-surface-container-highest text-on-surface-variant font-tag-label text-tag-label flex items-center gap-1.5 hover:text-on-surface transition-colors">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+            MariaDB
+          </span>
+<span class="px-space-sm py-1 rounded-lg bg-surface-container-highest text-on-surface-variant font-tag-label text-tag-label flex items-center gap-1.5 hover:text-on-surface transition-colors">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+            SQLite
+          </span>
+<span class="px-space-sm py-1 rounded-lg bg-surface-container-highest text-on-surface-variant font-tag-label text-tag-label flex items-center gap-1.5 hover:text-on-surface transition-colors">
+<span class="w-1.5 h-1.5 rounded-full bg-outline"></span>
+            Relational Schema Design
+          </span>
+<span class="px-space-sm py-1 rounded-lg bg-surface-container-highest text-on-surface-variant font-tag-label text-tag-label flex items-center gap-1.5 hover:text-on-surface transition-colors">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+            REST APIs
+          </span>
+</div>
+</div>
+<!-- Category 4: Tools & Workflow -->
+<div class="p-space-lg rounded-2xl bg-surface-container-low shadow-md hover:bg-surface-container transition-all duration-300">
+<div class="flex items-center gap-3 mb-space-md">
+<div class="w-9 h-9 rounded-xl bg-surface-container-high flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[20px]">construction</span>
+</div>
+<h3 class="font-headline-card text-headline-card text-on-surface">Tools &amp; Workflow</h3>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="px-space-sm py-1 rounded-lg bg-surface-container-highest text-on-surface-variant font-tag-label text-tag-label flex items-center gap-1.5 hover:text-on-surface transition-colors">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+            Git &amp; GitHub
+          </span>
+<span class="px-space-sm py-1 rounded-lg bg-surface-container-highest text-on-surface-variant font-tag-label text-tag-label flex items-center gap-1.5 hover:text-on-surface transition-colors">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+            VS Code
+          </span>
+<span class="px-space-sm py-1 rounded-lg bg-surface-container-highest text-on-surface-variant font-tag-label text-tag-label flex items-center gap-1.5 hover:text-on-surface transition-colors">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+            Systems Architecture
+          </span>
+</div>
+</div>
+</div>
+</section>
+<!-- LET'S CONNECT / CONTACT SECTION -->
+<section class="flex flex-col space-y-space-lg mb-space-2xl" id="contact">
+<div>
+<div class="flex items-center gap-2 text-primary mb-1">
+<span class="material-symbols-outlined text-[16px]">chat_bubble_outline</span>
+<span class="font-kicker-eyebrow text-kicker-eyebrow tracking-widest uppercase">Get In Touch</span>
+</div>
+<h2 class="font-headline-section text-headline-section text-on-surface tracking-tight">
+        Let's Connect
+      </h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+        I'm always open to discussing new software development opportunities, academic collaborations, or project ideas.
+      </p>
+</div>
+<!-- Contact Wrapper Card -->
+<div class="p-space-xl rounded-2xl bg-surface-container-low shadow-xl space-y-space-xl">
+<!-- Primary Action Cards (Email & GitHub) -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-lg">
+<!-- Email Card -->
+<div class="p-space-lg rounded-xl bg-surface-container flex flex-col justify-between space-y-space-md shadow-sm">
+<div>
+<div class="flex items-center gap-2 text-outline mb-space-xs">
+<span class="material-symbols-outlined text-[16px]">mail</span>
+<span class="font-kicker-eyebrow text-kicker-eyebrow uppercase tracking-wider">Email Address</span>
+</div>
+<p class="font-headline-card text-headline-card text-on-surface select-all truncate">
+              danielaplan.bsit2024@gmail.com
+            </p>
+</div>
+<div class="flex items-center gap-2 pt-space-xs">
+<a class="inline-flex items-center gap-2 px-space-md py-2 rounded-lg bg-primary text-on-primary font-tag-label text-tag-label font-medium hover:bg-primary-fixed transition-colors" href="mailto:danielaplan.bsit2024@gmail.com">
+<span class="material-symbols-outlined text-[16px]">send</span>
+<span class="">Send Message</span>
+</a>
+<button class="inline-flex items-center gap-1.5 px-space-md py-2 rounded-lg bg-surface-container-high text-on-surface-variant hover:text-on-surface hover:bg-surface-bright transition-colors font-tag-label text-tag-label" onclick="copyEmail('contact-btn')">
+<span class="material-symbols-outlined text-[16px]">content_copy</span>
+<span id="copy-email-contact-text" class="">Copy</span>
+</button>
+</div>
+</div>
+<!-- GitHub Profile Card -->
+<div class="p-space-lg rounded-xl bg-surface-container flex flex-col justify-between space-y-space-md shadow-sm">
+<div>
+<div class="flex items-center gap-2 text-outline mb-space-xs">
+<span class="material-symbols-outlined text-[16px]">folder_open</span>
+<span class="font-kicker-eyebrow text-kicker-eyebrow uppercase tracking-wider">GitHub Repository Profile</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Explore open source repositories, student coursework, and ongoing builds.
+            </p>
+</div>
+<a class="flex items-center justify-between p-space-sm rounded-lg bg-surface-container-high hover:bg-surface-bright text-on-surface transition-all group" href="https://github.com/danielaplan" rel="noopener noreferrer" target="_blank">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors text-[18px]">account_tree</span>
+<span class="font-code-snippet text-code-snippet text-on-surface">github.com/danielaplan</span>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors text-[16px]">arrow_outward</span>
+</a>
+</div>
+</div>
+<!-- Social Links Row -->
+<div class="flex flex-wrap items-center gap-space-sm pt-space-xs">
+<span class="font-kicker-eyebrow text-kicker-eyebrow uppercase text-outline tracking-wider mr-2">Find me on:</span>
+<a class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface-container text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors font-tag-label text-tag-label" href="https://instagram.com" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[15px] text-pink-400">photo_camera</span>
+<span class="">Instagram</span>
+</a>
+<a class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface-container text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors font-tag-label text-tag-label" href="https://facebook.com" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[15px] text-primary">public</span>
+<span class="">Facebook</span>
+</a>
+<a class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface-container text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors font-tag-label text-tag-label" href="https://linkedin.com" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[15px] text-primary-container">work</span>
+<span class="">LinkedIn</span>
+</a>
+</div>
+<!-- Location & SLA Footnote -->
+<div class="pt-space-md flex flex-col sm:flex-row items-center justify-between text-outline text-body-sm gap-2">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px]">home_pin</span>
+<span class="">Based in Caloocan City, Metro Manila, Philippines</span>
+</div>
+<div class="flex items-center gap-2 text-tertiary">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+<span class="font-tag-label text-tag-label">Response time: typically within 24 hours</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+<script>
+  // Email Copy Utility
+  function copyEmail(source) {
+    const email = 'danielaplan.bsit2024@gmail.com';
+    navigator.clipboard.writeText(email).then(() => {
+      if (source === 'hero-btn') {
+        const textElem = document.getElementById('copy-email-hero-text');
+        if (textElem) {
+          textElem.textContent = 'Copied!';
+          setTimeout(() => { textElem.textContent = 'Copy Email'; }, 2000);
+        }
+      } else if (source === 'contact-btn') {
+        const textElem = document.getElementById('copy-email-contact-text');
+        if (textElem) {
+          textElem.textContent = 'Copied!';
+          setTimeout(() => { textElem.textContent = 'Copy'; }, 2000);
+        }
+      }
+    });
+  }
+
+  // Interactive Project Filter Logic
+  let currentCategory = 'all';
+
+  function setFilter(cat) {
+    currentCategory = cat;
+    
+    // Update filter buttons appearance
+    const buttons = document.querySelectorAll('.filter-btn');
+    buttons.forEach(btn => {
+      const btnCat = btn.getAttribute('data-filter');
+      if (btnCat === cat) {
+        btn.className = 'filter-btn px-space-sm py-1.5 rounded-lg font-tag-label text-tag-label bg-primary text-on-primary font-medium transition-all';
+      } else {
+        btn.className = 'filter-btn px-space-sm py-1.5 rounded-lg font-tag-label text-tag-label bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all';
+      }
+    });
+
+    filterProjects();
+  }
+
+  function filterProjects() {
+    const query = (document.getElementById('project-search')?.value || '').toLowerCase().trim();
+    const cards = document.querySelectorAll('.project-card');
+
+    cards.forEach(card => {
+      const category = card.getAttribute('data-category') || '';
+      const tech = (card.getAttribute('data-tech') || '').toLowerCase();
+      const text = card.textContent.toLowerCase();
+
+      const matchesCat = (currentCategory === 'all') || (category === currentCategory);
+      const matchesSearch = !query || text.includes(query) || tech.includes(query);
+
+      if (matchesCat && matchesSearch) {
+        card.style.display = 'flex';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+</script></div></main><footer class="w-full bg-surface-container-lowest"><div class="max-w-[1120px] mx-auto px-space-lg py-space-xl flex flex-col md:flex-row items-center justify-between gap-space-lg"><div class="flex flex-col sm:flex-row items-center gap-space-xs text-center sm:text-left"><span class="font-tag-label text-tag-label text-on-surface-variant">© 2025 Daniel Aplan.</span><span class="hidden sm:inline font-tag-label text-tag-label text-outline-variant">•</span><span class="font-tag-label text-tag-label text-outline">Crafted with disciplined systems</span></div><div class="flex items-center gap-space-md"><a class="font-tag-label text-tag-label text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1" data-path="project-archive" href="#"><span class="">GitHub</span><span class="material-symbols-outlined text-[12px]">arrow_outward</span></a><a class="font-tag-label text-tag-label text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1" data-path="contact" href="#"><span class="">LinkedIn</span><span class="material-symbols-outlined text-[12px]">arrow_outward</span></a><a class="font-tag-label text-tag-label text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1" data-path="contact" href="#"><span class="">Instagram</span><span class="material-symbols-outlined text-[12px]">arrow_outward</span></a><a class="font-tag-label text-tag-label text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1" data-path="contact" href="#"><span class="">Email</span><span class="material-symbols-outlined text-[12px]">alternate_email</span></a><a aria-label="Back to top" class="p-1.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors ml-space-xs" href="#"><span class="material-symbols-outlined text-[18px]">arrow_upward</span></a></div></div></footer>
+
+</body></html>
