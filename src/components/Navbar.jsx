@@ -2,38 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Sun, Moon, Menu, X, Mail } from 'lucide-react';
 import Github from './icons/Github';
 
-export default function Navbar({ darkMode, setDarkMode, onCopyEmail }) {
+export default function Navbar({ darkMode, setDarkMode, onCopyEmail, activeSection, setActiveSection }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('home');
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const isAtBottom = window.innerHeight + Math.round(window.scrollY) >= document.documentElement.scrollHeight - 80;
-      if (isAtBottom) {
-        setActiveSection('contact');
-        return;
-      }
-
-      const sections = ['home', 'projects', 'skills', 'contact'];
-      let currentSection = 'home';
-
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          if (rect.top <= 160) {
-            currentSection = section;
-          }
-        }
-      }
-
-      setActiveSection(currentSection);
-    };
-
-    handleScroll();
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   const navLinks = [
     { name: 'About', href: '#home', id: 'home' },
@@ -45,13 +15,13 @@ export default function Navbar({ darkMode, setDarkMode, onCopyEmail }) {
   const handleNavClick = (e, href, id) => {
     e.preventDefault();
     setMobileMenuOpen(false);
-    setActiveSection(id);
+    setActiveSection?.(id);
     const target = document.querySelector(href);
     if (target) {
       if (window.__lenis) {
-        window.__lenis.scrollTo(target, { offset: -60, duration: 1.2 });
+        window.__lenis.scrollTo(target, { offset: 0, duration: 1.1 });
       } else {
-        const top = target.getBoundingClientRect().top + window.pageYOffset - 60;
+        const top = target.getBoundingClientRect().top + window.pageYOffset;
         window.scrollTo({ top, behavior: 'smooth' });
       }
     }
@@ -69,15 +39,6 @@ export default function Navbar({ darkMode, setDarkMode, onCopyEmail }) {
           <span className="text-base sm:text-lg font-semibold tracking-tight">daniel</span>
           <span className="text-accent font-bold">.</span>
         </a>
-
-        {/* Live Status Pill — separate from brand, but visually grouped */}
-        <div className="hidden lg:flex neo-raised-xs items-center gap-1.5 px-3 py-1.5 text-[11px] font-medium ml-3">
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full text-accent opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-current text-accent"></span>
-          </span>
-          <span>Available for hire</span>
-        </div>
 
         {/* Desktop Nav — right cluster */}
         <div className="hidden md:flex items-center gap-2 ml-auto">
@@ -143,15 +104,6 @@ export default function Navbar({ darkMode, setDarkMode, onCopyEmail }) {
       {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
         <div className="md:hidden mx-3 mb-3 neo-raised-md p-3 transition-all">
-          {/* Live status — shown inside mobile menu since the header doesn't have room */}
-          <div className="lg:hidden neo-raised-xs flex items-center justify-center gap-1.5 px-3 py-2 text-[11px] font-medium mb-2">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full text-accent opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-current text-accent"></span>
-            </span>
-            <span>Available for hire</span>
-          </div>
-
           <nav className="grid grid-cols-2 gap-2">
             {navLinks.map((link) => {
               const isActive = activeSection === link.id;

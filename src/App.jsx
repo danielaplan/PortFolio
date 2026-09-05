@@ -6,11 +6,13 @@ import Projects from './components/Projects';
 import Skills from './components/Skills';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import InteractiveDotGrid from './components/ui/InteractiveDotGrid';
 import { Check } from 'lucide-react';
 
 export default function App() {
   const [darkMode, setDarkMode] = useState(true);
   const [copiedToast, setCopiedToast] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
 
   // Initialize Lenis Fluid Smooth Inertia Scroll
   useEffect(() => {
@@ -39,6 +41,46 @@ export default function App() {
       window.__lenis = null;
       lenis.destroy();
     };
+  }, []);
+
+  // Section Observer for Fluid Stage Activation & Tab Synchronization (RAF Throttled)
+  useEffect(() => {
+    const sections = ['home', 'projects', 'skills', 'contact'];
+    let ticking = false;
+
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrollY = window.scrollY;
+          const windowHeight = window.innerHeight;
+          const isAtBottom = windowHeight + Math.round(scrollY) >= document.documentElement.scrollHeight - 90;
+
+          if (isAtBottom) {
+            setActiveSection('contact');
+            ticking = false;
+            return;
+          }
+
+          let current = 'home';
+          for (const id of sections) {
+            const el = document.getElementById(id);
+            if (el) {
+              const rect = el.getBoundingClientRect();
+              if (rect.top <= windowHeight * 0.45 && rect.bottom >= windowHeight * 0.15) {
+                current = id;
+              }
+            }
+          }
+          setActiveSection(current);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   useEffect(() => {
@@ -85,6 +127,18 @@ export default function App() {
   return (
     <div className="relative min-h-screen w-full max-w-full flex flex-col font-sans overflow-x-clip">
 
+      {/* Ambient Background Textures & Lighting */}
+      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden="true">
+        {/* Soft Ambient Top Spotlight Glow */}
+        <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[950px] h-[550px] bg-gradient-to-b from-cyan-500/12 dark:from-cyan-500/10 via-transparent to-transparent rounded-full blur-3xl" />
+        
+        {/* Interactive Google-Style Breathing & Cursor-Reactive Canvas Dot Grid */}
+        <InteractiveDotGrid darkMode={darkMode} />
+        
+        {/* Tactile Matte Paper/Slate Noise Texture */}
+        <div className="absolute inset-0 bg-noise-texture opacity-60 pointer-events-none" />
+      </div>
+
       {/* Toast Notification — neumorphic raised */}
       <div
         className={`fixed bottom-6 right-6 z-50 transition-all duration-300 transform ${copiedToast
@@ -105,20 +159,37 @@ export default function App() {
         darkMode={darkMode}
         setDarkMode={setDarkMode}
         onCopyEmail={handleCopyEmail}
+        activeSection={activeSection}
+        setActiveSection={setActiveSection}
       />
 
-      {/* Main Content */}
-      <main className="relative z-10 flex-grow pt-24">
+      {/* Main Content: Fluid Scroll Stages with In-View Focus */}
+      <main className="relative z-10 flex-grow pt-16">
+        
+        {/* Stage 1: About / Hero */}
         <Hero
+          isActive={activeSection === 'home'}
           onCopyEmail={handleCopyEmail}
           copiedEmail={copiedToast}
         />
-        <Projects />
-        <Skills />
+
+        {/* Stage 2: Projects & Engineering */}
+        <Projects
+          isActive={activeSection === 'projects'}
+        />
+
+        {/* Stage 3: Skills & Technologies */}
+        <Skills
+          isActive={activeSection === 'skills'}
+        />
+
+        {/* Stage 4: Let's Connect */}
         <Contact
+          isActive={activeSection === 'contact'}
           onCopyEmail={handleCopyEmail}
           copiedEmail={copiedToast}
         />
+
       </main>
 
       {/* Footer */}
