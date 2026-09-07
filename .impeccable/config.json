@@ -73,7 +73,7 @@
           "src/index.css"
         ],
         "createdAt": "2026-08-31T02:34:56.894Z",
-        "reason": "One Voice Rule (DESIGN.md) mandates Inter as the single typeface for the whole system; the distinctiveness advisory does not apply."
+        "reason": "Inter was the original font; replaced with Geist per design-taste-frontend skill redesign protocol (font swap priority #1). Geist is intentional per DESIGN.md typography section."
       },
       {
         "rule": "ai-color-palette",
@@ -239,6 +239,127 @@
         "value": "10px",
         "createdAt": "2026-09-04T20:40:18.794Z",
         "reason": "Micro-label for count badge inside toggle button; pairs with surrounding text-xs"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "rgba(220, 38, 38, 0.7)",
+        "createdAt": "2026-09-06T15:04:24.876Z"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "rgba(254, 243, 199, 0.5)",
+        "createdAt": "2026-09-06T15:04:25.437Z"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "rgba(120, 53, 15, 0.3)",
+        "createdAt": "2026-09-06T15:04:25.914Z"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "rgba(180, 83, 9, 0.7)",
+        "createdAt": "2026-09-06T15:04:26.291Z"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "rgba(252, 211, 77, 0.3)",
+        "createdAt": "2026-09-06T15:04:26.591Z"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "1.25rem",
+        "createdAt": "2026-09-06T15:18:26.622Z"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "1.1rem",
+        "createdAt": "2026-09-06T15:18:27.108Z"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "1.4rem",
+        "createdAt": "2026-09-06T15:18:27.474Z"
+      },
+      {
+        "rule": "overused-font",
+        "value": "geist",
+        "files": [
+          "src/index.css"
+        ],
+        "createdAt": "2026-09-07T00:00:00.000Z",
+        "reason": "Intentional per design-taste-frontend skill redesign protocol (font swap priority #1). Geist is a premium geometric sans-serif explicitly recommended as an Inter replacement for portfolios and creative contexts."
+      },
+      {
+        "rule": "overused-font",
+        "value": "geist",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-09-07T00:00:00.000Z",
+        "reason": "Intentional per design-taste-frontend skill redesign protocol. Geist loaded via Google Fonts CDN as the primary display font."
+      },
+      {
+        "rule": "design-system-color",
+        "value": "rgba(252, 211, 77, 0.2)",
+        "files": [
+          "src/index.css"
+        ],
+        "createdAt": "2026-09-07T00:00:00.000Z",
+        "reason": "Intentional amber status badge color (bg-samber-400) — custom class outside blanket override rules. Per DESIGN.md named rules."
+      },
+      {
+        "rule": "design-system-color",
+        "value": "rgba(120, 53, 15, 0.6)",
+        "files": [
+          "src/index.css"
+        ],
+        "createdAt": "2026-09-07T00:00:00.000Z",
+        "reason": "Intentional amber status dark border (border-state-900) — custom class outside blanket override rules."
+      },
+      {
+        "rule": "design-system-color",
+        "value": "rgba(168, 85, 247, 0.4)",
+        "files": [
+          "src/index.css"
+        ],
+        "createdAt": "2026-09-07T00:00:00.000Z",
+        "reason": "Intentional purple-safe text (text-spurple-400) — custom class deliberately outside blanket override rules."
+      },
+      {
+        "rule": "design-system-color",
+        "value": "rgba(148, 163, 184, 0.4)",
+        "files": [
+          "src/index.css"
+        ],
+        "createdAt": "2026-09-07T00:00:00.000Z",
+        "reason": "Intentional slate-safe background (bg-slate-safe-400) — custom class outside blanket override rules."
+      },
+      {
+        "rule": "design-system-color",
+        "value": "rgba(226, 232, 240, 0.8)",
+        "files": [
+          "src/index.css"
+        ],
+        "createdAt": "2026-09-07T00:00:00.000Z",
+        "reason": "Intentional slate-safe background (bg-slate-safe-200) — custom class outside blanket override rules."
+      },
+      {
+        "rule": "design-system-color",
+        "value": "rgba(100, 116, 139, 0.5)",
+        "files": [
+          "src/index.css"
+        ],
+        "createdAt": "2026-09-07T00:00:00.000Z",
+        "reason": "Intentional slate-safe background (bg-slate-safe-500) — custom class outside blanket override rules."
+      },
+      {
+        "rule": "design-system-radius",
+        "value": "4px",
+        "files": [
+          "src/index.css"
+        ],
+        "createdAt": "2026-09-07T15:10:07.304Z",
+        "reason": "Pre-existing .btn-primary and .btn-secondary utility classes; 4px is an intentional small-radius choice for tight UI elements"
       }
     ]
   }

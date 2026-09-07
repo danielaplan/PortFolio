@@ -223,8 +223,8 @@ export default function ProjectSpotlightCarousel({
       {/* Top Stage Bar: Contextual Category Chip & Counter / Steppers */}
       <div className="max-w-5xl w-full mx-auto flex items-center justify-between gap-3 mb-3 sm:mb-5 px-2 sm:px-4">
         <div className="flex items-center gap-2">
-          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-slate-200/90 dark:bg-slate-900/90 border border-slate-300/80 dark:border-slate-800 text-[11px] font-mono font-semibold text-cyan-700 dark:text-cyan-400 shadow-2xs">
-            <span className="w-1.5 h-1.5 rounded-full bg-cyan-600 dark:bg-cyan-400 animate-pulse" />
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-slate-200/90 dark:bg-slate-900/90 border border-slate-300/80 dark:border-slate-800 text-[11px] font-mono font-semibold text-signal-blue dark:text-metric-cyan shadow-2xs">
+            <span className="w-1.5 h-1.5 rounded-full bg-signal-blue dark:bg-metric-cyan animate-pulse" />
             <span>SPOTLIGHT 3D</span>
           </span>
           {projects[currentIndex]?.category && (
@@ -236,7 +236,7 @@ export default function ProjectSpotlightCarousel({
 
         <div className="flex items-center gap-1.5 p-1 rounded-xl bg-slate-200/90 dark:bg-slate-900/90 border border-slate-300/80 dark:border-slate-800 shadow-sm">
           <span 
-            className="px-2.5 py-0.5 text-xs font-mono font-bold text-cyan-800 dark:text-cyan-400 select-none"
+            className="px-2.5 py-0.5 text-xs font-mono font-bold text-signal-blue-deep dark:text-metric-cyan select-none"
             aria-live="polite"
             aria-atomic="true"
           >
@@ -326,7 +326,7 @@ export default function ProjectSpotlightCarousel({
                 aria-label={`Go to ${proj.title}`}
                 className={`shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-200 cursor-pointer focus-visible:ring-2 focus-visible:ring-cyan-400/60 ${
                   isActive
-                    ? "bg-cyan-500 text-slate-950 font-bold shadow-md shadow-cyan-500/20 scale-105"
+                    ? "bg-signal-blue text-white font-bold shadow-md shadow-signal-blue/20 scale-105"
                     : "bg-slate-200/90 dark:bg-slate-900/90 text-slate-700 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-300 dark:hover:bg-slate-800 border border-slate-300/80 dark:border-slate-800"
                 }`}
               >

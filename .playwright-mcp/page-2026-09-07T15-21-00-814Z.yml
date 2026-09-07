@@ -1,0 +1,287 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - link "daniel ." [ref=e6] [cursor=pointer]:
+        - /url: "#home"
+        - generic [ref=e7]: daniel
+        - generic [ref=e8]: .
+      - generic [ref=e9]:
+        - link "Home" [ref=e10] [cursor=pointer]:
+          - /url: "#home"
+        - link "Projects" [ref=e11] [cursor=pointer]:
+          - /url: "#projects"
+        - link "Skills" [ref=e12] [cursor=pointer]:
+          - /url: "#skills"
+        - link "Contact" [ref=e13] [cursor=pointer]:
+          - /url: "#contact"
+        - button "Switch to dark mode" [ref=e15] [cursor=pointer]
+  - main [ref=e18]:
+    - generic [ref=e21]:
+      - img "Daniel Aplan" [ref=e25]
+      - generic [ref=e26]:
+        - generic [ref=e27]: 3rd-Year BSIT @ University of Caloocan City
+        - generic [ref=e31]:
+          - heading "Daniel Aplan" [level=1] [ref=e32]
+          - paragraph [ref=e33]: Full-Stack Developer
+        - paragraph [ref=e34]: I build high-performance web applications that scale across any screen. Focused on full-stack architecture with TypeScript, React, C#, and relational database design, learning by continuously engineering and shipping production builds.
+        - generic [ref=e35]:
+          - generic [ref=e36]: Caloocan City, Philippines
+          - generic [ref=e40]: •
+          - generic [ref=e41]: Full-Stack Developer
+        - generic [ref=e45]:
+          - generic [ref=e46]:
+            - generic [ref=e47]: 6+
+            - generic [ref=e48]: Featured Builds
+          - generic [ref=e49]:
+            - generic [ref=e50]: React · Node
+            - generic [ref=e51]: Core Stack
+          - generic [ref=e52]:
+            - generic [ref=e53]: Active
+            - generic [ref=e58]: Available For Hire
+        - generic [ref=e59]:
+          - link "GitHub Profile" [ref=e60] [cursor=pointer]:
+            - /url: https://github.com/danielaplan
+          - button "Copy Email" [ref=e65] [cursor=pointer]
+          - link "View Projects" [ref=e69] [cursor=pointer]:
+            - /url: "#projects"
+    - generic [ref=e74]:
+      - generic [ref=e75]:
+        - generic [ref=e76]:
+          - paragraph [ref=e77]: Interactive Spotlight
+          - heading "Projects & Engineering" [level=2] [ref=e78]
+          - paragraph [ref=e79]: Featured applications, enterprise systems, and architecture builds presented with full technical breakdowns.
+        - generic [ref=e80]:
+          - generic [ref=e81]:
+            - button "Projects (06)" [ref=e82] [cursor=pointer]
+            - button "Live Repos" [ref=e83] [cursor=pointer]
+          - button "Refresh GitHub Repos" [ref=e86] [cursor=pointer]
+      - generic [ref=e89]:
+        - 'article "Featured project: FaithQuest" [ref=e90] [cursor=pointer]':
+          - generic [ref=e91]:
+            - generic [ref=e92]:
+              - generic [ref=e93]: Featured Spotlight
+              - generic [ref=e94]: Active Dev
+              - generic [ref=e95]: "2024"
+            - generic [ref=e96]:
+              - generic [ref=e97]:
+                - heading "FaithQuest" [level=3] [ref=e98]
+                - generic [ref=e99]: TypeScript
+              - paragraph [ref=e100]: Gamified Church Program & Attendance Management
+            - paragraph [ref=e101]: FaithQuest is a comprehensive, teacher-first ministry tracking and gamification application designed for Sunday school classes, youth ministries, and outreach programs. It empowers educators and leaders to manage student rosters, record attendance, award spiritual milestone points, run interactive Bible quizzes, and gamify Christian education through an intuitive live dashboard.
+            - generic [ref=e102]:
+              - generic [ref=e103]: TypeScript
+              - generic [ref=e106]: Python
+              - generic [ref=e111]: Interactive UI
+              - generic [ref=e118]: Gamification
+              - generic [ref=e125]: Web
+          - generic [ref=e130]:
+            - generic [ref=e131]: faithquest.cloud.internal/dashboard
+            - generic [ref=e137]: DS
+        - generic [ref=e144]:
+          - 'article "Project: Big Brew POS & CRM" [ref=e145] [cursor=pointer]':
+            - generic [ref=e146]:
+              - generic [ref=e147]: "2024"
+              - generic [ref=e148]: Systems & CRM
+            - heading "Big Brew POS & CRM" [level=3] [ref=e149]
+            - paragraph [ref=e150]: Point-of-sale and customer relationship management suite for hospitality businesses. Streamlines orders, inventory, and patron engagement from a unified dashboard.
+            - generic [ref=e152]:
+              - generic [ref=e153]: Node.js
+              - generic [ref=e156]: PostgreSQL
+              - generic [ref=e157]: React
+              - generic [ref=e163]: POS Systems
+              - generic [ref=e164]: CRM
+          - 'article "Project: Inventory Tycoon" [ref=e170] [cursor=pointer]':
+            - generic [ref=e171]:
+              - generic [ref=e172]: "2024"
+              - generic [ref=e173]: Enterprise Systems
+            - heading "Inventory Tycoon" [level=3] [ref=e174]
+            - paragraph [ref=e175]: Real-time inventory management platform with automated replenishment, multi-warehouse tracking, and predictive analytics for supply chain optimization.
+            - generic [ref=e177]:
+              - generic [ref=e178]: Python
+              - generic [ref=e183]: Django
+              - generic [ref=e184]: Redis
+              - generic [ref=e185]: Analytics
+              - generic [ref=e186]: Cloud
+          - 'article "Project: Empire Salon Management" [ref=e187] [cursor=pointer]':
+            - generic [ref=e188]:
+              - generic [ref=e189]: "2024"
+              - generic [ref=e190]: Web & Apps
+            - heading "Empire Salon Management" [level=3] [ref=e191]
+            - paragraph [ref=e192]: Full-featured salon management system handling appointments, client profiles, billing, and staff scheduling with an elegant, intuitive interface.
+            - generic [ref=e194]:
+              - generic [ref=e195]: Next.js
+              - generic [ref=e196]: Prisma
+              - generic [ref=e197]: Tailwind CSS
+              - generic [ref=e200]: Scheduling
+              - generic [ref=e201]: Payments
+          - 'article "Project: Youth Event Summit Portal" [ref=e202] [cursor=pointer]':
+            - generic [ref=e203]:
+              - generic [ref=e204]: "2024"
+              - generic [ref=e205]: Web & Apps
+            - heading "Youth Event Summit Portal" [level=3] [ref=e206]
+            - paragraph [ref=e207]: Centralized portal for youth event coordination featuring registration, agenda management, networking tools, and community engagement metrics.
+            - generic [ref=e209]:
+              - generic [ref=e210]: React
+              - generic [ref=e216]: Firebase
+              - generic [ref=e217]: Realtime
+              - generic [ref=e218]: Events
+              - generic [ref=e219]: UI/UX
+        - 'article "Architecture project: Multi-Tier Enterprise Topologies" [ref=e226] [cursor=pointer]':
+          - generic [ref=e227]:
+            - generic [ref=e228]:
+              - generic [ref=e229]: Architecture & Systems
+              - generic [ref=e230]: "2024"
+            - heading "Multi-Tier Enterprise Topologies" [level=3] [ref=e231]
+            - paragraph [ref=e232]: Comprehensive multi-tier enterprise topology framework featuring distributed microservices mesh, API gateway orchestration, and resilient circuit-breaker patterns for scalable production architectures.
+          - button "View Repositories" [ref=e234]
+    - generic [ref=e238]:
+      - generic [ref=e239]:
+        - generic [ref=e240]:
+          - paragraph [ref=e241]: Technical Proficiency
+          - heading "Skills & Technologies" [level=2] [ref=e242]
+          - paragraph [ref=e243]: Core competencies acquired through coursework at University of Caloocan City and hands-on full-stack engineering.
+        - generic [ref=e244]: 20+ Technologies & Tools
+      - generic [ref=e247]:
+        - generic [ref=e248]:
+          - generic [ref=e249]:
+            - generic [ref=e250]:
+              - generic [ref=e255]:
+                - heading "Programming Languages" [level=3] [ref=e256]
+                - text: OOP & Server Logic
+              - generic [ref=e257]: Core Logic
+            - paragraph [ref=e258]: Fundamental languages for algorithms, backend services, and interactive web architecture.
+            - generic [ref=e259]:
+              - generic [ref=e260]: Java
+              - generic [ref=e264]: C#
+              - generic [ref=e268]: PHP
+              - generic [ref=e272]: JavaScript
+              - generic [ref=e276]: TypeScript
+          - generic [ref=e280]: Applied in core full-stack builds, APIs, and data modeling.
+        - generic [ref=e283]:
+          - generic [ref=e284]:
+            - generic [ref=e285]:
+              - generic [ref=e290]:
+                - heading "Frontend & Web" [level=3] [ref=e291]
+                - text: Responsive & Modern
+              - generic [ref=e292]: Interactive UI
+            - paragraph [ref=e293]: Building fast, accessible, and dynamic interfaces with component-driven architecture.
+            - generic [ref=e294]:
+              - generic [ref=e295]: React
+              - generic [ref=e302]: Tailwind CSS
+              - generic [ref=e306]: Vite
+              - generic [ref=e311]: HTML5 & CSS3
+              - generic [ref=e315]: Responsive Design
+              - generic [ref=e319]: UI/UX Principles
+          - generic [ref=e323]: Applied in single-page apps, design systems, and responsive layouts.
+        - generic [ref=e326]:
+          - generic [ref=e327]:
+            - generic [ref=e328]:
+              - generic [ref=e333]:
+                - heading "Backend & Databases" [level=3] [ref=e334]
+                - text: Data & APIs
+              - generic [ref=e335]: Architecture
+            - paragraph [ref=e336]: Designing structured database schemas, RESTful endpoints, and server workflows.
+            - generic [ref=e337]:
+              - generic [ref=e338]: Node.js
+              - generic [ref=e342]: MySQL
+              - generic [ref=e346]: MariaDB
+              - generic [ref=e350]: SQLite
+              - generic [ref=e354]: Relational Schema Design
+              - generic [ref=e358]: REST APIs
+          - generic [ref=e362]: Applied in relational database querying, authentication, and CRUD services.
+        - generic [ref=e365]:
+          - generic [ref=e366]:
+            - generic [ref=e367]:
+              - generic [ref=e372]:
+                - heading "Tools & Workflow" [level=3] [ref=e373]
+                - text: Engineering Lifecycle
+              - generic [ref=e374]: DevOps & Tooling
+            - paragraph [ref=e375]: Version control, modern IDE tooling, and structured software architecture workflows.
+            - generic [ref=e376]:
+              - generic [ref=e377]: Git & GitHub
+              - generic [ref=e381]: VS Code
+              - generic [ref=e385]: Systems Architecture
+          - generic [ref=e389]: Applied in collaborative Git workflows, code reviews, and project releases.
+      - generic [ref=e392]:
+        - generic [ref=e398]:
+          - heading "Full-Stack Integration" [level=4] [ref=e399]
+          - paragraph [ref=e400]: Connecting interactive React user interfaces with secure backend endpoints and schema logic.
+        - generic [ref=e406]:
+          - heading "Structured Schemas" [level=4] [ref=e407]
+          - paragraph [ref=e408]: Designing normalized relational models with MySQL and MariaDB with consistent query integrity.
+        - generic [ref=e414]:
+          - heading "Clean Architecture" [level=4] [ref=e415]
+          - paragraph [ref=e416]: Writing modular, maintainable code with strict typing, Git versioning, and design consistency.
+    - generic [ref=e418]:
+      - generic [ref=e419]:
+        - generic [ref=e420]:
+          - paragraph [ref=e421]: Get In Touch
+          - heading "Let's Connect" [level=2] [ref=e422]
+          - paragraph [ref=e423]: Open for full-stack software development opportunities, engineering roles, and direct inquiries.
+        - generic [ref=e424]: Direct Inquiries Open
+      - generic [ref=e427]:
+        - generic [ref=e428]:
+          - generic [ref=e429]:
+            - generic [ref=e430]:
+              - generic [ref=e431]: Available for New Roles & Software Builds
+              - generic [ref=e436]: Full-Time / Freelance
+            - generic [ref=e437]:
+              - generic [ref=e438]:
+                - generic [ref=e439]: Direct Contact Channel
+                - generic [ref=e443]: Preferred
+              - paragraph [ref=e444]: danielaplan.bsit2024@gmail.com
+              - generic [ref=e445]:
+                - button "Copy Email Address" [ref=e446] [cursor=pointer]
+                - link "Open Mail App" [ref=e450] [cursor=pointer]:
+                  - /url: mailto:danielaplan.bsit2024@gmail.com?subject=Portfolio%20Inquiry%20-%20Daniel%20Aplan
+          - generic [ref=e454]:
+            - generic [ref=e455]: Caloocan City, Metro Manila
+            - generic [ref=e459]: •
+            - generic [ref=e460]: UTC+8 (PHT)
+        - generic [ref=e464]:
+          - link [ref=e465] [cursor=pointer]:
+            - /url: https://www.linkedin.com/in/daniel-aplan-5ba561334/
+            - generic [ref=e472]:
+              - heading "LinkedIn Profile" [level=3] [ref=e473]
+              - paragraph [ref=e474]: in/daniel-aplan
+          - link [ref=e478] [cursor=pointer]:
+            - /url: https://github.com/danielaplan
+            - generic [ref=e484]:
+              - heading "GitHub Repositories" [level=3] [ref=e485]
+              - paragraph [ref=e486]: github.com/danielaplan
+          - generic [ref=e490]:
+            - link [ref=e491] [cursor=pointer]:
+              - /url: https://www.instagram.com/dniel_apln/
+              - generic [ref=e497]:
+                - heading "Instagram" [level=4] [ref=e498]
+                - paragraph [ref=e499]: "@dniel_apln"
+            - link [ref=e502] [cursor=pointer]:
+              - /url: https://www.facebook.com/daniel.aplan.9/
+              - generic [ref=e507]:
+                - heading "Facebook" [level=4] [ref=e508]
+                - paragraph [ref=e509]: daniel.aplan
+          - generic [ref=e512]:
+            - generic [ref=e513]: Turnaround Time
+            - generic [ref=e517]: Replies within 24h
+  - contentinfo [ref=e519]:
+    - generic [ref=e520]:
+      - generic [ref=e521]:
+        - generic [ref=e522]: © 2026 Daniel Aplan.
+        - generic [ref=e523]: •
+        - generic [ref=e524]: Crafted with React & Tailwind
+      - navigation [ref=e526]:
+        - link "About" [ref=e527] [cursor=pointer]:
+          - /url: "#home"
+        - link "Projects" [ref=e528] [cursor=pointer]:
+          - /url: "#projects"
+        - link "Skills" [ref=e529] [cursor=pointer]:
+          - /url: "#skills"
+        - link "Contact" [ref=e530] [cursor=pointer]:
+          - /url: "#contact"
+      - button "Scroll back to top" [ref=e531] [cursor=pointer]:
+        - generic [ref=e532]: Back to Top
+  - generic:
+    - generic:
+      - generic:
+        - text: "Email copied:"
+        - strong: danielaplan.bsit2024@gmail.com

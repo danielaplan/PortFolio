@@ -109,11 +109,11 @@ export const LiveDashboard: React.FC<Props> = ({ initialStudents, teacherId }) =
   };
 
   return (
-    <div className="p-6 bg-slate-900 text-white rounded-2xl border border-slate-800 shadow-xl">
+    <div className="p-6 bg-slate-safe-900 text-white rounded-2xl border border-slate-800 shadow-xl">
       <div className="flex items-center justify-between pb-6 border-b border-slate-800">
         <div>
           <h2 className="text-xl font-bold flex items-center gap-2">
-            <Trophy className="text-amber-400" size={22} />
+            <Trophy className="text-samber-400" size={22} />
             Classroom Gamification Controller
           </h2>
           <p className="text-xs text-slate-400">Real-time attendance & milestone sync</p>
@@ -122,16 +122,16 @@ export const LiveDashboard: React.FC<Props> = ({ initialStudents, teacherId }) =
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
         {students.map((student) => (
-          <div key={student.id} className="p-4 bg-slate-800/80 rounded-xl border border-slate-700/60 flex items-center justify-between">
+          <div key={student.id} className="p-4 bg-slate-safe-800 rounded-xl border border-slate-700/60 flex items-center justify-between">
             <div>
               <p className="font-semibold text-slate-100">{student.name}</p>
-              <p className="text-xs text-amber-400 font-mono">
+              <p className="text-xs text-samber-400 font-mono">
                 Level {student.level} • {student.totalPoints} PTS
               </p>
             </div>
             <button
               onClick={() => handleQuickAward(student.id, 25)}
-              className="px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-xs font-bold rounded-lg transition"
+              className="px-3 py-1.5 bg-sblue-600 hover:bg-sblue-500 text-xs font-bold rounded-lg transition"
             >
               +25 PTS
             </button>

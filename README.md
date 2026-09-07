@@ -17,7 +17,7 @@ Unlike most peer-student portfolios (static screenshots inside a generic templat
 | Build tool | Vite 8 |
 | Styling | Tailwind CSS v4 (via `@tailwindcss/vite`) |
 | Icons | `lucide-react` |
-| Fonts | Inter (self-hosted via `@fontsource/inter`) |
+| Fonts | Geist (Google Fonts CDN) |
 | Smooth scroll | Lenis |
 | Testing | Vitest + happy-dom |
 

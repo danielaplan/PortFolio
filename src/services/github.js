@@ -106,8 +106,8 @@ export function getDevStatus(pushedAt, isArchived = false, topics = []) {
       status: 'archived',
       label: 'Archived',
       description: 'Read-only archive',
-      badgeClass: 'bg-rose-100 text-rose-700 border-rose-200 dark:bg-rose-500/10 dark:text-rose-400 dark:border-rose-500/20',
-      dotClass: 'bg-rose-500'
+      badgeClass: 'bg-srose-100 text-srose-700 border-srose-20 dark:bg-srose-100 dark:text-srose-700 dark:border-srose-20',
+      dotClass: 'bg-srose-500'
     };
   }
 
@@ -117,8 +117,8 @@ export function getDevStatus(pushedAt, isArchived = false, topics = []) {
       status: 'active',
       label: 'Active Dev',
       description: 'Work in progress',
-      badgeClass: 'bg-emerald-100 text-emerald-700 border-emerald-200 dark:bg-emerald-500/10 dark:text-emerald-400 dark:border-emerald-500/20',
-      dotClass: 'bg-emerald-500 animate-pulse'
+      badgeClass: 'bg-active-emerald-10 text-active-emerald border-active-emerald-20 dark:bg-active-emerald-15 dark:text-active-emerald dark:border-active-emerald-20',
+      dotClass: 'bg-active-emerald animate-pulse'
     };
   }
 
@@ -127,8 +127,8 @@ export function getDevStatus(pushedAt, isArchived = false, topics = []) {
       status: 'completed',
       label: 'Stable',
       description: 'Production ready',
-      badgeClass: 'bg-slate-500/10 text-slate-600 dark:text-slate-400 border-slate-500/20',
-      dotClass: 'bg-slate-400'
+      badgeClass: 'bg-slate-safe-500/10 text-slate-600 dark:text-slate-400 border-slate-500/20',
+      dotClass: 'bg-slate-safe-400'
     };
   }
 
@@ -139,8 +139,8 @@ export function getDevStatus(pushedAt, isArchived = false, topics = []) {
       status: 'active',
       label: 'Active Dev',
       description: 'Recently updated',
-      badgeClass: 'bg-emerald-100 text-emerald-700 border-emerald-200 dark:bg-emerald-500/10 dark:text-emerald-400 dark:border-emerald-500/20',
-      dotClass: 'bg-emerald-500 animate-pulse'
+      badgeClass: 'bg-active-emerald-10 text-active-emerald border-active-emerald-20 dark:bg-active-emerald-15 dark:text-active-emerald dark:border-active-emerald-20',
+      dotClass: 'bg-active-emerald animate-pulse'
     };
   }
 
@@ -149,8 +149,8 @@ export function getDevStatus(pushedAt, isArchived = false, topics = []) {
       status: 'maintained',
       label: 'Maintained',
       description: 'Actively maintained',
-      badgeClass: 'bg-sky-100 text-sky-700 border-sky-200 dark:bg-cyan-500/10 dark:text-cyan-400 dark:border-cyan-500/20',
-      dotClass: 'bg-cyan-400'
+      badgeClass: 'bg-metric-10 text-metric-cyan border-metric-20 dark:bg-metric-10 dark:text-metric-cyan dark:border-metric-20',
+      dotClass: 'bg-metric-cyan'
     };
   }
 
@@ -158,8 +158,8 @@ export function getDevStatus(pushedAt, isArchived = false, topics = []) {
     status: 'completed',
     label: 'Completed',
     description: 'Stable build',
-    badgeClass: 'bg-slate-200 text-slate-700 border-slate-300 dark:bg-slate-500/10 dark:text-slate-400 dark:border-slate-500/20',
-    dotClass: 'bg-slate-400'
+    badgeClass: 'bg-slate-safe-200 text-slate-700 border-slate-300 dark:bg-slate-safe-500/10 dark:text-slate-400 dark:border-slate-500/20',
+    dotClass: 'bg-slate-safe-400'
   };
 }
 

@@ -1,10 +1,8 @@
 @import "tailwindcss";
 
-@custom-variant dark (&:is(.dark, .dark *));
-
 @layer base {
   html, body {
-    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: 'Geist', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     width: 100%;
     max-width: 100vw;
     overflow-x: clip;
@@ -13,290 +11,155 @@
 
   ::selection {
     background-color: var(--accent);
-    color: var(--bg-color);
+    color: #ffffff;
   }
 }
 
 /* =========================================================
-   NEUMORPHIC DESIGN SYSTEM — Single source of truth
-   ------------------------------------------------------------
-   Surface = --bg-color, lifted by paired soft shadows.
-   Two equidistant shadows (light + dark) create depth without
-   borders. Inset variants flip the shadows inward for pressed
-   states. One soft accent color handles interactive highlights.
+   THEME TOKENS — Light (default) + Dark (data-theme="dark")
+   ========================================================= */
+
+[data-theme="dark"] {
+  --bg-canvas:   #09090b;
+  --bg-surface:  #18181b;
+  --bg-raised:   #27272a;
+  --border:      rgba(39, 39, 42, 0.8);
+  --border-hover:#52525b;
+
+  --text-primary:   #ffffff;
+  --text-secondary: #d4d4d8;
+  --text-tertiary: #71717a;
+
+  --accent:          #3b82f6;
+  --accent-hover:    #06b6d4;
+  --accent-soft:     rgba(59, 130, 246, 0.1);
+
+  --card-shadow: 0 2px 8px rgba(0,0,0,0.4);
+  --card-shadow-hover: 0 4px 16px rgba(0,0,0,0.6);
+}
+
+/* =========================================================
+   WARM BONE PALETTE — Premium Utilitarian Minimalism
    ========================================================= */
 
 :root {
-  /* Surface */
-  --bg-color: #e6e7ee;
-  --bg-elevated: #eef0f7;
+  --bg-canvas:   #F7F6F3;
+  --bg-surface:  #FFFFFF;
+  --bg-raised:   #F9F9F8;
+  --border:      #EAEAEA;
+  --border-hover:#C0C0C0;
 
-  /* Text */
-  --text-primary: #1a1d23;
-  --text-secondary: #5a6172;
-  --text-tertiary: #8a92a6;
+  --text-primary:   #111111;
+  --text-secondary: #787774;
+  --text-tertiary: #AAAAAA;
 
-  /* Shadow pair (equidistant from surface) */
-  --shadow-light: #ffffff;
-  --shadow-dark: #babecc;
+  --accent:          #111111;
+  --accent-hover:    #333333;
+  --accent-soft:     rgba(17, 17, 17, 0.07);
 
-  /* Theme-opposite monochrome highlight */
-  --accent: #000000;
-  --accent-hover: #000000;
-  --accent-soft: rgba(0, 0, 0, 0.14);
+  /* Semantic status — kept as-is (semantic, not decorative) */
+  --status-active:    #10b981;
+  --status-maintained:#06b6d4;
 
-  /* Shadow tiers — five levels of elevation */
-  --neo-xs: 2px 2px 4px var(--shadow-dark), -2px -2px 4px var(--shadow-light);
-  --neo-sm: 4px 4px 8px var(--shadow-dark), -4px -4px 8px var(--shadow-light);
-  --neo-md: 6px 6px 12px var(--shadow-dark), -6px -6px 12px var(--shadow-light);
-  --neo-lg: 8px 8px 16px var(--shadow-dark), -8px -8px 16px var(--shadow-light);
-  --neo-xl: 12px 12px 24px var(--shadow-dark), -12px -12px 24px var(--shadow-light);
+  /* Pastel spot colors — muted accent system */
+  --pastel-red-bg:    #FDEBEC;
+  --pastel-red-text:  #9F2F2D;
+  --pastel-blue-bg:   #E1F3FE;
+  --pastel-blue-text: #1F6C9F;
+  --pastel-green-bg:  #EDF3EC;
+  --pastel-green-text:#346538;
+  --pastel-yellow-bg: #FBF3DB;
+  --pastel-yellow-text:#956400;
 
-  /* Inset (pressed/recessed) variants */
-  --neo-inset-xs: inset 2px 2px 4px var(--shadow-dark), inset -2px -2px 4px var(--shadow-light);
-  --neo-inset-sm: inset 3px 3px 6px var(--shadow-dark), inset -3px -3px 6px var(--shadow-light);
-  --neo-inset-md: inset 5px 5px 10px var(--shadow-dark), inset -5px -5px 10px var(--shadow-light);
+  /* Card hover shadow — ultra-subtle, near-flat */
+  --card-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  --card-shadow-hover: 0 4px 16px rgba(0,0,0,0.08);
 
-  /* Radii */
-  --radius-sm: 10px;
-  --radius-md: 14px;
-  --radius-lg: 20px;
-  --radius-xl: 28px;
+  /* Code editor — intentionally dark (IDE contrast element) */
+  --code-bg:    #0b101b;
+  --code-text:  #e2e8f0;
+  --code-gutter:#1e293b;
+  --code-accent:#3b82f6;
 }
 
-.dark {
-  --bg-color: #2a2d36;
-  --bg-elevated: #323640;
-
-  --text-primary: #f3f5fa;
-  --text-secondary: #a0a8b8;
-  --text-tertiary: #6b7280;
-
-  --shadow-light: #353945;
-  --shadow-dark: #1f2128;
-
-  --accent: #ffffff;
-  --accent-hover: #ffffff;
-  --accent-soft: rgba(255, 255, 255, 0.18);
-}
-
-/* Surface application — single uniform background */
 html, body {
-  background: var(--bg-color);
+  background: var(--bg-canvas);
   color: var(--text-primary);
-  transition: background-color 0.25s ease, color 0.25s ease;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 body {
-  background-image: none;
+  background-color: var(--bg-canvas) !important;
+  background-image: none !important;
+  color: var(--text-primary) !important;
 }
 
 #root {
-  background: var(--bg-color);
+  background: var(--bg-canvas);
   color: var(--text-primary);
 }
 
-/* Google Developer Style Crisp Dot Matrix Background */
-.bg-google-dots {
-  background-image: radial-gradient(circle, rgba(71, 85, 105, 0.18) 1.25px, transparent 1.25px);
-  background-size: 20px 20px;
+/* =========================================================
+   SCROLL REVEAL ANIMATION
+   ========================================================= */
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.dark .bg-google-dots {
-  background-image: radial-gradient(circle, rgba(148, 163, 184, 0.16) 1.25px, transparent 1.25px);
-  background-size: 20px 20px;
-}
-
-.bg-noise-texture {
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.02'/%3E%3C/svg%3E");
-}
-
-.dark .bg-noise-texture {
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.025'/%3E%3C/svg%3E");
+.animate-fade-up {
+  animation: fade-up 600ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 /* =========================================================
-   CORE NEUMORPHIC UTILITIES
+   COMPONENT UTILITIES
    ========================================================= */
 
-/* Raised surfaces — five elevation tiers */
-.neo-raised-xs {
-  background: var(--bg-color);
-  border-radius: var(--radius-sm);
-  box-shadow: var(--neo-xs);
-  transition: box-shadow 220ms cubic-bezier(0.22, 1, 0.36, 1), transform 220ms ease, color 180ms ease;
+/* Card hover lift — minimal shadow shift */
+.card-hover {
+  transition: border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease;
+}
+.card-hover:hover {
+  border-color: var(--border-hover) !important;
+  box-shadow: var(--card-shadow-hover) !important;
+  transform: translateY(-2px);
 }
 
-.neo-raised {
-  background: var(--bg-color);
-  border-radius: var(--radius-md);
-  box-shadow: var(--neo-sm);
-  transition: box-shadow 220ms cubic-bezier(0.22, 1, 0.36, 1), transform 220ms ease, color 180ms ease;
-}
-
-.neo-raised-md {
-  background: var(--bg-color);
-  border-radius: var(--radius-md);
-  box-shadow: var(--neo-md);
-  transition: box-shadow 220ms cubic-bezier(0.22, 1, 0.36, 1), transform 220ms ease, color 180ms ease;
-}
-
-.neo-raised-lg {
-  background: var(--bg-color);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--neo-lg);
-  transition: box-shadow 220ms cubic-bezier(0.22, 1, 0.36, 1), transform 220ms ease, color 180ms ease;
-}
-
-.neo-raised-xl {
-  background: var(--bg-color);
-  border-radius: var(--radius-xl);
-  box-shadow: var(--neo-xl);
-  transition: box-shadow 220ms cubic-bezier(0.22, 1, 0.36, 1), transform 220ms ease, color 180ms ease;
-}
-
-button.neo-raised-xs:hover,
-button.neo-raised:hover,
-button.neo-raised-md:hover,
-button.neo-raised-lg:hover,
-a.neo-raised-xs:hover,
-a.neo-raised:hover,
-a.neo-raised-md:hover,
-a.neo-raised-lg:hover {
-  box-shadow: var(--neo-xs);
-  transform: translateY(-1px);
-}
-
-button.neo-raised-xs:active,
-button.neo-raised:active,
-button.neo-raised-md:active,
-button.neo-raised-lg:active,
-a.neo-raised-xs:active,
-a.neo-raised:active,
-a.neo-raised-md:active,
-a.neo-raised-lg:active {
-  box-shadow: var(--neo-inset-sm);
-  transform: translateY(1px);
-}
-
-/* Inset (pressed/recessed) surfaces */
-.neo-inset {
-  background: var(--bg-color);
-  border-radius: var(--radius-md);
-  box-shadow: var(--neo-inset-sm);
-  transition: box-shadow 220ms cubic-bezier(0.22, 1, 0.36, 1), transform 220ms ease, color 180ms ease;
-}
-
-.neo-inset-md {
-  background: var(--bg-color);
-  border-radius: var(--radius-md);
-  box-shadow: var(--neo-inset-md);
-  transition: box-shadow 220ms cubic-bezier(0.22, 1, 0.36, 1), transform 220ms ease, color 180ms ease;
-}
-
-button.neo-inset:hover,
-button.neo-inset-md:hover {
-  box-shadow: inset 3px 3px 6px var(--shadow-dark), inset -3px -3px 6px var(--shadow-light);
-  transform: translateY(-1px);
-}
-
-button.neo-inset:active,
-button.neo-inset-md:active {
-  box-shadow: var(--neo-inset-md);
-  transform: translateY(1px);
-}
-
-/* Flat surface — for content that shouldn't cast or receive shadows */
-.neo-flat {
-  background: var(--bg-color);
-  border-radius: var(--radius-md);
-  box-shadow: none;
-}
-
-/* Pressable — toggles between raised and inset on press */
-.neo-press {
-  background: var(--bg-color);
-  border-radius: var(--radius-md);
-  box-shadow: var(--neo-sm);
-  transition: box-shadow 0.2s ease;
-  cursor: pointer;
-}
-
-.neo-press:hover {
-  box-shadow: var(--neo-xs);
-}
-
-.neo-press:active,
-.neo-press[data-pressed="true"] {
-  box-shadow: var(--neo-inset-sm);
-}
-
-/* Interactive accent — raised button with accent text */
-.neo-accent {
-  background: var(--bg-color);
-  color: var(--accent);
-  border-radius: var(--radius-md);
-  box-shadow: var(--neo-sm);
-  transition: box-shadow 0.18s ease, color 0.18s ease;
-  cursor: pointer;
-}
-
-.neo-accent:hover {
-  color: var(--accent-hover);
-  box-shadow: var(--neo-xs);
-}
-
-.neo-accent:active {
-  box-shadow: var(--neo-inset-sm);
-}
-
-/* Solid accent button — black/white text on accent surface */
-.neo-accent-solid {
+/* Primary button — near-black solid */
+.btn-primary {
   background: var(--accent);
   color: #ffffff;
-  border-radius: var(--radius-md);
-  box-shadow: var(--neo-sm);
-  transition: box-shadow 0.18s ease, background-color 0.18s ease;
-  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 200ms ease, transform 120ms ease;
 }
-
-.neo-accent-solid:hover {
+.btn-primary:hover {
   background: var(--accent-hover);
-  box-shadow: var(--neo-xs);
+}
+.btn-primary:active {
+  transform: scale(0.98);
 }
 
-.neo-accent-solid:active {
-  box-shadow: var(--neo-inset-sm);
+/* Secondary button — white with border */
+.btn-secondary {
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  transition: border-color 200ms ease, box-shadow 200ms ease, transform 120ms ease;
 }
-
-/* =========================================================
-   INPUTS — naturally inset
-   ========================================================= */
-
-input, textarea, select {
-  background: var(--bg-color) !important;
-  color: var(--text-primary) !important;
-  border: none !important;
-  border-radius: var(--radius-md);
-  box-shadow: var(--neo-inset-md);
-  transition: box-shadow 0.2s ease;
-  outline: none;
+.btn-secondary:hover {
+  border-color: var(--border-hover);
+  box-shadow: var(--card-shadow);
 }
-
-input::placeholder, textarea::placeholder {
-  color: var(--text-tertiary);
-}
-
-input:focus, textarea:focus, select:focus {
-  box-shadow: var(--neo-inset-sm), 0 0 0 2px var(--accent-soft);
-}
-
-/* =========================================================
-   BUTTONS & LINKS — uniform radius
-   ========================================================= */
-
-button, a {
-  border-radius: var(--radius-md);
+.btn-secondary:active {
+  transform: scale(0.98);
 }
 
 /* =========================================================
@@ -308,47 +171,30 @@ a:focus-visible,
 input:focus-visible,
 textarea:focus-visible {
   outline: 2px solid var(--accent);
-  outline-offset: 3px;
-}
-
-nav a[data-active="true"] {
-  position: relative;
-}
-
-nav a[data-active="true"]::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: 3px;
-  width: 14px;
-  height: 2px;
-  border-radius: 999px;
-  background: currentColor;
-  transform: translateX(-50%);
+  outline-offset: 2px;
 }
 
 /* =========================================================
-   SCROLLBAR
+   SCROLLBAR — warm toned
    ========================================================= */
 
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--bg-color);
+  background: var(--bg-canvas);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--shadow-dark);
+  background: var(--border);
   border-radius: 9999px;
-  border: 2px solid var(--bg-color);
-  transition: background-color 0.2s ease;
+  border: 2px solid var(--bg-canvas);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--accent);
+  background: var(--text-tertiary);
 }
 
 /* =========================================================
@@ -376,231 +222,16 @@ html.lenis, html.lenis body {
 }
 
 /* =========================================================
-   TAILWIND UTILITY OVERRIDES
-   ------------------------------------------------------------
-   Force any legacy color utility into the neumorphic palette.
-   Prevents color leaks from breaking the monochrome system.
+   REDUCED MOTION — accessibility guard
    ========================================================= */
 
-/* Backgrounds → uniform surface */
-[class*="bg-blue-"],
-[class*="bg-sky-"],
-[class*="bg-indigo-"],
-[class*="bg-violet-"],
-[class*="bg-purple-"],
-[class*="bg-pink-"],
-[class*="bg-emerald-"],
-[class*="bg-green-"],
-[class*="bg-amber-"],
-[class*="bg-yellow-"],
-[class*="bg-orange-"],
-[class*="bg-cyan-"],
-[class*="bg-rose-"],
-[class*="bg-slate-100"],
-[class*="bg-slate-200"],
-[class*="bg-slate-300"],
-[class*="bg-slate-400"],
-[class*="bg-slate-500"],
-[class*="bg-slate-600"],
-[class*="bg-slate-700"],
-[class*="bg-slate-800"],
-[class*="bg-slate-900"],
-[class*="bg-slate-950"],
-[class*="bg-white"],
-[class*="bg-gray-"] {
-  background-color: var(--bg-color) !important;
-  color: var(--text-primary) !important;
-}
-
-/* Text colors → monochrome */
-[class*="text-blue-"],
-[class*="text-sky-"],
-[class*="text-indigo-"],
-[class*="text-violet-"],
-[class*="text-purple-"],
-[class*="text-pink-"],
-[class*="text-emerald-"],
-[class*="text-green-"],
-[class*="text-amber-"],
-[class*="text-yellow-"],
-[class*="text-orange-"],
-[class*="text-cyan-"],
-[class*="text-rose-"] {
-  color: var(--text-primary) !important;
-}
-
-/* Accent text — opt-in for interactive labels */
-.text-accent {
-  color: var(--accent) !important;
-}
-
-/* Borders → invisible (no hard edges in neumorphism) */
-[class*="border-blue-"],
-[class*="border-sky-"],
-[class*="border-emerald-"],
-[class*="border-amber-"],
-[class*="border-pink-"],
-[class*="border-purple-"],
-[class*="border-violet-"],
-[class*="border-slate-200"],
-[class*="border-slate-300"],
-[class*="border-slate-700"],
-[class*="border-slate-800"],
-[class*="border-white"] {
-  border-color: transparent !important;
-}
-
-/* Disable gradients — incompatible with monochromatic surface */
-[class*="bg-gradient"] {
-  background-image: none !important;
-}
-
-/* Disable backdrop-blur — needs translucent background */
-[class*="backdrop-blur"] {
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
-}
-
-/* Shadows — replace with neumorphic defaults */
-[class*="shadow-2xs"],
-[class*="shadow-xs"],
-[class*="shadow-sm"],
-[class*="shadow"],
-[class*="shadow-md"],
-[class*="shadow-lg"],
-[class*="shadow-xl"],
-[class*="shadow-2xl"] {
-  box-shadow: var(--neo-sm) !important;
-}
-
-/* Inline shadow overrides — keep for components that specify exact values */
-[class*="shadow-["] {
-  box-shadow: revert !important;
-}
-
-/* =========================================================
-   AMBIENT ANIMATIONS
-   ========================================================= */
-
-@keyframes ambientFloat1 {
-  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
-  50% { transform: translate3d(40px, 30px, 0) scale(1.08); }
-}
-
-@keyframes ambientFloat2 {
-  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
-  50% { transform: translate3d(-35px, 35px, 0) scale(0.94); }
-}
-
-.animate-ambient-1 { animation: ambientFloat1 18s ease-in-out infinite; will-change: transform; }
-.animate-ambient-2 { animation: ambientFloat2 22s ease-in-out infinite; will-change: transform; }
-
-/* Ambient glows get hidden in dark mode for a calmer look */
-.dark .animate-ambient-1,
-.dark .animate-ambient-2 {
-  display: none;
-}
-
-/* =========================================================
-   PROFILE IMAGE TREATMENT
-   ========================================================= */
-
-img[alt="Daniel Aplan"] {
-  filter: grayscale(1) contrast(1.04);
-}
-
-/* =========================================================
-   ANIMATIONS — utility
-   ========================================================= */
-
-@keyframes neoPress {
-  0% { box-shadow: var(--neo-sm); }
-  100% { box-shadow: var(--neo-inset-sm); }
-}
-
-/* =========================================================
-   21st.dev FAN CAROUSEL STYLING & RESPONSIVENESS
-   ========================================================= */
-
-.fan-layout {
-  position: relative;
-  width: 100%;
-  height: 22rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  perspective: 1200px;
-}
-
-@media (min-width: 480px) {
-  .fan-layout {
-    height: 26rem;
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-up {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  [data-lenis-prevent] {
+    transition: none !important;
   }
 }
-
-@media (min-width: 640px) {
-  .fan-layout {
-    height: 28rem;
-  }
-}
-
-@media (min-width: 768px) {
-  .fan-layout {
-    height: 32rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .fan-layout {
-    height: 36rem;
-  }
-}
-
-.fan-card {
-  position: absolute;
-  width: 11rem;
-  height: 16.5rem;
-  border-radius: 1.5rem;
-  user-select: none;
-  transform-origin: center bottom;
-  will-change: transform, opacity;
-  box-sizing: border-box;
-  touch-action: pan-y;
-}
-
-@media (min-width: 480px) {
-  .fan-card {
-    width: 13rem;
-    height: 19.5rem;
-    border-radius: 1.75rem;
-  }
-}
-
-@media (min-width: 640px) {
-  .fan-card {
-    width: 15rem;
-    height: 22rem;
-    border-radius: 1.75rem;
-  }
-}
-
-@media (min-width: 768px) {
-  .fan-card {
-    width: 17rem;
-    height: 25rem;
-    border-radius: 2rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .fan-card {
-    width: 18.5rem;
-    height: 27rem;
-    border-radius: 2rem;
-  }
-}
-
-.fan-card img {
-  border-radius: inherit;
-}
-

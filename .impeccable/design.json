@@ -1,121 +1,181 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-08-31T10:10:00+08:00",
+  "generatedAt": "2026-09-07T00:00:00+08:00",
   "title": "Design System: Daniel Aplan — Portfolio",
   "extensions": {
     "colorMeta": {
-      "primary": { "role": "primary", "displayName": "Signal Blue", "canonical": "#3b82f6", "tonalRamp": ["oklch(0.20 0.19 250)", "oklch(0.30 0.19 250)", "oklch(0.40 0.19 250)", "oklch(0.50 0.19 250)", "oklch(0.62 0.19 250)", "oklch(0.72 0.15 250)", "oklch(0.82 0.10 250)", "oklch(0.93 0.04 250)"] },
-      "primary-deep": { "role": "primary", "displayName": "Signal Blue Deep", "canonical": "#2563eb", "tonalRamp": ["oklch(0.18 0.18 250)", "oklch(0.28 0.18 250)", "oklch(0.38 0.18 250)", "oklch(0.48 0.18 250)", "oklch(0.58 0.17 250)", "oklch(0.68 0.13 250)", "oklch(0.80 0.08 250)", "oklch(0.92 0.03 250)"] },
+      "signal-blue": { "role": "primary", "displayName": "Signal Blue", "canonical": "#3b82f6", "tonalRamp": ["oklch(0.18 0.18 250)", "oklch(0.28 0.18 250)", "oklch(0.38 0.18 250)", "oklch(0.48 0.18 250)", "oklch(0.58 0.17 250)", "oklch(0.68 0.13 250)", "oklch(0.80 0.08 250)", "oklch(0.92 0.03 250)"] },
+      "signal-blue-deep": { "role": "primary", "displayName": "Signal Blue Deep", "canonical": "#2563eb", "tonalRamp": ["oklch(0.18 0.18 250)", "oklch(0.28 0.18 250)", "oklch(0.38 0.18 250)", "oklch(0.48 0.18 250)", "oklch(0.58 0.17 250)", "oklch(0.68 0.13 250)", "oklch(0.80 0.08 250)", "oklch(0.92 0.03 250)"] },
+      "metric-cyan": { "role": "secondary", "displayName": "Metric Cyan", "canonical": "#06b6d4", "tonalRamp": ["oklch(0.25 0.10 200)", "oklch(0.35 0.11 200)", "oklch(0.45 0.12 200)", "oklch(0.55 0.13 200)", "oklch(0.65 0.13 200)", "oklch(0.75 0.10 200)", "oklch(0.85 0.06 200)", "oklch(0.94 0.02 200)"] },
       "status-active": { "role": "secondary", "displayName": "Active Emerald", "canonical": "#10b981", "tonalRamp": ["oklch(0.25 0.12 165)", "oklch(0.35 0.12 165)", "oklch(0.45 0.13 165)", "oklch(0.55 0.14 165)", "oklch(0.65 0.15 165)", "oklch(0.75 0.12 165)", "oklch(0.84 0.08 165)", "oklch(0.94 0.03 165)"] },
       "status-archived": { "role": "secondary", "displayName": "Archived Rose", "canonical": "#f43f5e", "tonalRamp": ["oklch(0.30 0.18 20)", "oklch(0.40 0.18 20)", "oklch(0.50 0.19 20)", "oklch(0.60 0.20 20)", "oklch(0.68 0.19 20)", "oklch(0.77 0.15 20)", "oklch(0.86 0.09 20)", "oklch(0.94 0.03 20)"] },
-      "status-maintained": { "role": "secondary", "displayName": "Maintained Cyan", "canonical": "#06b6d4", "tonalRamp": ["oklch(0.25 0.10 200)", "oklch(0.35 0.11 200)", "oklch(0.45 0.12 200)", "oklch(0.55 0.13 200)", "oklch(0.65 0.13 200)", "oklch(0.75 0.10 200)", "oklch(0.85 0.06 200)", "oklch(0.94 0.02 200)"] },
-      "star": { "role": "secondary", "displayName": "Star Amber", "canonical": "#f59e0b", "tonalRamp": ["oklch(0.30 0.12 75)", "oklch(0.40 0.12 75)", "oklch(0.50 0.13 75)", "oklch(0.60 0.14 75)", "oklch(0.70 0.14 75)", "oklch(0.80 0.11 75)", "oklch(0.88 0.07 75)", "oklch(0.95 0.03 75)"] },
-      "ink-strong": { "role": "neutral", "displayName": "Ink Strong", "canonical": "#0f172a", "tonalRamp": ["oklch(0.12 0.01 250)", "oklch(0.20 0.01 250)", "oklch(0.30 0.01 250)", "oklch(0.40 0.01 250)", "oklch(0.50 0.01 250)", "oklch(0.62 0.01 250)", "oklch(0.75 0.01 250)", "oklch(0.90 0.01 250)"] },
-      "neutral-bg": { "role": "neutral", "displayName": "Page Light", "canonical": "#f8fafc", "tonalRamp": ["oklch(0.92 0.005 250)", "oklch(0.95 0.004 250)", "oklch(0.97 0.004 250)", "oklch(0.98 0.003 250)", "oklch(0.99 0.003 250)", "oklch(0.99 0.002 250)", "oklch(0.995 0.002 250)", "oklch(1.00 0.00 250)"] },
-      "glass-light": { "role": "neutral", "displayName": "Glass Light", "canonical": "rgba(255, 255, 255, 0.92)", "tonalRamp": ["rgba(255,255,255,0.70)", "rgba(255,255,255,0.76)", "rgba(255,255,255,0.82)", "rgba(255,255,255,0.86)", "rgba(255,255,255,0.90)", "rgba(255,255,255,0.94)", "rgba(255,255,255,0.97)", "rgba(255,255,255,1.00)"] },
-      "glass-dark": { "role": "neutral", "displayName": "Glass Dark", "canonical": "rgba(15, 23, 42, 0.65)", "tonalRamp": ["rgba(15,23,42,0.45)", "rgba(15,23,42,0.50)", "rgba(15,23,42,0.55)", "rgba(15,23,42,0.60)", "rgba(15,23,42,0.65)", "rgba(15,23,42,0.72)", "rgba(15,23,42,0.82)", "rgba(15,23,42,0.95)"] }
+      "status-maintained": { "role": "secondary", "displayName": "Maintained Cyan", "canonical": "#22d3ee", "tonalRamp": ["oklch(0.25 0.10 195)", "oklch(0.35 0.11 195)", "oklch(0.45 0.12 195)", "oklch(0.55 0.13 195)", "oklch(0.65 0.13 195)", "oklch(0.75 0.10 195)", "oklch(0.85 0.06 195)", "oklch(0.94 0.02 195)"] },
+      "star-amber": { "role": "secondary", "displayName": "Star Amber", "canonical": "#f59e0b", "tonalRamp": ["oklch(0.30 0.12 75)", "oklch(0.40 0.12 75)", "oklch(0.50 0.13 75)", "oklch(0.60 0.14 75)", "oklch(0.70 0.14 75)", "oklch(0.80 0.11 75)", "oklch(0.88 0.07 75)", "oklch(0.95 0.03 75)"] },
+      "ink-strong": { "role": "neutral", "displayName": "Ink Strong", "canonical": "#ffffff", "tonalRamp": ["oklch(0.20 0.00 0)", "oklch(0.35 0.00 0)", "oklch(0.50 0.00 0)", "oklch(0.65 0.00 0)", "oklch(0.78 0.00 0)", "oklch(0.88 0.00 0)", "oklch(0.94 0.00 0)", "oklch(1.00 0.00 0)"] },
+      "ink-muted": { "role": "neutral", "displayName": "Ink Muted", "canonical": "#a1a1aa", "tonalRamp": ["oklch(0.25 0.00 0)", "oklch(0.40 0.00 0)", "oklch(0.55 0.00 0)", "oklch(0.65 0.00 0)", "oklch(0.74 0.00 0)", "oklch(0.82 0.00 0)", "oklch(0.92 0.00 0)", "oklch(0.99 0.00 0)"] },
+      "bg-page": { "role": "neutral", "displayName": "Page Ground", "canonical": "#09090b", "tonalRamp": ["oklch(0.10 0.00 250)", "oklch(0.15 0.00 250)", "oklch(0.22 0.00 250)", "oklch(0.30 0.00 250)", "oklch(0.40 0.00 250)", "oklch(0.55 0.00 250)", "oklch(0.70 0.00 250)", "oklch(0.85 0.00 250)"] },
+      "bg-card": { "role": "neutral", "displayName": "Panel Surface", "canonical": "rgba(9, 9, 11, 0.6)", "tonalRamp": ["rgba(9,9,11,0.40)", "rgba(9,9,11,0.50)", "rgba(9,9,11,0.60)", "rgba(9,9,11,0.70)", "rgba(9,9,11,0.80)", "rgba(9,9,11,0.90)", "rgba(9,9,11,0.96)", "rgba(9,9,11,1.00)"] },
+      "border-base": { "role": "neutral", "displayName": "Hairline Border", "canonical": "rgba(39, 39, 42, 0.8)", "tonalRamp": ["rgba(39,39,42,0.30)", "rgba(39,39,42,0.45)", "rgba(39,39,42,0.60)", "rgba(39,39,42,0.70)", "rgba(39,39,42,0.80)", "rgba(63,63,70,0.80)", "rgba(82,82,91,0.80)", "rgba(113,113,122,0.80)"] }
     },
     "typographyMeta": {
-      "display": { "displayName": "Display", "purpose": "Hero name and modal titles — bold, tracking-tight." },
+      "display": { "displayName": "Display", "purpose": "Hero name at text-8xl — the only text at this scale." },
+      "headline": { "displayName": "Headline", "purpose": "Section headings, always paired with a // mono eyebrow." },
+      "title": { "displayName": "Title", "purpose": "Card titles, modal headers." },
       "body": { "displayName": "Body", "purpose": "Descriptions, captions, modal copy." },
-      "label": { "displayName": "Label", "purpose": "Uppercase tracked eyebrows, status pills, tag chips." },
-      "mono": { "displayName": "Mono", "purpose": "Code lines and tech-stack tags." }
+      "label": { "displayName": "Label", "purpose": "Uppercase tracked eyebrows, status pills, badge text. Almost always monospace." },
+      "mono": { "displayName": "Mono", "purpose": "Tech metadata: commit counts, file names, status pills, // annotations." }
     },
     "shadows": [
-      { "name": "glass-rest", "value": "0 8px 24px -6px rgba(0,0,0,0.04)", "purpose": "Default card depth in light mode, paired with inset sheen." },
-      { "name": "glass-hover", "value": "0 20px 40px -12px rgba(59,130,246,0.15)", "purpose": "Card on hover/focus, with 2.5px lift and blue border." },
-      { "name": "panel", "value": "0 12px 32px -8px rgba(0,0,0,0.05)", "purpose": "Modal and large glass containers." }
+      { "name": "spotlight-card", "value": "0 25px 50px -12px rgba(0,0,0,0.25)", "purpose": "The largest shadow in the system — only on the Project Spotlight container." },
+      { "name": "modal-backdrop", "value": "bg-zinc-950/80", "purpose": "Modal backdrop dim — no actual shadow, just a darkened scrim." },
+      { "name": "active-pill", "value": "shadow-md shadow-signal-blue/20", "purpose": "The active project jump-pill in the fan carousel — paired with scale-105." },
+      { "name": "active-tab", "value": "shadow-xs", "purpose": "Selected code-file tab in the Code Inspector." },
+      { "name": "neo-sm-disabled", "value": "var(--neo-sm)", "purpose": "Tailwind's blanket [class*=shadow-] override maps every shadow-* utility to neo-sm in light mode; this is the canonical default that survives after Tailwind shadows are rewritten." }
     ],
     "motion": [
-      { "name": "ambient-float-1", "value": "ambientFloat1 18s ease-in-out infinite", "purpose": "Slow drift of the first set of background gradient orbs." },
-      { "name": "ambient-float-2", "value": "ambientFloat2 22s ease-in-out infinite", "purpose": "Slower counter-drift of the second set of orbs." },
-      { "name": "card-ease", "value": "cubic-bezier(0.16, 1, 0.3, 1) 0.35s", "purpose": "Card hover/lift transition." },
-      { "name": "pill-slide", "value": "cubic-bezier(0.25, 1, 0.5, 1) 0.3s", "purpose": "Nav active-pill slide." }
+      { "name": "panel-lift", "value": "transition-all duration-200 ease-out", "purpose": "Default panel/card hover transition. Border and bg shift together." },
+      { "name": "primary-cta-shift", "value": "transition-all duration-200 ease-out", "purpose": "Signal Blue → Metric Cyan shift on every primary CTA. Same curve as panel-lift." },
+      { "name": "pill-active", "value": "transition-all duration-200 + active:scale-95", "purpose": "Button press feedback — universal across the system." },
+      { "name": "ambient-float-1", "value": "ambientFloat1 18s ease-in-out infinite", "purpose": "Defined in CSS but hidden in dark mode. Drift of the first set of background gradient orbs (legacy)." },
+      { "name": "ambient-float-2", "value": "ambientFloat2 22s ease-in-out infinite", "purpose": "Defined in CSS but hidden in dark mode. Counter-drift of the second orb set (legacy)." },
+      { "name": "fan-carousel-arc", "value": "gsap.to 0.55s power2.out", "purpose": "Parabolic arc fanning + 3D rotation of the fan carousel cards." },
+      { "name": "fan-press", "value": "0.35s power2.in", "purpose": "Outer cards fading to opacity 0 + scale 0.65." },
+      { "name": "pulse-soft", "value": "animate-pulse + relative flex halo", "purpose": "Pulsing dots on the Available-for-hire status and the dashboard top-bar live indicator." }
     ],
     "breakpoints": [
       { "name": "sm", "value": "640px" },
       { "name": "md", "value": "768px" },
-      { "name": "lg", "value": "1024px" }
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1280px" },
+      { "name": "fan-480", "value": "480px" },
+      { "name": "fan-768", "value": "768px" },
+      { "name": "fan-1024", "value": "1024px" }
     ]
   },
   "components": [
     {
-      "name": "Primary Button",
+      "name": "Primary CTA (Signal Blue → Cyan Shift)",
       "kind": "button",
-      "refersTo": "button-primary",
-      "description": "Primary action (GitHub, Send, Copy-confirm). Signal Blue Deep fill, white label.",
-      "html": "<button class=\"ds-btn-primary\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg>Primary action</button>",
-      "css": ".ds-btn-primary { display:inline-flex; align-items:center; gap:0.5rem; background:#2563eb; color:#fff; font-family:Inter,system-ui,sans-serif; font-size:0.875rem; font-weight:500; padding:0.625rem 1.25rem; border:none; border-radius:12px; cursor:pointer; transition:background .2s, transform .2s; } .ds-btn-primary:hover { background:#1d4ed8; } .ds-btn-primary:focus-visible { outline:2px solid #3b82f6; outline-offset:2px; }"
+      "refersTo": "primary-cta",
+      "description": "Primary action button. Signal Blue at rest, Metric Cyan on hover, white label. The signature cyan-shift transition is the system's most distinctive motion.",
+      "html": "<button class=\"ds-cta-primary\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 17 5.77 3.39 3.39 0 0 0 16.56 2S14.94.91 12 3.06 7.44 2 7.44 2A3.39 3.39 0 0 0 7 5.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 11 19.13V23\"/></svg>GitHub Profile</button>",
+      "css": ".ds-cta-primary { display:inline-flex; align-items:center; gap:0.5rem; background:#3b82f6; color:#fff; font-family:Geist,system-ui,sans-serif; font-weight:700; font-size:0.875rem; padding:0.625rem 1.25rem; border:none; border-radius:0.75rem; cursor:pointer; transition:background-color 0.2s ease-out, transform 0.15s ease-out; } .ds-cta-primary:hover { background:#06b6d4; } .ds-cta-primary:active { transform:scale(0.95); } .ds-cta-primary:focus-visible { outline:none; box-shadow:0 0 0 2px rgba(34,211,238,0.6); }"
     },
     {
-      "name": "Glass Button",
+      "name": "Secondary CTA (Zinc Panel)",
       "kind": "button",
-      "refersTo": "button-secondary",
-      "description": "Secondary action on glass (Copy, social). Translucent white fill, hairline border.",
-      "html": "<button class=\"ds-btn-glass\">Secondary</button>",
-      "css": ".ds-btn-glass { display:inline-flex; align-items:center; gap:0.5rem; background:rgba(255,255,255,0.7); color:#0f172a; font-family:Inter,system-ui,sans-serif; font-weight:600; font-size:0.875rem; padding:0.625rem 1.25rem; border:1px solid rgba(255,255,255,0.8); border-radius:12px; cursor:pointer; transition:background .2s; } .ds-btn-glass:hover { background:#fff; } .ds-btn-glass:focus-visible { outline:2px solid #3b82f6; outline-offset:2px; }"
+      "refersTo": "secondary-cta",
+      "description": "Secondary action button. Translucent zinc-950/60 fill, hairline zinc-800 border, muted text. Border brightens to zinc-700 on hover.",
+      "html": "<button class=\"ds-cta-secondary\">Copy Email</button>",
+      "css": ".ds-cta-secondary { display:inline-flex; align-items:center; gap:0.5rem; background:rgba(9,9,11,0.6); color:#d4d4d8; border:1px solid rgba(39,39,42,0.8); font-family:Geist,system-ui,sans-serif; font-weight:600; font-size:0.875rem; padding:0.625rem 1.25rem; border-radius:0.75rem; cursor:pointer; transition:all 0.2s ease-out; } .ds-cta-secondary:hover { background:rgba(24,24,27,0.4); border-color:rgba(63,63,70,0.9); color:#fff; } .ds-cta-secondary:active { transform:scale(0.95); } .ds-cta-secondary:focus-visible { outline:none; box-shadow:0 0 0 2px rgba(34,211,238,0.6); }"
     },
     {
-      "name": "Tag Chip",
+      "name": "Project Panel Card (BentoGrid)",
+      "kind": "card",
+      "refersTo": "project-card",
+      "description": "Universal project card surface. bg-zinc-950/60 + border-zinc-800 hairline + rounded-2xl. Hover lifts (-translate-y-0.5) and brightens (bg-zinc-900/40 + border-zinc-700).",
+      "html": "<article class=\"ds-card-project\"><div class=\"ds-card-badges\"><span class=\"ds-badge-spotlight\">Featured Spotlight</span></div><h3>Project title</h3><p>Description.</p></article>",
+      "css": ".ds-card-project { position:relative; background:rgba(9,9,11,0.6); border:1px solid rgba(39,39,42,0.8); border-radius:1rem; padding:1.25rem; transition:all 0.2s ease-out; cursor:pointer; } .ds-card-project:hover { background:rgba(24,24,27,0.4); border-color:rgba(63,63,70,0.9); transform:translateY(-2px); } .ds-card-badges { display:flex; gap:0.5rem; margin-bottom:0.75rem; flex-wrap:wrap; } .ds-card-project h3 { font-size:1.25rem; font-weight:700; color:#fff; margin-bottom:0.5rem; letter-spacing:-0.01em; } .ds-card-project p { font-size:0.875rem; color:#a1a1aa; line-height:1.6; }"
+    },
+    {
+      "name": "Dashboard Tile (Stitch Style)",
+      "kind": "card",
+      "refersTo": "dashboard-tile",
+      "description": "The signature inner dashboard. Dark gradient (#0a0e17 → #020617) with a cyan dot-grid overlay, three metric columns (Throughput / Database / Security) with cyan progress bars, and a telemetry stream footer.",
+      "html": "<article class=\"ds-dashboard\"><div class=\"ds-dash-header\"><span class=\"ds-pulse-cyan\"></span><span class=\"ds-mono\">Enterprise Live Node</span></div><div class=\"ds-metrics\"><div class=\"ds-metric\"><span>Throughput</span><span>1.2k req/s</span><div class=\"ds-bar\"><div class=\"ds-bar-fill\" style=\"width:82%\"></div></div></div></div><div class=\"ds-telemetry\"><span>telemetry.stream active</span><span class=\"ds-live\">● LIVE</span></div></article>",
+      "css": ".ds-dashboard { background:linear-gradient(135deg, #0a0e17, #020617); border-radius:1rem; padding:1rem; color:#fff; position:relative; overflow:hidden; font-family:ui-monospace,Menlo,monospace; } .ds-dashboard::before { content:''; position:absolute; inset:0; background-image:radial-gradient(circle, #06b6d4 1px, transparent 1px); background-size:16px 16px; opacity:0.15; pointer-events:none; } .ds-dash-header { display:flex; align-items:center; gap:0.5rem; padding-bottom:0.5rem; border-bottom:1px solid rgba(63,63,70,0.8); } .ds-pulse-cyan { width:0.5rem; height:0.5rem; border-radius:50%; background:#06b6d4; animation:pulse 2s ease-in-out infinite; } .ds-mono { font-size:0.6875rem; color:#06b6d4; text-transform:uppercase; font-weight:600; letter-spacing:0.05em; } .ds-metrics { display:grid; grid-template-columns:repeat(3, 1fr); gap:0.5rem; padding:0.75rem 0; } .ds-metric { background:rgba(9,9,11,0.9); border:1px solid rgba(39,39,42,0.8); border-radius:0.75rem; padding:0.625rem; } .ds-bar { height:4px; background:rgba(6,182,212,0.3); border-radius:2px; margin-top:0.375rem; overflow:hidden; } .ds-bar-fill { height:100%; background:#06b6d4; border-radius:2px; } .ds-telemetry { display:flex; align-items:center; justify-content:space-between; padding:0.5rem; background:rgba(2,6,23,0.9); border:1px solid rgba(39,39,42,0.8); border-radius:0.5rem; font-size:0.625rem; color:#06b6d4; } .ds-live { color:#10b981; font-weight:600; } @keyframes pulse { 0%, 100% { opacity:1; } 50% { opacity:0.5; } }"
+    },
+    {
+      "name": "Status Pill (Active Dev / Maintained / Archived)",
       "kind": "chip",
-      "refersTo": "tag-chip",
-      "description": "Tech-stack or filter tag. Monospace, 8px radius; selected state fills Signal Blue.",
-      "html": "<button class=\"ds-chip\" aria-pressed=\"false\">#react</button>",
-      "css": ".ds-chip { display:inline-flex; align-items:center; font-family:ui-monospace,Menlo,monospace; font-size:0.6875rem; color:#475569; background:rgba(255,255,255,0.8); border:1px solid rgba(226,232,240,0.8); border-radius:8px; padding:0.25rem 0.625rem; cursor:pointer; transition:all .15s; } .ds-chip:hover { border-color:#60a5fa; } .ds-chip[aria-pressed=\"true\"] { background:#2563eb; color:#fff; border-color:#2563eb; }"
+      "refersTo": "badge-status-active",
+      "description": "Dynamic status badge. Color and dot follow the dev-status from getDevStatus(): emerald for Active, cyan for Maintained, rose for Archived.",
+      "html": "<span class=\"ds-status ds-status-active\"><span class=\"ds-status-dot\"></span>Active Dev</span>",
+      "css": ".ds-status { display:inline-flex; align-items:center; gap:0.375rem; padding:0.25rem 0.625rem; border-radius:0.5rem; font-size:0.6875rem; font-weight:600; border:1px solid; font-family:ui-monospace,Menlo,monospace; } .ds-status-active { background:rgba(16,185,129,0.1); color:#10b981; border-color:rgba(16,185,129,0.3); } .ds-status-maintained { background:rgba(6,182,212,0.1); color:#06b6d4; border-color:rgba(6,182,212,0.3); } .ds-status-archived { background:rgba(244,63,94,0.1); color:#f43f5e; border-color:rgba(244,63,94,0.3); } .ds-status-dot { width:0.375rem; height:0.375rem; border-radius:50%; background:currentColor; }"
     },
     {
-      "name": "Project Glass Card",
+      "name": "Section Eyebrow + Headline",
+      "kind": "custom",
+      "refersTo": "panel-card",
+      "description": "The universal section-header pattern: a monospace Signal-Blue eyebrow with a // prefix, followed by an extrabold tracking-tight white headline. Used in Projects, Skills, Contact, and the modal.",
+      "html": "<div><div class=\"ds-eyebrow\"><span>// INTERACTIVE SPOTLIGHT</span></div><h2 class=\"ds-headline\">Projects & Engineering</h2></div>",
+      "css": ".ds-eyebrow { display:flex; align-items:center; gap:0.5rem; font-family:ui-monospace,Menlo,monospace; font-size:0.6875rem; font-weight:600; text-transform:uppercase; letter-spacing:0.05em; color:#3b82f6; margin-bottom:0.5rem; } .ds-headline { font-size:1.875rem; font-weight:800; letter-spacing:-0.02em; color:#fff; line-height:1.1; }"
+    },
+    {
+      "name": "Input Field",
+      "kind": "input",
+      "refersTo": "input-base",
+      "description": "Universal input. Zinc-950/60 fill, hairline zinc-800 border, focus brings a cyan-500/30 ring. Used in the Live Repos search field and the Code Inspector filename bar.",
+      "html": "<input class=\"ds-input\" placeholder=\"Search…\" />",
+      "css": ".ds-input { width:100%; background:rgba(9,9,11,0.6); border:1px solid rgba(39,39,42,0.8); border-radius:0.75rem; padding:0.625rem 1rem; color:#fff; font-family:Geist,system-ui,sans-serif; font-size:0.875rem; transition:border-color 0.2s, box-shadow 0.2s; outline:none; } .ds-input::placeholder { color:#71717a; } .ds-input:focus { border-color:#06b6d4; box-shadow:0 0 0 2px rgba(6,182,212,0.3); }"
+    },
+    {
+      "name": "Fan Carousel Card (3D Arc)",
       "kind": "card",
-      "refersTo": "card-project",
-      "description": "Signature component. Frosted glass with a cursor-tracking radial refraction that fades in on hover; lifts 2.5px with a blue glow.",
-      "html": "<article class=\"ds-card\"><h3>Project title</h3><p>Description text.</p></article>",
-      "css": ".ds-card { position:relative; background:rgba(255,255,255,0.92); backdrop-filter:blur(24px) saturate(190%); -webkit-backdrop-filter:blur(24px) saturate(190%); border:1px solid rgba(226,232,240,0.9); border-radius:24px; padding:1.5rem; overflow:hidden; box-shadow:inset 0 1.5px 1px rgba(255,255,255,1), inset 0 -1px 1px rgba(0,0,0,0.02), 0 8px 24px -6px rgba(0,0,0,0.04); transition:all .35s cubic-bezier(0.16,1,0.3,1); cursor:pointer; } .ds-card::before { content:''; position:absolute; inset:0; border-radius:inherit; background:radial-gradient(600px circle at var(--mouse-x,50%) var(--mouse-y,50%), rgba(59,130,246,0.1), transparent 45%); opacity:0; transition:opacity .4s ease; pointer-events:none; } .ds-card:hover { background:rgba(255,255,255,0.98); border-color:rgba(59,130,246,0.45); box-shadow:inset 0 1.5px 1.5px rgba(255,255,255,1), 0 20px 40px -12px rgba(59,130,246,0.15); transform:translateY(-2.5px); } .ds-card:hover::before { opacity:1; }"
+      "refersTo": "fan-card",
+      "description": "3D fan carousel card positioned absolutely within a perspective container. GSAP-driven parabolic arc + 3D rotation; only the active card and its two flanks are opaque.",
+      "html": "<div class=\"ds-fan-layout\"><div class=\"ds-fan-card\"><img src=\"...\" alt=\"Project\"/></div></div>",
+      "css": ".ds-fan-layout { position:relative; width:100%; height:22rem; display:flex; align-items:center; justify-content:center; perspective:1500px; } @media (min-width: 768px) { .ds-fan-layout { height:32rem; } } @media (min-width: 1024px) { .ds-fan-layout { height:36rem; } } .ds-fan-card { position:absolute; width:11rem; height:16.5rem; border-radius:1.5rem; transform-origin:center bottom; will-change:transform,opacity; } @media (min-width: 768px) { .ds-fan-card { width:17rem; height:25rem; } }"
     },
     {
-      "name": "Nav Floating Pill",
-      "kind": "nav",
-      "refersTo": "nav-pill",
-      "description": "Sliding active indicator under the desktop nav link. Positioned by JS (left/width); Signal Blue Deep fill.",
-      "html": "<span class=\"ds-navpill\"></span>",
-      "css": ".ds-navpill { position:absolute; top:0.25rem; bottom:0.25rem; border-radius:9999px; background:#2563eb; color:#fff; box-shadow:0 1px 2px rgba(0,0,0,0.1); transition:all .3s cubic-bezier(0.25,1,0.5,1); pointer-events:none; }"
+      "name": "Project Jump Pill (Active)",
+      "kind": "chip",
+      "refersTo": "nav-link-active",
+      "description": "Active state of the fan carousel's bottom jump pills. Signal Blue fill + scale-105 + shadow-md shadow-signal-blue/20. The system uses shadows ONLY here.",
+      "html": "<button class=\"ds-jump-pill ds-jump-pill-active\"><span class=\"ds-jump-dot\"></span><span>FaithQuest</span></button>",
+      "css": ".ds-jump-pill { display:inline-flex; align-items:center; gap:0.375rem; padding:0.375rem 0.75rem; border-radius:9999px; font-size:0.75rem; font-weight:500; transition:all 0.2s; cursor:pointer; border:1px solid rgba(39,39,42,0.8); background:rgba(9,9,11,0.6); color:#a1a1aa; } .ds-jump-pill:hover { color:#fff; border-color:rgba(34,211,238,0.6); } .ds-jump-pill-active { background:#3b82f6; color:#fff; font-weight:700; border-color:#3b82f6; box-shadow:0 4px 6px -1px rgba(59,130,246,0.2); transform:scale(1.05); } .ds-jump-dot { width:0.375rem; height:0.375rem; border-radius:50%; background:currentColor; }"
     },
     {
-      "name": "Glass Modal Panel",
+      "name": "Modal Panel",
       "kind": "card",
-      "refersTo": "card-project",
-      "description": "Project detail modal: frosted panel, dimmed blurred backdrop, capped at viewport height with internal scroll.",
-      "html": "<div class=\"ds-panel\"><header>Project</header><div class=\"ds-panel-body\">…</div></div>",
-      "css": ".ds-panel { position:relative; width:100%; max-width:42rem; max-height:calc(100dvh - 3rem); border-radius:24px; background:rgba(255,255,255,0.92); backdrop-filter:blur(24px) saturate(190%); -webkit-backdrop-filter:blur(24px) saturate(190%); border:1px solid rgba(255,255,255,0.8); box-shadow:0 24px 60px -12px rgba(0,0,0,0.25); overflow:hidden; display:flex; flex-direction:column; } .ds-panel-body { padding:1.5rem; overflow-y:auto; }"
+      "refersTo": "panel-card",
+      "description": "Project detail modal — zinc-950/60 + zinc-800 hairline + rounded-xl. Body scroll is locked; inner content uses data-lenis-prevent for its own scroll.",
+      "html": "<div class=\"ds-modal\" role=\"dialog\" aria-modal=\"true\"><header class=\"ds-modal-header\"><h3>Project title</h3><button aria-label=\"Close\">×</button></header><div class=\"ds-modal-body\" data-lenis-prevent>…</div></div>",
+      "css": ".ds-modal { position:relative; width:100%; max-width:64rem; max-height:calc(100dvh - 3rem); background:rgba(9,9,11,0.6); border:1px solid rgba(39,39,42,0.8); border-radius:0.75rem; display:flex; flex-direction:column; overflow:hidden; } .ds-modal-header { display:flex; align-items:flex-start; justify-content:space-between; padding:1rem 1.5rem; border-top:1px solid rgba(39,39,42,0.8); } .ds-modal-body { flex:1; padding:1.5rem; overflow-y:auto; overscroll-behavior:contain; }"
     }
   ],
   "narrative": {
-    "northStar": "Liquid Aurora",
-    "overview": "A glassmorphism portfolio in which live engineering data drifts inside slow, calm motion. Frosted glass panels float over a dark-to-light field of softly animated gradient orbs — blue, indigo, violet, and cyan blooms that drift on 18–22 second loops behind everything. The surface is quiet at rest and reveals its life only on interaction: a card lifts a few pixels and a blue refraction glow tracks the cursor; a Live Repos tab shows real GitHub stars and last-pushed timestamps pulled at view time. The personality is premium but approachable — the craft is the proof of competence, not a separate decoration from it. The system is built on Tailwind's default slate neutral scale with Signal Blue as the single interactive accent, and a small set of semantic status colors reserved for repository state.",
+    "northStar": "Engineering Console",
+    "overview": "A flat dark-mode engineering portfolio that reads as a single, calm operator console. The page lives on zinc-950; every panel, card, and pill uses the same near-black surface (bg-zinc-950/60 or /80) with a 1px hairline border-zinc-800/80 edge. Depth is conveyed by panel-stack layering, three lift tiers, and the Signal Blue → Metric Cyan shift on every primary CTA — never by drop shadows, never by blur, never by gradients. This is the engineering-tool aesthetic: terminals, dashboards, IDEs.\n\nThe hero is a 12-column responsive grid: a 7-column left column with a giant monospace-tracked headline, a 3-card stat row, and three standardized CTAs; a 5-column right column with a bordered profile photograph. Every section past the hero follows the same 12-col template, the same monospace eyebrows, and the same two-tier interaction model: quiet at rest, cyan-shifted on action.\n\nMono-accent discipline: Signal Blue carries interactive signals, Metric Cyan carries live data and metric visualizations, Active Emerald carries only status, Amber carries only stars. Each lives in its own semantic lane.",
     "keyCharacteristics": [
-      "Frosted glass (blur + saturate + layered inset highlights) is the primary material, not a flat fill.",
-      "Signal Blue is the only interactive accent and is used sparingly — its rarity is the point.",
-      "Depth and life appear as a response (hover, focus, live data), never at rest.",
-      "Live GitHub data is a first-class visual element, not a screenshot.",
-      "Motion is slow and ambient (18–22s loops); the system feels calm, not busy."
+      "Flat dark, hairline-bordered panels — bg-zinc-950/60 + border-zinc-800/80 is the only surface formula.",
+      "Three-tier lift interaction model — rest (flat) → hover (-translate-y-0.5 + border brightens) → active-press (scale-95).",
+      "Mono-accent discipline with cyan-shift on action — Signal Blue at rest, Metric Cyan on hover. The signature motion.",
+      "Monospace eyebrows and labels everywhere — every section opens with a tracked // label in Signal Blue.",
+      "Dashboard-tile cards — ProjectSpotlightCard renders a stitched browser mockup with traffic-light dots, URL bar, and an inner dark-gradient panel showing Throughput / Database / Security metrics with cyan progress bars.",
+      "Live data is a first-class visual element — fetchUserRepos populates real stars, language, last-pushed, status; honest fallback states for loading, error, stale cache."
     ],
     "rules": [
-      { "name": "The Signal Blue Rule", "body": "Signal Blue carries every interactive and 'live' signal — links, focus, the active nav pill, and the card hover glow. It appears on roughly 10% or less of a screen; its scarcity is what makes it read as active rather than decorative.", "section": "colors" },
-      { "name": "The Resting Glass Rule", "body": "Glass surfaces are calm and flat at rest. The blue refraction glow, the border brightening, and the lift appear only as a response to hover, focus, or live data — never by default.", "section": "elevation" },
-      { "name": "The One Voice Rule", "body": "One typeface (Inter) for the entire system. Hierarchy comes from size, weight, and tracking — never from switching families.", "section": "typography" }
+      { "name": "The Signal Blue Rule", "body": "Signal Blue carries every interactive and 'live' signal — links, focus, the active nav link, the focus ring, the status-pill border, the small ● pulse. It appears on roughly 10% or less of a screen.", "section": "colors" },
+      { "name": "The Cyan-Shift Rule", "body": "Every primary CTA shifts from Signal Blue at rest to Metric Cyan on hover (hover:bg-metric-cyan). This dual-color transition is the signature life of the system.", "section": "colors" },
+      { "name": "The Panel Formula", "body": "Every panel uses the same surface pair: bg-zinc-950/60 + border-zinc-800/80. Variations are only hover (bg-zinc-900/40 + border-zinc-700) and lift (-translate-y-0.5). Anything else is a violation.", "section": "colors" },
+      { "name": "The Three-Accent Lane Rule", "body": "Signal Blue = interactive. Metric Cyan = live data and metrics. Active Emerald = status. Amber = stars. They never substitute for one another.", "section": "colors" },
+      { "name": "The One Voice Rule", "body": "One typeface (Geist) for the entire system. Hierarchy comes from size, weight, and tracking — never from switching families. Mono is reserved for technical metadata only.", "section": "typography" },
+      { "name": "The Eyebrow Rule", "body": "Every section header opens with a monospace uppercase // label in Signal Blue (or Metric Cyan in dark mode contexts). Skipping the eyebrow is a layout violation.", "section": "typography" },
+      { "name": "The Flat-By-Default Rule", "body": "Surfaces are flat at rest. Shadows appear only on the largest containers (Spotlight card, modal backdrop) — never on buttons, inputs, or small cards.", "section": "elevation" },
+      { "name": "The Lift-By-Translate Rule", "body": "Hover depth is always a translate-y shift (or scale-105 on the smallest pills), paired with a border-color brightening and a background brightening. Never a box-shadow change.", "section": "elevation" }
     ],
     "dos": [
-      "Do keep glass at blur(24px) saturate(190%) with the layered inset sheen.",
-      "Do reserve Signal Blue for interactive and 'live' signals only.",
-      "Do keep the card mouse-refraction and the 2.5px hover lift.",
-      "Do keep motion slow (18–22s ambient loops) and ambient.",
-      "Do keep content inside the 56rem column and above the pointer-events-none aurora layer."
+      "Do use the panel formula (bg-zinc-950/60 + border-zinc-800/80 + rounded-2xl) for every card. It is the only surface formula in the system.",
+      "Do use the three-tier lift (-translate-y-0.5 on hover + border brightens + bg brightens, active:scale-95 on press) as the universal interaction pattern.",
+      "Do use the Signal Blue → Metric Cyan hover shift on every primary CTA — bg-signal-blue hover:bg-metric-cyan.",
+      "Do use monospace eyebrows (// TECHNICAL PROFICIENCY) in Signal Blue above every section heading.",
+      "Do respect the accent lane: Signal Blue for interactive, Metric Cyan for live data, Active Emerald for status, Amber for stars.",
+      "Do fetch live GitHub data via fetchUserRepos('danielaplan') with 15-min localStorage cache. Treat Live Repos as real engineering telemetry.",
+      "Do fall back honestly when GitHub returns 403 or fails — show the error panel with the original message and a Try again button.",
+      "Do keep motion subtle and short (transition-all duration-200 is the default). The fan carousel arc and the spinning refresh icon are the only long-running animations.",
+      "Do use focus-visible:ring-2 focus-visible:ring-cyan-400/60 on every interactive element."
     ],
     "donts": [
-      "Don't use hard, opaque drop shadows as the primary depth cue.",
-      "Don't introduce saturated neon colors outside the status set (emerald / rose / cyan / amber).",
-      "Don't shrink control radii below 12px or card radii below 24px.",
-      "Don't let ambient orbs sit above content or cover text.",
-      "Don't treat Live Repos as decorative: it must show real GitHub data or fall back honestly."
+      "Don't reintroduce glass blur, gradients, or drop shadows on regular panels — they are actively disabled in index.css.",
+      "Don't use arbitrary Tailwind color utilities (bg-blue-500, text-emerald-600) — they are silently overridden to zinc.",
+      "Don't substitute active-emerald for status-active in interactive contexts — emerald is status-only, never interactive.",
+      "Don't let primary CTAs use a single-color hover — always hover:bg-metric-cyan (cyan shift).",
+      "Don't add the breathing dot grid canvas unless wired through App.jsx — InteractiveDotGrid.jsx exists but is not in the render tree.",
+      "Don't reintroduce the neumorphic utilities (neo-raised-*, neo-inset, neo-press) on new surfaces — defined but unused.",
+      "Don't add a font family switch — Geist for everything, ui-monospace for technical metadata.",
+      "Don't disable the prefers-reduced-motion media query — it disables ambient orbs, fan transitions, and neo-press animations for users who request it.",
+      "Don't treat Tailwind shadow classes as decoration — they are overridden to neo-sm (light mode). Use arbitrary shadow-['…'] for genuine shadow needs."
     ]
   }
 }

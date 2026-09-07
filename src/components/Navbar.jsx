@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { Sun, Moon, Menu, X, Mail } from 'lucide-react';
-import Github from './icons/Github';
+import React, { useState } from 'react';
+import { List, X, Sun, Moon } from '@phosphor-icons/react';
 
-export default function Navbar({ darkMode, setDarkMode, onCopyEmail, activeSection, setActiveSection }) {
+export default function Navbar({ theme, toggleTheme, activeSection, setActiveSection }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navLinks = [
@@ -18,30 +17,55 @@ export default function Navbar({ darkMode, setDarkMode, onCopyEmail, activeSecti
     setActiveSection?.(id);
     const target = document.querySelector(href);
     if (target) {
-      if (window.__lenis) {
-        window.__lenis.scrollTo(target, { offset: 0, duration: 1.1 });
-      } else {
-        const top = target.getBoundingClientRect().top + window.pageYOffset;
-        window.scrollTo({ top, behavior: 'smooth' });
-      }
+      target.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
+  const ThemeToggle = ({ className = '' }) => (
+    <button
+      onClick={toggleTheme}
+      aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+      title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+      className={`p-2 rounded-lg cursor-pointer transition-all duration-200 hover:bg-[var(--bg-raised)] ${className}`}
+      style={{
+        color: 'var(--text-secondary)',
+        border: '1px solid var(--border)',
+      }}
+    >
+      {theme === 'dark' ? (
+        <Sun size={16} weight="bold" style={{ color: 'var(--accent)' }} />
+      ) : (
+        <Moon size={16} weight="bold" />
+      )}
+    </button>
+  );
+
   return (
-    <header className="fixed top-4 inset-x-0 z-50 h-16">
-      <div className="relative h-16 mx-2 sm:mx-4 lg:mx-8 px-3 sm:px-6 lg:px-10 flex justify-between items-center neo-raised-md">
+    <header
+      className="sticky top-0 z-50"
+      style={{
+        backgroundColor: 'color-mix(in srgb, var(--bg-surface) 80%, transparent)',
+        borderBottom: '1px solid var(--border)',
+        backdropFilter: 'blur(12px)',
+      }}
+    >
+      <div
+        className="h-16 mx-0 px-4 sm:px-6 lg:px-12 flex justify-between items-center"
+        style={{ maxWidth: '100%' }}
+      >
         {/* Brand */}
         <a
           href="#home"
           onClick={(e) => handleNavClick(e, '#home', 'home')}
-          className="flex items-center gap-1.5 cursor-pointer shrink-0 hover:opacity-70 transition-opacity"
+          className="flex items-center gap-1 cursor-pointer hover:opacity-70 transition-opacity duration-200"
+          style={{ color: 'var(--text-primary)' }}
         >
-          <span className="text-base sm:text-lg font-semibold tracking-tight">daniel</span>
-          <span className="text-accent font-bold">.</span>
+          <span className="text-base sm:text-lg font-bold tracking-tight">daniel</span>
+          <span className="font-bold" style={{ color: 'var(--accent)' }}>.</span>
         </a>
 
-        {/* Desktop Nav — right cluster */}
-        <div className="hidden md:flex items-center gap-2 ml-auto">
+        {/* Desktop Nav */}
+        <div className="hidden md:flex items-center gap-1 ml-auto">
           {navLinks.map((link) => {
             const isActive = activeSection === link.id;
             return (
@@ -50,61 +74,48 @@ export default function Navbar({ darkMode, setDarkMode, onCopyEmail, activeSecti
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href, link.id)}
                 aria-current={isActive ? 'page' : undefined}
-                data-active={isActive}
-                className={`px-4 py-2 text-xs font-medium cursor-pointer transition-all duration-200 ${
-                  isActive
-                    ? 'neo-raised-xs font-semibold text-accent'
-                    : 'hover:opacity-70'
-                }`}
+                className="px-4 py-2 text-xs font-medium cursor-pointer transition-colors duration-200"
+                style={{
+                  color: isActive ? 'var(--text-primary)' : 'var(--text-secondary)',
+                  fontWeight: isActive ? 600 : 400,
+                }}
               >
                 {link.name}
               </a>
             );
           })}
 
-          {/* Divider */}
-          <div className="w-px h-5 bg-current opacity-20 mx-1" />
-
-          {/* Theme Toggle — inset housing with raised knob */}
-          <button
-            onClick={() => setDarkMode(!darkMode)}
-            className="neo-inset w-10 h-10 flex items-center justify-center cursor-pointer transition-shadow duration-200"
-            aria-label={darkMode ? 'Switch to light mode' : 'Switch to dark mode'}
-          >
-            <span className="neo-raised-xs w-7 h-7 flex items-center justify-center">
-              {darkMode ? <Sun size={15} className="text-accent" /> : <Moon size={15} />}
-            </span>
-          </button>
+          {/* Theme Toggle */}
+          <div className="ml-3">
+            <ThemeToggle />
+          </div>
         </div>
 
-        {/* Mobile — theme toggle + menu trigger */}
+        {/* Mobile */}
         <div className="flex md:hidden items-center gap-2 ml-auto">
-          <button
-            onClick={() => setDarkMode(!darkMode)}
-            className="neo-inset w-10 h-10 flex items-center justify-center cursor-pointer transition-shadow duration-200"
-            aria-label="Toggle theme"
-          >
-            <span className="neo-raised-xs w-7 h-7 flex items-center justify-center">
-              {darkMode ? <Sun size={14} className="text-accent" /> : <Moon size={14} />}
-            </span>
-          </button>
+          <ThemeToggle />
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="neo-inset w-10 h-10 flex items-center justify-center cursor-pointer transition-shadow duration-200"
+            className="p-2 rounded-lg cursor-pointer transition-all duration-200"
+            style={{
+              color: 'var(--text-secondary)',
+              border: '1px solid var(--border)',
+            }}
             aria-label="Toggle navigation menu"
             aria-expanded={mobileMenuOpen}
           >
-            <span className="neo-raised-xs w-7 h-7 flex items-center justify-center">
-              {mobileMenuOpen ? <X size={16} /> : <Menu size={16} />}
-            </span>
+            {mobileMenuOpen ? <X size={16} weight="bold" /> : <List size={16} weight="bold" />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu Dropdown */}
+      {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden mx-3 mb-3 neo-raised-md p-3 transition-all">
-          <nav className="grid grid-cols-2 gap-2">
+        <div
+          className="md:hidden border-t"
+          style={{ borderColor: 'var(--border)', backgroundColor: 'var(--bg-surface)' }}
+        >
+          <nav className="grid grid-cols-2 gap-1 p-4" style={{ gap: '0.5rem' }}>
             {navLinks.map((link) => {
               const isActive = activeSection === link.id;
               return (
@@ -112,35 +123,17 @@ export default function Navbar({ darkMode, setDarkMode, onCopyEmail, activeSecti
                   key={link.id}
                   href={link.href}
                   onClick={(e) => handleNavClick(e, link.href, link.id)}
-                  aria-current={isActive ? 'page' : undefined}
-                  data-active={isActive}
-                  className={`neo-press py-3 px-3 text-xs font-medium text-center cursor-pointer transition-all duration-200 ${
-                    isActive ? 'font-semibold text-accent' : ''
-                  }`}
+                  className="px-4 py-3 text-xs font-medium text-center cursor-pointer transition-colors duration-200"
+                  style={{
+                    color: isActive ? 'var(--text-primary)' : 'var(--text-secondary)',
+                    borderBottom: isActive ? '2px solid var(--accent)' : '2px solid transparent',
+                    fontWeight: isActive ? 600 : 400,
+                  }}
                 >
                   {link.name}
                 </a>
               );
             })}
-            <div className="col-span-2 grid grid-cols-2 gap-2 pt-1">
-              <a
-                href="https://github.com/danielaplan"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="neo-press flex items-center justify-center gap-2 py-3 px-3 text-[11px] font-medium"
-              >
-                <Github size={13} /> GitHub
-              </a>
-              <button
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  onCopyEmail();
-                }}
-                className="neo-accent-solid flex items-center justify-center gap-2 py-3 px-3 text-[11px] font-medium"
-              >
-                <Mail size={13} /> Copy Email
-              </button>
-            </div>
           </nav>
         </div>
       )}

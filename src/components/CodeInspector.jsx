@@ -1,74 +1,62 @@
 import React, { useState, useMemo } from 'react';
-import { 
-  Copy, 
-  Check, 
-  ExternalLink, 
-  FileCode2, 
-  Database, 
-  RefreshCw, 
-  Sparkles
-} from 'lucide-react';
+import {
+  Copy, Check, ArrowSquareOut, FileCode, Database,
+  ArrowsClockwise
+} from '@phosphor-icons/react';
 import { projectCodeSnippets } from '../data/codeSnippets';
 
 // Helper to render file icon based on extension/language
 function getFileIcon(fileName = '') {
   const lower = fileName.toLowerCase();
   if (lower.endsWith('.cs')) {
-    return <span className="text-purple-400 font-bold text-xs font-mono">C#</span>;
+    return <span style={{ color: '#a78bfa', fontWeight: 'bold', fontSize: '0.75rem', fontFamily: 'monospace' }}>C#</span>;
   }
   if (lower.endsWith('.sql')) {
-    return <Database size={14} className="text-amber-400" />;
+    return <Database size={14} weight="bold" style={{ color: '#60a5fa' }} />;
   }
   if (lower.endsWith('.ts') || lower.endsWith('.tsx')) {
-    return <span className="text-sky-400 font-bold text-xs font-mono">TS</span>;
+    return <span style={{ color: '#60a5fa', fontWeight: 'bold', fontSize: '0.75rem', fontFamily: 'monospace' }}>TS</span>;
   }
   if (lower.endsWith('.js') || lower.endsWith('.jsx')) {
-    return <span className="text-yellow-400 font-bold text-xs font-mono">JS</span>;
+    return <span style={{ color: '#60a5fa', fontWeight: 'bold', fontSize: '0.75rem', fontFamily: 'monospace' }}>JS</span>;
   }
   if (lower.endsWith('.py')) {
-    return <span className="text-emerald-400 font-bold text-xs font-mono">PY</span>;
+    return <span style={{ color: '#34d399', fontWeight: 'bold', fontSize: '0.75rem', fontFamily: 'monospace' }}>PY</span>;
   }
-  return <FileCode2 size={14} className="text-blue-400" />;
+  return <FileCode2 size={14} weight="bold" style={{ color: '#60a5fa' }} />;
 }
 
 // Line Tokenizer & Syntax Highlighter
 function renderHighlightedLine(line) {
-  if (!line && line !== '') return '&nbsp;';
+  if (!line && line !== '') return ' ';
 
   const trimmed = line.trim();
   if (trimmed.startsWith('//') || trimmed.startsWith('--') || trimmed.startsWith('#')) {
-    return <span className="text-slate-500 italic">{line}</span>;
+    return <span style={{ color: '#64748b', fontStyle: 'italic' }}>{line}</span>;
   }
 
-  // Safe HTML entity encoding
   const escaped = line
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;');
 
-  // Apply token spans
   const formatted = escaped
-    // Strings (double, single, backticks)
-    .replace(/(&quot;.*?&quot;|&#39;.*?&#39;|".*?"|'.*?'|`.*?`)/g, '<span class="text-emerald-300">$1</span>')
-    // TS/JS/C# Keywords
+    .replace(/(&quot;.*?&quot;|&#39;.*?&#39;|".*?"|'.*?'|`.*?`)/g, '<span style="color:#34d399">$1</span>')
     .replace(
       /\b(export|import|from|class|public|private|static|readonly|async|await|return|if|else|for|const|let|var|new|interface|type|using|namespace|throw|function|default|case|switch)\b/g,
-      '<span class="text-purple-400 font-semibold">$1</span>'
+      '<span style="color:#a78bfa;font-weight:600">$1</span>'
     )
-    // SQL Keywords
     .replace(
       /\b(CREATE|TABLE|PRIMARY|KEY|DEFAULT|NVARCHAR|DATETIME2|UNIQUEIDENTIFIER|UNIQUE|CHECK|BETWEEN|AND|CONSTRAINT|FOREIGN|REFERENCES|CASCADE|NONCLUSTERED|INDEX|ON|INSERT|SELECT|FROM|WHERE|INT|DECIMAL|NULL)\b/g,
-      '<span class="text-blue-400 font-bold">$1</span>'
+      '<span style="color:#60a5fa;font-weight:bold">$1</span>'
     )
-    // C# / TS Primitive Types
     .replace(
       /\b(string|number|boolean|void|Task|ActionResult|Guid|DateTime|int|decimal|Array|Map|Set|List)\b/g,
-      '<span class="text-amber-300 font-mono">$1</span>'
+      '<span style="color:#22d3ee;font-family:monospace">$1</span>'
     )
-    // Numbers
-    .replace(/\b(\d+)\b/g, '<span class="text-orange-300 font-mono">$1</span>');
+    .replace(/\b(\d+)\b/g, '<span style="color:#3b82f6;font-family:monospace">$1</span>');
 
-  return <span dangerouslySetInnerHTML={{ __html: formatted || '&nbsp;' }} />;
+  return <span dangerouslySetInnerHTML={{ __html: formatted || ' ' }} />;
 }
 
 export default function CodeInspector({ project, repoName }) {
@@ -77,7 +65,6 @@ export default function CodeInspector({ project, repoName }) {
     if (projectCodeSnippets[projectId]) {
       return projectCodeSnippets[projectId];
     }
-    // Dynamic default snippet for repos without predefined files
     return [
       {
         fileName: `${project?.repoName || 'architecture'}.config.json`,
@@ -115,7 +102,6 @@ export default function CodeInspector({ project, repoName }) {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  // Dynamically fetch raw README.md from GitHub
   const handleFetchLiveGitHub = async () => {
     const targetRepo = repoName || project?.repoName;
     if (!targetRepo) return;
@@ -138,7 +124,6 @@ export default function CodeInspector({ project, repoName }) {
             break;
           }
         } catch (e) {
-          // try next branch (or stop on abort)
           if (controller.signal.aborted) break;
         }
       }
@@ -156,31 +141,26 @@ export default function CodeInspector({ project, repoName }) {
     setLiveLoading(false);
   };
 
-  const lines = useMemo(() => {
-    return displayedCode.split('\n');
-  }, [displayedCode]);
+  const lines = useMemo(() => displayedCode.split('\n'), [displayedCode]);
 
   return (
     <div className="space-y-4">
       {/* Top File Selector Bar */}
-      <div className="flex flex-wrap items-center justify-between gap-3 pb-2 border-b border-slate-200/80 dark:border-slate-800">
-        
+      <div className="flex flex-wrap items-center justify-between gap-3 pb-2" style={{ borderBottom: '1px solid #1e293b' }}>
+
         {/* File Tabs */}
-        <div className="flex items-center gap-1.5 overflow-x-auto max-w-full pb-1 scrollbar-none">
+        <div className="flex items-center gap-1.5 overflow-x-auto max-w-full pb-1" style={{ scrollbarWidth: 'none' }}>
           {snippets.map((file, index) => {
             const isActive = index === activeFileIndex && !liveFileContent;
             return (
               <button
                 key={file.fileName}
-                onClick={() => {
-                  setActiveFileIndex(index);
-                  setLiveFileContent(null);
-                }}
-                className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-mono font-medium transition cursor-pointer shrink-0 border ${
-                  isActive
-                    ? 'bg-slate-900 text-white dark:bg-blue-600 dark:text-white border-slate-900 dark:border-blue-500 shadow-xs'
-                    : 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200/80 dark:border-slate-700/60 hover:bg-slate-200 dark:hover:bg-slate-700'
-                }`}
+                onClick={() => { setActiveFileIndex(index); setLiveFileContent(null); }}
+                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-mono font-medium transition cursor-pointer shrink-0"
+                style={isActive
+                  ? { backgroundColor: '#3b82f6', color: '#ffffff', border: '1px solid #3b82f6' }
+                  : { backgroundColor: '#1e293b', color: '#94a3b8', border: '1px solid #334155' }
+                }
               >
                 {getFileIcon(file.fileName)}
                 <span>{file.fileName}</span>
@@ -188,18 +168,17 @@ export default function CodeInspector({ project, repoName }) {
             );
           })}
 
-          {/* Optional Live GitHub Readme Fetcher */}
+          {/* Live README Fetcher */}
           <button
             onClick={handleFetchLiveGitHub}
             disabled={liveLoading}
-            className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-medium transition cursor-pointer shrink-0 border ${
-              liveFileContent
-                ? 'bg-blue-600 text-white border-blue-500 shadow-xs'
-                : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700 hover:bg-slate-200 dark:hover:bg-slate-700'
-            }`}
-            title="Fetch live raw README directly from GitHub API"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-medium transition cursor-pointer shrink-0"
+            style={liveFileContent
+              ? { backgroundColor: '#3b82f6', color: '#ffffff', border: '1px solid #3b82f6' }
+              : { backgroundColor: '#1e293b', color: '#64748b', border: '1px solid #334155' }
+            }
           >
-            <RefreshCw size={12} className={liveLoading ? 'animate-spin text-blue-400' : ''} />
+            <ArrowsClockwise size={12} weight="bold" className={liveLoading ? 'animate-spin' : ''} />
             <span>Live README.md</span>
           </button>
         </div>
@@ -208,17 +187,17 @@ export default function CodeInspector({ project, repoName }) {
         <div className="flex items-center gap-2">
           <button
             onClick={handleCopy}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 text-xs font-medium transition cursor-pointer border border-slate-200 dark:border-slate-700"
-            title="Copy code to clipboard"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition cursor-pointer"
+            style={{ backgroundColor: '#1e293b', color: '#e2e8f0', border: '1px solid #334155' }}
           >
             {copied ? (
               <>
-                <Check size={13} className="text-emerald-500" />
-                <span className="text-emerald-600 dark:text-emerald-400 font-semibold">Copied!</span>
+                <Check size={13} weight="bold" style={{ color: '#34d399' }} />
+                <span style={{ color: '#34d399', fontWeight: 600 }}>Copied!</span>
               </>
             ) : (
               <>
-                <Copy size={13} />
+                <Copy size={13} weight="bold" />
                 <span>Copy Code</span>
               </>
             )}
@@ -228,71 +207,87 @@ export default function CodeInspector({ project, repoName }) {
             href={project?.link || `https://github.com/danielaplan/${repoName || project?.repoName}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 text-xs font-medium transition border border-slate-200 dark:border-slate-700"
+            className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-medium transition"
+            style={{ backgroundColor: '#1e293b', color: '#e2e8f0', border: '1px solid #334155' }}
           >
-            <ExternalLink size={13} />
+            <ArrowSquareOut size={13} weight="bold" />
             <span>GitHub</span>
           </a>
         </div>
       </div>
 
-      {/* Description Snippet Header */}
-      <div className="flex items-start justify-between gap-3 text-xs bg-slate-50 dark:bg-slate-800/50 p-3 rounded-xl border border-slate-200/80 dark:border-slate-800">
-        <div className="flex items-start gap-2 text-slate-600 dark:text-slate-300">
-          <Sparkles size={14} className="text-blue-500 shrink-0 mt-0.5" />
+      {/* Description Header */}
+      <div
+        className="flex items-start justify-between gap-3 text-xs p-3 rounded-xl"
+        style={{ backgroundColor: '#0f172a', border: '1px solid #1e293b', color: '#94a3b8' }}
+      >
+        <div className="flex items-start gap-2">
+          <span style={{ fontSize: '0.875rem', color: '#60a5fa' }}>&#9670;</span>
           <span>
             {liveFileContent
               ? 'Displaying live raw repository documentation streamed from GitHub.'
               : activeSnippet?.description || 'Curated high-value architectural source code.'}
           </span>
         </div>
-        <span className="text-slate-400 font-mono text-[11px] shrink-0">
+        <span className="font-mono text-[11px] shrink-0" style={{ color: '#475569' }}>
           {lines.length} lines
         </span>
       </div>
 
       {liveError && (
-        <div className="p-3 text-xs text-amber-700 dark:text-amber-300 bg-amber-50 dark:bg-amber-950/30 rounded-xl border border-amber-200 dark:border-amber-900/60">
+        <div
+          className="p-3 text-xs rounded-xl"
+          style={{ backgroundColor: 'rgba(252,165,165,0.1)', border: '1px solid rgba(252,165,165,0.2)', color: '#fca5a5' }}
+        >
           {liveError} Showing curated architecture files instead.
         </div>
       )}
 
-      {/* Editor Frame */}
-      <div className="relative rounded-2xl bg-[#0b101b] text-slate-100 border border-slate-800 shadow-2xl overflow-hidden font-mono text-xs">
-        
+      {/* Editor Frame — intentionally dark (IDE contrast element) */}
+      <div
+        className="relative rounded-2xl overflow-hidden"
+        style={{ backgroundColor: '#0b101b', border: '1px solid #1e293b' }}
+      >
         {/* Editor Title Bar */}
-        <div className="flex items-center justify-between px-4 py-2.5 bg-[#070b14] border-b border-slate-800 text-[11px] text-slate-400 select-none">
+        <div
+          className="flex items-center justify-between px-4 py-2.5"
+          style={{ backgroundColor: '#070b14', borderBottom: '1px solid #1e293b' }}
+        >
           <div className="flex items-center gap-2">
             <div className="flex items-center gap-1.5">
-              <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80" />
-              <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
-              <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
+              <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: '#ef4444' }} />
+              <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: '#f59e0b' }} />
+              <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: '#22c55e' }} />
             </div>
-            <span className="text-slate-400 ml-2 font-mono font-medium">
+            <span className="text-[11px] font-mono" style={{ color: '#64748b', marginLeft: '0.5rem' }}>
               {liveFileContent ? 'README.md (Live)' : activeSnippet?.fileName}
             </span>
           </div>
-
-          <span className="text-[10px] font-mono uppercase tracking-wider text-slate-500">
-            UTF-8 • {activeSnippet?.language || 'Plain Text'}
+          <span className="text-[10px] font-mono uppercase tracking-wider" style={{ color: '#334155' }}>
+            UTF-8 &bull; {activeSnippet?.language || 'Plain Text'}
           </span>
         </div>
 
-        {/* Single Unified Table Scroll Container */}
-        <div 
+        {/* Code Table */}
+        <div
           data-lenis-prevent
-          className="overflow-auto max-h-[400px] p-3 text-[12px] sm:text-[13px] leading-relaxed font-mono selection:bg-blue-600/40 overscroll-contain"
+          className="overflow-auto"
+          style={{ maxHeight: '400px', fontFamily: "'Geist Mono', 'SF Mono', monospace" }}
         >
           <table className="w-full border-collapse min-w-max text-left">
             <tbody>
               {lines.map((line, idx) => (
-                <tr key={idx} className="hover:bg-slate-800/40 group transition-colors">
-                  {/* Fixed-Width Synchronized Gutter Line Number */}
-                  <td className="select-none pr-4 pl-1 text-right text-slate-600 font-mono text-[11px] align-top w-10 border-r border-slate-800/80 shrink-0 group-hover:text-slate-400">
+                <tr key={idx} className="hover:bg-slate-800/40 transition-colors" style={{ backgroundColor: 'transparent' }}>
+                  <td
+                    className="select-none pr-4 pl-1 text-right font-mono text-[11px] align-top w-10"
+                    style={{ color: '#334155', borderRight: '1px solid #1e293b' }}
+                  >
                     {idx + 1}
                   </td>
-                  {/* Code Line */}
-                  <td className="pl-4 whitespace-pre font-mono text-slate-200 align-top">
+                  <td
+                    className="pl-4 font-mono text-[12px] sm:text-sm leading-relaxed align-top"
+                    style={{ color: '#e2e8f0' }}
+                  >
                     {renderHighlightedLine(line)}
                   </td>
                 </tr>
@@ -300,7 +295,6 @@ export default function CodeInspector({ project, repoName }) {
             </tbody>
           </table>
         </div>
-
       </div>
     </div>
   );

@@ -1,28 +1,22 @@
-import React, { useState, useEffect, useMemo } from 'react';
-import { 
-  ExternalLink, 
-  Sparkles, 
-  Search, 
-  X, 
-  RefreshCw, 
-  Star, 
-  GitFork, 
-  Globe, 
-  Layers, 
-  Info, 
-  Clock, 
-  FileCode,
-  FolderGit2
+import { useState, useEffect, useMemo, useRef } from 'react';
+import {
+  Search, X, Star,
+  Globe, Clock, FileCode, Info
 } from 'lucide-react';
+import { ArrowsClockwise } from '@phosphor-icons/react';
 import Github from './icons/Github';
-import { getTechIcon } from './icons/TechIcons';
 import ProjectModal from './ProjectModal';
-import ProjectSpotlightCarousel from '@/components/ui/card-fan-carousel.tsx';
+import BentoGrid from './BentoGrid';
+import { bentoProjects } from '../data/bentoProjects';
 import { curatedProjects } from '../data/projects';
 import { fetchUserRepos, formatTimeAgo, getDevStatus } from '../services/github';
+import { useScrollReveal } from '../hooks/useScrollReveal';
 
 export default function Projects({ isActive = true }) {
-  const [viewMode, setViewMode] = useState('curated'); // 'curated' | 'github'
+  const sectionRef = useRef(null);
+  useScrollReveal(sectionRef, { threshold: 0.05 });
+
+  const [viewMode, setViewMode] = useState('curated');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedTag, setSelectedTag] = useState(null);
   const [githubRepos, setGithubRepos] = useState([]);
@@ -32,7 +26,6 @@ export default function Projects({ isActive = true }) {
   const [activeModalProject, setActiveModalProject] = useState(null);
   const [modalInitialTab, setModalInitialTab] = useState('overview');
 
-  // Load GitHub Repositories with caching
   const loadGithubRepos = async (force = false) => {
     setGithubLoading(true);
     setGithubError(null);
@@ -53,22 +46,17 @@ export default function Projects({ isActive = true }) {
     loadGithubRepos(false);
   }, []);
 
-  // Map GitHub repos by name for quick metric lookup in curated items
   const githubMap = useMemo(() => {
     const map = new Map();
-    githubRepos.forEach(repo => {
-      map.set(repo.name.toLowerCase(), repo);
-    });
+    githubRepos.forEach(repo => map.set(repo.name.toLowerCase(), repo));
     return map;
   }, [githubRepos]);
 
-  // Convert raw GitHub repos into project items for the "All GitHub Repos" view
   const formattedGithubProjects = useMemo(() => {
     return githubRepos.map(repo => {
       const matchedCurated = curatedProjects.find(
         cp => cp.repoName?.toLowerCase() === repo.name.toLowerCase()
       );
-
       return {
         id: `gh-${repo.id}`,
         title: matchedCurated?.title || repo.name.replace(/[-_]/g, ' '),
@@ -96,12 +84,9 @@ export default function Projects({ isActive = true }) {
     });
   }, [githubRepos]);
 
-  // Filtered repos for GitHub view
   const filteredGithubProjects = useMemo(() => {
     return formattedGithubProjects.filter(project => {
-      if (selectedTag && !project.tags?.includes(selectedTag)) {
-        return false;
-      }
+      if (selectedTag && !project.tags?.includes(selectedTag)) return false;
       if (searchQuery.trim()) {
         const query = searchQuery.toLowerCase();
         const inTitle = project.title.toLowerCase().includes(query);
@@ -114,58 +99,77 @@ export default function Projects({ isActive = true }) {
   }, [formattedGithubProjects, selectedTag, searchQuery]);
 
   return (
-    <section 
-      id="projects" 
-      className={`min-h-[calc(100vh-4rem)] lg:min-h-screen flex flex-col justify-center pt-20 pb-10 sm:pt-24 sm:pb-12 border-t border-slate-200/60 dark:border-slate-800/60 scroll-mt-0 transition-all duration-700 ease-out ${
-        isActive 
-          ? 'opacity-100 translate-y-0 scale-100 blur-none' 
-          : 'opacity-40 translate-y-6 scale-[0.985] blur-[0.3px]'
+    <section
+      id="projects"
+      ref={sectionRef}
+      style={{ backgroundColor: 'var(--bg-surface)' }}
+      className={`min-h-[100dvh] lg:min-h-screen flex flex-col justify-center pt-20 pb-10 sm:pt-24 sm:pb-12 border-t scroll-mt-0 transition-all duration-700 ${
+        isActive
+          ? 'opacity-100 translate-y-0 scale-100'
+          : 'opacity-40 translate-y-6 scale-[0.985]'
       }`}
+      data-lenis-prevent
     >
-      <div className="w-full px-5 sm:px-8 lg:px-12">
+      <div
+        className="w-full px-5 sm:px-8 lg:px-12"
+        style={{ borderColor: 'var(--border)' }}
+      >
 
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-10 gap-4">
           <div>
-            <div className="flex items-center gap-2 text-xs font-mono font-semibold uppercase tracking-wider text-cyan-600 dark:text-cyan-400 mb-2">
-              <FolderGit2 size={14} />
-              <span>Interactive Spotlight Showcase</span>
-            </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">
-              Projects & Engineering
+            <p
+              className="text-xs font-mono font-semibold uppercase tracking-wider mb-2"
+              style={{ color: 'var(--text-secondary)' }}
+            >
+              Interactive Spotlight
+            </p>
+            <h2
+              className="text-3xl sm:text-4xl font-extrabold tracking-tight"
+              style={{ color: 'var(--text-primary)' }}
+            >
+              Projects &amp; Engineering
             </h2>
-            <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base mt-2 max-w-2xl font-normal leading-relaxed">
-              Featured applications, enterprise systems, and architecture builds presented with full technical breakdowns and high-res previews.
+            <p
+              className="text-sm sm:text-base mt-2 max-w-2xl font-normal leading-relaxed"
+              style={{ color: 'var(--text-secondary)' }}
+            >
+              Featured applications, enterprise systems, and architecture builds presented with full technical breakdowns.
             </p>
           </div>
 
-          {/* View Mode Toggle: Curated 3D Spotlight vs Live Repos */}
+          {/* View Mode Toggle */}
           <div className="flex items-center gap-2 self-start md:self-auto">
-            <div className="inline-flex p-1 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 text-xs font-medium shadow-2xs">
+            <div
+              className="inline-flex p-1 rounded-xl text-xs font-medium"
+              style={{ backgroundColor: 'var(--bg-canvas)', border: '1px solid var(--border)' }}
+            >
               <button
-                onClick={() => {
-                  setViewMode('curated');
-                  setSearchQuery('');
-                  setSelectedTag(null);
+                onClick={() => { setViewMode('curated'); setSearchQuery(''); setSelectedTag(null); }}
+                className="px-3 py-1.5 rounded-lg transition-all cursor-pointer"
+                style={{
+                  backgroundColor: viewMode === 'curated' ? 'var(--bg-surface)' : 'transparent',
+                  color: viewMode === 'curated' ? 'var(--text-primary)' : 'var(--text-secondary)',
+                  fontWeight: viewMode === 'curated' ? 700 : 400,
+                  border: '1px solid transparent',
+                  boxShadow: viewMode === 'curated' ? 'var(--card-shadow)' : 'none',
                 }}
-                className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:outline-none ${
-                  viewMode === 'curated'
-                    ? 'bg-white dark:bg-slate-800 text-slate-900 dark:text-white shadow-xs font-bold'
-                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
-                }`}
               >
-                Curated Spotlight ({String(curatedProjects.length).padStart(2, '0')})
+                Projects ({String(bentoProjects.length).padStart(2, '0')})
               </button>
               <button
                 onClick={() => setViewMode('github')}
-                className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1.5 focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:outline-none ${
-                  viewMode === 'github'
-                    ? 'bg-white dark:bg-slate-800 text-slate-900 dark:text-white shadow-xs font-bold'
-                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
-                }`}
+                className="px-3 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1.5"
+                style={{
+                  backgroundColor: viewMode === 'github' ? 'var(--bg-surface)' : 'transparent',
+                  color: viewMode === 'github' ? 'var(--text-primary)' : 'var(--text-secondary)',
+                  fontWeight: viewMode === 'github' ? 700 : 400,
+                  border: '1px solid transparent',
+                  boxShadow: viewMode === 'github' ? 'var(--card-shadow)' : 'none',
+                }}
               >
                 <span>Live Repos</span>
-                <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
+                <span className="w-2 h-2 rounded-full" style={{ backgroundColor: 'var(--status-active)' }} />
               </button>
             </div>
 
@@ -173,66 +177,76 @@ export default function Projects({ isActive = true }) {
               onClick={() => loadGithubRepos(true)}
               disabled={githubLoading}
               title="Refresh live GitHub data"
-              className="p-2 rounded-xl text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white bg-slate-100 dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 hover:bg-slate-200 dark:hover:bg-slate-800 transition cursor-pointer disabled:opacity-50 focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:outline-none"
+              className="p-2 rounded-lg cursor-pointer transition"
+              style={{
+                color: 'var(--text-secondary)',
+                backgroundColor: 'var(--bg-canvas)',
+                border: '1px solid var(--border)',
+              }}
               aria-label="Refresh GitHub Repos"
             >
-              <RefreshCw size={14} className={githubLoading ? 'animate-spin text-cyan-400' : ''} />
+              <ArrowsClockwise
+                size={14}
+                weight="bold"
+                className={githubLoading ? 'animate-spin' : ''}
+              />
             </button>
           </div>
         </div>
 
-        {/* =========================================================
-            OPTION 1: CURATED 3D SPOTLIGHT VIEW (DECLUTTERED)
-            ========================================================= */}
+        {/* ==================== CURATED BENTO GRID ==================== */}
         {viewMode === 'curated' && (
-          <div className="w-full">
-            <ProjectSpotlightCarousel
-              projects={curatedProjects}
-              githubMap={githubMap}
-              onOpenDetails={(p) => {
-                setModalInitialTab('overview');
-                setActiveModalProject(p);
-              }}
-              onOpenCode={(p) => {
-                setModalInitialTab('code');
-                setActiveModalProject(p);
-              }}
-            />
-          </div>
+          <BentoGrid
+            projects={bentoProjects}
+            githubMap={githubMap}
+            onOpenDetails={(p) => { setModalInitialTab('overview'); setActiveModalProject(p); }}
+          />
         )}
 
-        {/* =========================================================
-            LIVE GITHUB REPOSITORIES VIEW (SEARCHABLE & FILTERABLE)
-            ========================================================= */}
+        {/* ==================== LIVE GITHUB REPOS ==================== */}
         {viewMode === 'github' && (
           <div className="space-y-6">
-            
-            {/* Live Search & Filter Bar */}
+
+            {/* Search & Filter Bar */}
             <div className="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center justify-between">
               <div className="relative flex-1">
-                <Search size={15} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
+                <Search
+                  size={15}
+                  weight="bold"
+                  className="absolute left-3.5 top-1/2 -translate-y-1/2"
+                  style={{ color: 'var(--text-secondary)' }}
+                />
                 <input
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Search live GitHub repositories by name, language, or topic..."
-                  className="w-full pl-9 pr-9 py-2.5 rounded-2xl bg-white/60 dark:bg-slate-900/60 backdrop-blur-md border border-slate-200 dark:border-slate-800 text-xs sm:text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-cyan-500/30 focus:border-cyan-500 transition shadow-2xs"
+                  placeholder="Search repositories by name, language, or topic…"
+                  className="w-full pl-9 pr-9 py-2.5 rounded-xl text-xs sm:text-sm placeholder:text-sm"
+                  style={{
+                    backgroundColor: 'var(--bg-canvas)',
+                    border: '1px solid var(--border)',
+                    color: 'var(--text-primary)',
+                  }}
                 />
                 {searchQuery && (
                   <button
                     onClick={() => setSearchQuery('')}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 p-0.5 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 cursor-pointer"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 p-0.5 cursor-pointer"
+                    style={{ color: 'var(--text-secondary)' }}
                     aria-label="Clear search"
                   >
-                    <X size={14} />
+                    <X size={14} weight="bold" />
                   </button>
                 )}
               </div>
 
-              <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 font-mono">
+              <div className="flex items-center gap-2 text-xs font-mono" style={{ color: 'var(--text-secondary)' }}>
                 <span>{filteredGithubProjects.length} repositories synced</span>
                 {githubSource && (
-                  <span className="text-[11px] px-2 py-0.5 rounded-md bg-slate-200 dark:bg-slate-800">
+                  <span
+                    className="text-xs px-2 py-0.5 rounded-md font-mono"
+                    style={{ backgroundColor: 'var(--bg-canvas)', border: '1px solid var(--border)' }}
+                  >
                     {githubSource}
                   </span>
                 )}
@@ -242,55 +256,56 @@ export default function Projects({ isActive = true }) {
             {/* Active Tag Filter */}
             {selectedTag && (
               <div className="flex items-center gap-2 pt-1 text-xs">
-                <span className="text-slate-500 dark:text-slate-400">Filtered by tag:</span>
-                <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-xl bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border border-cyan-500/20 font-mono font-medium">
+                <span style={{ color: 'var(--text-secondary)' }}>Filtered by tag:</span>
+                <span
+                  className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full font-mono font-medium text-xs"
+                  style={{ backgroundColor: 'var(--pastel-blue-bg)', color: 'var(--pastel-blue-text)' }}
+                >
                   #{selectedTag}
-                  <button
-                    onClick={() => setSelectedTag(null)}
-                    className="hover:text-cyan-800 dark:hover:text-cyan-200 ml-1 cursor-pointer"
-                    aria-label="Remove tag filter"
-                  >
-                    <X size={12} />
+                  <button onClick={() => setSelectedTag(null)} className="cursor-pointer" style={{ color: 'var(--pastel-blue-text)' }}>
+                    <X size={12} weight="bold" />
                   </button>
                 </span>
                 <button
-                  onClick={() => {
-                    setSelectedTag(null);
-                    setSearchQuery('');
-                  }}
-                  className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 underline ml-2 cursor-pointer"
+                  onClick={() => { setSelectedTag(null); setSearchQuery(''); }}
+                  className="underline cursor-pointer"
+                  style={{ color: 'var(--text-secondary)' }}
                 >
                   Clear all
                 </button>
               </div>
             )}
 
-            {/* Live Repos Content State */}
+            {/* Loading State */}
             {githubLoading ? (
-              <div className="p-12 flex flex-col items-center justify-center gap-3 rounded-3xl bg-slate-100/60 dark:bg-slate-900/40 border border-dashed border-slate-300 dark:border-slate-800">
-                <RefreshCw size={22} className="text-cyan-500 animate-spin" />
-                <p className="text-sm font-medium text-slate-600 dark:text-slate-400">
-                  Syncing live repositories from GitHub API…
+              <div
+                className="p-12 flex flex-col items-center justify-center gap-3 rounded-xl"
+                style={{ backgroundColor: 'var(--bg-canvas)', border: '1px dashed var(--border-hover)' }}
+              >
+                <ArrowsClockwise size={22} weight="bold" className="animate-spin" style={{ color: 'var(--text-secondary)' }} />
+                <p className="text-sm font-medium" style={{ color: 'var(--text-secondary)' }}>
+                  Syncing live repositories from GitHub API&hellip;
                 </p>
               </div>
             ) : githubError && filteredGithubProjects.length === 0 ? (
-              <div className="p-12 text-center rounded-3xl bg-amber-50/70 dark:bg-amber-950/20 border border-amber-300/60 dark:border-amber-900/50 space-y-4">
-                <div className="inline-flex p-3 rounded-2xl bg-amber-100 dark:bg-amber-900/40 text-amber-600 dark:text-amber-400">
-                  <RefreshCw size={22} />
-                </div>
+              <div
+                className="p-12 text-center rounded-xl space-y-4"
+                style={{ backgroundColor: 'var(--pastel-red-bg)', border: '1px solid rgba(0,0,0,0.06)' }}
+              >
                 <div className="space-y-1">
-                  <h4 className="text-base font-semibold text-slate-900 dark:text-white">
+                  <h4 className="text-base font-semibold" style={{ color: 'var(--text-primary)' }}>
                     Couldn't load live GitHub data
                   </h4>
-                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 max-w-sm mx-auto">
+                  <p className="text-xs sm:text-sm max-w-sm mx-auto" style={{ color: 'var(--text-secondary)' }}>
                     {githubError}
                   </p>
                 </div>
                 <button
                   onClick={() => loadGithubRepos(true)}
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-cyan-500 text-slate-950 font-bold text-xs hover:bg-cyan-400 transition cursor-pointer"
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded text-xs font-bold cursor-pointer transition-all"
+                  style={{ backgroundColor: 'var(--accent)', color: '#ffffff', borderRadius: 'rounded-lg' }}
                 >
-                  <RefreshCw size={13} /> Try again
+                  <ArrowsClockwise size={13} weight="bold" /> Try again
                 </button>
               </div>
             ) : filteredGithubProjects.length > 0 ? (
@@ -302,48 +317,55 @@ export default function Projects({ isActive = true }) {
                   return (
                     <article
                       key={project.id}
-                      className="group relative flex flex-col justify-between p-6 rounded-3xl neo-raised border border-slate-200/80 dark:border-slate-800/80 bg-white/70 dark:bg-[#181b22] transition-all duration-200 hover:-translate-y-0.5 cursor-pointer shadow-sm"
-                      onClick={() => setActiveModalProject(project)}
-                    >
+                      className="group relative flex flex-col justify-between p-6 rounded-2xl border card-hover cursor-pointer"
+                      style={{ backgroundColor: 'var(--bg-surface)', borderColor: 'var(--border)' }}
+                      >
                       <div className="space-y-3">
                         <div className="flex items-start justify-between gap-3">
                           <div>
                             <div className="flex items-center gap-2 mb-1.5 flex-wrap">
-                              <span className={`inline-flex items-center gap-1 text-[11px] px-2 py-0.5 rounded-full font-medium border ${devStatus.badgeClass}`}>
-                                <span className={`w-1.5 h-1.5 rounded-full ${devStatus.dotClass}`} />
+                              <span
+                                className="inline-flex items-center gap-1 text-[11px] px-2 py-0.5 rounded-full font-medium"
+                                style={{ backgroundColor: devStatus.badgeClass.includes('emerald') ? 'var(--pastel-green-bg)' : 'var(--pastel-blue-bg)', color: devStatus.badgeClass.includes('emerald') ? 'var(--pastel-green-text)' : 'var(--pastel-blue-text)' }}
+                              >
+                                <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: devStatus.dotClass }} />
                                 {devStatus.label}
                               </span>
                               {project.language && (
-                                <span className="text-[11px] px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium">
+                                <span
+                                  className="text-[11px] px-2 py-0.5 rounded-full font-medium"
+                                  style={{ backgroundColor: 'var(--bg-canvas)', border: '1px solid var(--border)', color: 'var(--text-secondary)' }}
+                                >
                                   {project.language}
                                 </span>
                               )}
                               {project.year && (
-                                <span className="text-[11px] text-slate-400 font-mono">
+                                <span className="text-[11px] font-mono" style={{ color: 'var(--text-secondary)' }}>
                                   {project.year}
                                 </span>
                               )}
                             </div>
-                            <h3 className="text-lg font-bold text-slate-900 dark:text-white group-hover:text-cyan-400 transition-colors">
+                            <h3
+                              className="text-lg font-bold group-hover:opacity-80 transition-colors"
+                              style={{ color: 'var(--text-primary)' }}
+                            >
                               {project.title}
                             </h3>
                           </div>
 
                           <button
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              setActiveModalProject(project);
-                            }}
-                            className="p-2 rounded-xl text-slate-400 hover:text-cyan-400 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 transition shrink-0"
+                            onClick={(e) => { e.stopPropagation(); setActiveModalProject(project); }}
+                            className="p-2 rounded-lg cursor-pointer transition shrink-0"
+                            style={{ backgroundColor: 'var(--bg-canvas)', border: '1px solid var(--border)', color: 'var(--text-secondary)' }}
                             title="View Full Details"
                             aria-label="View Project Details"
                           >
-                            <Info size={15} />
+                            <Info size={15} weight="bold" />
                           </button>
                         </div>
 
-                        <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed line-clamp-2">
-                          {project.description}
+                        <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+                          {project.longDescription || project.description}
                         </p>
                       </div>
 
@@ -356,15 +378,12 @@ export default function Projects({ isActive = true }) {
                               return (
                                 <button
                                   key={j}
-                                  onClick={(e) => {
-                                    e.stopPropagation();
-                                    setSelectedTag(isTagActive ? null : tag);
-                                  }}
-                                  className={`text-[11px] px-2 py-0.5 rounded-md font-mono transition cursor-pointer border ${
-                                    isTagActive
-                                      ? 'bg-cyan-500 text-slate-950 font-bold border-cyan-400'
-                                      : 'bg-slate-100 dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:border-cyan-400'
-                                  }`}
+                                  onClick={(e) => { e.stopPropagation(); setSelectedTag(isTagActive ? null : tag); }}
+                                  className="text-[11px] px-2 py-0.5 rounded-md font-mono transition cursor-pointer"
+                                  style={isTagActive
+                                    ? { backgroundColor: 'var(--pastel-blue-bg)', color: 'var(--pastel-blue-text)', border: '1px solid var(--pastel-blue-text)' }
+                                    : { backgroundColor: 'var(--bg-canvas)', border: '1px solid var(--border)', color: 'var(--text-secondary)' }
+                                  }
                                 >
                                   #{tag}
                                 </button>
@@ -374,30 +393,30 @@ export default function Projects({ isActive = true }) {
                         )}
 
                         {/* Stats & Actions */}
-                        <div className="pt-3 border-t border-slate-200/60 dark:border-slate-800/60 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
+                        <div
+                          className="pt-3 flex items-center justify-between text-xs"
+                          style={{ borderTop: '1px solid var(--border)', color: 'var(--text-secondary)' }}
+                        >
                           <div className="flex items-center gap-3">
                             {project.pushedAt && (
                               <span className="flex items-center gap-1 text-[11px] font-mono">
-                                <Clock size={11} /> {formatTimeAgo(project.pushedAt)}
+                                <Clock size={11} weight="bold" /> {formatTimeAgo(project.pushedAt)}
                               </span>
                             )}
                             {project.stars > 0 && (
-                              <span className="flex items-center gap-0.5 text-amber-500 font-medium text-[11px]">
-                                <Star size={11} fill="currentColor" /> {project.stars}
+                              <span className="flex items-center gap-0.5 text-[11px] font-medium">
+                                <Star size={11} weight="fill" style={{ color: 'var(--pastel-yellow-text)' }} /> {project.stars}
                               </span>
                             )}
                           </div>
 
                           <div className="flex items-center gap-3">
                             <button
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                setModalInitialTab('code');
-                                setActiveModalProject(project);
-                              }}
-                              className="inline-flex items-center gap-1 font-medium text-slate-600 dark:text-slate-300 hover:text-cyan-400 cursor-pointer transition"
+                              onClick={(e) => { e.stopPropagation(); setModalInitialTab('code'); setActiveModalProject(project); }}
+                              className="inline-flex items-center gap-1 font-medium cursor-pointer transition"
+                              style={{ color: 'var(--text-secondary)' }}
                             >
-                              <FileCode size={13} />
+                              <FileCode size={13} weight="bold" />
                               <span>Code</span>
                             </button>
 
@@ -407,9 +426,10 @@ export default function Projects({ isActive = true }) {
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 onClick={(e) => e.stopPropagation()}
-                                className="inline-flex items-center gap-1 font-medium text-emerald-600 dark:text-emerald-400 hover:underline"
+                                className="inline-flex items-center gap-1 font-medium"
+                                style={{ color: 'var(--text-secondary)' }}
                               >
-                                <Globe size={13} />
+                                <Globe size={13} weight="bold" />
                                 <span>Demo</span>
                               </a>
                             )}
@@ -419,37 +439,36 @@ export default function Projects({ isActive = true }) {
                               target="_blank"
                               rel="noopener noreferrer"
                               onClick={(e) => e.stopPropagation()}
-                              className="inline-flex items-center gap-1 font-medium text-cyan-400 hover:underline"
+                              className="inline-flex items-center gap-1 font-medium"
+                              style={{ color: 'var(--text-secondary)' }}
                             >
                               <Github size={13} />
                               <span>Repo</span>
-                              <ExternalLink size={11} />
                             </a>
                           </div>
                         </div>
-
                       </div>
                     </article>
                   );
                 })}
               </div>
             ) : (
-              <div className="p-12 text-center rounded-3xl bg-slate-100/60 dark:bg-slate-900/40 border border-dashed border-slate-300 dark:border-slate-800 space-y-3">
-                <p className="text-sm font-semibold text-slate-700 dark:text-slate-300">
+              <div
+                className="p-12 text-center rounded-xl space-y-3"
+                style={{ backgroundColor: 'var(--bg-canvas)', border: '1px dashed var(--border-hover)' }}
+              >
+                <p className="text-sm font-semibold" style={{ color: 'var(--text-secondary)' }}>
                   No repositories matched your search
                 </p>
                 <button
-                  onClick={() => {
-                    setSearchQuery('');
-                    setSelectedTag(null);
-                  }}
-                  className="px-4 py-2 rounded-xl bg-cyan-500 text-slate-950 text-xs font-bold hover:bg-cyan-400 cursor-pointer"
+                  onClick={() => { setSearchQuery(''); setSelectedTag(null); }}
+                  className="px-4 py-2 rounded text-xs font-bold cursor-pointer transition"
+                  style={{ backgroundColor: 'var(--accent)', color: '#ffffff', borderRadius: 'rounded-lg' }}
                 >
                   Reset filters
                 </button>
               </div>
             )}
-
           </div>
         )}
 
@@ -461,14 +480,10 @@ export default function Projects({ isActive = true }) {
           project={activeModalProject}
           initialTab={modalInitialTab}
           githubData={githubMap.get((activeModalProject.repoName || activeModalProject.title).toLowerCase())}
-          onClose={() => {
-            setActiveModalProject(null);
-            setModalInitialTab('overview');
-          }}
+          onClose={() => { setActiveModalProject(null); setModalInitialTab('overview'); }}
           onSelectTag={(tag) => setSelectedTag(tag)}
         />
       )}
-
     </section>
   );
 }

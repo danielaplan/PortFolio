@@ -6,13 +6,24 @@ import Projects from './components/Projects';
 import Skills from './components/Skills';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import InteractiveDotGrid from './components/ui/InteractiveDotGrid';
 import { Check } from 'lucide-react';
 
 export default function App() {
-  const [darkMode, setDarkMode] = useState(true);
   const [copiedToast, setCopiedToast] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const [theme, setTheme] = useState(() => {
+    // Auto-detect theme based on time: dark from 6 PM to 6 AM
+    const hour = new Date().getHours();
+    const isNightTime = hour >= 18 || hour < 6;
+    return localStorage.getItem('theme') || (isNightTime ? 'dark' : 'light');
+  });
+
+  // Default to dark mode on first visit (override any time-based detection)
+  useEffect(() => {
+    if (!localStorage.getItem('theme')) {
+      setTheme('dark');
+    }
+  }, []);
 
   // Initialize Lenis Fluid Smooth Inertia Scroll
   useEffect(() => {
@@ -83,17 +94,6 @@ export default function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  useEffect(() => {
-    const root = document.documentElement;
-    if (darkMode) {
-      root.classList.add('dark');
-      root.setAttribute('data-theme', 'dark');
-    } else {
-      root.classList.remove('dark');
-      root.setAttribute('data-theme', 'light');
-    }
-  }, [darkMode]);
-
   const handleCopyEmail = () => {
     const email = "danielaplan.bsit2024@gmail.com";
 
@@ -117,55 +117,37 @@ export default function App() {
       document.body.appendChild(textArea);
       textArea.focus();
       textArea.select();
-      document.execCommand('copy');
+      document.execCommand("copy");
       textArea.remove();
     } catch (err) {
       console.error('Fallback copy failed', err);
     }
   };
 
+  // Apply theme to document and persist
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
+  };
+
   return (
     <div className="relative min-h-screen w-full max-w-full flex flex-col font-sans overflow-x-clip">
 
-      {/* Ambient Background Textures & Lighting */}
-      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden="true">
-        {/* Soft Ambient Top Spotlight Glow */}
-        <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[950px] h-[550px] bg-gradient-to-b from-cyan-500/12 dark:from-cyan-500/10 via-transparent to-transparent rounded-full blur-3xl" />
-        
-        {/* Interactive Google-Style Breathing & Cursor-Reactive Canvas Dot Grid */}
-        <InteractiveDotGrid darkMode={darkMode} />
-        
-        {/* Tactile Matte Paper/Slate Noise Texture */}
-        <div className="absolute inset-0 bg-noise-texture opacity-60 pointer-events-none" />
-      </div>
-
-      {/* Toast Notification — neumorphic raised */}
-      <div
-        className={`fixed bottom-6 right-6 z-50 transition-all duration-300 transform ${copiedToast
-            ? 'translate-y-0 opacity-100 scale-100'
-            : 'translate-y-4 opacity-0 scale-95 pointer-events-none'
-          }`}
-      >
-        <div className="neo-raised-md flex items-center gap-2.5 px-4 py-3 text-xs font-medium">
-          <div className="p-1 rounded-full text-accent flex items-center justify-center">
-            <Check size={12} strokeWidth={3} />
-          </div>
-          <span>Email copied: <strong>danielaplan.bsit2024@gmail.com</strong></span>
-        </div>
-      </div>
-
       {/* Navigation */}
       <Navbar
-        darkMode={darkMode}
-        setDarkMode={setDarkMode}
-        onCopyEmail={handleCopyEmail}
+        theme={theme}
+        toggleTheme={toggleTheme}
         activeSection={activeSection}
         setActiveSection={setActiveSection}
       />
 
       {/* Main Content: Fluid Scroll Stages with In-View Focus */}
       <main className="relative z-10 flex-grow pt-16">
-        
+
         {/* Stage 1: About / Hero */}
         <Hero
           isActive={activeSection === 'home'}
@@ -194,6 +176,35 @@ export default function App() {
 
       {/* Footer */}
       <Footer />
+
+      {/* Toast Notification */}
+      <div
+        className={`fixed bottom-6 right-6 z-50 transition-all duration-300 transform ${
+          copiedToast
+            ? 'translate-y-0 opacity-100 scale-100'
+            : 'translate-y-4 opacity-0 scale-95 pointer-events-none'
+        }`}
+      >
+        <div
+          className="flex items-center gap-2.5 px-4 py-3 text-xs font-medium rounded-lg border"
+          style={{
+            backgroundColor: 'var(--bg-surface)',
+            borderColor: 'var(--border)',
+            color: 'var(--text-primary)',
+          }}
+        >
+          <div
+            className="p-1 rounded-full flex items-center justify-center"
+            style={{ backgroundColor: 'var(--accent)', color: '#ffffff' }}
+          >
+            <Check size={12} strokeWidth={3} />
+          </div>
+          <span>
+            Email copied: <strong>danielaplan.bsit2024@gmail.com</strong>
+          </span>
+        </div>
+      </div>
+
     </div>
   );
 }

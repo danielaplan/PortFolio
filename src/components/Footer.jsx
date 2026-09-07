@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowUp, Heart, Code2 } from 'lucide-react';
+import { ChevronUp } from 'lucide-react';
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -23,64 +23,59 @@ export default function Footer() {
   };
 
   return (
-    <footer className="w-full border-t border-slate-300/80 dark:border-slate-800/80 pt-8 pb-12 mt-6">
-      <div className="w-full px-5 sm:px-8 lg:px-12 flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-slate-600 dark:text-slate-400">
-        
+    <footer
+      className="w-full pt-8 pb-12 mt-6"
+      style={{ backgroundColor: 'var(--bg-canvas)', borderTop: '1px solid var(--border)' }}
+    >
+      <div className="w-full px-5 sm:px-8 lg:px-12 flex flex-col md:flex-row items-center justify-between gap-6 text-xs">
+
         {/* Branding & Copyright */}
-        <div className="flex flex-col sm:flex-row items-center gap-1.5 sm:gap-2 text-center sm:text-left">
-          <span className="font-semibold text-slate-800 dark:text-slate-200">
+        <div className="flex flex-col sm:flex-row items-center gap-1.5 sm:gap-2">
+          <span className="font-medium" style={{ color: 'var(--text-secondary)' }}>
             &copy; {new Date().getFullYear()} Daniel Aplan.
           </span>
-          <span className="hidden sm:inline text-slate-400 dark:text-slate-600">&bull;</span>
-          <span className="flex items-center gap-1 text-slate-500 dark:text-slate-400">
-            <span>Crafted with React, Tailwind & Neumorphism</span>
+          <span className="hidden sm:inline" style={{ color: 'var(--text-tertiary)' }}>&bull;</span>
+          <span className="flex items-center gap-1" style={{ color: 'var(--text-secondary)' }}>
+            <span>Crafted with React &amp; Tailwind</span>
           </span>
         </div>
 
         {/* Quick Section Navigation Links */}
         <nav className="flex items-center gap-5 sm:gap-6 font-medium text-xs tracking-wide">
-          <a
-            href="#home"
-            onClick={(e) => scrollToSection(e, '#home')}
-            className="hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors"
-          >
-            About
-          </a>
-          <a
-            href="#projects"
-            onClick={(e) => scrollToSection(e, '#projects')}
-            className="hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors"
-          >
-            Projects
-          </a>
-          <a
-            href="#skills"
-            onClick={(e) => scrollToSection(e, '#skills')}
-            className="hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors"
-          >
-            Skills
-          </a>
-          <a
-            href="#contact"
-            onClick={(e) => scrollToSection(e, '#contact')}
-            className="hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors"
-          >
-            Contact
-          </a>
+          {[
+            { label: 'About', href: '#home', id: 'home' },
+            { label: 'Projects', href: '#projects', id: 'projects' },
+            { label: 'Skills', href: '#skills', id: 'skills' },
+            { label: 'Contact', href: '#contact', id: 'contact' },
+          ].map(({ label, href, id }) => (
+            <a
+              key={id}
+              href={href}
+              onClick={(e) => scrollToSection(e, href)}
+              className="transition-colors duration-200"
+              style={{ color: 'var(--text-secondary)' }}
+            >
+              {label}
+            </a>
+          ))}
         </nav>
 
         {/* Back to Top */}
         <button
           onClick={scrollToTop}
-          className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-200/90 dark:bg-slate-900/90 hover:bg-cyan-500 hover:text-slate-950 text-slate-700 dark:text-slate-300 border border-slate-300/80 dark:border-slate-800 transition-all duration-200 cursor-pointer active:scale-95 shadow-2xs font-mono font-medium"
+          className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded cursor-pointer transition-all duration-200 font-mono font-medium"
+          style={{
+            backgroundColor: 'var(--bg-surface)',
+            border: '1px solid var(--border)',
+            color: 'var(--text-secondary)',
+          }}
           aria-label="Scroll back to top"
         >
           <span>Back to Top</span>
-          <ArrowUp size={13} />
+          <ChevronUp size={14} />
         </button>
 
       </div>
     </footer>
   );
 }
-
