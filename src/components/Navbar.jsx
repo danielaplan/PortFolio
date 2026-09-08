@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { List, X, Sun, Moon } from '@phosphor-icons/react';
+import RandomLetterSwap from './ui/random-letter-swap';
 
 export default function Navbar({ theme, toggleTheme, activeSection, setActiveSection }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -80,7 +81,12 @@ export default function Navbar({ theme, toggleTheme, activeSection, setActiveSec
                   fontWeight: isActive ? 600 : 400,
                 }}
               >
-                {link.name}
+                <RandomLetterSwap
+                  label={link.name}
+                  staggerDuration={0.025}
+                  transition={{ duration: 0.6, type: 'spring' }}
+                  className="transition-colors duration-200"
+                />
               </a>
             );
           })}

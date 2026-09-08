@@ -4,6 +4,7 @@ import Github from './icons/Github';
 import Instagram from './icons/Instagram';
 import Facebook from './icons/Facebook';
 import Linkedin from './icons/Linkedin';
+import RandomLetterSwap from './ui/random-letter-swap';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 
 export default function Contact({ onCopyEmail, copiedEmail, isActive = true }) {
@@ -143,7 +144,9 @@ export default function Contact({ onCopyEmail, copiedEmail, isActive = true }) {
                     ) : (
                       <>
                         <Copy size={16} weight="bold" />
-                        <span className="font-bold text-xs sm:text-sm">Copy Email Address</span>
+                        <span className="font-bold text-xs sm:text-sm">
+                          <RandomLetterSwap label="Copy Email Address" />
+                        </span>
                       </>
                     )}
                   </button>
@@ -159,7 +162,9 @@ export default function Contact({ onCopyEmail, copiedEmail, isActive = true }) {
                     }}
                   >
                     <PaperPlaneTilt size={14} weight="bold" />
-                    <span className="font-semibold text-xs sm:text-sm">Open Mail App</span>
+                    <span className="font-semibold text-xs sm:text-sm">
+                      <RandomLetterSwap label="Open Mail App" />
+                    </span>
                   </a>
                 </div>
               </div>

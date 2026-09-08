@@ -1,5 +1,6 @@
 import { ArrowRight } from 'lucide-react';
 import { getTechIcon } from './icons/TechIcons';
+import RandomLetterSwap from './ui/random-letter-swap';
 
 /**
  * TechStackPills — renders a row of icon-bearing tech tag pills.
@@ -262,7 +263,7 @@ function ArchitectureCard({ project, onOpenDetails }) {
           className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-xs font-semibold cursor-pointer transition"
           style={{ backgroundColor: 'var(--accent)', color: '#ffffff' }}
         >
-          View Repositories
+          <RandomLetterSwap label="View Repositories" />
           <ArrowRight size={14} weight="bold" />
         </button>
       </div>

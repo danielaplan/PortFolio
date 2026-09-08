@@ -1,5 +1,6 @@
 import React from 'react';
 import { ChevronUp } from 'lucide-react';
+import RandomLetterSwap from './ui/random-letter-swap';
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -55,7 +56,7 @@ export default function Footer() {
               className="transition-colors duration-200"
               style={{ color: 'var(--text-secondary)' }}
             >
-              {label}
+              <RandomLetterSwap label={label} />
             </a>
           ))}
         </nav>
@@ -71,7 +72,7 @@ export default function Footer() {
           }}
           aria-label="Scroll back to top"
         >
-          <span>Back to Top</span>
+          <RandomLetterSwap label="Back to Top" />
           <ChevronUp size={14} />
         </button>
 

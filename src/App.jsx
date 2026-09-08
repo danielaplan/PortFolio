@@ -146,7 +146,7 @@ export default function App() {
       />
 
       {/* Main Content: Fluid Scroll Stages with In-View Focus */}
-      <main className="relative z-10 flex-grow pt-16">
+      <main className="relative z-10 flex-grow">
 
         {/* Stage 1: About / Hero */}
         <Hero

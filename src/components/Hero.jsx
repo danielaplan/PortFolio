@@ -2,6 +2,9 @@ import { useRef } from 'react';
 import { GraduationCap, MapPin, ArrowDown, Copy, Check } from 'lucide-react';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import Github from './icons/Github';
+import RandomLetterSwap from './ui/random-letter-swap';
+import MultilingualName from './ui/MultilingualName';
+
 
 export default function Hero({ onCopyEmail, copiedEmail, isActive = true }) {
   const sectionRef = useRef(null);
@@ -14,7 +17,7 @@ export default function Hero({ onCopyEmail, copiedEmail, isActive = true }) {
       id="home"
       ref={sectionRef}
       style={{ backgroundColor: 'var(--bg-canvas)' }}
-      className={`min-h-[100dvh] lg:min-h-screen flex items-center justify-center pt-20 pb-10 sm:pt-24 sm:pb-12 scroll-mt-0 transition-all duration-700 ${
+      className={`min-h-[calc(100dvh-4rem)] flex items-center justify-center py-8 sm:py-12 scroll-mt-16 transition-all duration-700 ${
         isActive
           ? 'opacity-100 translate-y-0 scale-100'
           : 'opacity-40 translate-y-6 scale-[0.985]'
@@ -33,13 +36,13 @@ export default function Hero({ onCopyEmail, copiedEmail, isActive = true }) {
                 style={{ border: '1px solid var(--border)', backgroundColor: 'var(--bg-surface)' }}
               >
                 <img
-                  src="/profile.webp"
+                  src="/profile.jpg"
                   alt="Daniel Aplan"
                   width={420}
                   height={525}
                   loading="eager"
                   decoding="async"
-                  className="w-full h-full object-cover object-center group-hover:scale-103 transition-transform duration-700"
+                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
                 />
               </div>
             </div>
@@ -67,10 +70,10 @@ export default function Hero({ onCopyEmail, copiedEmail, isActive = true }) {
             {/* Main Headline & Titles */}
             <div className="space-y-2 sm:space-y-3">
               <h1
-                className="text-4xl sm:text-6xl md:text-7xl xl:text-8xl font-black tracking-tight leading-[1.05]"
+                className="text-4xl sm:text-6xl md:text-7xl xl:text-8xl font-black tracking-tight leading-[1.05] whitespace-nowrap transition-all duration-500 ease-out"
                 style={{ color: 'var(--text-primary)', fontFamily: "'Instrument Serif', serif" }}
               >
-                Daniel Aplan
+                <MultilingualName />
               </h1>
                 <p
                 className="text-lg sm:text-2xl md:text-3xl font-bold tracking-tight"
@@ -149,7 +152,9 @@ export default function Hero({ onCopyEmail, copiedEmail, isActive = true }) {
                 style={{ backgroundColor: 'var(--accent)', color: '#ffffff' }}
               >
                 <Github size={16} />
-                <span className="font-bold text-xs sm:text-sm">GitHub Profile</span>
+                <span className="font-bold text-xs sm:text-sm">
+                  <RandomLetterSwap label="GitHub Profile" />
+                </span>
               </a>
 
               {/* Copy Email */}
@@ -171,7 +176,9 @@ export default function Hero({ onCopyEmail, copiedEmail, isActive = true }) {
                 ) : (
                   <>
                     <Copy size={15} weight="bold" />
-                    <span className="font-semibold text-xs sm:text-sm">Copy Email</span>
+                    <span className="font-semibold text-xs sm:text-sm">
+                      <RandomLetterSwap label="Copy Email" />
+                    </span>
                   </>
                 )}
               </button>
@@ -182,7 +189,7 @@ export default function Hero({ onCopyEmail, copiedEmail, isActive = true }) {
                 className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm font-medium transition-colors duration-200 cursor-pointer group"
                 style={{ color: 'var(--text-secondary)' }}
               >
-                <span>View Projects</span>
+                <RandomLetterSwap label="View Projects" />
                 <ArrowDown size={14} weight="bold" className="transition-transform group-hover:translate-y-1" />
               </a>
             </div>

@@ -7,6 +7,7 @@ import { ArrowsClockwise } from '@phosphor-icons/react';
 import Github from './icons/Github';
 import ProjectModal from './ProjectModal';
 import BentoGrid from './BentoGrid';
+import ImageFanCarousel from './ui/ImageFanCarousel';
 import { bentoProjects } from '../data/bentoProjects';
 import { curatedProjects } from '../data/projects';
 import { fetchUserRepos, formatTimeAgo, getDevStatus } from '../services/github';
@@ -158,6 +159,19 @@ export default function Projects({ isActive = true }) {
                 Projects ({String(bentoProjects.length).padStart(2, '0')})
               </button>
               <button
+                onClick={() => { setViewMode('gallery'); setSearchQuery(''); setSelectedTag(null); }}
+                className="px-3 py-1.5 rounded-lg transition-all cursor-pointer"
+                style={{
+                  backgroundColor: viewMode === 'gallery' ? 'var(--bg-surface)' : 'transparent',
+                  color: viewMode === 'gallery' ? 'var(--text-primary)' : 'var(--text-secondary)',
+                  fontWeight: viewMode === 'gallery' ? 700 : 400,
+                  border: '1px solid transparent',
+                  boxShadow: viewMode === 'gallery' ? 'var(--card-shadow)' : 'none',
+                }}
+              >
+                Gallery (07)
+              </button>
+              <button
                 onClick={() => setViewMode('github')}
                 className="px-3 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1.5"
                 style={{
@@ -201,6 +215,13 @@ export default function Projects({ isActive = true }) {
             githubMap={githubMap}
             onOpenDetails={(p) => { setModalInitialTab('overview'); setActiveModalProject(p); }}
           />
+        )}
+
+        {/* ==================== 3D IMAGE FAN CAROUSEL ==================== */}
+        {viewMode === 'gallery' && (
+          <div className="w-full">
+            <ImageFanCarousel />
+          </div>
         )}
 
         {/* ==================== LIVE GITHUB REPOS ==================== */}
