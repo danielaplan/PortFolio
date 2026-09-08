@@ -26,7 +26,7 @@ export async function fetchUserRepos(username = 'danielaplan', forceRefresh = fa
     const timeoutId = setTimeout(() => controller.abort(), REQUEST_TIMEOUT);
     let response;
     try {
-      response = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=30`, {
+      response = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=100`, {
         headers: {
           Accept: 'application/vnd.github.v3+json'
         },

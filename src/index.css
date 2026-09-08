@@ -19,7 +19,8 @@
    THEME TOKENS — Light (default) + Dark (data-theme="dark")
    ========================================================= */
 
-[data-theme="dark"] {
+html[data-theme="dark"] {
+  color-scheme: dark;
   --bg-canvas:   #09090b;
   --bg-surface:  #18181b;
   --bg-raised:   #27272a;
@@ -34,8 +35,25 @@
   --accent-hover:    #06b6d4;
   --accent-soft:     rgba(59, 130, 246, 0.1);
 
+  --status-active:    #34d399;
+  --status-maintained:#22d3ee;
+
+  --pastel-red-bg:    rgba(127, 29, 29, 0.28);
+  --pastel-red-text:  #fca5a5;
+  --pastel-blue-bg:   rgba(30, 64, 175, 0.28);
+  --pastel-blue-text: #93c5fd;
+  --pastel-green-bg:  rgba(6, 78, 59, 0.32);
+  --pastel-green-text:#6ee7b7;
+  --pastel-yellow-bg: rgba(113, 63, 18, 0.3);
+  --pastel-yellow-text:#fcd34d;
+
   --card-shadow: 0 2px 8px rgba(0,0,0,0.4);
   --card-shadow-hover: 0 4px 16px rgba(0,0,0,0.6);
+
+  --code-bg:    #0b101b;
+  --code-text:  #e2e8f0;
+  --code-gutter:#1e293b;
+  --code-accent:#60a5fa;
 }
 
 /* =========================================================
@@ -43,6 +61,7 @@
    ========================================================= */
 
 :root {
+  color-scheme: light;
   --bg-canvas:   #F7F6F3;
   --bg-surface:  #FFFFFF;
   --bg-raised:   #F9F9F8;
