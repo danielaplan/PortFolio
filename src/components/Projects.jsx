@@ -60,6 +60,7 @@ export default function Projects({ isActive = true }) {
       engineeredWith: curated?.engineeredWith || [repo.language, 'Git', 'Open Source'].filter(Boolean),
       link: repo.htmlUrl,
       demoUrl: curated?.demoUrl || repo.homepage || null,
+      image: curated?.image || null,
       year: repo.createdAt ? new Date(repo.createdAt).getFullYear().toString() : null,
       stars: repo.stars,
       forks: repo.forks,
@@ -73,7 +74,7 @@ export default function Projects({ isActive = true }) {
       id="projects"
       ref={sectionRef}
       style={{ backgroundColor: 'var(--bg-surface)' }}
-      className={`min-h-[100dvh] flex flex-col justify-center border-t px-5 pb-12 pt-20 transition-all duration-700 sm:px-8 sm:pb-16 sm:pt-24 lg:px-12 ${
+      className={`relative z-20 min-h-[100dvh] flex flex-col justify-center border-t px-5 pb-12 pt-20 transition-all duration-700 sm:px-8 sm:pb-16 sm:pt-24 lg:px-12 ${
         isActive ? 'translate-y-0 scale-100 opacity-100' : 'translate-y-6 scale-[0.985] opacity-40'
       }`}
       data-lenis-prevent
