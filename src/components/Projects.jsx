@@ -74,42 +74,48 @@ export default function Projects({ isActive = true }) {
       id="projects"
       ref={sectionRef}
       style={{ backgroundColor: 'var(--bg-surface)' }}
-      className={`relative z-20 min-h-[100dvh] flex flex-col justify-center border-t px-5 pb-12 pt-20 transition-all duration-700 sm:px-8 sm:pb-16 sm:pt-24 lg:px-12 ${
+      className={`relative z-20 min-h-0 lg:min-h-[calc(100dvh-4rem)] flex flex-col justify-start border-t px-4 pb-12 pt-14 transition-all duration-700 sm:px-8 sm:pb-16 sm:pt-20 lg:px-12 lg:pt-24 scroll-mt-16 ${
         isActive ? 'translate-y-0 scale-100 opacity-100' : 'translate-y-6 scale-[0.985] opacity-40'
       }`}
       data-lenis-prevent
     >
-      <div className="w-full">
-        <div className="mb-8 flex flex-col gap-4 sm:mb-10 sm:flex-row sm:items-end sm:justify-between">
+      <div className="mx-auto w-full max-w-[1400px]">
+        <div className="mb-8 flex flex-col gap-5 sm:mb-12 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p
-              className="mb-2 text-xs font-mono font-semibold uppercase tracking-wider"
+              className="mb-2 text-[10px] font-mono font-semibold uppercase tracking-[0.22em]"
               style={{ color: 'var(--text-secondary)' }}
             >
-              GitHub projects
+              My projects
             </p>
             <h2
-              className="text-3xl font-extrabold tracking-tight sm:text-4xl"
+              className="text-3xl font-medium tracking-[-0.04em] sm:text-5xl"
               style={{ color: 'var(--text-primary)' }}
             >
-              Projects &amp; Engineering
+              Featured Projects
             </h2>
-            <p className="mt-2 max-w-2xl text-sm leading-relaxed sm:text-base" style={{ color: 'var(--text-secondary)' }}>
-              Every public repository is loaded from GitHub and shown with its technical details.
+            <p className="mt-3 max-w-xl text-sm leading-6 sm:text-base sm:leading-7" style={{ color: 'var(--text-secondary)' }}>
+              A collection of projects I&apos;ve built to practice, learn, and solve real problems.
             </p>
           </div>
 
-          <div className="flex items-center gap-3 text-xs font-mono" style={{ color: 'var(--text-secondary)' }}>
-            <span>{githubProjects.length} repositories</span>
-            {githubSource && <span>{githubSource}</span>}
+          <div className="flex items-center gap-3 text-xs font-medium" style={{ color: 'var(--text-primary)' }}>
+            <a
+              href="https://github.com/danielaplan?tab=repositories"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 transition-opacity hover:opacity-60"
+            >
+              View all projects <span aria-hidden="true">→</span>
+            </a>
             <button
               type="button"
               onClick={() => loadGithubRepos(true)}
               disabled={githubLoading}
-              className="rounded-lg p-2 transition-opacity hover:opacity-70 disabled:opacity-50"
-              style={{ border: '1px solid var(--border)', backgroundColor: 'var(--bg-canvas)' }}
+              className="hidden rounded-lg p-2 transition-opacity hover:opacity-70 disabled:opacity-50"
               aria-label="Refresh GitHub projects"
               title="Refresh GitHub projects"
+              style={{ border: '1px solid var(--border)', backgroundColor: 'var(--bg-canvas)' }}
             >
               <ArrowsClockwise size={14} weight="bold" className={githubLoading ? 'animate-spin' : ''} />
             </button>
@@ -117,12 +123,9 @@ export default function Projects({ isActive = true }) {
         </div>
 
         {githubLoading ? (
-          <div
-            className="flex min-h-40 flex-col items-center justify-center gap-3 rounded-xl border border-dashed"
-            style={{ backgroundColor: 'var(--bg-canvas)', borderColor: 'var(--border-hover)' }}
-          >
-            <ArrowsClockwise size={22} weight="bold" className="animate-spin" style={{ color: 'var(--text-secondary)' }} />
-            <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
+          <div className="flex min-h-40 items-center justify-center py-6">
+            <ArrowsClockwise size={18} weight="bold" className="animate-spin" style={{ color: 'var(--text-secondary)' }} />
+            <p className="ml-2 text-sm" style={{ color: 'var(--text-secondary)' }}>
               Loading projects from GitHub...
             </p>
           </div>
@@ -133,8 +136,8 @@ export default function Projects({ isActive = true }) {
           />
         ) : (
           <div
-            className="space-y-4 rounded-xl p-10 text-center"
-            style={{ backgroundColor: 'var(--pastel-red-bg)' }}
+            className="space-y-3 rounded-xl border p-10 text-center"
+            style={{ backgroundColor: 'var(--bg-surface)', borderColor: 'var(--border)' }}
           >
             <div>
               <h3 className="font-semibold" style={{ color: 'var(--text-primary)' }}>

@@ -48,19 +48,31 @@ export default function Skills({ isActive = true }) {
       ]
     },
     {
-      title: "Backend & Databases",
-      badge: "Architecture",
-      focus: "Data & APIs",
+     title: "Backend",
+     badge: "03",
+     focus: "Services & APIs",
       icon: Database,
-      description: "Designing structured database schemas, RESTful endpoints, and server workflows.",
-      application: "Applied in relational database querying, authentication, and CRUD services.",
+     description: "Building server workflows and REST endpoints for connected web applications.",
+     application: "Applied in full-stack projects and CRUD services.",
       skills: [
         { name: "Node.js", icon: NodeIcon },
+        { name: "REST APIs", icon: (props) => <Network size={14} {...props} /> },
+        { name: "PHP", icon: PhpIcon },
+        { name: "Laravel", icon: (props) => <Code size={14} {...props} /> },
+      ]
+    },
+    {
+     title: "Databases",
+     badge: "04",
+     focus: "Data & Storage",
+     icon: Database,
+     description: "Designing structured schemas and reliable data models for application workflows.",
+     application: "Applied in relational querying and data persistence.",
+     skills: [
         { name: "MySQL", icon: MysqlIcon },
         { name: "MariaDB", icon: MariadbIcon },
         { name: "SQLite", icon: SqliteIcon },
         { name: "Relational Schema Design", icon: (props) => <Table size={14} {...props} /> },
-        { name: "REST APIs", icon: (props) => <Network size={14} {...props} /> },
       ]
     },
     {
@@ -69,7 +81,7 @@ export default function Skills({ isActive = true }) {
       focus: "Engineering Lifecycle",
       icon: Wrench,
       description: "Version control, modern IDE tooling, and structured software architecture workflows.",
-      application: "Applied in collaborative Git workflows, code reviews, and project releases.",
+      application: "Applied in collaborative Git workflows and project releases.",
       skills: [
         { name: "Git & GitHub", icon: GitIcon },
         { name: "VS Code", icon: VscodeIcon },
@@ -83,167 +95,77 @@ export default function Skills({ isActive = true }) {
       id="skills"
       ref={sectionRef}
       style={{ backgroundColor: 'var(--bg-canvas)' }}
-      className={`min-h-[100dvh] lg:min-h-screen flex flex-col justify-center pt-20 pb-10 sm:pt-24 sm:pb-12 scroll-mt-0 transition-all duration-700 ${
+      className={`min-h-0 lg:min-h-[calc(100dvh-4rem)] flex flex-col justify-start pt-14 pb-12 sm:pt-20 sm:pb-16 scroll-mt-16 transition-all duration-700 ${
         isActive
           ? 'opacity-100 translate-y-0 scale-100'
           : 'opacity-40 translate-y-6 scale-[0.985]'
       }`}
     >
-      <div className="w-full max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 space-y-8 sm:space-y-10">
+      <div className="mx-auto w-full max-w-[1400px] space-y-10 px-5 sm:px-8 lg:space-y-14 lg:px-12">
 
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div className="flex flex-col gap-4">
           <div>
             <p
               className="text-xs font-mono font-semibold uppercase tracking-wider mb-2"
               style={{ color: 'var(--text-secondary)' }}
             >
-              Technical Proficiency
+              My skills
             </p>
             <h2
-              className="text-3xl sm:text-4xl font-extrabold tracking-tight"
+              className="text-3xl font-medium tracking-[-0.04em] sm:text-5xl"
               style={{ color: 'var(--text-primary)' }}
             >
-              Skills &amp; Technologies
+              Technical Skills
             </h2>
             <p
-              className="text-sm sm:text-base mt-2 max-w-2xl font-normal leading-relaxed"
+              className="mt-3 max-w-xl text-sm font-normal leading-6 sm:text-base sm:leading-7"
               style={{ color: 'var(--text-secondary)' }}
             >
-              Core competencies acquired through coursework at University of Caloocan City and hands-on full-stack engineering.
+              Tools and technologies I use to build web applications, solve problems, and keep learning.
             </p>
-          </div>
-
-          <div
-            className="px-3.5 py-2 rounded-xl text-xs font-mono flex items-center gap-2"
-            style={{
-              backgroundColor: 'var(--bg-surface)',
-              border: '1px solid var(--border)',
-              color: 'var(--text-secondary)',
-            }}
-          >
-            <span className="w-2 h-2 rounded-full" style={{ backgroundColor: 'var(--status-active)' }} />
-            <span>20+ Technologies &amp; Tools</span>
           </div>
         </div>
 
-        {/* Skill Category Cards Grid */}
-        <div className="grid gap-6 sm:grid-cols-2">
-          {skillCategories.map((category, index) => {
-            const CategoryIcon = category.icon;
-            return (
+        {/* Editorial skill index */}
+        <div className="grid gap-x-12 lg:grid-cols-2">
+          {[skillCategories.slice(0, 3), skillCategories.slice(3)].map((column, columnIndex) => (
+            <div key={columnIndex}>
+              {column.map((category) => {
+                const index = skillCategories.indexOf(category);
+                return (
               <div
                 key={index}
-                className="rounded-2xl p-6 sm:p-8 border card-hover"
+                className="grid grid-cols-[2.5rem_1fr] gap-4 border-t py-5 sm:grid-cols-[3rem_1fr] sm:gap-5 sm:py-6"
                 style={{
-                  backgroundColor: 'var(--bg-surface)',
                   borderColor: 'var(--border)',
                 }}
               >
+                <span className="pt-0.5 text-xs font-mono" style={{ color: 'var(--text-secondary)' }}>
+                  {String(index + 1).padStart(2, '0')}
+                </span>
                 <div>
-                  <div className="flex items-start justify-between mb-4">
-                    <div className="flex items-center gap-3.5">
-                      <div
-                        className="w-11 h-11 rounded-xl flex items-center justify-center"
-                        style={{
-                          backgroundColor: 'var(--bg-surface)',
-                          border: '1px solid var(--border)',
-                          color: 'var(--text-secondary)',
-                        }}
-                      >
-                        <CategoryIcon size={20} weight="bold" />
-                      </div>
-                      <div>
-                        <h3
-                          className="font-bold text-base sm:text-lg"
-                          style={{ color: 'var(--text-primary)' }}
-                        >
-                          {category.title}
-                        </h3>
-                        <span className="text-xs font-mono" style={{ color: 'var(--text-secondary)' }}>
-                          {category.focus}
-                        </span>
-                      </div>
-                    </div>
-                    <span
-                      className="px-3 py-1 rounded-lg text-[10px] font-mono font-semibold uppercase"
-                      style={{
-                        backgroundColor: 'var(--bg-canvas)',
-                        border: '1px solid var(--border)',
-                        color: 'var(--text-secondary)',
-                      }}
-                    >
-                      {category.badge}
-                    </span>
-                  </div>
-
-                  <p
-                    className="text-xs sm:text-sm mb-5 leading-relaxed font-normal"
-                    style={{ color: 'var(--text-secondary)' }}
-                  >
-                    {category.description}
-                  </p>
-
-                  <div className="flex flex-wrap gap-2.5">
-                    {category.skills.map((skill, sIndex) => {
-                      const SkillIcon = skill.icon;
-                      return (
-                        <span
-                          key={sIndex}
-                          className="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-mono font-medium cursor-default"
-                          style={{
-                            backgroundColor: 'var(--bg-surface)',
-                            border: '1px solid var(--border)',
-                            color: 'var(--text-secondary)',
-                          }}
-                        >
-                          <SkillIcon className="w-4 h-4 shrink-0 opacity-80" />
-                          <span>{skill.name}</span>
-                        </span>
-                      );
-                    })}
+                  <h3 className="text-base font-medium sm:text-lg" style={{ color: 'var(--text-primary)' }}>
+                    {category.title}
+                  </h3>
+                  <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2">
+                    {category.skills.map((skill, sIndex) => (
+                      <span key={sIndex} className="text-xs sm:text-sm" style={{ color: 'var(--text-secondary)' }}>
+                        {skill.name}
+                      </span>
+                    ))}
                   </div>
                 </div>
-
-                {/* Card Application Note */}
-                <div
-                  className="mt-6 pt-4 flex items-center gap-2 text-[11px] font-mono"
-                  style={{ borderTop: '1px solid var(--border)', color: 'var(--text-secondary)' }}
-                >
-                  <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: 'var(--text-tertiary)' }} />
-                  <span>{category.application}</span>
-                </div>
               </div>
-            );
-          })}
-        </div>
-
-        {/* Engineering Architecture Highlights Row */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
-          {[
-            { icon: Lightning, title: "Full-Stack Integration", desc: "Connecting interactive React user interfaces with secure backend endpoints and schema logic." },
-            { icon: Database, title: "Structured Schemas", desc: "Designing normalized relational models with MySQL and MariaDB with consistent query integrity." },
-            { icon: ShieldCheck, title: "Clean Architecture", desc: "Writing modular, maintainable code with strict typing, Git versioning, and design consistency." },
-          ].map(({ icon: Icon, title, desc }, i) => (
-            <div
-              key={i}
-              className="p-4 sm:p-5 rounded-xl border card-hover"
-              style={{ backgroundColor: 'var(--bg-surface)', borderColor: 'var(--border)' }}
-            >
-              <div className="flex items-start gap-3.5">
-                <div
-                  className="p-2 rounded-lg shrink-0"
-                  style={{ backgroundColor: 'var(--pastel-blue-bg)', color: 'var(--pastel-blue-text)' }}
-                >
-                  <Icon size={18} weight="bold" />
-                </div>
-                <div>
-                  <h4 className="text-xs sm:text-sm font-bold font-mono" style={{ color: 'var(--text-primary)' }}>{title}</h4>
-                  <p className="text-[11px] sm:text-xs mt-1 leading-normal" style={{ color: 'var(--text-secondary)' }}>{desc}</p>
-                </div>
-              </div>
+                );
+              })}
             </div>
           ))}
+        </div>
+
+        <div className="flex items-center justify-end gap-4 text-xs italic" style={{ color: 'var(--text-secondary)' }}>
+          <span>Always learning. Always building.</span>
+          <span className="h-px w-14" style={{ backgroundColor: 'var(--border)' }} />
         </div>
 
       </div>

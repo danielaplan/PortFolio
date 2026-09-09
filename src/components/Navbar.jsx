@@ -6,7 +6,7 @@ export default function Navbar({ theme, toggleTheme, activeSection, setActiveSec
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navLinks = [
-    { name: 'About', href: '#home', id: 'home' },
+    { name: 'Home', href: '#home', id: 'home' },
     { name: 'Projects', href: '#projects', id: 'projects' },
     { name: 'Skills', href: '#skills', id: 'skills' },
     { name: 'Contact', href: '#contact', id: 'contact' },
@@ -18,7 +18,13 @@ export default function Navbar({ theme, toggleTheme, activeSection, setActiveSec
     setActiveSection?.(id);
     const target = document.querySelector(href);
     if (target) {
-      target.scrollIntoView({ behavior: 'smooth' });
+      const navbarHeight = 64;
+      const targetTop = target.getBoundingClientRect().top + window.scrollY - navbarHeight;
+
+      window.scrollTo({
+        top: Math.max(0, targetTop),
+        behavior: 'smooth',
+      });
     }
   };
 
@@ -100,13 +106,11 @@ export default function Navbar({ theme, toggleTheme, activeSection, setActiveSec
 
         {/* Mobile */}
         <div className="flex md:hidden items-center gap-2 ml-auto">
-          <ThemeToggle />
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 rounded-lg cursor-pointer transition-all duration-200"
+            className="p-1 cursor-pointer transition-all duration-200"
             style={{
               color: 'var(--text-secondary)',
-              border: '1px solid var(--border)',
             }}
             aria-label="Toggle navigation menu"
             aria-expanded={mobileMenuOpen}

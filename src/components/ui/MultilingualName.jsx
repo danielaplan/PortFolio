@@ -13,19 +13,36 @@ const NAMES = [
   { lang: 'Russian',  text: 'Даниэль Аплан',      scale: 0.84 },
   { lang: 'Greek',    text: 'Ντάνιελ Άπλαν',      scale: 0.78 },
   { lang: 'Arabic',   text: 'دانيال أبلان',       scale: 0.90 },
-  { lang: 'Hindi',    text: 'डैनियल अप्लान',       scale: 0.86 },
-  { lang: 'Spanish',  text: 'Daniel Aplan',       scale: 1 },
+  { lang: 'Hebrew',   text: 'דניאל אפלן',          scale: 0.82 },
 ];
 
 const rand = (min, max) => Math.random() * (max - min) + min;
 
 export default function MultilingualName({ className = '', style = {} }) {
   const [index, setIndex] = useState(0);
+  const [fitScale, setFitScale] = useState(1);
   const containerRef = useRef(null);
   const textTrackRef = useRef(null);
   const tlRef = useRef(null);
   const isAnimatingRef = useRef(false);
   const timerRef = useRef(null);
+
+  const fitNameToColumn = useCallback(() => {
+    const container = containerRef.current;
+    const track = textTrackRef.current;
+    const heading = container?.parentElement;
+
+    if (!container || !track || !heading) return;
+
+    const availableWidth = heading.getBoundingClientRect().width;
+    const renderedWidth = track.getBoundingClientRect().width;
+    const nextScale = renderedWidth > availableWidth
+      ? Math.min(1, availableWidth / renderedWidth) * 0.96
+      : 1;
+
+    setFitScale(nextScale);
+    return nextScale;
+  }, []);
 
   /**
    * Sequence:
@@ -39,6 +56,7 @@ export default function MultilingualName({ className = '', style = {} }) {
     isAnimatingRef.current = true;
 
     if (tlRef.current) tlRef.current.kill();
+    gsap.killTweensOf(containerRef.current);
 
     const oldLetters = [
       ...(textTrackRef.current?.querySelectorAll('[data-char]') ?? []),
@@ -70,14 +88,14 @@ export default function MultilingualName({ className = '', style = {} }) {
       const targetScale = NAMES[nextIndex].scale;
 
       // Smoothly animate the font size so adjacent layout moves fluidly
-      gsap.to(containerRef.current, {
-        fontSize: `${targetScale}em`,
-        duration: 0.45,
-        ease: 'power2.out',
-      });
-
       // Phase 3: Incoming letters drop in from above (single line nowrap)
       requestAnimationFrame(() => {
+        const safeScale = fitNameToColumn() ?? 1;
+        gsap.to(containerRef.current, {
+          fontSize: `${targetScale * safeScale}em`,
+          duration: 0.45,
+          ease: 'power2.out',
+        });
         const newLetters = [
           ...(textTrackRef.current?.querySelectorAll('[data-char]') ?? []),
         ];
@@ -106,7 +124,17 @@ export default function MultilingualName({ className = '', style = {} }) {
         });
       });
     });
-  }, []);
+  }, [fitNameToColumn]);
+
+  useEffect(() => {
+    const resizeObserver = new ResizeObserver(fitNameToColumn);
+    if (containerRef.current?.parentElement) {
+      resizeObserver.observe(containerRef.current.parentElement);
+    }
+    fitNameToColumn();
+
+    return () => resizeObserver.disconnect();
+  }, [fitNameToColumn, index]);
 
   // Cycle every 8 seconds
   useEffect(() => {
@@ -151,11 +179,12 @@ export default function MultilingualName({ className = '', style = {} }) {
       className={`inline-flex items-center whitespace-nowrap cursor-pointer select-none overflow-visible will-change-[font-size] ${className}`}
       style={{
         ...style,
-        fontSize: `${item.scale}em`,
+        fontSize: `${item.scale * fitScale}em`,
         verticalAlign: 'baseline',
         whiteSpace: 'nowrap',
         display: 'inline-flex',
         flexWrap: 'nowrap',
+        letterSpacing: '0.01em',
       }}
       title="Hover to reset to English"
     >
@@ -163,17 +192,17 @@ export default function MultilingualName({ className = '', style = {} }) {
       <span
         ref={textTrackRef}
         aria-hidden="true"
-        className="inline-flex items-center whitespace-nowrap leading-none"
-        style={{ whiteSpace: 'nowrap', flexWrap: 'nowrap' }}
+        className="inline-flex items-center whitespace-nowrap"
+        style={{ whiteSpace: 'nowrap', flexWrap: 'nowrap', lineHeight: 1.12 }}
       >
-        {item.text.split('').map((char, i) => (
+        {Array.from(item.text).map((char, i) => (
           char === ' ' ? (
             <span key={i} className="inline-block w-[0.25em] whitespace-nowrap">&nbsp;</span>
           ) : (
             <span
               key={i}
-              className="inline-block overflow-hidden relative whitespace-nowrap shrink-0"
-              style={{ lineHeight: 'inherit' }}
+              className="inline-block overflow-visible relative whitespace-nowrap shrink-0"
+              style={{ lineHeight: 1.12 }}
             >
               <span
                 data-char=""

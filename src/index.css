@@ -1,12 +1,20 @@
 @import "tailwindcss";
 
+@theme {
+  --font-sans: 'Inter', system-ui, sans-serif;
+}
+
 @layer base {
   html, body {
-    font-family: 'Geist', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: 'Inter', system-ui, sans-serif;
     width: 100%;
     max-width: 100vw;
     overflow-x: clip;
     position: relative;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Inter', system-ui, sans-serif;
   }
 
   ::selection {
@@ -157,14 +165,10 @@ body {
   z-index: 1;
 }
 
+/* Minimal hover — border color only, no lift/shadow */
 .project-card:not(.project-card-active):not(.project-card-collapsing):hover,
 .project-card:not(.project-card-active):not(.project-card-collapsing):focus-visible {
-  box-shadow: var(--card-shadow-hover);
-}
-
-.project-card:not(.project-card-active):not(.project-card-collapsing):hover .project-card-thumbnail,
-.project-card:not(.project-card-active):not(.project-card-collapsing):focus-visible .project-card-thumbnail {
-  transform: scale(1.05);
+  border-color: var(--border-hover);
 }
 
 .project-card-active {

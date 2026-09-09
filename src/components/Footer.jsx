@@ -1,16 +1,8 @@
 import React from 'react';
-import { ChevronUp } from 'lucide-react';
+import { EnvelopeSimple, FacebookLogo, GithubLogo, InstagramLogo, LinkedinLogo } from '@phosphor-icons/react';
 import RandomLetterSwap from './ui/random-letter-swap';
 
 export default function Footer() {
-  const scrollToTop = () => {
-    if (window.__lenis) {
-      window.__lenis.scrollTo(0, { duration: 1.2 });
-    } else {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-  };
-
   const scrollToSection = (e, id) => {
     e.preventDefault();
     const target = document.querySelector(id);
@@ -25,57 +17,70 @@ export default function Footer() {
 
   return (
     <footer
-      className="w-full pt-8 pb-12 mt-6"
-      style={{ backgroundColor: 'var(--bg-canvas)', borderTop: '1px solid var(--border)' }}
+      className="mt-6 w-full border-t pt-10 pb-12 sm:pt-12"
+      style={{ backgroundColor: 'var(--bg-canvas)', borderColor: 'var(--border)' }}
     >
-      <div className="w-full px-5 sm:px-8 lg:px-12 flex flex-col md:flex-row items-center justify-between gap-6 text-xs">
+      <div className="mx-auto flex w-full max-w-[1400px] flex-col gap-10 px-5 sm:px-8 lg:px-12">
+        <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
+          <div>
+            <a
+              href="#home"
+              onClick={(event) => scrollToSection(event, '#home')}
+              className="text-xl font-bold tracking-tight"
+              style={{ color: 'var(--text-primary)' }}
+            >
+              daniel<span style={{ color: 'var(--accent)' }}>.</span>
+            </a>
+            <p className="mt-3 max-w-[18rem] text-xs leading-5" style={{ color: 'var(--text-secondary)' }}>
+              Built with React, Vite &amp; Tailwind CSS.<br />Enhanced with GSAP, Framer Motion, Lenis &amp; Phosphor Icons.
+            </p>
+            <nav className="mt-4 flex items-center gap-4" aria-label="Footer social links">
+              {[
+                { label: 'GitHub', href: 'https://github.com/danielaplan', Icon: GithubLogo },
+                { label: 'LinkedIn', href: 'https://www.linkedin.com/in/daniel-aplan-5ba561334/', Icon: LinkedinLogo },
+                { label: 'Email', href: 'mailto:danielaplan.bsit2024@gmail.com', Icon: EnvelopeSimple },
+                { label: 'Instagram', href: 'https://www.instagram.com/dniel_apln/', Icon: InstagramLogo },
+                { label: 'Facebook', href: 'https://www.facebook.com/daniel.aplan.9/', Icon: FacebookLogo },
+              ].map(({ label, href, Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target={href.startsWith('http') ? '_blank' : undefined}
+                  rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                  aria-label={label}
+                  className="transition-opacity hover:opacity-60"
+                  style={{ color: 'var(--text-primary)' }}
+                >
+                  <Icon size={15} weight="bold" />
+                </a>
+              ))}
+            </nav>
+          </div>
 
-        {/* Branding & Copyright */}
-        <div className="flex flex-col sm:flex-row items-center gap-1.5 sm:gap-2">
-          <span className="font-medium" style={{ color: 'var(--text-secondary)' }}>
-            &copy; {new Date().getFullYear()} Daniel Aplan.
-          </span>
-          <span className="hidden sm:inline" style={{ color: 'var(--text-tertiary)' }}>&bull;</span>
-          <span className="flex items-center gap-1" style={{ color: 'var(--text-secondary)' }}>
-            <span>Crafted with React &amp; Tailwind</span>
-          </span>
+          <nav className="flex flex-wrap items-center gap-5 text-xs font-medium md:pt-2" aria-label="Footer navigation">
+            {[
+              { label: 'Home', href: '#home', id: 'home' },
+              { label: 'About', href: '#home', id: 'about' },
+              { label: 'Projects', href: '#projects', id: 'projects' },
+              { label: 'Skills', href: '#skills', id: 'skills' },
+              { label: 'Contact', href: '#contact', id: 'contact' },
+            ].map(({ label, href, id }) => (
+              <a
+                key={id}
+                href={href}
+                onClick={(e) => scrollToSection(e, href)}
+                className="transition-opacity duration-200 hover:opacity-60"
+                style={{ color: 'var(--text-secondary)' }}
+              >
+                <RandomLetterSwap label={label} />
+              </a>
+            ))}
+          </nav>
         </div>
 
-        {/* Quick Section Navigation Links */}
-        <nav className="flex items-center gap-5 sm:gap-6 font-medium text-xs tracking-wide">
-          {[
-            { label: 'About', href: '#home', id: 'home' },
-            { label: 'Projects', href: '#projects', id: 'projects' },
-            { label: 'Skills', href: '#skills', id: 'skills' },
-            { label: 'Contact', href: '#contact', id: 'contact' },
-          ].map(({ label, href, id }) => (
-            <a
-              key={id}
-              href={href}
-              onClick={(e) => scrollToSection(e, href)}
-              className="transition-colors duration-200"
-              style={{ color: 'var(--text-secondary)' }}
-            >
-              <RandomLetterSwap label={label} />
-            </a>
-          ))}
-        </nav>
-
-        {/* Back to Top */}
-        <button
-          onClick={scrollToTop}
-          className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded cursor-pointer transition-all duration-200 font-mono font-medium"
-          style={{
-            backgroundColor: 'var(--bg-surface)',
-            border: '1px solid var(--border)',
-            color: 'var(--text-secondary)',
-          }}
-          aria-label="Scroll back to top"
-        >
-          <RandomLetterSwap label="Back to Top" />
-          <ChevronUp size={14} />
-        </button>
-
+        <p className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>
+          &copy; {new Date().getFullYear()} Daniel Aplan. All rights reserved.
+        </p>
       </div>
     </footer>
   );

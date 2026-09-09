@@ -360,6 +360,12 @@
         ],
         "createdAt": "2026-09-07T15:10:07.304Z",
         "reason": "Pre-existing .btn-primary and .btn-secondary utility classes; 4px is an intentional small-radius choice for tight UI elements"
+      },
+      {
+        "rule": "design-system-radius",
+        "value": "14px",
+        "createdAt": "2026-09-08T22:54:40.969Z",
+        "reason": "user confirmed - existing card design shapes"
       }
     ]
   }

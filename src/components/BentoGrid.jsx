@@ -183,7 +183,7 @@ function ProjectCard({ project, pinnedId, setPinnedId, onOpenDetails }) {
   };
 
   return (
-    <div ref={cellRef} className="project-card-cell relative min-h-[300px]">
+    <div ref={cellRef} className="project-card-cell relative min-h-[280px]">
       <motion.article
         ref={cardRef}
         tabIndex={0}
@@ -197,7 +197,7 @@ function ProjectCard({ project, pinnedId, setPinnedId, onOpenDetails }) {
         onAnimationComplete={() => {
           if (!isExpanded) setExpandedPosition(null);
         }}
-        whileHover={!isExpanded && !isCollapsing && !reduceMotion ? { scale: 1.05, y: -4 } : undefined}
+        // Removed hover lift/scale for minimalistic design
         animate={{
           scale: isExpanded ? 1.05 : 1,
           x: isExpanded ? -4 : 0,
@@ -208,7 +208,7 @@ function ProjectCard({ project, pinnedId, setPinnedId, onOpenDetails }) {
         transition={reduceMotion
           ? { duration: 0 }
           : cardSpring}
-        className={`project-card transform-gpu rounded-2xl border ${
+        className={`project-card transform-gpu rounded-xl border ${
           isExpanded || isCollapsing ? 'project-card-active project-card-collapsing absolute z-50' : ''
         }`}
         style={{
@@ -218,7 +218,7 @@ function ProjectCard({ project, pinnedId, setPinnedId, onOpenDetails }) {
         aria-label={`${project.title} project card`}
       >
       <motion.div
-        className={`project-card-preview relative aspect-[16/9] overflow-hidden ${
+        className={`project-card-preview group relative aspect-[16/9] overflow-hidden ${
           imagePreview ? 'cursor-zoom-in' : ''
         }`}
         onPointerEnter={(event) => {
@@ -278,7 +278,7 @@ function ProjectCard({ project, pinnedId, setPinnedId, onOpenDetails }) {
 
         <label
           onClick={(event) => event.stopPropagation()}
-          className="absolute bottom-3 right-3 cursor-pointer rounded-lg px-2.5 py-1.5 text-[10px] font-semibold shadow-sm"
+          className="absolute bottom-3 right-3 cursor-pointer rounded-lg px-2.5 py-1.5 text-[10px] font-semibold opacity-0 shadow-sm transition-opacity group-hover:opacity-100 focus-within:opacity-100"
           style={{
             backgroundColor: 'var(--bg-surface)',
             border: '1px solid var(--border)',
@@ -334,14 +334,15 @@ function ProjectCard({ project, pinnedId, setPinnedId, onOpenDetails }) {
         )}
       </AnimatePresence>
 
-      <div className="project-card-summary p-4">
-        <div className="mb-2 flex items-center gap-2 text-[10px] font-mono">
+      <div className="project-card-summary p-4 sm:p-5">
+        <div className="mb-3 flex items-center gap-2 text-[10px] font-mono">
           {project.category && (
             <span
-              className="rounded-md px-2 py-1"
+              className="rounded-full px-2.5 py-1"
               style={{
-                backgroundColor: 'var(--pastel-blue-bg)',
-                color: 'var(--pastel-blue-text)',
+                backgroundColor: 'var(--bg-canvas)',
+                border: '1px solid var(--border)',
+                color: 'var(--text-secondary)',
               }}
             >
               {project.category}
@@ -353,7 +354,7 @@ function ProjectCard({ project, pinnedId, setPinnedId, onOpenDetails }) {
         </div>
 
         <h3
-          className="text-base font-bold tracking-tight sm:text-lg"
+          className="text-lg font-semibold tracking-tight sm:text-xl"
           style={{ color: 'var(--text-primary)' }}
         >
           {project.title}
@@ -365,7 +366,7 @@ function ProjectCard({ project, pinnedId, setPinnedId, onOpenDetails }) {
           transition={reduceMotion
             ? { duration: 0 }
             : { duration: 0.32, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
-          className="mt-1.5 line-clamp-2 text-xs leading-relaxed sm:text-sm"
+          className="mt-2 line-clamp-3 text-sm leading-6"
           style={{ color: 'var(--text-secondary)' }}
         >
           {project.description || project.subtitle}
@@ -377,7 +378,7 @@ function ProjectCard({ project, pinnedId, setPinnedId, onOpenDetails }) {
             event.stopPropagation();
             handleCardClick(event);
           }}
-          className="mt-3 text-xs font-semibold sm:text-sm"
+          className="mt-4 text-xs font-semibold"
           style={{ color: 'var(--text-primary)' }}
         >
           {isPinned ? 'Click to collapse ->' : 'Click to expand ->'}
@@ -448,7 +449,7 @@ export default function BentoGrid({ projects = [], onOpenDetails }) {
   if (!projects.length) return null;
 
   return (
-    <div className="project-card-grid relative grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+    <div className="project-card-grid relative grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
       <AnimatePresence>
       {pinnedId && (
         <motion.button

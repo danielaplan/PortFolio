@@ -1,12 +1,12 @@
 import { useRef } from 'react';
-import { GraduationCap, MapPin, ArrowDown, Copy, Check } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import { EnvelopeSimple, GithubLogo, LinkedinLogo, InstagramLogo, FacebookLogo } from '@phosphor-icons/react';
 import { useScrollReveal } from '../hooks/useScrollReveal';
-import Github from './icons/Github';
 import RandomLetterSwap from './ui/random-letter-swap';
 import MultilingualName from './ui/MultilingualName';
 
 
-export default function Hero({ onCopyEmail, copiedEmail, isActive = true }) {
+export default function Hero({ onCopyEmail, isActive = true }) {
   const sectionRef = useRef(null);
   const contentRef = useRef(null);
 
@@ -17,22 +17,22 @@ export default function Hero({ onCopyEmail, copiedEmail, isActive = true }) {
       id="home"
       ref={sectionRef}
       style={{ backgroundColor: 'var(--bg-canvas)' }}
-      className={`min-h-[calc(100dvh-4rem)] flex items-center justify-center py-8 sm:py-12 scroll-mt-16 transition-all duration-700 ${
+      className={`min-h-0 xl:min-h-[calc(100dvh-4rem)] flex items-center justify-center py-6 md:py-10 lg:py-14 xl:py-16 scroll-mt-16 transition-all duration-700 ${
         isActive
           ? 'opacity-100 translate-y-0 scale-100'
           : 'opacity-40 translate-y-6 scale-[0.985]'
       }`}
     >
-      <div className="w-full max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+      <div className="w-full max-w-[1480px] mx-auto px-4 sm:px-10 lg:px-16">
 
         {/* Hero Grid: Left Content (7 cols) + Right Photo Showcase (5 cols) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 items-center gap-6 md:gap-12 xl:grid-cols-12 xl:gap-24">
 
           {/* Profile Picture Column */}
-          <div className="order-1 lg:order-2 lg:col-span-5 flex justify-center lg:justify-end">
-            <div className="relative w-full max-w-[240px] sm:max-w-[300px] md:max-w-[360px] lg:max-w-[420px] group">
+          <div className="order-2 xl:order-2 xl:col-span-5 flex justify-center xl:justify-end">
+            <div className="relative w-full max-w-[min(72vw,260px)] md:max-w-[440px] xl:max-w-[500px] group">
               <div
-                className="relative w-full aspect-[4/5] overflow-hidden rounded-2xl"
+                className="relative w-full aspect-[4/5] overflow-hidden rounded-xl"
                 style={{ border: '1px solid var(--border)', backgroundColor: 'var(--bg-surface)' }}
               >
                 <img
@@ -49,150 +49,85 @@ export default function Hero({ onCopyEmail, copiedEmail, isActive = true }) {
           </div>
 
           {/* Bio & Details Column */}
-          <div ref={contentRef} className="order-2 lg:order-1 lg:col-span-7 space-y-6 sm:space-y-7">
-
-            {/* University & Focus Pill */}
-
-            
-            <div
-              className="inline-flex items-center gap-2.5 px-4 py-2 rounded-lg text-xs font-medium"
-              style={{
-                backgroundColor: 'var(--bg-surface)',
-                border: '1px solid var(--border)',
-                color: 'var(--text-secondary)',
-              }}
-            >
-              <GraduationCap size={16} weight="bold" style={{ color: 'var(--text-secondary)' }} />
-              <span>BSIT @ University of Caloocan City</span>
-            </div>
-            
+          <div ref={contentRef} className="order-1 min-w-0 xl:order-1 xl:col-span-7 space-y-4 md:space-y-8">
 
             {/* Main Headline & Titles */}
-            <div className="space-y-2 sm:space-y-3">
+            <div className="space-y-2 md:space-y-4">
+              <p
+                className="text-[11px] md:text-sm font-medium uppercase tracking-[0.24em]"
+                style={{ color: 'var(--text-secondary)' }}
+              >
+                Hello, I'm
+              </p>
               <h1
-                className="text-4xl sm:text-6xl md:text-7xl xl:text-8xl font-black tracking-tight leading-[1.05] whitespace-nowrap transition-all duration-500 ease-out"
-                style={{ color: 'var(--text-primary)', fontFamily: "'Instrument Serif', serif" }}
+                className="min-w-0 max-w-full text-[clamp(2.25rem,8vw,4.5rem)] xl:text-[7.5rem] font-medium tracking-[-0.04em] leading-[1.12] whitespace-nowrap overflow-visible py-[0.08em] transition-all duration-500 ease-out"
+                style={{ color: 'var(--text-primary)', fontFamily: "'Uni Sans', 'Inter', system-ui, sans-serif" }}
               >
                 <MultilingualName />
               </h1>
                 <p
-                className="text-lg sm:text-2xl md:text-3xl font-bold tracking-tight"
+                className="text-[clamp(0.9375rem,3.5vw,2rem)] xl:text-4xl font-semibold tracking-tight"
                 style={{ color: 'var(--text-secondary)' }}
               >
-                Full-Stack Developer
+                BSIT Student <span className="mx-2" style={{ color: 'var(--text-tertiary)' }}>/</span> Aspiring Full-Stack Developer
               </p>
             </div>
 
             {/* Description */}
             <p
-              className="text-sm sm:text-lg md:text-xl leading-relaxed font-normal max-w-2xl"
-              style={{ color: '#4A4A4A' }}
+              className="max-w-2xl text-[clamp(0.875rem,1.8vw,1.125rem)] leading-[1.45] xl:leading-9"
+              style={{ color: 'var(--text-secondary)' }}
             >
-              I build high-performance web applications that scale across any screen. Focused on full-stack architecture with TypeScript, React, C#, and relational database design, learning by continuously engineering and shipping production builds.
+              I build simple, functional, and user-friendly web applications with a focus on clean code, problem solving, and continuous learning.
             </p>
 
 
-            {/* Location */}
-            <div className="flex flex-wrap items-center gap-x-5 text-xs sm:text-sm" style={{ color: 'var(--text-secondary)' }}>
-              <div className="flex items-center gap-2">
-                <MapPin size={16} weight="bold" style={{ color: 'var(--text-secondary)' }} />
-                <span>Caloocan City, Philippines</span>
-              </div>
-            </div>
-
-            {/* Quick Stat / Highlight Cards */}
-            <div className="grid grid-cols-3 gap-2.5 sm:gap-4 pt-1 max-w-xl">
-              <div
-                className="p-3 sm:p-4 rounded-xl flex flex-col justify-center"
-                style={{ backgroundColor: 'var(--bg-surface)', border: '1px solid var(--border)' }}
-              >
-                <span className="text-base sm:text-2xl font-extrabold font-mono block" style={{ color: 'var(--text-primary)' }}>6+</span>
-                <span className="text-[10px] sm:text-xs font-mono" style={{ color: 'var(--text-secondary)' }}>Featured Builds</span>
-              </div>
-              <div
-                className="p-3 sm:p-4 rounded-xl flex flex-col justify-center"
-                style={{ backgroundColor: 'var(--bg-surface)', border: '1px solid var(--border)' }}
-              >
-                <span className="text-base sm:text-2xl font-extrabold font-mono block" style={{ color: 'var(--text-primary)' }}>React · Node</span>
-                <span className="text-[10px] sm:text-xs font-mono" style={{ color: 'var(--text-secondary)' }}>Core Stack</span>
-              </div>
-              <div
-                className="p-3 sm:p-4 rounded-xl flex flex-col justify-center"
-                style={{ backgroundColor: 'var(--bg-surface)', border: '1px solid var(--border)' }}
-              >
-                <div className="flex items-center gap-1.5 sm:gap-2 mb-0.5">
-                  <span
-                    className="relative flex h-2 sm:h-2.5 w-2 sm:w-2.5"
-                    style={{ color: 'var(--status-active)' }}
-                  >
-                    <span
-                      className="animate-pulse absolute inline-flex h-full w-full rounded-full"
-                      style={{ backgroundColor: 'var(--status-active)', opacity: 0.4 }}
-                    />
-                    <span
-                      className="relative inline-flex rounded-full h-2 sm:h-2.5 w-2 sm:w-2.5"
-                      style={{ backgroundColor: 'var(--status-active)' }}
-                    />
-                  </span>
-                  <span className="text-xs sm:text-base font-bold font-mono" style={{ color: 'var(--status-active)' }}>Active</span>
-                </div>
-                <span className="text-[10px] sm:text-xs font-mono" style={{ color: 'var(--text-secondary)' }}>Available For Hire</span>
-              </div>
-            </div>
-
             {/* Standardized 3-Tier Action CTAs */}
-            <div className="flex flex-wrap items-center gap-3 sm:gap-3.5 pt-2">
+            <div className="flex flex-wrap items-center gap-3 md:gap-5 pt-0.5 md:pt-3">
 
-              {/* Primary CTA */}
-              <a
-                href="https://github.com/danielaplan"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-lg cursor-pointer transition-all duration-200 active:scale-95"
-                style={{ backgroundColor: 'var(--accent)', color: '#ffffff' }}
-              >
-                <Github size={16} />
-                <span className="font-bold text-xs sm:text-sm">
-                  <RandomLetterSwap label="GitHub Profile" />
-                </span>
-              </a>
-
-              {/* Copy Email */}
-              <button
-                onClick={onCopyEmail}
-                className="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-lg cursor-pointer transition-all duration-200 active:scale-95"
-                style={{
-                  backgroundColor: 'var(--bg-surface)',
-                  border: '1px solid var(--border)',
-                  color: 'var(--text-primary)',
-                }}
-                title="Click to copy email address"
-              >
-                {copiedEmail ? (
-                  <>
-                    <Check size={15} weight="bold" style={{ color: 'var(--status-active)' }} />
-                    <span className="font-bold text-xs sm:text-sm" style={{ color: 'var(--status-active)' }}>Copied!</span>
-                  </>
-                ) : (
-                  <>
-                    <Copy size={15} weight="bold" />
-                    <span className="font-semibold text-xs sm:text-sm">
-                      <RandomLetterSwap label="Copy Email" />
-                    </span>
-                  </>
-                )}
-              </button>
-
-              {/* View Projects */}
               <a
                 href="#projects"
-                className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm font-medium transition-colors duration-200 cursor-pointer group"
-                style={{ color: 'var(--text-secondary)' }}
+                className="group inline-flex items-center justify-center gap-2 rounded-md px-4 py-2.5 text-[14px] font-medium cursor-pointer transition-all duration-200 hover:-translate-y-0.5 active:scale-95 md:gap-2.5 md:px-7 md:py-3.5 md:text-base"
+                style={{ backgroundColor: 'var(--accent)', color: '#ffffff' }}
               >
                 <RandomLetterSwap label="View Projects" />
-                <ArrowDown size={14} weight="bold" className="transition-transform group-hover:translate-y-1" />
+                <ArrowRight size={15} className="transition-transform group-hover:translate-x-0.5 md:h-[17px] md:w-[17px]" />
+              </a>
+              <a
+                href="#contact"
+                className="group inline-flex items-center justify-center gap-2 rounded-md border px-4 py-2.5 text-[14px] font-medium cursor-pointer transition-all duration-200 hover:-translate-y-0.5 hover:bg-[var(--bg-surface)] active:scale-95 md:gap-2.5 md:px-7 md:py-3.5 md:text-base"
+                style={{ borderColor: 'var(--border)', color: 'var(--text-primary)' }}
+              >
+                <RandomLetterSwap label="Contact Me" />
+                <ArrowRight size={15} className="transition-transform group-hover:translate-x-0.5 md:h-[17px] md:w-[17px]" />
               </a>
             </div>
+
+            <nav className="flex items-center gap-5 pt-1 md:pt-3" aria-label="Social links">
+              {[
+                { label: 'GitHub', href: 'https://github.com/danielaplan', Icon: GithubLogo },
+                { label: 'LinkedIn', href: 'https://www.linkedin.com/in/daniel-aplan-5ba561334/', Icon: LinkedinLogo },
+                { label: 'Email', href: 'mailto:danielaplan.bsit2024@gmail.com', Icon: EnvelopeSimple },
+                { label: 'Instagram', href: 'https://www.instagram.com/dniel_apln/', Icon: InstagramLogo },
+                { label: 'Facebook', href: 'https://www.facebook.com/daniel.aplan.9/', Icon: FacebookLogo },
+              ].map(({ label, href, Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  onClick={label === 'Email' ? (event) => {
+                    event.preventDefault();
+                    onCopyEmail?.();
+                  } : undefined}
+                  target={href.startsWith('http') ? '_blank' : undefined}
+                  rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                  aria-label={label}
+                  className="inline-flex items-center justify-center rounded-sm p-1.5 transition-all duration-200 hover:-translate-y-0.5 hover:scale-110 hover:text-[var(--text-primary)] active:scale-95"
+                  style={{ color: 'var(--text-primary)' }}
+                >
+                  <Icon size={21} weight="bold" />
+                </a>
+              ))}
+            </nav>
 
           </div>
 
