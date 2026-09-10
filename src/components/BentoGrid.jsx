@@ -60,7 +60,7 @@ function TechStack({ tags = [] }) {
   );
 }
 
-function ProjectCard({ project, pinnedId, setPinnedId, onOpenDetails }) {
+function ProjectCard({ project, pinnedId, setPinnedId, onOpenDetails, featured = false }) {
   const cardRef = useRef(null);
   const cellRef = useRef(null);
   const imageOverlayRef = useRef(null);
@@ -183,7 +183,7 @@ function ProjectCard({ project, pinnedId, setPinnedId, onOpenDetails }) {
   };
 
   return (
-    <div ref={cellRef} className="project-card-cell relative min-h-[280px]">
+    <div ref={cellRef} className={`project-card-cell relative min-h-[280px] ${featured ? 'lg:col-span-2' : 'lg:col-span-1'}`}>
       <motion.article
         ref={cardRef}
         tabIndex={0}
@@ -218,7 +218,7 @@ function ProjectCard({ project, pinnedId, setPinnedId, onOpenDetails }) {
         aria-label={`${project.title} project card`}
       >
       <motion.div
-        className={`project-card-preview group relative aspect-[16/9] overflow-hidden ${
+        className={`project-card-preview group relative ${featured ? 'aspect-[16/10]' : 'aspect-[16/9]'} overflow-hidden ${
           imagePreview ? 'cursor-zoom-in' : ''
         }`}
         onPointerEnter={(event) => {
@@ -272,7 +272,7 @@ function ProjectCard({ project, pinnedId, setPinnedId, onOpenDetails }) {
             }}
           >
             <ImageSquare size={28} weight="light" />
-            <span className="text-xs">Add a system image</span>
+            <span className="max-w-[14rem] px-4 text-center text-sm font-medium">{project.title}</span>
           </div>
         )}
 
@@ -449,7 +449,7 @@ export default function BentoGrid({ projects = [], onOpenDetails }) {
   if (!projects.length) return null;
 
   return (
-    <div className="project-card-grid relative grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+    <div className="project-card-grid relative grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
       <AnimatePresence>
       {pinnedId && (
         <motion.button
@@ -464,10 +464,11 @@ export default function BentoGrid({ projects = [], onOpenDetails }) {
         />
       )}
       </AnimatePresence>
-      {projects.map((project) => (
+      {projects.map((project, index) => (
         <ProjectCard
           key={project.id}
           project={project}
+          featured={index < 3}
           pinnedId={pinnedId}
           setPinnedId={setPinnedId}
           onOpenDetails={onOpenDetails}

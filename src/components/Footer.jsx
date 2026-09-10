@@ -17,10 +17,10 @@ export default function Footer() {
 
   return (
     <footer
-      className="mt-6 w-full border-t pt-10 pb-12 sm:pt-12"
+      className="mt-6 w-full border-t px-4 pb-12 pt-10 sm:px-8 sm:pb-16 sm:pt-12 lg:px-12"
       style={{ backgroundColor: 'var(--bg-canvas)', borderColor: 'var(--border)' }}
     >
-      <div className="mx-auto flex w-full max-w-[1400px] flex-col gap-10 px-5 sm:px-8 lg:px-12">
+      <div className="mx-0 flex w-full flex-col gap-10 px-4 sm:px-6 lg:px-12">
         <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
           <div>
             <a

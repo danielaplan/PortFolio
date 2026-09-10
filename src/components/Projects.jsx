@@ -6,7 +6,7 @@ import { curatedProjects } from '../data/projects';
 import { fetchUserRepos } from '../services/github';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 
-export default function Projects({ isActive = true }) {
+export default function Projects() {
   const sectionRef = useRef(null);
   useScrollReveal(sectionRef, { threshold: 0.05 });
 
@@ -74,25 +74,17 @@ export default function Projects({ isActive = true }) {
       id="projects"
       ref={sectionRef}
       style={{ backgroundColor: 'var(--bg-surface)' }}
-      className={`relative z-20 min-h-0 lg:min-h-[calc(100dvh-4rem)] flex flex-col justify-start border-t px-4 pb-12 pt-14 transition-all duration-700 sm:px-8 sm:pb-16 sm:pt-20 lg:px-12 lg:pt-24 scroll-mt-16 ${
-        isActive ? 'translate-y-0 scale-100 opacity-100' : 'translate-y-6 scale-[0.985] opacity-40'
-      }`}
+      className={`relative z-20 min-h-0 lg:min-h-[calc(100dvh-4rem)] flex flex-col justify-start border-t px-4 pb-12 pt-14 sm:px-8 sm:pb-16 sm:pt-20 lg:px-12 lg:pt-24 scroll-mt-16`}
       data-lenis-prevent
     >
       <div className="mx-auto w-full max-w-[1400px]">
         <div className="mb-8 flex flex-col gap-5 sm:mb-12 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <p
-              className="mb-2 text-[10px] font-mono font-semibold uppercase tracking-[0.22em]"
-              style={{ color: 'var(--text-secondary)' }}
-            >
-              My projects
-            </p>
             <h2
-              className="text-3xl font-medium tracking-[-0.04em] sm:text-5xl"
-              style={{ color: 'var(--text-primary)' }}
+              className="text-4xl font-medium tracking-[-0.05em] sm:text-6xl"
+              style={{ color: 'var(--text-primary)', fontFamily: 'var(--font-display)' }}
             >
-              Featured Projects
+              Practical systems, built to work.
             </h2>
             <p className="mt-3 max-w-xl text-sm leading-6 sm:text-base sm:leading-7" style={{ color: 'var(--text-secondary)' }}>
               A collection of projects I&apos;ve built to practice, learn, and solve real problems.
@@ -151,7 +143,7 @@ export default function Projects({ isActive = true }) {
               type="button"
               onClick={() => loadGithubRepos(true)}
               className="inline-flex items-center gap-2 rounded-lg px-4 py-2 text-xs font-bold"
-              style={{ backgroundColor: 'var(--accent)', color: '#ffffff' }}
+              style={{ backgroundColor: 'var(--accent)', color: 'var(--button-text)' }}
             >
               <ArrowsClockwise size={14} weight="bold" />
               Try again

@@ -11,7 +11,7 @@ import {
 } from '@phosphor-icons/react';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 
-export default function Contact({ onCopyEmail, copiedEmail, isActive = true }) {
+export default function Contact({ onCopyEmail, copiedEmail }) {
   const sectionRef = useRef(null);
   useScrollReveal(sectionRef, { threshold: 0.05 });
 
@@ -33,17 +33,12 @@ export default function Contact({ onCopyEmail, copiedEmail, isActive = true }) {
       id="contact"
       ref={sectionRef}
       style={{ backgroundColor: 'var(--bg-surface)' }}
-      className={`min-h-0 border-t scroll-mt-16 py-16 transition-all duration-700 sm:py-20 lg:min-h-[calc(100dvh-4rem)] lg:py-24 ${
-        isActive ? 'translate-y-0 scale-100 opacity-100' : 'translate-y-6 scale-[0.985] opacity-40'
-      }`}
+      className={`min-h-0 border-t scroll-mt-16 px-4 pb-12 pt-14 sm:px-8 sm:pb-16 sm:pt-20 lg:min-h-[calc(100dvh-4rem)] lg:px-12 lg:pt-24 flex flex-col justify-center`}
     >
-      <div className="mx-auto w-full max-w-[1400px] px-5 sm:px-8 lg:px-12">
+      <div className="mx-auto w-full max-w-[1400px]">
         <div className="grid gap-12 lg:grid-cols-2 lg:items-start lg:gap-20">
           <div>
-            <p className="mb-3 text-[11px] font-mono font-semibold uppercase tracking-[0.2em]" style={{ color: 'var(--text-secondary)' }}>
-              Get In Touch
-            </p>
-            <h2 className="text-4xl font-semibold tracking-tight sm:text-5xl" style={{ color: 'var(--text-primary)' }}>
+            <h2 className="text-4xl font-semibold tracking-[-0.05em] sm:text-6xl" style={{ color: 'var(--text-primary)', fontFamily: 'var(--font-display)' }}>
               Let&apos;s Connect
             </h2>
             <p className="mt-3 max-w-md text-sm leading-6 sm:text-base" style={{ color: 'var(--text-secondary)' }}>
@@ -95,9 +90,7 @@ export default function Contact({ onCopyEmail, copiedEmail, isActive = true }) {
 
           <div className="flex border p-6 sm:p-8 lg:mt-10 lg:min-h-[336px] lg:flex-col lg:justify-center" style={{ backgroundColor: 'var(--bg-canvas)', borderColor: 'var(--border)' }}>
             <div className="flex items-center justify-between gap-4">
-              <span className="text-sm font-semibold uppercase tracking-wider" style={{ color: 'var(--text-secondary)' }}>
-                Direct Contact
-              </span>
+              <span className="text-sm font-semibold" style={{ color: 'var(--text-secondary)' }}>Email me directly</span>
               <EnvelopeSimple size={20} weight="bold" style={{ color: 'var(--text-secondary)' }} />
             </div>
             <p className="mt-7 break-all text-xl font-semibold tracking-tight sm:text-3xl" style={{ color: 'var(--text-primary)' }}>
@@ -108,7 +101,7 @@ export default function Contact({ onCopyEmail, copiedEmail, isActive = true }) {
                 type="button"
                 onClick={onCopyEmail}
                 className="inline-flex items-center gap-2 px-6 py-3.5 text-sm font-semibold transition-transform active:scale-95"
-                style={{ backgroundColor: 'var(--accent)', color: '#ffffff' }}
+                style={{ backgroundColor: 'var(--accent)', color: 'var(--button-text)' }}
               >
                 {copiedEmail ? <Check size={17} weight="bold" /> : <Copy size={17} weight="bold" />}
                 {copiedEmail ? 'Email Copied' : 'Copy Email'}

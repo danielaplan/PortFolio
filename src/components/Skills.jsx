@@ -11,7 +11,7 @@ import {
 } from './icons/TechIcons';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 
-export default function Skills({ isActive = true }) {
+export default function Skills() {
   const sectionRef = useRef(null);
   useScrollReveal(sectionRef, { threshold: 0.05 });
 
@@ -95,28 +95,18 @@ export default function Skills({ isActive = true }) {
       id="skills"
       ref={sectionRef}
       style={{ backgroundColor: 'var(--bg-canvas)' }}
-      className={`min-h-0 lg:min-h-[calc(100dvh-4rem)] flex flex-col justify-start pt-14 pb-12 sm:pt-20 sm:pb-16 scroll-mt-16 transition-all duration-700 ${
-        isActive
-          ? 'opacity-100 translate-y-0 scale-100'
-          : 'opacity-40 translate-y-6 scale-[0.985]'
-      }`}
+      className={`min-h-0 lg:min-h-[calc(100dvh-4rem)] flex flex-col justify-center border-t px-4 pb-12 pt-14 scroll-mt-16 sm:px-8 sm:pb-16 sm:pt-20 lg:px-12 lg:pt-24`}
     >
-      <div className="mx-auto w-full max-w-[1400px] space-y-10 px-5 sm:px-8 lg:space-y-14 lg:px-12">
+      <div className="mx-auto w-full max-w-[1400px] space-y-10 lg:space-y-14">
 
         {/* Section Header */}
         <div className="flex flex-col gap-4">
           <div>
-            <p
-              className="text-xs font-mono font-semibold uppercase tracking-wider mb-2"
-              style={{ color: 'var(--text-secondary)' }}
-            >
-              My skills
-            </p>
             <h2
-              className="text-3xl font-medium tracking-[-0.04em] sm:text-5xl"
-              style={{ color: 'var(--text-primary)' }}
+              className="text-4xl font-medium tracking-[-0.05em] sm:text-6xl"
+              style={{ color: 'var(--text-primary)', fontFamily: 'var(--font-display)' }}
             >
-              Technical Skills
+              How I build
             </h2>
             <p
               className="mt-3 max-w-xl text-sm font-normal leading-6 sm:text-base sm:leading-7"
@@ -127,45 +117,32 @@ export default function Skills({ isActive = true }) {
           </div>
         </div>
 
-        {/* Editorial skill index */}
         <div className="grid gap-x-12 lg:grid-cols-2">
-          {[skillCategories.slice(0, 3), skillCategories.slice(3)].map((column, columnIndex) => (
-            <div key={columnIndex}>
-              {column.map((category) => {
-                const index = skillCategories.indexOf(category);
-                return (
-              <div
-                key={index}
-                className="grid grid-cols-[2.5rem_1fr] gap-4 border-t py-5 sm:grid-cols-[3rem_1fr] sm:gap-5 sm:py-6"
-                style={{
-                  borderColor: 'var(--border)',
-                }}
-              >
-                <span className="pt-0.5 text-xs font-mono" style={{ color: 'var(--text-secondary)' }}>
-                  {String(index + 1).padStart(2, '0')}
-                </span>
-                <div>
-                  <h3 className="text-base font-medium sm:text-lg" style={{ color: 'var(--text-primary)' }}>
-                    {category.title}
-                  </h3>
-                  <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2">
-                    {category.skills.map((skill, sIndex) => (
-                      <span key={sIndex} className="text-xs sm:text-sm" style={{ color: 'var(--text-secondary)' }}>
+          {skillCategories.map((category) => (
+             <div
+               key={category.title}
+               className="border-t py-5 sm:py-6"
+               style={{
+                 borderColor: 'var(--border)',
+               }}
+             >
+               <div>
+                 <h3 className="text-base font-medium sm:text-lg" style={{ color: 'var(--accent)' }}>
+                   {category.title}
+                 </h3>
+                 <p className="mt-2 text-sm leading-6" style={{ color: 'var(--text-secondary)' }}>
+                   {category.description}
+                 </p>
+                 <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1.5">
+                   {category.skills.map((skill, sIndex) => (
+                      <span key={sIndex} className="text-sm" style={{ color: 'var(--text-primary)' }}>
                         {skill.name}
                       </span>
                     ))}
                   </div>
                 </div>
               </div>
-                );
-              })}
-            </div>
           ))}
-        </div>
-
-        <div className="flex items-center justify-end gap-4 text-xs italic" style={{ color: 'var(--text-secondary)' }}>
-          <span>Always learning. Always building.</span>
-          <span className="h-px w-14" style={{ backgroundColor: 'var(--border)' }} />
         </div>
 
       </div>

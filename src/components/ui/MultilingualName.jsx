@@ -16,9 +16,27 @@ const NAMES = [
   { lang: 'Hebrew',   text: 'דניאל אפלן',          scale: 0.82 },
 ];
 
+// English "Daniel Aplan" rendered in ten distinct design families before
+// yielding to each translated language. kind:'english' frames are static.
+const ENGLISH_FONTS = [
+  { kind: 'english', lang: 'English', text: 'Daniel Aplan', scale: 1, fontFamily: '"Playfair Display", Georgia, serif' },
+  { kind: 'english', lang: 'English', text: 'Daniel Aplan', scale: 1, fontFamily: '"Space Grotesk", system-ui, sans-serif' },
+  { kind: 'english', lang: 'English', text: 'Daniel Aplan', scale: 1, fontFamily: '"JetBrains Mono", monospace' },
+  { kind: 'english', lang: 'English', text: 'Daniel Aplan', scale: 1, fontFamily: '"Anton", sans-serif' },
+  { kind: 'english', lang: 'English', text: 'Daniel Aplan', scale: 1, fontFamily: '"Abril Fatface", Georgia, serif' },
+  { kind: 'english', lang: 'English', text: 'Daniel Aplan', scale: 1, fontFamily: '"Fredoka One", sans-serif' },
+  { kind: 'english', lang: 'English', text: 'Daniel Aplan', scale: 1, fontFamily: '"Lobster", cursive' },
+  { kind: 'english', lang: 'English', text: 'Daniel Aplan', scale: 1, fontFamily: '"Orbitron", sans-serif' },
+  { kind: 'english', lang: 'English', text: 'Daniel Aplan', scale: 1, fontFamily: '"Press Start 2P", monospace' },
+  { kind: 'english', lang: 'English', text: 'Daniel Aplan', scale: 1, fontFamily: '"Raleway", sans-serif' },
+];
+
+// Full cycle: run of 10 English font variants, then one translated language.
+const CYCLE = NAMES.slice(1).flatMap((lang) => [...ENGLISH_FONTS, { ...lang, kind: 'language' }]);
+
 const rand = (min, max) => Math.random() * (max - min) + min;
 
-export default function MultilingualName({ className = '', style = {} }) {
+export default function MultilingualName({ className = '', style = {}, onLanguageChange }) {
   const [index, setIndex] = useState(0);
   const [fitScale, setFitScale] = useState(1);
   const containerRef = useRef(null);
@@ -46,10 +64,10 @@ export default function MultilingualName({ className = '', style = {} }) {
 
   /**
    * Sequence:
-   * 1. Old letters scatter & drop DOWN smoothly.
-   * 2. Container font-size and width interpolate smoothly with GSAP (power2.out),
-   *    causing surrounding elements (subtitles, descriptions) to glide naturally instead of snap.
-   * 3. New letters drop in from ABOVE on a single strictly nowrap line.
+   * - English font variants: static swap. No letter drop-in/out — just a clean
+   *   font change with a fluid size tween so surrounding layout glides.
+   * - Translated languages: old letters scatter & drop DOWN smoothly, then
+   *   new letters drop in from ABOVE on a single strictly nowrap line.
    */
   const switchLanguage = useCallback((nextIndex) => {
     if (isAnimatingRef.current) return;
@@ -58,6 +76,26 @@ export default function MultilingualName({ className = '', style = {} }) {
     if (tlRef.current) tlRef.current.kill();
     gsap.killTweensOf(containerRef.current);
 
+    const entry = CYCLE[nextIndex];
+
+    // English font variant: static, no letter animation.
+    if (entry.kind === 'english') {
+      requestAnimationFrame(() => {
+        setIndex(nextIndex);
+        const safeScale = fitNameToColumn() ?? 1;
+        gsap.to(containerRef.current, {
+          fontSize: `${entry.scale * safeScale}em`,
+          duration: 0.4,
+          ease: 'power2.out',
+          onComplete: () => {
+            isAnimatingRef.current = false;
+          },
+        });
+      });
+      return;
+    }
+
+    // Translated language: drop-out / drop-in sequence.
     const oldLetters = [
       ...(textTrackRef.current?.querySelectorAll('[data-char]') ?? []),
     ];
@@ -85,7 +123,7 @@ export default function MultilingualName({ className = '', style = {} }) {
     // Phase 2: Smooth scaling and text update
     tl.call(() => {
       setIndex(nextIndex);
-      const targetScale = NAMES[nextIndex].scale;
+      const targetScale = entry.scale;
 
       // Smoothly animate the font size so adjacent layout moves fluidly
       // Phase 3: Incoming letters drop in from above (single line nowrap)
@@ -127,6 +165,11 @@ export default function MultilingualName({ className = '', style = {} }) {
   }, [fitNameToColumn]);
 
   useEffect(() => {
+    const entry = CYCLE[index];
+    onLanguageChange?.({ lang: entry.lang, kind: entry.kind });
+  }, [index, onLanguageChange]);
+
+  useEffect(() => {
     const resizeObserver = new ResizeObserver(fitNameToColumn);
     if (containerRef.current?.parentElement) {
       resizeObserver.observe(containerRef.current.parentElement);
@@ -136,33 +179,36 @@ export default function MultilingualName({ className = '', style = {} }) {
     return () => resizeObserver.disconnect();
   }, [fitNameToColumn, index]);
 
-  // Cycle every 8 seconds
+  // English font variants cycle quickly (~1.5s); translated languages hold
+// longer (~5s) so each script gets a moment to read.
+  const delayFor = (i) => (CYCLE[i].kind === 'english' ? 1500 : 5000);
+
   useEffect(() => {
     timerRef.current = setInterval(() => {
       setIndex((prev) => {
-        const next = (prev + 1) % NAMES.length;
+        const next = (prev + 1) % CYCLE.length;
         switchLanguage(next);
         return prev;
       });
-    }, 8000);
+    }, delayFor(index));
 
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
       if (tlRef.current) tlRef.current.kill();
     };
-  }, [switchLanguage]);
+  }, [switchLanguage, index]);
 
-  // On hover: immediately revert to English
+  // On hover: immediately revert to the first English font variant
   const handleMouseEnter = () => {
     if (timerRef.current) {
       clearInterval(timerRef.current);
       timerRef.current = setInterval(() => {
         setIndex((prev) => {
-          const next = (prev + 1) % NAMES.length;
+          const next = (prev + 1) % CYCLE.length;
           switchLanguage(next);
           return prev;
         });
-      }, 8000);
+      }, delayFor(index));
     }
 
     if (index !== 0) {
@@ -170,7 +216,7 @@ export default function MultilingualName({ className = '', style = {} }) {
     }
   };
 
-  const item = NAMES[index];
+  const item = CYCLE[index];
 
   return (
     <span
@@ -179,6 +225,7 @@ export default function MultilingualName({ className = '', style = {} }) {
       className={`inline-flex items-center whitespace-nowrap cursor-pointer select-none overflow-visible will-change-[font-size] ${className}`}
       style={{
         ...style,
+        fontFamily: item.fontFamily,
         fontSize: `${item.scale * fitScale}em`,
         verticalAlign: 'baseline',
         whiteSpace: 'nowrap',

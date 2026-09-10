@@ -3,10 +3,9 @@ import { ArrowRight } from 'lucide-react';
 import { EnvelopeSimple, GithubLogo, LinkedinLogo, InstagramLogo, FacebookLogo } from '@phosphor-icons/react';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import RandomLetterSwap from './ui/random-letter-swap';
-import MultilingualName from './ui/MultilingualName';
 
 
-export default function Hero({ onCopyEmail, isActive = true }) {
+export default function Hero({ onCopyEmail }) {
   const sectionRef = useRef(null);
   const contentRef = useRef(null);
 
@@ -17,13 +16,9 @@ export default function Hero({ onCopyEmail, isActive = true }) {
       id="home"
       ref={sectionRef}
       style={{ backgroundColor: 'var(--bg-canvas)' }}
-      className={`min-h-0 xl:min-h-[calc(100dvh-4rem)] flex items-center justify-center py-6 md:py-10 lg:py-14 xl:py-16 scroll-mt-16 transition-all duration-700 ${
-        isActive
-          ? 'opacity-100 translate-y-0 scale-100'
-          : 'opacity-40 translate-y-6 scale-[0.985]'
-      }`}
+      className={`min-h-0 xl:min-h-[calc(100dvh-4rem)] flex items-center justify-center border-t px-4 py-8 md:px-8 md:py-10 lg:px-12 lg:py-14 xl:py-16 scroll-mt-16`}
     >
-      <div className="w-full max-w-[1480px] mx-auto px-4 sm:px-10 lg:px-16">
+      <div className="w-full max-w-[1400px] mx-auto">
 
         {/* Hero Grid: Left Content (7 cols) + Right Photo Showcase (5 cols) */}
         <div className="grid grid-cols-1 items-center gap-6 md:gap-12 xl:grid-cols-12 xl:gap-24">
@@ -42,7 +37,7 @@ export default function Hero({ onCopyEmail, isActive = true }) {
                   height={525}
                   loading="eager"
                   decoding="async"
-                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                  className="w-full h-full object-cover object-[center_18%] group-hover:scale-105 transition-transform duration-700"
                 />
               </div>
             </div>
@@ -53,19 +48,13 @@ export default function Hero({ onCopyEmail, isActive = true }) {
 
             {/* Main Headline & Titles */}
             <div className="space-y-2 md:space-y-4">
-              <p
-                className="text-[11px] md:text-sm font-medium uppercase tracking-[0.24em]"
-                style={{ color: 'var(--text-secondary)' }}
-              >
-                Hello, I'm
-              </p>
               <h1
-                className="min-w-0 max-w-full text-[clamp(2.25rem,8vw,4.5rem)] xl:text-[7.5rem] font-medium tracking-[-0.04em] leading-[1.12] whitespace-nowrap overflow-visible py-[0.08em] transition-all duration-500 ease-out"
-                style={{ color: 'var(--text-primary)', fontFamily: "'Uni Sans', 'Inter', system-ui, sans-serif" }}
+              className="min-w-0 max-w-full overflow-hidden text-[clamp(2.5rem,8vw,4.5rem)] xl:text-[7rem] font-medium tracking-[-0.055em] leading-[1.12] whitespace-nowrap py-[0.08em] transition-all duration-500 ease-out"
+              style={{ color: 'var(--text-primary)', fontFamily: 'var(--font-display)' }}
               >
-                <MultilingualName />
+              Daniel Aplan
               </h1>
-                <p
+              <p
                 className="text-[clamp(0.9375rem,3.5vw,2rem)] xl:text-4xl font-semibold tracking-tight"
                 style={{ color: 'var(--text-secondary)' }}
               >
@@ -88,7 +77,7 @@ export default function Hero({ onCopyEmail, isActive = true }) {
               <a
                 href="#projects"
                 className="group inline-flex items-center justify-center gap-2 rounded-md px-4 py-2.5 text-[14px] font-medium cursor-pointer transition-all duration-200 hover:-translate-y-0.5 active:scale-95 md:gap-2.5 md:px-7 md:py-3.5 md:text-base"
-                style={{ backgroundColor: 'var(--accent)', color: '#ffffff' }}
+                style={{ backgroundColor: 'var(--accent)', color: 'var(--button-text)' }}
               >
                 <RandomLetterSwap label="View Projects" />
                 <ArrowRight size={15} className="transition-transform group-hover:translate-x-0.5 md:h-[17px] md:w-[17px]" />
@@ -99,7 +88,6 @@ export default function Hero({ onCopyEmail, isActive = true }) {
                 style={{ borderColor: 'var(--border)', color: 'var(--text-primary)' }}
               >
                 <RandomLetterSwap label="Contact Me" />
-                <ArrowRight size={15} className="transition-transform group-hover:translate-x-0.5 md:h-[17px] md:w-[17px]" />
               </a>
             </div>
 

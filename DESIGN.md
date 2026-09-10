@@ -39,10 +39,11 @@ colors:
 typography:
   display:
     fontFamily: "Geist, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
-    fontSize: "clamp(2.25rem, 6vw, 4.5rem)"
+    fontSize: "clamp(2.5rem, 8vw, 4.5rem)"
+    fontSizeXl: "7rem"
     fontWeight: 800
     lineHeight: 1.05
-    letterSpacing: "-0.02em"
+    letterSpacing: "-0.055em"
   headline:
     fontFamily: "Geist, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
     fontSize: "1.875rem"
@@ -70,6 +71,39 @@ typography:
     fontSize: "0.75rem"
     fontWeight: 400
     lineHeight: 1.5
+  # Multilingual name font-cycle (Hero h1). Each English "Daniel Aplan" frame
+  # renders in a distinct design family before yielding to a translated language.
+  font-cycle:
+    - name: "Playfair Display"
+      family: '"Playfair Display", Georgia, serif'
+      style: "High-contrast editorial / magazine serif"
+    - name: "Space Grotesk"
+      family: '"Space Grotesk", system-ui, sans-serif'
+      style: "Retro-futurist grotesque with character"
+    - name: "JetBrains Mono"
+      family: '"JetBrains Mono", monospace'
+      style: "Developer / terminal monospaced"
+    - name: "Anton"
+      family: '"Anton", sans-serif'
+      style: "Bold condensed display (sporting / impact)"
+    - name: "Abril Fatface"
+      family: '"Abril Fatface", Georgia, serif'
+      style: "High-contrast display serif (fashion / luxury)"
+    - name: "Fredoka One"
+      family: '"Fredoka One", sans-serif'
+      style: "Rounded friendly display (playful / app)"
+    - name: "Lobster"
+      family: '"Lobster", cursive'
+      style: "Brush script (casual / handwritten)"
+    - name: "Orbitron"
+      family: '"Orbitron", sans-serif'
+      style: "Sci-fi / futuristic display"
+    - name: "Press Start 2P"
+      family: '"Press Start 2P", monospace'
+      style: "Pixel / retro-gaming"
+    - name: "Raleway"
+      family: '"Raleway", sans-serif'
+      style: "Elegant geometric sans"
 rounded:
   xs: "0.375rem"
   sm: "0.5rem"

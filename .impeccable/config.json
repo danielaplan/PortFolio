@@ -366,6 +366,12 @@
         "value": "14px",
         "createdAt": "2026-09-08T22:54:40.969Z",
         "reason": "user confirmed - existing card design shapes"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "7rem",
+        "createdAt": "2026-09-10T20:06:47.298Z",
+        "reason": "7rem is fontSizeXl, a documented size step in DESIGN.md (line 43); the hero name is the largest element on the page"
       }
     ]
   }

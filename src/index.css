@@ -2,6 +2,7 @@
 
 @theme {
   --font-sans: 'Inter', system-ui, sans-serif;
+  --font-display: Georgia, 'Times New Roman', serif;
 }
 
 @layer base {
@@ -19,7 +20,7 @@
 
   ::selection {
     background-color: var(--accent);
-    color: #ffffff;
+    color: var(--button-text);
   }
 }
 
@@ -29,19 +30,20 @@
 
 html[data-theme="dark"] {
   color-scheme: dark;
-  --bg-canvas:   #09090b;
-  --bg-surface:  #18181b;
-  --bg-raised:   #27272a;
-  --border:      rgba(39, 39, 42, 0.8);
-  --border-hover:#52525b;
+  --bg-canvas:   #121212;
+  --bg-surface:  #1E1E1E;
+  --bg-raised:   #262628;
+  --border:      rgba(255, 255, 255, 0.16);
+  --border-hover:rgba(255, 255, 255, 0.32);
 
-  --text-primary:   #ffffff;
-  --text-secondary: #d4d4d8;
-  --text-tertiary: #71717a;
+  --text-primary:   #E0E0E0;
+  --text-secondary: #A1A1AA;
+  --text-tertiary: #7A7A80;
 
-  --accent:          #3b82f6;
-  --accent-hover:    #06b6d4;
-  --accent-soft:     rgba(59, 130, 246, 0.1);
+  --accent:          #E0E0E0;
+  --accent-hover:    #B0B0B5;
+  --accent-soft:     rgba(224, 224, 224, 0.1);
+  --button-text:     #1A1A1A;
 
   --status-active:    #34d399;
   --status-maintained:#22d3ee;
@@ -70,19 +72,20 @@ html[data-theme="dark"] {
 
 :root {
   color-scheme: light;
-  --bg-canvas:   #F7F6F3;
+  --bg-canvas:   #F9F9FB;
   --bg-surface:  #FFFFFF;
-  --bg-raised:   #F9F9F8;
-  --border:      #EAEAEA;
-  --border-hover:#C0C0C0;
+  --bg-raised:   #F2F2F4;
+  --border:      #E5E5EA;
+  --border-hover:#B0B0B5;
 
-  --text-primary:   #111111;
-  --text-secondary: #787774;
-  --text-tertiary: #AAAAAA;
+  --text-primary:   #1A1A1A;
+  --text-secondary: #6E6E73;
+  --text-tertiary: #9A999F;
 
-  --accent:          #111111;
+  --accent:          #1A1A1A;
   --accent-hover:    #333333;
-  --accent-soft:     rgba(17, 17, 17, 0.07);
+  --accent-soft:     rgba(26, 26, 26, 0.08);
+  --button-text:     #FFFFFF;
 
   /* Semantic status — kept as-is (semantic, not decorative) */
   --status-active:    #10b981;
@@ -267,7 +270,7 @@ body {
 /* Primary button — near-black solid */
 .btn-primary {
   background: var(--accent);
-  color: #ffffff;
+  color: var(--text-primary);
   border-radius: 4px;
   transition: background-color 200ms ease, transform 120ms ease;
 }

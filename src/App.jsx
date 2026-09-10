@@ -150,24 +150,18 @@ export default function App() {
 
         {/* Stage 1: About / Hero */}
         <Hero
-          isActive={activeSection === 'home'}
           onCopyEmail={handleCopyEmail}
           copiedEmail={copiedToast}
         />
 
         {/* Stage 2: Projects & Engineering */}
-        <Projects
-          isActive={activeSection === 'projects'}
-        />
+        <Projects />
 
         {/* Stage 3: Skills & Technologies */}
-        <Skills
-          isActive={activeSection === 'skills'}
-        />
+        <Skills />
 
         {/* Stage 4: Let's Connect */}
         <Contact
-          isActive={activeSection === 'contact'}
           onCopyEmail={handleCopyEmail}
           copiedEmail={copiedToast}
         />
@@ -195,7 +189,7 @@ export default function App() {
         >
           <div
             className="p-1 rounded-full flex items-center justify-center"
-            style={{ backgroundColor: 'var(--accent)', color: '#ffffff' }}
+            style={{ backgroundColor: 'var(--accent)', color: 'var(--button-text)' }}
           >
             <Check size={12} strokeWidth={3} />
           </div>
