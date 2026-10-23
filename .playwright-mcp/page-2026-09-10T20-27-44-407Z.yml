@@ -1,0 +1,430 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - link "daniel ." [ref=e6] [cursor=pointer]:
+        - /url: "#home"
+        - generic [ref=e7]: daniel
+        - generic [ref=e8]: .
+      - generic [ref=e9]:
+        - link "Home" [ref=e10] [cursor=pointer]:
+          - /url: "#home"
+          - generic [ref=e11]:
+            - generic [ref=e12]: Home
+            - generic [aria-hidden] [ref=e13]:
+              - generic [ref=e14]:
+                - generic [ref=e15]: H
+                - generic [ref=e16]: H
+              - generic [ref=e17]:
+                - generic [ref=e18]: o
+                - generic [ref=e19]: o
+              - generic [ref=e20]:
+                - generic [ref=e21]: m
+                - generic [ref=e22]: m
+              - generic [ref=e23]:
+                - generic [ref=e24]: e
+                - generic [ref=e25]: e
+        - link "Projects" [ref=e26] [cursor=pointer]:
+          - /url: "#projects"
+          - generic [ref=e27]:
+            - generic [ref=e28]: Projects
+            - generic [aria-hidden] [ref=e29]:
+              - generic [ref=e30]:
+                - generic [ref=e31]: P
+                - generic [ref=e32]: P
+              - generic [ref=e33]:
+                - generic [ref=e34]: r
+                - generic [ref=e35]: r
+              - generic [ref=e36]:
+                - generic [ref=e37]: o
+                - generic [ref=e38]: o
+              - generic [ref=e39]:
+                - generic [ref=e40]: j
+                - generic [ref=e41]: j
+              - generic [ref=e42]:
+                - generic [ref=e43]: e
+                - generic [ref=e44]: e
+              - generic [ref=e45]:
+                - generic [ref=e46]: c
+                - generic [ref=e47]: c
+              - generic [ref=e48]:
+                - generic [ref=e49]: t
+                - generic [ref=e50]: t
+              - generic [ref=e51]:
+                - generic [ref=e52]: s
+                - generic [ref=e53]: s
+        - link "Skills" [ref=e54] [cursor=pointer]:
+          - /url: "#skills"
+          - generic [ref=e55]:
+            - generic [ref=e56]: Skills
+            - generic [aria-hidden] [ref=e57]:
+              - generic [ref=e58]:
+                - generic [ref=e59]: S
+                - generic [ref=e60]: S
+              - generic [ref=e61]:
+                - generic [ref=e62]: k
+                - generic [ref=e63]: k
+              - generic [ref=e64]:
+                - generic [ref=e65]: i
+                - generic [ref=e66]: i
+              - generic [ref=e67]:
+                - generic [ref=e68]: l
+                - generic [ref=e69]: l
+              - generic [ref=e70]:
+                - generic [ref=e71]: l
+                - generic [ref=e72]: l
+              - generic [ref=e73]:
+                - generic [ref=e74]: s
+                - generic [ref=e75]: s
+        - link "Contact" [ref=e76] [cursor=pointer]:
+          - /url: "#contact"
+          - generic [ref=e77]:
+            - generic [ref=e78]: Contact
+            - generic [aria-hidden] [ref=e79]:
+              - generic [ref=e80]:
+                - generic [ref=e81]: C
+                - generic [ref=e82]: C
+              - generic [ref=e83]:
+                - generic [ref=e84]: o
+                - generic [ref=e85]: o
+              - generic [ref=e86]:
+                - generic [ref=e87]: "n"
+                - generic [ref=e88]: "n"
+              - generic [ref=e89]:
+                - generic [ref=e90]: t
+                - generic [ref=e91]: t
+              - generic [ref=e92]:
+                - generic [ref=e93]: a
+                - generic [ref=e94]: a
+              - generic [ref=e95]:
+                - generic [ref=e96]: c
+                - generic [ref=e97]: c
+              - generic [ref=e98]:
+                - generic [ref=e99]: t
+                - generic [ref=e100]: t
+        - button "Switch to light mode" [ref=e102] [cursor=pointer]
+  - main [ref=e105]:
+    - generic [ref=e107]:
+      - img "Daniel Aplan" [ref=e110]
+      - generic [ref=e111]:
+        - heading "Daniel Aplan" [level=1] [ref=e112]
+        - paragraph [ref=e113]: BSIT Student / Aspiring Full-Stack Developer
+      - paragraph [ref=e114]: I build simple, functional, and user-friendly web applications with a focus on clean code, problem solving, and continuous learning.
+      - generic [ref=e115]:
+        - link "View Projects" [ref=e116] [cursor=pointer]:
+          - /url: "#projects"
+          - generic [ref=e117]:
+            - generic [ref=e118]: View Projects
+            - generic [aria-hidden] [ref=e119]:
+              - generic [ref=e120]:
+                - generic [ref=e121]: V
+                - generic [ref=e122]: V
+              - generic [ref=e123]:
+                - generic [ref=e124]: i
+                - generic [ref=e125]: i
+              - generic [ref=e126]:
+                - generic [ref=e127]: e
+                - generic [ref=e128]: e
+              - generic [ref=e129]:
+                - generic [ref=e130]: w
+                - generic [ref=e131]: w
+              - generic [ref=e133]:
+                - generic [ref=e134]: P
+                - generic [ref=e135]: P
+              - generic [ref=e136]:
+                - generic [ref=e137]: r
+                - generic [ref=e138]: r
+              - generic [ref=e139]:
+                - generic [ref=e140]: o
+                - generic [ref=e141]: o
+              - generic [ref=e142]:
+                - generic [ref=e143]: j
+                - generic [ref=e144]: j
+              - generic [ref=e145]:
+                - generic [ref=e146]: e
+                - generic [ref=e147]: e
+              - generic [ref=e148]:
+                - generic [ref=e149]: c
+                - generic [ref=e150]: c
+              - generic [ref=e151]:
+                - generic [ref=e152]: t
+                - generic [ref=e153]: t
+              - generic [ref=e154]:
+                - generic [ref=e155]: s
+                - generic [ref=e156]: s
+        - link "Contact Me" [ref=e159] [cursor=pointer]:
+          - /url: "#contact"
+          - generic [ref=e160]:
+            - generic [ref=e161]: Contact Me
+            - generic [aria-hidden] [ref=e162]:
+              - generic [ref=e163]:
+                - generic [ref=e164]: C
+                - generic [ref=e165]: C
+              - generic [ref=e166]:
+                - generic [ref=e167]: o
+                - generic [ref=e168]: o
+              - generic [ref=e169]:
+                - generic [ref=e170]: "n"
+                - generic [ref=e171]: "n"
+              - generic [ref=e172]:
+                - generic [ref=e173]: t
+                - generic [ref=e174]: t
+              - generic [ref=e175]:
+                - generic [ref=e176]: a
+                - generic [ref=e177]: a
+              - generic [ref=e178]:
+                - generic [ref=e179]: c
+                - generic [ref=e180]: c
+              - generic [ref=e181]:
+                - generic [ref=e182]: t
+                - generic [ref=e183]: t
+              - generic [ref=e185]:
+                - generic [ref=e186]: M
+                - generic [ref=e187]: M
+              - generic [ref=e188]:
+                - generic [ref=e189]: e
+                - generic [ref=e190]: e
+      - navigation "Social links" [ref=e191]:
+        - link "GitHub" [ref=e192] [cursor=pointer]:
+          - /url: https://github.com/danielaplan
+        - link "LinkedIn" [ref=e195] [cursor=pointer]:
+          - /url: https://www.linkedin.com/in/daniel-aplan-5ba561334/
+        - link "Email" [ref=e198] [cursor=pointer]:
+          - /url: mailto:danielaplan.bsit2024@gmail.com
+        - link "Instagram" [ref=e201] [cursor=pointer]:
+          - /url: https://www.instagram.com/dniel_apln/
+        - link "Facebook" [ref=e204] [cursor=pointer]:
+          - /url: https://www.facebook.com/daniel.aplan.9/
+    - generic [ref=e208]:
+      - generic [ref=e209]:
+        - generic [ref=e210]:
+          - heading "Practical systems, built to work." [level=2] [ref=e211]
+          - paragraph [ref=e212]: A collection of projects I've built to practice, learn, and solve real problems.
+        - link "View all projects" [ref=e214] [cursor=pointer]:
+          - /url: https://github.com/danielaplan?tab=repositories
+          - text: View all projects
+          - generic [aria-hidden] [ref=e215]: →
+      - paragraph [ref=e219]: Loading projects from GitHub...
+    - generic [ref=e221]:
+      - generic [ref=e223]:
+        - heading "How I build" [level=2] [ref=e224]
+        - paragraph [ref=e225]: Tools and technologies I use to build web applications, solve problems, and keep learning.
+      - generic [ref=e226]:
+        - generic [ref=e228]:
+          - heading "Programming Languages" [level=3] [ref=e229]
+          - paragraph [ref=e230]: Fundamental languages for algorithms, backend services, and interactive web architecture.
+          - generic [ref=e231]:
+            - generic [ref=e232]: Java
+            - generic [ref=e233]: C#
+            - generic [ref=e234]: PHP
+            - generic [ref=e235]: JavaScript
+            - generic [ref=e236]: TypeScript
+        - generic [ref=e238]:
+          - heading "Frontend & Web" [level=3] [ref=e239]
+          - paragraph [ref=e240]: Building fast, accessible, and dynamic interfaces with component-driven architecture.
+          - generic [ref=e241]:
+            - generic [ref=e242]: React
+            - generic [ref=e243]: Tailwind CSS
+            - generic [ref=e244]: Vite
+            - generic [ref=e245]: HTML5 & CSS3
+            - generic [ref=e246]: Responsive Design
+            - generic [ref=e247]: UI/UX Principles
+        - generic [ref=e249]:
+          - heading "Backend" [level=3] [ref=e250]
+          - paragraph [ref=e251]: Building server workflows and REST endpoints for connected web applications.
+          - generic [ref=e252]:
+            - generic [ref=e253]: Node.js
+            - generic [ref=e254]: REST APIs
+            - generic [ref=e255]: PHP
+            - generic [ref=e256]: Laravel
+        - generic [ref=e258]:
+          - heading "Databases" [level=3] [ref=e259]
+          - paragraph [ref=e260]: Designing structured schemas and reliable data models for application workflows.
+          - generic [ref=e261]:
+            - generic [ref=e262]: MySQL
+            - generic [ref=e263]: MariaDB
+            - generic [ref=e264]: SQLite
+            - generic [ref=e265]: Relational Schema Design
+        - generic [ref=e267]:
+          - heading "Tools & Workflow" [level=3] [ref=e268]
+          - paragraph [ref=e269]: Version control, modern IDE tooling, and structured software architecture workflows.
+          - generic [ref=e270]:
+            - generic [ref=e271]: Git & GitHub
+            - generic [ref=e272]: VS Code
+            - generic [ref=e273]: Systems Architecture
+    - generic [ref=e276]:
+      - generic [ref=e277]:
+        - heading "Let's Connect" [level=2] [ref=e278]
+        - paragraph [ref=e279]: Have a project in mind, a question, or just want to say hello? I'd love to hear from you.
+        - generic [ref=e280]:
+          - link "danielaplan.bsit2024@gmail.com Send me an email" [ref=e281] [cursor=pointer]:
+            - /url: mailto:danielaplan.bsit2024@gmail.com
+            - generic [ref=e284]:
+              - generic [ref=e285]: danielaplan.bsit2024@gmail.com
+              - generic [ref=e286]: Send me an email
+          - link "github.com/danielaplan Check out my work" [ref=e287] [cursor=pointer]:
+            - /url: https://github.com/danielaplan
+            - generic [ref=e290]:
+              - generic [ref=e291]: github.com/danielaplan
+              - generic [ref=e292]: Check out my work
+          - link "linkedin.com/in/danielaplan Let's connect" [ref=e293] [cursor=pointer]:
+            - /url: https://www.linkedin.com/in/daniel-aplan-5ba561334/
+            - generic [ref=e296]:
+              - generic [ref=e297]: linkedin.com/in/danielaplan
+              - generic [ref=e298]: Let's connect
+          - link "Instagram Visit my Instagram profile" [ref=e299] [cursor=pointer]:
+            - /url: https://www.instagram.com/dniel_apln/
+            - generic [ref=e302]:
+              - generic [ref=e303]: Instagram
+              - generic [ref=e304]: Visit my Instagram profile
+          - link "Facebook Visit my Facebook profile" [ref=e305] [cursor=pointer]:
+            - /url: https://www.facebook.com/daniel.aplan.9/
+            - generic [ref=e308]:
+              - generic [ref=e309]: Facebook
+              - generic [ref=e310]: Visit my Facebook profile
+      - generic [ref=e311]:
+        - generic [ref=e312]: Email me directly
+        - paragraph [ref=e316]: danielaplan.bsit2024@gmail.com
+        - generic [ref=e317]:
+          - button "Copy Email" [ref=e318]
+          - link "Open Mail App" [ref=e321] [cursor=pointer]:
+            - /url: mailto:danielaplan.bsit2024@gmail.com?subject=Portfolio%20Inquiry%20-%20Daniel%20Aplan
+  - contentinfo [ref=e324]:
+    - generic [ref=e325]:
+      - generic [ref=e326]:
+        - generic [ref=e327]:
+          - link "daniel." [ref=e328] [cursor=pointer]:
+            - /url: "#home"
+          - paragraph [ref=e329]: Built with React, Vite & Tailwind CSS.Enhanced with GSAP, Framer Motion, Lenis & Phosphor Icons.
+          - navigation "Footer social links" [ref=e330]:
+            - link "GitHub" [ref=e331] [cursor=pointer]:
+              - /url: https://github.com/danielaplan
+            - link "LinkedIn" [ref=e334] [cursor=pointer]:
+              - /url: https://www.linkedin.com/in/daniel-aplan-5ba561334/
+            - link "Email" [ref=e337] [cursor=pointer]:
+              - /url: mailto:danielaplan.bsit2024@gmail.com
+            - link "Instagram" [ref=e340] [cursor=pointer]:
+              - /url: https://www.instagram.com/dniel_apln/
+            - link "Facebook" [ref=e343] [cursor=pointer]:
+              - /url: https://www.facebook.com/daniel.aplan.9/
+        - navigation "Footer navigation" [ref=e346]:
+          - link "Home" [ref=e347] [cursor=pointer]:
+            - /url: "#home"
+            - generic [ref=e348]:
+              - generic [ref=e349]: Home
+              - generic [aria-hidden] [ref=e350]:
+                - generic [ref=e351]:
+                  - generic [ref=e352]: H
+                  - generic [ref=e353]: H
+                - generic [ref=e354]:
+                  - generic [ref=e355]: o
+                  - generic [ref=e356]: o
+                - generic [ref=e357]:
+                  - generic [ref=e358]: m
+                  - generic [ref=e359]: m
+                - generic [ref=e360]:
+                  - generic [ref=e361]: e
+                  - generic [ref=e362]: e
+          - link "About" [ref=e363] [cursor=pointer]:
+            - /url: "#home"
+            - generic [ref=e364]:
+              - generic [ref=e365]: About
+              - generic [aria-hidden] [ref=e366]:
+                - generic [ref=e367]:
+                  - generic [ref=e368]: A
+                  - generic [ref=e369]: A
+                - generic [ref=e370]:
+                  - generic [ref=e371]: b
+                  - generic [ref=e372]: b
+                - generic [ref=e373]:
+                  - generic [ref=e374]: o
+                  - generic [ref=e375]: o
+                - generic [ref=e376]:
+                  - generic [ref=e377]: u
+                  - generic [ref=e378]: u
+                - generic [ref=e379]:
+                  - generic [ref=e380]: t
+                  - generic [ref=e381]: t
+          - link "Projects" [ref=e382] [cursor=pointer]:
+            - /url: "#projects"
+            - generic [ref=e383]:
+              - generic [ref=e384]: Projects
+              - generic [aria-hidden] [ref=e385]:
+                - generic [ref=e386]:
+                  - generic [ref=e387]: P
+                  - generic [ref=e388]: P
+                - generic [ref=e389]:
+                  - generic [ref=e390]: r
+                  - generic [ref=e391]: r
+                - generic [ref=e392]:
+                  - generic [ref=e393]: o
+                  - generic [ref=e394]: o
+                - generic [ref=e395]:
+                  - generic [ref=e396]: j
+                  - generic [ref=e397]: j
+                - generic [ref=e398]:
+                  - generic [ref=e399]: e
+                  - generic [ref=e400]: e
+                - generic [ref=e401]:
+                  - generic [ref=e402]: c
+                  - generic [ref=e403]: c
+                - generic [ref=e404]:
+                  - generic [ref=e405]: t
+                  - generic [ref=e406]: t
+                - generic [ref=e407]:
+                  - generic [ref=e408]: s
+                  - generic [ref=e409]: s
+          - link "Skills" [ref=e410] [cursor=pointer]:
+            - /url: "#skills"
+            - generic [ref=e411]:
+              - generic [ref=e412]: Skills
+              - generic [aria-hidden] [ref=e413]:
+                - generic [ref=e414]:
+                  - generic [ref=e415]: S
+                  - generic [ref=e416]: S
+                - generic [ref=e417]:
+                  - generic [ref=e418]: k
+                  - generic [ref=e419]: k
+                - generic [ref=e420]:
+                  - generic [ref=e421]: i
+                  - generic [ref=e422]: i
+                - generic [ref=e423]:
+                  - generic [ref=e424]: l
+                  - generic [ref=e425]: l
+                - generic [ref=e426]:
+                  - generic [ref=e427]: l
+                  - generic [ref=e428]: l
+                - generic [ref=e429]:
+                  - generic [ref=e430]: s
+                  - generic [ref=e431]: s
+          - link "Contact" [ref=e432] [cursor=pointer]:
+            - /url: "#contact"
+            - generic [ref=e433]:
+              - generic [ref=e434]: Contact
+              - generic [aria-hidden] [ref=e435]:
+                - generic [ref=e436]:
+                  - generic [ref=e437]: C
+                  - generic [ref=e438]: C
+                - generic [ref=e439]:
+                  - generic [ref=e440]: o
+                  - generic [ref=e441]: o
+                - generic [ref=e442]:
+                  - generic [ref=e443]: "n"
+                  - generic [ref=e444]: "n"
+                - generic [ref=e445]:
+                  - generic [ref=e446]: t
+                  - generic [ref=e447]: t
+                - generic [ref=e448]:
+                  - generic [ref=e449]: a
+                  - generic [ref=e450]: a
+                - generic [ref=e451]:
+                  - generic [ref=e452]: c
+                  - generic [ref=e453]: c
+                - generic [ref=e454]:
+                  - generic [ref=e455]: t
+                  - generic [ref=e456]: t
+      - paragraph [ref=e457]: © 2026 Daniel Aplan. All rights reserved.
+  - generic:
+    - generic:
+      - generic:
+        - text: "Email copied:"
+        - strong: danielaplan.bsit2024@gmail.com

@@ -32,10 +32,10 @@ export default function Contact({ onCopyEmail, copiedEmail }) {
     <section
       id="contact"
       ref={sectionRef}
-      style={{ backgroundColor: 'var(--bg-surface)' }}
-      className={`min-h-0 border-t scroll-mt-16 px-4 pb-12 pt-14 sm:px-8 sm:pb-16 sm:pt-20 lg:min-h-[calc(100dvh-4rem)] lg:px-12 lg:pt-24 flex flex-col justify-center`}
+      style={{ background: 'var(--page-background)' }}
+      className={`min-h-0 scroll-mt-16 px-4 pb-12 pt-14 sm:px-8 sm:pb-16 sm:pt-20 lg:min-h-[calc(100dvh-4rem)] lg:px-12 lg:pt-24 flex flex-col justify-center`}
     >
-      <div className="mx-auto w-full max-w-[1400px]">
+      <div className="mx-auto w-full max-w-6xl">
         <div className="grid gap-12 lg:grid-cols-2 lg:items-start lg:gap-20">
           <div>
             <h2 className="text-4xl font-semibold tracking-[-0.05em] sm:text-6xl" style={{ color: 'var(--text-primary)', fontFamily: 'var(--font-display)' }}>

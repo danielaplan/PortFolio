@@ -372,6 +372,12 @@
         "value": "7rem",
         "createdAt": "2026-09-10T20:06:47.298Z",
         "reason": "7rem is fontSizeXl, a documented size step in DESIGN.md (line 43); the hero name is the largest element on the page"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "inter",
+        "createdAt": "2026-09-10T20:25:57.571Z",
+        "reason": "Inter is the project's declared --font-sans base font in src/index.css @theme block (line 4) and used site-wide; pre-existing, not introduced by this change"
       }
     ]
   }

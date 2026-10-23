@@ -183,7 +183,7 @@ function ProjectCard({ project, pinnedId, setPinnedId, onOpenDetails, featured =
   };
 
   return (
-    <div ref={cellRef} className={`project-card-cell relative min-h-[280px] ${featured ? 'lg:col-span-2' : 'lg:col-span-1'}`}>
+    <div ref={cellRef} className="project-card-cell relative min-h-[280px]">
       <motion.article
         ref={cardRef}
         tabIndex={0}
@@ -208,7 +208,7 @@ function ProjectCard({ project, pinnedId, setPinnedId, onOpenDetails, featured =
         transition={reduceMotion
           ? { duration: 0 }
           : cardSpring}
-        className={`project-card transform-gpu rounded-xl border ${
+        className={`project-card transform-gpu overflow-hidden rounded-lg border ${
           isExpanded || isCollapsing ? 'project-card-active project-card-collapsing absolute z-50' : ''
         }`}
         style={{
@@ -218,9 +218,7 @@ function ProjectCard({ project, pinnedId, setPinnedId, onOpenDetails, featured =
         aria-label={`${project.title} project card`}
       >
       <motion.div
-        className={`project-card-preview group relative ${featured ? 'aspect-[16/10]' : 'aspect-[16/9]'} overflow-hidden ${
-          imagePreview ? 'cursor-zoom-in' : ''
-        }`}
+        className="project-card-preview group relative aspect-[16/10] overflow-hidden"
         onPointerEnter={(event) => {
           if (!imagePreview) return;
           setIsImageHovered(true);
@@ -449,7 +447,7 @@ export default function BentoGrid({ projects = [], onOpenDetails }) {
   if (!projects.length) return null;
 
   return (
-    <div className="project-card-grid relative grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+    <div className="project-card-grid relative grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
       <AnimatePresence>
       {pinnedId && (
         <motion.button

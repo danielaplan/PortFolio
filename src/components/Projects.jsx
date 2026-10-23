@@ -73,18 +73,18 @@ export default function Projects() {
     <section
       id="projects"
       ref={sectionRef}
-      style={{ backgroundColor: 'var(--bg-surface)' }}
-      className={`relative z-20 min-h-0 lg:min-h-[calc(100dvh-4rem)] flex flex-col justify-start border-t px-4 pb-12 pt-14 sm:px-8 sm:pb-16 sm:pt-20 lg:px-12 lg:pt-24 scroll-mt-16`}
+      style={{ background: 'var(--page-background)' }}
+      className={`relative z-20 min-h-0 lg:min-h-[calc(100dvh-4rem)] flex flex-col justify-start px-4 pb-12 pt-14 sm:px-8 sm:pb-16 sm:pt-20 lg:px-12 lg:pt-24 scroll-mt-16`}
       data-lenis-prevent
     >
-      <div className="mx-auto w-full max-w-[1400px]">
+      <div className="mx-auto w-full max-w-6xl">
         <div className="mb-8 flex flex-col gap-5 sm:mb-12 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <h2
               className="text-4xl font-medium tracking-[-0.05em] sm:text-6xl"
               style={{ color: 'var(--text-primary)', fontFamily: 'var(--font-display)' }}
             >
-              Practical systems, built to work.
+              Featured Projects
             </h2>
             <p className="mt-3 max-w-xl text-sm leading-6 sm:text-base sm:leading-7" style={{ color: 'var(--text-secondary)' }}>
               A collection of projects I&apos;ve built to practice, learn, and solve real problems.

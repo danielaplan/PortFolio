@@ -94,10 +94,10 @@ export default function Skills() {
     <section
       id="skills"
       ref={sectionRef}
-      style={{ backgroundColor: 'var(--bg-canvas)' }}
-      className={`min-h-0 lg:min-h-[calc(100dvh-4rem)] flex flex-col justify-center border-t px-4 pb-12 pt-14 scroll-mt-16 sm:px-8 sm:pb-16 sm:pt-20 lg:px-12 lg:pt-24`}
+      style={{ background: 'var(--page-background)' }}
+      className={`min-h-0 lg:min-h-[calc(100dvh-4rem)] flex flex-col justify-center px-4 pb-12 pt-14 scroll-mt-16 sm:px-8 sm:pb-16 sm:pt-20 lg:px-12 lg:pt-24`}
     >
-      <div className="mx-auto w-full max-w-[1400px] space-y-10 lg:space-y-14">
+      <div className="mx-auto w-full max-w-6xl space-y-10 lg:space-y-14">
 
         {/* Section Header */}
         <div className="flex flex-col gap-4">
@@ -106,7 +106,7 @@ export default function Skills() {
               className="text-4xl font-medium tracking-[-0.05em] sm:text-6xl"
               style={{ color: 'var(--text-primary)', fontFamily: 'var(--font-display)' }}
             >
-              How I build
+              Technical Skills
             </h2>
             <p
               className="mt-3 max-w-xl text-sm font-normal leading-6 sm:text-base sm:leading-7"
@@ -121,7 +121,7 @@ export default function Skills() {
           {skillCategories.map((category) => (
              <div
                key={category.title}
-               className="border-t py-5 sm:py-6"
+               className="py-5 sm:py-6"
                style={{
                  borderColor: 'var(--border)',
                }}

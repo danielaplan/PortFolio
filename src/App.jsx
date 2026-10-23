@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { flushSync } from 'react-dom';
 import Lenis from 'lenis';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -15,15 +16,8 @@ export default function App() {
     // Auto-detect theme based on time: dark from 6 PM to 6 AM
     const hour = new Date().getHours();
     const isNightTime = hour >= 18 || hour < 6;
-    return localStorage.getItem('theme') || (isNightTime ? 'dark' : 'light');
+    return localStorage.getItem('theme') || 'light';
   });
-
-  // Default to dark mode on first visit (override any time-based detection)
-  useEffect(() => {
-    if (!localStorage.getItem('theme')) {
-      setTheme('dark');
-    }
-  }, []);
 
   // Initialize Lenis Fluid Smooth Inertia Scroll
   useEffect(() => {
@@ -130,12 +124,85 @@ export default function App() {
     localStorage.setItem('theme', theme);
   }, [theme]);
 
-  const toggleTheme = () => {
-    setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
+  const toggleTheme = ({ x, y } = {}) => {
+    const nextTheme = theme === 'dark' ? 'light' : 'dark';
+    const applyTheme = () => {
+      document.documentElement.setAttribute('data-theme', nextTheme);
+      localStorage.setItem('theme', nextTheme);
+      flushSync(() => setTheme(nextTheme));
+    };
+
+    const originX = x ?? window.innerWidth / 2;
+    const originY = y ?? window.innerHeight / 2;
+    const radius = Math.hypot(
+      Math.max(originX, window.innerWidth - originX),
+      Math.max(originY, window.innerHeight - originY),
+    );
+
+    if (!document.startViewTransition) {
+      const reveal = document.createElement('div');
+      Object.assign(reveal.style, {
+        position: 'fixed',
+        zIndex: '99999',
+        pointerEvents: 'none',
+        left: `${originX - radius}px`,
+        top: `${originY - radius}px`,
+        width: `${radius * 2}px`,
+        height: `${radius * 2}px`,
+        borderRadius: '50%',
+        backgroundColor: nextTheme === 'dark' ? '#121212' : '#F8F8F6',
+        transform: 'scale(0)',
+      });
+      document.body.appendChild(reveal);
+      const duration = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 300 : 650;
+      const animation = reveal.animate(
+        { transform: ['scale(0)', 'scale(1)'] },
+        { duration, easing: 'cubic-bezier(0.22, 1, 0.36, 1)', fill: 'forwards' },
+      );
+      animation.finished.then(() => {
+        applyTheme();
+        return reveal.animate(
+          { opacity: [1, 0] },
+          { duration: 160, easing: 'ease-out', fill: 'forwards' },
+        ).finished;
+      }).finally(() => reveal.remove());
+      return;
+    }
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      applyTheme();
+      return;
+    }
+
+    const transition = document.startViewTransition(applyTheme);
+    transition.ready.then(() => {
+      document.documentElement.animate(
+        {
+          clipPath: [
+            `circle(0 at ${originX}px ${originY}px)`,
+            `circle(${radius}px at ${originX}px ${originY}px)`,
+          ],
+        },
+        {
+          duration: 650,
+          easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
+          pseudoElement: '::view-transition-new(root)',
+        },
+      );
+    }).catch(() => {});
   };
 
   return (
-    <div className="relative min-h-screen w-full max-w-full flex flex-col font-sans overflow-x-clip">
+    <div className="relative min-h-screen w-full flex flex-col pb-24 font-sans overflow-x-clip">
+
+      <div
+        aria-hidden="true"
+        className="top-dot-fade pointer-events-none absolute inset-x-0 top-0 z-20 h-56"
+      >
+        <span className="top-dot-fade__large" />
+        <span className="top-dot-fade__medium" />
+        <span className="top-dot-fade__small" />
+      </div>
 
       {/* Navigation */}
       <Navbar
