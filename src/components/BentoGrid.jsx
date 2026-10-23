@@ -1,11 +1,9 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
-import { createPortal } from 'react-dom';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import {
   ArrowSquareOut,
   Check,
   GithubLogo,
-  ImageSquare,
 } from '@phosphor-icons/react';
 import { getTechIcon } from './icons/TechIcons';
 
@@ -60,14 +58,9 @@ function TechStack({ tags = [] }) {
   );
 }
 
-function ProjectCard({ project, pinnedId, setPinnedId, onOpenDetails, featured = false }) {
+function ProjectCard({ project, pinnedId, setPinnedId, onOpenDetails }) {
   const cardRef = useRef(null);
   const cellRef = useRef(null);
-  const imageOverlayRef = useRef(null);
-  const [imagePreview, setImagePreview] = useState(project.image || '');
-  const [isImageHovered, setIsImageHovered] = useState(false);
-  const [imagePointer, setImagePointer] = useState({ x: 0, y: 0 });
-  const [imageOverlayPosition, setImageOverlayPosition] = useState({ left: 16, top: 16 });
   const [expandedPosition, setExpandedPosition] = useState(null);
   const reduceMotion = useReducedMotion();
   const features = project.keyFeatures || [];
@@ -75,35 +68,6 @@ function ProjectCard({ project, pinnedId, setPinnedId, onOpenDetails, featured =
   const isExpanded = isPinned;
   const isCollapsing = !isExpanded && expandedPosition !== null;
   const showExpandedDetails = isExpanded || isCollapsing;
-
-  useLayoutEffect(() => {
-    if (!isImageHovered || !imageOverlayRef.current) return;
-
-    const overlay = imageOverlayRef.current.getBoundingClientRect();
-    const edgePadding = 16;
-    const gap = 18;
-    const maxLeft = Math.max(edgePadding, window.innerWidth - overlay.width - edgePadding);
-    const maxTop = Math.max(edgePadding, window.innerHeight - overlay.height - edgePadding);
-    const preferredLeft = imagePointer.x + gap;
-    const left = preferredLeft + overlay.width <= window.innerWidth - edgePadding
-      ? preferredLeft
-      : imagePointer.x - overlay.width - gap;
-    const preferredTop = imagePointer.y - overlay.height - gap;
-    const top = preferredTop >= edgePadding
-      ? preferredTop
-      : imagePointer.y + gap;
-
-    setImageOverlayPosition({
-      left: Math.min(Math.max(edgePadding, left), maxLeft),
-      top: Math.min(Math.max(edgePadding, top), maxTop),
-    });
-  }, [imagePointer, isImageHovered]);
-
-  useEffect(() => {
-    return () => {
-      if (imagePreview.startsWith('blob:')) URL.revokeObjectURL(imagePreview);
-    };
-  }, [imagePreview]);
 
   useEffect(() => {
     if (!isPinned) return undefined;
@@ -172,18 +136,8 @@ function ProjectCard({ project, pinnedId, setPinnedId, onOpenDetails, featured =
     setPinnedId(project.id);
   };
 
-  const handleImageUpload = (event) => {
-    const file = event.target.files?.[0];
-    if (!file) return;
-
-    setImagePreview((currentPreview) => {
-      if (currentPreview.startsWith('blob:')) URL.revokeObjectURL(currentPreview);
-      return URL.createObjectURL(file);
-    });
-  };
-
   return (
-    <div ref={cellRef} className="project-card-cell relative min-h-[280px]">
+    <div ref={cellRef} className="project-card-cell relative min-h-[250px]">
       <motion.article
         ref={cardRef}
         tabIndex={0}
@@ -217,122 +171,7 @@ function ProjectCard({ project, pinnedId, setPinnedId, onOpenDetails, featured =
         }}
         aria-label={`${project.title} project card`}
       >
-      <motion.div
-        className="project-card-preview group relative aspect-[16/10] overflow-hidden"
-        onPointerEnter={(event) => {
-          if (!imagePreview) return;
-          setIsImageHovered(true);
-          setImagePointer({
-            x: event.clientX,
-            y: event.clientY,
-          });
-        }}
-        onPointerLeave={(event) => {
-          if (!event.currentTarget.contains(event.relatedTarget)) {
-            setIsImageHovered(false);
-          }
-        }}
-        onPointerMove={(event) => {
-          setImagePointer({
-            x: event.clientX,
-            y: event.clientY,
-          });
-        }}
-      >
-        {imagePreview ? (
-          <motion.img
-            src={imagePreview}
-            alt={`${project.title} system preview`}
-            onPointerEnter={(event) => {
-              if (!imagePreview) return;
-              setIsImageHovered(true);
-              setImagePointer({
-                x: event.clientX,
-                y: event.clientY,
-              });
-            }}
-            onPointerMove={(event) => {
-              setImagePointer({
-                x: event.clientX,
-                y: event.clientY,
-              });
-            }}
-            whileHover={!isExpanded && !isCollapsing && !reduceMotion ? { scale: 1.05 } : undefined}
-            transition={reduceMotion ? { duration: 0 } : { duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            className="project-card-thumbnail h-full w-full object-cover object-top"
-          />
-        ) : (
-          <div
-            className="flex h-full flex-col items-center justify-center gap-2"
-            style={{
-              backgroundColor: 'var(--bg-canvas)',
-              color: 'var(--text-tertiary)',
-            }}
-          >
-            <ImageSquare size={28} weight="light" />
-            <span className="max-w-[14rem] px-4 text-center text-sm font-medium">{project.title}</span>
-          </div>
-        )}
-
-        <label
-          onClick={(event) => event.stopPropagation()}
-          className="absolute bottom-3 right-3 cursor-pointer rounded-lg px-2.5 py-1.5 text-[10px] font-semibold opacity-0 shadow-sm transition-opacity group-hover:opacity-100 focus-within:opacity-100"
-          style={{
-            backgroundColor: 'var(--bg-surface)',
-            border: '1px solid var(--border)',
-            color: 'var(--text-primary)',
-          }}
-        >
-          {imagePreview ? 'Change image' : 'Upload image'}
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleImageUpload}
-            className="sr-only"
-          />
-        </label>
-
-      </motion.div>
-
-      <AnimatePresence>
-        {isImageHovered && imagePreview && typeof document !== 'undefined' && createPortal(
-          <motion.div
-            ref={imageOverlayRef}
-            initial={reduceMotion ? false : { opacity: 0, scale: 0.96, y: 8 }}
-            animate={reduceMotion
-              ? { opacity: 1 }
-              : {
-                  opacity: 1,
-                  scale: 1,
-                  y: 0,
-                  left: imageOverlayPosition.left,
-                  top: imageOverlayPosition.top,
-                }}
-            exit={reduceMotion ? undefined : { opacity: 0, scale: 0.96, y: 8 }}
-            transition={reduceMotion
-              ? { duration: 0 }
-              : { type: 'spring', stiffness: 280, damping: 28, mass: 0.7 }}
-            className="pointer-events-none fixed z-[70] h-[240px] w-[420px] overflow-hidden rounded-2xl border shadow-2xl"
-            style={{
-              backgroundColor: 'var(--bg-surface)',
-              borderColor: 'color-mix(in srgb, var(--border-hover) 55%, transparent)',
-              left: imageOverlayPosition.left,
-              top: imageOverlayPosition.top,
-            }}
-            aria-label={`Expanded preview of ${project.title}`}
-          >
-            <img
-              src={imagePreview}
-              alt={`${project.title} enlarged preview`}
-              onLoad={() => setImagePointer((current) => ({ ...current }))}
-              className="h-full w-full object-cover"
-            />
-          </motion.div>,
-          document.body
-        )}
-      </AnimatePresence>
-
-      <div className="project-card-summary p-4 sm:p-5">
+      <div className="project-card-summary flex min-h-[250px] flex-col p-5 sm:p-6">
         <div className="mb-3 flex items-center gap-2 text-[10px] font-mono">
           {project.category && (
             <span
@@ -376,7 +215,7 @@ function ProjectCard({ project, pinnedId, setPinnedId, onOpenDetails, featured =
             event.stopPropagation();
             handleCardClick(event);
           }}
-          className="mt-4 text-xs font-semibold"
+          className="mt-auto pt-6 text-left text-xs font-semibold"
           style={{ color: 'var(--text-primary)' }}
         >
           {isPinned ? 'Click to collapse ->' : 'Click to expand ->'}
@@ -462,11 +301,10 @@ export default function BentoGrid({ projects = [], onOpenDetails }) {
         />
       )}
       </AnimatePresence>
-      {projects.map((project, index) => (
+      {projects.map((project) => (
         <ProjectCard
           key={project.id}
           project={project}
-          featured={index < 3}
           pinnedId={pinnedId}
           setPinnedId={setPinnedId}
           onOpenDetails={onOpenDetails}

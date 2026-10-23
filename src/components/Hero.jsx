@@ -22,7 +22,7 @@ function MonochromePortrait() {
         height={525}
         loading="eager"
         decoding="async"
-        className="portrait-bottom-fade absolute bottom-0 left-1/2 h-full w-[138%] max-w-none -translate-x-1/2 object-contain object-bottom"
+        className="profile-theme-image portrait-bottom-fade absolute bottom-0 left-1/2 h-full w-[138%] max-w-none -translate-x-1/2 object-contain object-bottom"
       />
     </div>
   );

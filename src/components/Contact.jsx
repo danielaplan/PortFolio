@@ -33,7 +33,7 @@ export default function Contact({ onCopyEmail, copiedEmail }) {
       id="contact"
       ref={sectionRef}
       style={{ background: 'var(--page-background)' }}
-      className={`min-h-0 scroll-mt-16 px-4 pb-12 pt-14 sm:px-8 sm:pb-16 sm:pt-20 lg:min-h-[calc(100dvh-4rem)] lg:px-12 lg:pt-24 flex flex-col justify-center`}
+      className="scroll-mt-16 px-4 pb-12 pt-14 sm:px-8 sm:pb-14 sm:pt-20 lg:px-12 lg:pb-16 lg:pt-24"
     >
       <div className="mx-auto w-full max-w-6xl">
         <div className="grid gap-12 lg:grid-cols-2 lg:items-start lg:gap-20">
