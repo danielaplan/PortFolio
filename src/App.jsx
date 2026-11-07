@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { flushSync } from 'react-dom';
 import Lenis from 'lenis';
 import Navbar from './components/Navbar';
@@ -9,9 +9,14 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import { Check } from 'lucide-react';
 
+export const hasReachedSection = (id, target, isAtBottom) => (
+  id === 'contact' ? isAtBottom : Boolean(target) && Math.abs(target.getBoundingClientRect().top) <= 2
+);
+
 export default function App() {
   const [copiedToast, setCopiedToast] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const navigationTarget = useRef(null);
   const [theme, setTheme] = useState(() => {
     // Auto-detect theme based on time: dark from 6 PM to 6 AM
     const hour = new Date().getHours();
@@ -60,6 +65,18 @@ export default function App() {
           const windowHeight = window.innerHeight;
           const isAtBottom = windowHeight + Math.round(scrollY) >= document.documentElement.scrollHeight - 90;
 
+          if (navigationTarget.current) {
+            const target = document.getElementById(navigationTarget.current);
+            const reachedTarget = hasReachedSection(navigationTarget.current, target, isAtBottom);
+
+            if (!reachedTarget) {
+              ticking = false;
+              return;
+            }
+
+            navigationTarget.current = null;
+          }
+
           if (isAtBottom) {
             setActiveSection('contact');
             ticking = false;
@@ -87,6 +104,15 @@ export default function App() {
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const handleSectionNavigation = (id) => {
+    const target = document.getElementById(id);
+    const isAtBottom = window.innerHeight + Math.round(window.scrollY) >= document.documentElement.scrollHeight - 90;
+    const isAlreadyThere = hasReachedSection(id, target, isAtBottom);
+
+    navigationTarget.current = isAlreadyThere ? null : id;
+    setActiveSection(id);
+  };
 
   const handleCopyEmail = () => {
     const email = "danielaplan.bsit2024@gmail.com";
@@ -209,7 +235,7 @@ export default function App() {
         theme={theme}
         toggleTheme={toggleTheme}
         activeSection={activeSection}
-        setActiveSection={setActiveSection}
+        setActiveSection={handleSectionNavigation}
       />
 
       {/* Main Content: Fluid Scroll Stages with In-View Focus */}

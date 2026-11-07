@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import * as Tooltip from '@radix-ui/react-tooltip';
 import { animate, motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { Code, EnvelopeSimple, House, Moon, Stack, Sun } from '@phosphor-icons/react';
@@ -9,6 +9,11 @@ const NUDGE = 40;
 const SPRING = { mass: 0.1, stiffness: 170, damping: 12 };
 const HIGHLIGHT_SPRING = { type: 'spring', stiffness: 420, damping: 34 };
 
+export const getDockScale = (distance) => {
+  if (!Number.isFinite(distance)) return 1;
+  return 1 + (SCALE - 1) * (1 - Math.min(Math.abs(distance) / DISTANCE, 1));
+};
+
 const NAV_LINKS = [
   { name: 'Home', href: '#home', id: 'home', icon: House },
   { name: 'Projects', href: '#projects', id: 'projects', icon: Code },
@@ -17,7 +22,6 @@ const NAV_LINKS = [
 ];
 
 export default function Navbar({ theme, toggleTheme, activeSection, setActiveSection }) {
-  const snapHighlight = useRef(false);
   const mouseLeft = useMotionValue(-Infinity);
   const mouseRight = useMotionValue(-Infinity);
   const leftSpring = useSpring(useTransform(mouseLeft, [0, 40], [0, -40]), SPRING);
@@ -25,14 +29,9 @@ export default function Navbar({ theme, toggleTheme, activeSection, setActiveSec
 
   const handleNavClick = (event, href, id) => {
     event.preventDefault();
-    snapHighlight.current = true;
     setActiveSection?.(id);
     document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
   };
-
-  useEffect(() => {
-    snapHighlight.current = false;
-  }, [activeSection]);
 
   return (
     <Tooltip.Provider delayDuration={0}>
@@ -77,7 +76,6 @@ export default function Navbar({ theme, toggleTheme, activeSection, setActiveSec
             link={link}
             mouseLeft={mouseLeft}
             isActive={activeSection === link.id}
-            snapHighlight={snapHighlight.current}
             onNavigate={handleNavClick}
           />
         ))}
@@ -86,46 +84,24 @@ export default function Navbar({ theme, toggleTheme, activeSection, setActiveSec
 
       <nav
         aria-label="Primary navigation"
-        className="fixed bottom-4 left-1/2 z-50 grid w-[calc(100vw-2rem)] max-w-md -translate-x-1/2 grid-cols-5 items-center gap-1.5 rounded-full border p-1.5 backdrop-blur-xl sm:hidden"
+        className="fixed bottom-4 left-1/2 z-50 flex h-16 -translate-x-1/2 items-end gap-2 rounded-full border px-2.5 pb-2.5 backdrop-blur-xl [&_a]:min-h-11 [&_a]:min-w-11 [&_button]:min-h-11 [&_button]:min-w-11 sm:hidden"
         style={{
           background: 'var(--dock-surface)',
           borderColor: 'color-mix(in srgb, var(--border-hover) 60%, transparent)',
           boxShadow: 'var(--dock-shadow)',
-          paddingBottom: 'max(0.375rem, env(safe-area-inset-bottom))',
+          bottom: 'max(1rem, env(safe-area-inset-bottom))',
         }}
       >
-        {NAV_LINKS.map((link) => {
-          const Icon = link.icon;
-          const isActive = activeSection === link.id;
-
-          return (
-            <a
-              key={link.id}
-              href={link.href}
-              onClick={(event) => handleNavClick(event, link.href, link.id)}
-              aria-current={isActive ? 'page' : undefined}
-              className="relative flex min-h-16 flex-col items-center justify-center gap-1 rounded-[1.6rem] px-2 text-[11px] font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2"
-              style={{
-                backgroundColor: isActive ? 'transparent' : 'var(--bg-raised)',
-                color: isActive ? 'var(--button-text)' : 'var(--text-secondary)',
-                outlineColor: 'var(--accent)',
-                boxShadow: isActive ? 'none' : 'var(--card-shadow)',
-              }}
-            >
-              {isActive && (
-                <motion.span
-                  layoutId="mobile-dock-active"
-                  className="absolute inset-0 rounded-[1.6rem]"
-                  style={{ backgroundColor: 'var(--accent)', boxShadow: 'var(--dock-active-shadow)' }}
-                  transition={snapHighlight.current ? { duration: 0 } : HIGHLIGHT_SPRING}
-                />
-              )}
-              <Icon className="relative z-10" size={20} weight={isActive ? 'fill' : 'bold'} aria-hidden="true" />
-              <span className="relative z-10">{link.name}</span>
-            </a>
-          );
-        })}
-        <ThemeButton theme={theme} toggleTheme={toggleTheme} />
+        {NAV_LINKS.map((link) => (
+          <DockLink
+            key={link.id}
+            link={link}
+            mouseLeft={mouseLeft}
+            isActive={activeSection === link.id}
+            onNavigate={handleNavClick}
+          />
+        ))}
+        <ThemeButton theme={theme} toggleTheme={toggleTheme} mouseLeft={mouseLeft} magnify />
       </nav>
     </Tooltip.Provider>
   );
@@ -135,13 +111,12 @@ function ThemeButton({ theme, toggleTheme, mouseLeft, magnify = false }) {
   const ref = useRef(null);
   const y = useMotionValue(0);
   const distance = useTransform(() => {
-    if (!mouseLeft || !ref.current) return -Infinity;
-    return mouseLeft.get() - ref.current.offsetLeft - ref.current.offsetWidth / 2;
+    if (!mouseLeft) return -Infinity;
+    const pointer = mouseLeft.get();
+    if (!ref.current) return -Infinity;
+    return pointer - ref.current.offsetLeft - ref.current.offsetWidth / 2;
   });
-  const scale = useSpring(
-    useTransform(distance, [-DISTANCE, 0, DISTANCE], [1, SCALE, 1]),
-    SPRING,
-  );
+  const scale = useSpring(useTransform(() => getDockScale(distance.get())), SPRING);
   const x = useSpring(
     useTransform(() => {
       const value = distance.get();
@@ -177,8 +152,8 @@ function ThemeButton({ theme, toggleTheme, mouseLeft, magnify = false }) {
           }}
         >
           {theme === 'dark'
-            ? <Sun size={20} weight="bold" aria-hidden="true" />
-            : <Moon size={20} weight="bold" aria-hidden="true" />}
+            ? <Sun size={magnify ? 22 : 20} weight="bold" aria-hidden="true" />
+            : <Moon size={magnify ? 22 : 20} weight="bold" aria-hidden="true" />}
           {!magnify && <span>Theme</span>}
         </motion.button>
       </Tooltip.Trigger>
@@ -201,7 +176,7 @@ function ThemeButton({ theme, toggleTheme, mouseLeft, magnify = false }) {
   );
 }
 
-function DockLink({ link, mouseLeft, isActive, snapHighlight, onNavigate }) {
+function DockLink({ link, mouseLeft, isActive, onNavigate }) {
   const ref = useRef(null);
   const y = useMotionValue(0);
   const distance = useTransform(() => {
@@ -210,7 +185,7 @@ function DockLink({ link, mouseLeft, isActive, snapHighlight, onNavigate }) {
       : { x: 0, width: 0 };
     return mouseLeft.get() - bounds.x - bounds.width / 2;
   });
-  const scale = useTransform(distance, [-DISTANCE, 0, DISTANCE], [1, SCALE, 1]);
+  const scale = useTransform(() => getDockScale(distance.get()));
   const x = useTransform(() => {
     const value = distance.get();
     if (value === -Infinity) return 0;
@@ -246,13 +221,14 @@ function DockLink({ link, mouseLeft, isActive, snapHighlight, onNavigate }) {
         >
           {isActive && (
             <motion.span
-              layoutId="desktop-dock-active"
               className="absolute inset-0 rounded-full"
               style={{ backgroundColor: 'var(--accent)', boxShadow: 'var(--dock-active-shadow)' }}
-              transition={snapHighlight ? { duration: 0 } : HIGHLIGHT_SPRING}
+              initial={{ opacity: 0, scale: 0.75 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={HIGHLIGHT_SPRING}
             />
           )}
-          <Icon className="relative z-10" size={19} weight={isActive ? 'fill' : 'bold'} aria-hidden="true" />
+          <Icon className="relative z-10" size={22} weight={isActive ? 'fill' : 'bold'} aria-hidden="true" />
         </motion.a>
       </Tooltip.Trigger>
       <Tooltip.Portal>
