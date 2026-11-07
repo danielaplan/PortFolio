@@ -1,10 +1,11 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { lazy, Suspense, useEffect, useMemo, useRef, useState } from 'react';
 import { ArrowsClockwise } from '@phosphor-icons/react';
-import ProjectModal from './ProjectModal';
 import BentoGrid from './BentoGrid';
 import { curatedProjects } from '../data/projects';
 import { fetchUserRepos } from '../services/github';
 import { useScrollReveal } from '../hooks/useScrollReveal';
+
+const ProjectModal = lazy(() => import('./ProjectModal'));
 
 export default function Projects() {
   const sectionRef = useRef(null);
@@ -153,11 +154,13 @@ export default function Projects() {
       </div>
 
       {activeModalProject && (
-        <ProjectModal
-          project={activeModalProject}
-          githubData={githubMap.get(activeModalProject.repoName?.toLowerCase())}
-          onClose={() => setActiveModalProject(null)}
-        />
+        <Suspense fallback={null}>
+          <ProjectModal
+            project={activeModalProject}
+            githubData={githubMap.get(activeModalProject.repoName?.toLowerCase())}
+            onClose={() => setActiveModalProject(null)}
+          />
+        </Suspense>
       )}
     </section>
   );

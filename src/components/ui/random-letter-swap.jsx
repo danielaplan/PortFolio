@@ -1,5 +1,4 @@
 import { useRef } from 'react';
-import gsap from 'gsap';
 
 /**
  * Vertical letter-roll with per-letter randomized offsets.
@@ -24,7 +23,6 @@ export function RandomLetterSwap({
   ...props
 }) {
   const containerRef = useRef(null);
-  const tlRef        = useRef(null);
 
   /**
    * @param {string} enterSel  - CSS selector for letters coming in
@@ -38,59 +36,42 @@ export function RandomLetterSwap({
     if (isAnimatingRef.current) return;
     isAnimatingRef.current = true;
 
-    if (tlRef.current) tlRef.current.kill();
-
     const wrappers = [
       ...(containerRef.current?.querySelectorAll('[data-char-wrap]') ?? []),
     ];
 
-    const tl = gsap.timeline({
-      onComplete: () => {
-        // Once the entire forward roll animation completes, seamlessly reset positions
-        // so it's instantly ready for the next hover without any visual jump
-        wrappers.forEach((wrapper) => {
-          gsap.set(wrapper.querySelector('[data-orig]'),  { y: '0%' });
-          gsap.set(wrapper.querySelector('[data-hover]'), { y: '-120%' });
-        });
-        isAnimatingRef.current = false;
-      }
-    });
-    tlRef.current = tl;
-
     // Shuffle indices or give each letter an independent random start delay
     const totalLetters = wrappers.length;
     const maxDelay = Math.max(0.12, (totalLetters - 1) * staggerDuration * 1.5);
+    const animations = [];
 
-    wrappers.forEach((wrapper, i) => {
+    wrappers.forEach((wrapper) => {
       const entering = wrapper.querySelector('[data-hover]');
       const exiting  = wrapper.querySelector('[data-orig]');
 
       const enterOffset = rand(75, 170) * -1;
       const exitOffset  = rand(75, 170);
+      const delay = rand(0, maxDelay) * 1000;
 
-      // Independent random delay per letter so they don't fall at the same time or strictly in order
-      const randomDelay = rand(0, maxDelay);
-
-      tl.to(
-        exiting,
-        {
-          y: `${exitOffset}%`,
-          duration: rand(0.22, 0.32),
-          ease: 'power2.in',
-        },
-        randomDelay
+      animations.push(
+        exiting.animate(
+          [{ transform: 'translateY(0)' }, { transform: `translateY(${exitOffset}%)` }],
+          { duration: rand(220, 320), delay, easing: 'cubic-bezier(0.4, 0, 1, 1)', fill: 'forwards' },
+        ),
+        entering.animate(
+          [{ transform: `translateY(${enterOffset}%)` }, { transform: 'translateY(0)' }],
+          { duration: rand(320, 460), delay, easing: 'cubic-bezier(0.22, 1, 0.36, 1)', fill: 'forwards' },
+        ),
       );
+    });
 
-      tl.fromTo(
-        entering,
-        { y: `${enterOffset}%` },
-        {
-          y: '0%',
-          duration: rand(0.32, 0.46),
-          ease: 'power3.out',
-        },
-        randomDelay
-      );
+    Promise.allSettled(animations.map((animation) => animation.finished)).then(() => {
+      wrappers.forEach((wrapper) => {
+        wrapper.querySelector('[data-orig]').style.transform = 'translateY(0)';
+        wrapper.querySelector('[data-hover]').style.transform = 'translateY(-120%)';
+      });
+      animations.forEach((animation) => animation.cancel());
+      isAnimatingRef.current = false;
     });
   };
 
