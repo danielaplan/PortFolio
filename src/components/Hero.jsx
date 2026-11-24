@@ -52,7 +52,7 @@ export default function Hero({ onCopyEmail }) {
             Daniel Aplan
           </h1>
           <p className="mt-3 text-sm font-medium" style={{ color: 'var(--text-primary)' }}>
-            BSIT Student <span className="mx-2" style={{ color: 'var(--text-tertiary)' }}>/</span> Full-Stack Developer
+            BSIT Student <span className="mx-2" style={{ color: 'var(--text-tertiary)' }}>/</span> Full-Stack Developer 
           </p>
           <p className="mx-auto mt-5 max-w-sm text-sm leading-6" style={{ color: 'var(--text-secondary)' }}>
             I build simple, functional, and user-friendly web applications with clean code and thoughtful problem solving.
@@ -89,7 +89,7 @@ export default function Hero({ onCopyEmail }) {
             Daniel Aplan
           </h1>
           <p className="mt-5 text-sm font-medium sm:text-base" style={{ color: 'var(--text-primary)' }}>
-            BSIT Student <span className="mx-3" style={{ color: 'var(--text-tertiary)' }}>/</span> Aspiring Full-Stack Developer
+            BSIT Student <span className="mx-3" style={{ color: 'var(--text-tertiary)' }}>/</span> Full-Stack Developer <span className="mx-3" style={{ color: 'var(--text-tertiary)' }}>/</span> Aspiring AI Engineer
           </p>
           <p className="mt-8 max-w-lg text-sm leading-7 sm:text-base" style={{ color: 'var(--text-secondary)' }}>
             I build simple, functional, and user-friendly web applications with a focus on clean code, problem solving, and continuous learning.
